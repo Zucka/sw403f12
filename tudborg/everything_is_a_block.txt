@@ -1,0 +1,78 @@
+#IDEA: everything is a block.
+#You can evaluate a block and access any variable in the block scope.
+#When a block is evaluated, the last (executed) expression from the block is the return value
+#A block can be assigned like a function.
+
+factorial = (n){
+	if n > 0:
+		n * factorial(n-1)
+	else:
+		1
+	;;
+}
+
+#build in unit testing defined by a pipe("|") followed by an expression that should be true
+|factorial(5)==120
+|factorial(2)==2
+|factorial(1)==1
+|factorial(0)==1
+
+fib = (n){
+	if n < 2:
+		n
+	else:
+		fib(n-1) + fib(n-2)
+	;; 
+}
+
+#access any variable in scope
+
+doSomething = (){
+	a = 1
+	b = 2
+	c = 3
+	...do something
+	r = a+b+c
+}
+
+|doSomething()==6
+|doSomething.c()==3
+|doSomething.()== [a,b,c,...,r] #all variables assigned in scope (excluding input parameters)
+
+
+#c struct structures are avaiable. 
+#They are called dynamic blocks and are blocks where the block is evaluated on assignment
+#and the scope is remembered, and fully accessible.
+#All blocks have access to the scope of all ancestors.
+#use @ to get access
+
+#calling a dynamic block after assignment will yield an error
+
+MyStructure $(){ #notice the dollar sign, indicating a dynamic block
+	@a = 1 # if a is defined in ancestor scope, overwrite it with the value 1.
+	b = 2 # b is a local variable
+	c = 3
+	add_one = @(){ #the @ make the entire block (except from block args) use the parent scope
+		a+=1
+		b+=1
+		c+=1
+		null
+	}
+	sub_one = @(){ 
+		a-=1
+		b-=1
+		c-=1
+		null
+	}
+}
+
+|*	#define start of testblock
+
+s = MyStructure() 		# no pipe inside testblock means "run this as part of test but do not tjeck that this is true"
+|s.a == 1
+|s.add_one() == null
+|s.a == 2
+|s.sub_one() == null
+|s.a == 1
+
+*| #end testblock

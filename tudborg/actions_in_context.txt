@@ -83,11 +83,37 @@ table of copy and ref operators:
 #code: 
 
 each <- (someList):
-	iterator = 0
+	iterator <- 0
 	__each_aux <- ():
 		if iterator in someList:
 			return someList[iterator++]
 		else:
-			return null
+			return ;; #return no value
 		endif
-	return __each_aux(someList)
+		end
+	return __each_aux(someList) end
+
+
+swap <- (a,b):
+	t <- a
+	a <- b
+	b <- t
+	return ;; 			# ;; = no value, or "null" of you will.
+
+
+
+#bubblesort
+
+#code:
+
+bubblesort <- (A):
+	do:
+		swapped <- false
+		for i in A.size - 1:
+			if A[i-1] > A[i]:
+				swap A[i-1], A[i]
+				swapped <- true
+			end
+		end
+	while swapped 
+	end
