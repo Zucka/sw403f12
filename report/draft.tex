@@ -1,0 +1,79 @@
+%	Skriv folgende ind som en custom Quick Build (F1)
+%pdflatex -interaction=nonstopmode %.tex|bibtex %|pdflatex -interaction=nonstopmode %.tex|pdflatex -interaction=nonstopmode %.tex
+
+\input{layout/preamble_P3_draft.tex}
+
+\begin{document}
+	
+	
+	\input{layout/frontpage.tex}
+	\addtocounter{page}{1}
+	\input{layout/emptypage.tex}
+	\setcounter{page}{2}
+	\input{layout/titelblad.tex}
+	\input{layout/signatures.tex}
+	\tableofcontents	
+	\addcontentsline{toc}{chapter}{Table of Contents}
+	
+	\part{Introduction}
+  		\input{text/Introduction.tex}
+  	
+	\part{Analysis}
+		\input{text/Del_2/Analysis/Analysis.tex}
+	  	\input{text/Del_2/Analysis/RichPicture.tex}
+		\input{text/Del_2/Analysis/System_requirements.tex}
+		\input{text/Del_2/Analysis/System_definition.tex}
+		\input{text/Del_2/Analysis/Problem_domain.tex}
+		\input{text/Del_2/Analysis/Application_domain.tex}
+		\input{text/Del_2/Design/List_of_features.tex}
+    \input{text/Del_2/Design/Platform.tex}
+
+	\part{Design}
+		\input{text/Del_2/Design/Design.tex}
+		\input{text/Del_2/Design/Architecture.tex}
+		\input{text/Del_2/Design/Prioritizationscheme.tex}
+	  	%\input{text/Del_2/Design/CompLogin.tex}
+	  \input{text/Del_2/Design/Component.tex}
+	  \input{text/Del_2/Design/CompAlgorithm.tex}
+		\input{text/Del_2/Design/UIIntro.tex}
+		\input{text/Del_2/Design/UILogin.tex}
+		\input{text/Del_2/Design/UIFrontpage.tex}
+		\input{text/Del_2/Design/UISearch.tex}
+		\input{text/Del_2/Design/UIUserPage.tex}
+		\input{text/Del_2/Design/UIBook.tex}
+		\input{text/Del_2/Design/UIReceipt.tex}
+		\input{text/Del_2/Design/UICancel.tex}
+		\input{text/Del_2/Design/AlgorithmAnalyse.tex}
+		
+		\input{text/Del_2/Design/Database_description.tex}
+  
+	\part{Implementation}
+		\input{text/Del_3/Implementation.tex}
+		\input{text/Del_3/Userinterface.tex}
+		\input{text/Del_3/Algorithm.tex}
+		\input{text/Del_3/Communication.tex}
+		\input{text/Del_3/Database.tex}
+		\input{text/Del_3/Design_Patterns.tex}
+		
+	\part{Test}
+	    \input{text/Del_4/Test.tex}
+		\input{text/Del_4/unit_test.tex}
+	
+	\part{Conclusion \& Further Development}
+		\input{text/Del_5/Conclusion.tex}
+		\input{text/Del_4/Further_Development.tex}
+	
+	\part{Appendix}
+	\appendix{}
+	\bibliographystyle{plain}
+	\bibliography{kilder}
+	\addcontentsline{toc}{chapter}{Bibliography}
+	\input{text/appendix/Best-PathAlgorithms.tex}
+	\input{text/appendix/protocol.tex}
+	\input{text/pa.tex}
+	\input{text/Red_chair.tex}
+	\input{text/appendix/dresume.tex}
+	\appendix
+	\input{layout/emptypage.tex}
+
+\end{document}
