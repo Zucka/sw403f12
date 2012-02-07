@@ -1,0 +1,27 @@
+%	Skriv folgende ind som en custom Quick Build (F1)
+%pdflatex -interaction=nonstopmode %.tex|bibtex %|pdflatex -interaction=nonstopmode %.tex|pdflatex -interaction=nonstopmode %.tex
+
+\input{layout/preamble_P3_draft.tex}
+
+\begin{document}
+	
+	
+	\input{layout/frontpage.tex}
+	\addtocounter{page}{1}
+	\input{layout/emptypage.tex}
+	\setcounter{page}{2}
+	\input{layout/titelblad.tex}
+	\input{layout/signatures.tex}
+	\tableofcontents	
+	\addcontentsline{toc}{chapter}{Table of Contents}
+	
+	
+	\part{Appendix}
+	\appendix{}
+	\bibliographystyle{plain}
+	\bibliography{kilder}
+	\addcontentsline{toc}{chapter}{Bibliography}
+	\appendix
+	\input{layout/emptypage.tex}
+
+\end{document}
