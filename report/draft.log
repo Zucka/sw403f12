@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2011.2.15)  7 FEB 2012 11:02
+This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2011.2.15)  7 FEB 2012 11:29
 entering extended mode
 **C:/Gitp4/sw403f12/report/draft.tex
 (C:/Gitp4/sw403f12/report/draft.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
 rman, ngerman, german-x-2009-06-19, ngerman-x-2009-06-19, french, loaded.
-(C:\Gitp4\sw403f12\report\layout/preamble_P3_draft.tex
+(C:\Gitp4\sw403f12\report\layout/preamble_P4_draft.tex
 ("C:\Program Files (x86)\MiKTeX 2.8\tex\latex\base\report.cls"
 Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
 ("C:\Program Files (x86)\MiKTeX 2.8\tex\latex\base\size10.clo"
@@ -513,44 +513,45 @@ Overfull \hbox (5.50046pt too wide) in paragraph at lines 16--16
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--60
+Underfull \hbox (badness 10000) in paragraph at lines 62--62
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--60
+Underfull \hbox (badness 10000) in paragraph at lines 62--62
 
  []
 
 
-Overfull \hbox (28.45276pt too wide) in paragraph at lines 60--60
+Overfull \hbox (28.45276pt too wide) in paragraph at lines 62--62
 []$[]$ 
  []
 
 (C:\Gitp4\sw403f12\report\synopsis.tex)
-Overfull \hbox (7.90614pt too wide) in paragraph at lines 71--71
+Overfull \hbox (7.90614pt too wide) in paragraph at lines 73--73
 [] [] 
  []
 
 
-Overfull \hbox (27.00002pt too wide) in paragraph at lines 7--76
+Overfull \hbox (27.00002pt too wide) in paragraph at lines 7--78
 [][]
  []
 
 
-Overfull \hbox (77.33856pt too wide) in paragraph at lines 7--76
+Overfull \hbox (77.33856pt too wide) in paragraph at lines 7--78
 [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--76
+Underfull \hbox (badness 10000) in paragraph at lines 7--78
 
  []
 
-[3 <C:/Gitp4/sw403f12/report/images/aau-logo.pdf>])
-(C:\Gitp4\sw403f12\report\layout/signatures.tex [4
 
-]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3 <C:/Gitp4/sw403f12/report/images/aau-logo.pdf>] [4])
+(C:\Gitp4\sw403f12\report\layout/signatures.tex
 Underfull \hbox (badness 10000) in paragraph at lines 4--6
 
  []
@@ -570,12 +571,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--15
 
  []
 
-)
-Underfull \hbox (badness 10000) in paragraph at lines 16--15
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--18
 
  []
 
-[5] [6
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--21
+
+ []
+
+)
+Underfull \hbox (badness 10000) in paragraph at lines 22--15
+
+ []
+
+[5
+
+] [6
 
 ] (C:\Gitp4\sw403f12\report\draft.toc)
 \tf@toc=\write4
@@ -600,11 +613,11 @@ Package rerunfilecheck Info: File `draft.out' has not changed.
 Here is how much of TeX's memory you used:
  8858 strings out of 495285
  133261 string characters out of 3179827
- 306115 words of memory out of 3000000
+ 304115 words of memory out of 3000000
  11853 multiletter control sequences out of 15000+200000
  19200 words of font info for 40 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 46i,19n,47p,535b,369s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 46i,19n,47p,302b,367s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.8/fonts/enc/dvips/cm-super/cm-super-t1.enc}<
 C:/Program Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/
 Program Files (x86)/MiKTeX 2.8/fonts/type1/public/cm-super/sfbx1000.pfb><C:/Pro
@@ -620,7 +633,7 @@ eX 2.8/fonts/type1/public/cm-super/sfss0900.pfb><C:/Program Files (x86)/MiKTeX
 /fonts/type1/public/cm-super/sfti0800.pfb><C:/Program Files (x86)/MiKTeX 2.8/fo
 nts/type1/public/cm-super/sfti1000.pfb><C:/Program Files (x86)/MiKTeX 2.8/fonts
 /type1/public/cm-super/sfti1200.pfb>
-Output written on draft.pdf (12 pages, 1747998 bytes).
+Output written on draft.pdf (12 pages, 1745501 bytes).
 PDF statistics:
  259 PDF objects out of 1000 (max. 8388607)
  17 named destinations out of 1000 (max. 500000)
