@@ -1,0 +1,62 @@
+
+# this is a comment
+#
+# keywords:
+# define,for,in,do,end,on
+# 
+# native types:
+# text,number
+#
+# collections:
+# list
+#
+# collection operations:
+# add <item> on <collection>
+# remove <number> on <collection>
+
+define card as description text, value number	#define a new structure called card as a description of the type text and a value of the type number
+
+card_list = new list of card					#make a new (empty) list of cards
+
+for 10 do 										#do something 10 times
+	myCard = new card "hello world",40 			#create a new card with the description "hello world" and the value 40
+	add myCard on card_list						#put the myCard on top of the card_list list
+end for											#end the for loop
+
+for aCard in card_list do						#do something for all items in card_list. assign item to a variable called aCard
+	print aCard									#print out the aCard (of type card, so it contains a description and a value)
+end for											#end the for loop
+												#a list of 10 cards is made, and they are all printet
+
+
+							#printing variables and their attributes
+
+print card_list.size							#should print 10
+print card.size									#should print 2
+print card_list[1].size							#should also print 2
+print cardlist.size[1]							#should result in error(maybe warning)
+print card_list									#should print "card_list: a <list> of <card> holding 10 items
+
+							#printing types,structures and collections												
+
+print card										#should print "a <card> contains: a text called "description", a number called "value"
+print list										#should print "a <list> is a collection of items"
+	
+							#printing keywords (should be possible?!)
+
+print define									#should print "<define> is a keyword used to define new structures of data"
+print for										#should print "<for> is a keyword for looping"
+print do										#should print "<do> is a keyword used to express what you want to do in certain conditions"
+print in										#should print "<in> is a keyword used when looping over a collection of items"
+print on										#should print "<on> is a keyword used to do something "on" something else. (like adding items to a list)"
+print end										#should print "<end> is a keyword used to describe where a block of code ends"
+print text										#should print "<text> is a type used for storing text"
+print number									#should print "<number> is a type used for storing numbers"
+print print										#should print "<print> is a keyword to print items"
+
+
+
+
+
+
+
