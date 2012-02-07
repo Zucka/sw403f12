@@ -1,4 +1,13 @@
 
+# This document is a demo draft for the card language
+# Naming sugestings:
+# CaGLa (CArd Game LAnguage) "Kakla"
+# CaXL	(CArd eXpression Language) "Kaksel"
+# CGEL	(Common Game Expression Language) "Se,gæl"
+#
+#
+
+
 # LANGUAGE IDEA v0.0.1: advanced users
 # Thoughts: what if "everything" is a valid expression (where "everything" is legal syntax ofc.)
 # Design idea: Would it be possible to make any language syntax be valid everywhere else. i.e.

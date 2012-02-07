@@ -1,0 +1,16 @@
+
+# IDEA:
+# ^<action> <manipulates> <action parameters>* <context>$
+
+add card to list
+
+# translates to:
+# i am doing "add" - manipulating the "card" - in the context of "list"
+# the <bind> is only there to make the line more readable, and is not needed.
+# generally, 		changing the <manipulate> by <action> it to the <context>
+# specifically, 	changing the <card> by <adding> it to the <list>
+# this works for all actions
+
+remove card from list
+add card to list
+insert card at index 4 on list
