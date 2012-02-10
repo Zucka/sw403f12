@@ -1,0 +1,51 @@
+DEFINE card {
+	int value
+
+	0..1 player  #this is the relation field. here we see that a card have 0 or 1 player
+}(value)	 #the card type requires one argument. The argument will be assigned to "value"
+
+DEFINE player {
+	string name
+	int score  #as this field is not required, it will be auto-initialized as 0
+
+	0..* card  #and the player can have 0 or more relations to card
+}(name)
+
+
+[1 to 52 as i] {   #here we look from 1 to 52, ie. [1,2,...,52], the number is stored in i
+	make card(i)    #and here we make a card and parse the argument i as the value for the card.
+}                  #when this loop finishes, we should have 52 data rows for card, 
+                   #with values in the range 1...52
+
+
+make player #calling "make" with just a type will automatically create the right questions
+make player #and ask the user to fill the required information. Since the player requires a "name" field
+            #to be created, the program will ask "please enter player name:". Anything but an empty string
+            #is accepted as input since the type of "name" is a string. If the type was int,
+            #the program would try to autovalidate and prompt again on failure
+
+
+[(card where card.player == none | sort random) as c] n { #notice that we use "none" as the keyword for nothing
+	c.player = (next player)   # next controls an internal pointer in all structures
+}
+
+[forever] turn {   #the "forever" loop is a special query that never ends 
+                   #(in reality it could be that the iterator never increments on "forever")
+                   #the "turn" is the iteration count. in the first run, "turn" would = 1
+	if (count card) > 0 {
+		$ largestCard = none #define new variable with $
+		[(player) as p] {   #for all players as p
+			if largestCard == none || (pop p.card).value > largestCard.value {
+				largestCard = c
+			}
+		}
+		largestCard.player.score += 1
+	} else {
+		print "final results:\n"
+		[(player) as p] {
+			print "%s scored %d\n" % (p.name,p.score) #formatting a string
+		}
+		break   #the "break" will break the forever loop 
+	}
+}
+print "goodbye\n"

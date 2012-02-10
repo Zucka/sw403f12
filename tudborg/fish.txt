@@ -1,0 +1,64 @@
+DEFINE card {
+	int value
+	bool done
+	0..1 player 
+}(value)
+
+DEFINE player {
+	string name
+	int score
+	0..* card
+}(name)
+
+[1 to 52 as i] {
+	make card(i)
+}
+make player
+make player
+
+#see below: the "sort random" is a filter we apply on the result to "shuffle" the cards
+[(card where card.player == none and card.done == false | sort random) as c] n { 
+	if n > (count player)*7 {break} #if each player have 7 cards, break
+	c.player = (next player)
+}
+
+[forever] turn {
+	
+	if (count card where card.done == true) == 52 {
+		break   #all 52 cards have been played
+	}
+
+	$ current_p = (next player)
+	print "turn: %s\n" % (current_p.name)
+	print_hand(current_p)
+
+	print "Select a player to ask for cards:\n"
+	$ ask_p = select (player where player != current_p)   #"select" give user list of choices. returns one from the set
+	print "Ask %s for what card [1...13]:\n" % (ask_p.name)
+	$ v = select (1 to 13)
+	if (count ask_p.card where card.done == false and card.value > (v-4) and card.value < (v+1)) > 0 {
+		[(ask_p.card where card.done == false and card.value > (v-4) and card.value < (v+1)) as c] {
+			c.player = current_p
+		}
+		if (count current_p.card where card.done == false and card.value > (v-4) and card.value < (v+1) ) == 4 {   #we got all 4
+			[(current_p.card where card.done == false and card.value > (v-4) and card.value < (v+1)) as c] {
+				c.done = true
+				current_p += 1
+			}
+		}
+	}
+}
+[(player | sort player.score) as p] n {
+	if n == 1 {
+		print "%s won with the score: %d\n" % (p.name,p.score)
+	} else {
+		print "%s was next with score: %d\n" % (p.name,p.score)
+	}
+}
+print "goodbye\n"
+
+function print_hand (pl) {
+	[(card where card.player == pl) as c] {
+		print "[ %d ]" % (c.value)
+	}
+}
