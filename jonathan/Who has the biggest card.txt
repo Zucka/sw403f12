@@ -1,0 +1,32 @@
+"Hvem har det største kort":
+ - Uddel x antal kort ligeligt.
+ - Sammenlign kortenes numeriske værdier.
+   [-] Den største værdi vinder.
+   [-] Vinderkortet lægges i en bunke, kaldet et ”stik”.
+ - Spillet fortsættes til der ikke er flere kort i bunken.
+   [-] Hvis begge spillere har kort af samme numeriske værdi, da lægges disse i en midlertidig bunke, hvorefter de næste korts numeriske værdier sammenlignes.
+ - Spillet afsluttes.
+ - Vinderen findes ved at tælle antal stik
+
+Foreslag:
+
+For
+	persons = 2;
+	player_1 = a;
+	player_2 = b;	
+	cards_hands = 10;
+	card_stack = 52;
+		if cards_person [a] & if cards_person [B] = equal
+			then compare_next [a] & [b]
+		else if [a] > [b]
+			safe in pile;
+				return "Player 1 gains points"
+		else return "Player 2 gains points"
+	if card_stack = 0;
+		count a & b points
+			if a > b
+				return "Player 1 has most points, therefore player 1 takes the win"
+			else
+				return "Player 2 has most points, therefore player 2 takes the win"
+	terminate program;
+							
