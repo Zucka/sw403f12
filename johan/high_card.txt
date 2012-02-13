@@ -17,10 +17,3 @@ func game() // operates as Main func
 		TurnOver(); // class fund
 		Compare();
 	game.winner = player.withmost.card // prints out a winner in the console :)
-
-FISH
-
-new.card.playing.copletedeck.without.joker; //Gives complete playing card set as individual objects
-new.player{P1, P2}; // instantiate new players: P1 and P2
-
-card.playing.giveout.shuffle(5){P1, P2}; //gives 5 cards to each player shuffled
