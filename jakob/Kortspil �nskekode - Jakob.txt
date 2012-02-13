@@ -1,0 +1,163 @@
+Load PlayingCards
+
+Main{
+
+Krig
+
+
+
+
+}
+
+
+Krig{
+
+Player1(21)            // spiller 1 har 21 random kort
+Player2(21)
+Create hands		//laver liste over spillers hænder
+
+  
+for each round [i] until no cards left{
+    
+  Player1[i]s Number vs Player2[i]s Number
+     if Player1 wins
+        Player1 + 2 points
+
+     else if Player2 wins
+        Player2 + 2 points
+
+     else //{}  intet
+  next round	//i++   //eller automatisk
+
+result
+
+}
+
+Fisk{
+
+Player1(7)
+player2(7)
+player3(7)
+player4(7)
+Create hands
+
+int i
+string tur = "player1"
+
+while total points < 52
+
+print("hvilket kort vil spørge med?)
+string beslutning = input()
+
+
+Check om den er på hånden, og evt. hvilket nr den har.
+if true
+print("hvilken spiller vil du spørge?)
+string beslutning = input()
+for each card [i] until no cards left{
+   if Card[i].Holder == beslutning
+       Card[i].Holder = tur
+
+if 
+
+
+tur = beslutning
+
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+result{			//udskriv resultat af spil
+
+print(player1)		//så en spiller har en værdi og en liste
+print(player2)
+print(player3)
+print(player4)
+Print("Skal resultatet nulstilles?")
+String Beslutning = input()
+if beslutning = "y" || beslutning = "yes" || beslutning = "ja"
+   player1 = 0
+   player2 = 0
+   player3 = 0
+   player4 = 0
+else {}
+}
+
+
+
+Create hands{		//laver liste over spillers hænder
+int a;					
+int b;
+int c;
+int d;
+for (i=0, i <52, i++){
+  if      Card[i].Holder == "player1"
+     Player1[a] = Card[i]			//skal være pointers
+     a++
+  else if Card[i].Holder == "player2"
+     Player2[b] = Card[i]			//skal være pointers
+     b++
+  else if Card[i].Holder == "player3"
+     Player3[c] = Card[i]			//skal være pointers
+     c++
+  else if Card[i].Holder == "player4"
+     Player4[d] = Card[i]			//skal være pointers
+     d++
+  else {}   //intet
+
+  }
+
+
+}
+
+
+
+Class Card{
+String Name;		//IRL navn på kort
+String Type;		//eg. klør, hjerter
+Int Number;		// 1 - 13
+String Holder;		//hvem holder denne
+}
+
+
+
+
+
+function player1(int a){		//i bibliotek
+  bool c;
+  int b;
+for(i = 0, i = a, i++){
+
+  While c == false
+    b = random nr;
+    if Card[b].Holder == "none"
+       Card[b].Holder = "player1"
+       c = true
+}
+
+
+}
+
+function player2(int a){	//giver det antal kort til spilleren
+  bool c;
+  int b;
+for(i = 0, i < a, i++){
+
+  While c == false
+    b = random nr;
+    if Card[b].Holder == "none"
+       Card[b].Holder = "player2"
+       c = true
+}
+
+
+}
