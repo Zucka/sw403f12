@@ -6,7 +6,7 @@
 -	Når en spiller har fire kort af samme nummer har vedkommende et ”stik”.
 -	Når alle kort fra bunken (søen) og hænderne, er trukket, da findes vinderen ved at sammenligne antal stik – hvor det højeste antal vinder.
 
-For
+For													//Start
 	persons = 2
 	player_1 = a
 	player_2 = b	
@@ -17,9 +17,9 @@ For
 	card_call = inquiry 			//The specific card the ofher player asks for
 	stack
 	pile											//The pile of cards wherein the pairs are being placed in
-	compare_#cards
-		if b.card_call = a.card_hand;
-			then a.card_hand;
+	compare_#cards						//Compare number of cards
+		if b.card_call = a.card_hand;		//; = confusion
+			then a.card_hand;			//; = confusion
 		else
 			return "fish!"
 		if b.card_hand = 4

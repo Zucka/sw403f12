@@ -19,9 +19,9 @@ For
 		if cards_person [a] & if cards_person [B] = equal
 			then compare_next [a] & [b]
 		else if [a] > [b]
-			safe in pile;
-				return "Player 1 gains points"
-		else return "Player 2 gains points"
+			save in pile;
+				return "Player 1 gains points"			//Samme funktionalitet som print
+		else return "Player 2 gains points"			//Samme funktionalitet som print
 	if card_stack = 0;
 		count a & b points
 			if a > b
