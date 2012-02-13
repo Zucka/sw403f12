@@ -1,0 +1,43 @@
+2 sprog
+
+Usecase 1:
+To mennesker spiller Fisk, den ene beder om konger.
+
+Usecase 2:
+To mennesker spiller hvem har det største kort, han vinder med et es over en konge.
+
+
+Fisk:
+
+#include cardstruct;
+#include standarddeck;
+
+
+char cardAskedFor;
+
+while(Players who have cards = 2){
+scanf("Player 1 ask for %d" cardAskedFor)
+
+if( Player 2 have cardAskedFor)
+	Player 2 give card(s) to Player 1;
+	else(Player 1 pick new card)
+	
+scanf("Player 2 ask for %d" cardAskedFor)
+if( Player 1 have cardAskedFor)
+	Player 1 give card(s) to Player 2;
+	else(Player 2 pick new card)
+}
+
+
+Hvem har det største kort:
+
+#include cardstruct;
+#include standarddeck;
+
+while(Players who have cards = < 2){
+if( player1 card > player 2 card)
+	player 1 wins, gets cards;
+	else if(plauer 1 < player 2 card)
+		player 2 wins, gets cards;
+	else(next card);
+}
