@@ -1,0 +1,26 @@
+new.card.playing H{1-10}; //Gives 10 playingcards: H1, H2, H3, … H10 as individual objects
+new.player{P1, P2}; // instantiate new players: P1 and P2
+
+card.playing.giveout.shuffle.spilt{P1, P2}; //gives cards to players shuffled and split equally
+
+func TurnOver() // new function called TurnOver
+	P1.deck.draw.single; // draws a single card
+	P2.deck.draw.single; // draws a single card
+
+func Compare()
+	if P1.deck.lastdrawn.val > P2.deck.lastdrawn.val // compares last drawn cards value (e.g. 1, 2, 3, …)
+		give P2.deck.lastdrawn to P1.deck.bottom // if player1's card is the bigger player2's lastdrawn card is put at the bottom of player1's deck
+	else give P1.deck.lastdrawn to P2.deck.bottom
+
+func game() // operates as Main func
+	while P1.deck != 0 || P2.deck != 0
+		TurnOver(); // class fund
+		Compare();
+	game.winner = player.withmost.card // prints out a winner in the console :)
+
+FISH
+
+new.card.playing.copletedeck.without.joker; //Gives complete playing card set as individual objects
+new.player{P1, P2}; // instantiate new players: P1 and P2
+
+card.playing.giveout.shuffle(5){P1, P2}; //gives 5 cards to each player shuffled
