@@ -1,7 +1,7 @@
 new.card.playing H{1-10}; //Gives 10 playingcards: H1, H2, H3, … H10 as individual objects
 new.player{P1, P2}; // instantiate new players: P1 and P2
 
-card.playing.giveout.shuffle.spilt{P1, P2}; //gives cards to players shuffled and split equally
+card.playing.giveout.shuffle.split{P1, P2}; //gives cards to players shuffled and split equally
 
 func TurnOver() // new function called TurnOver
 	P1.deck.draw.single; // draws a single card
