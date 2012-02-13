@@ -15,7 +15,7 @@ Fisk:
 
 char cardAskedFor;
 
-while(Players who have cards = 2){
+while(Players who have cards = >2){
 scanf("Player 1 ask for %d" cardAskedFor)
 
 if( Player 2 have cardAskedFor)
@@ -34,10 +34,11 @@ Hvem har det største kort:
 #include cardstruct;
 #include standarddeck;
 
-while(Players who have cards = < 2){
-if( player1 card > player 2 card)
+while(Players who have cards = > 2){
+if( player1 card > player 2 card){
 	player 1 wins, gets cards;
-	else if(plauer 1 < player 2 card)
-		player 2 wins, gets cards;
-	else(next card);
+else if(plauer 1 < player 2 card)
+	player 2 wins, gets cards;
+else(next card);
+}
 }
