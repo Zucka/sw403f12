@@ -1,0 +1,70 @@
+include "stdlib.gel";
+
+define card {
+	number suit;
+	number value;
+}
+
+define player {
+	string name;
+	[] stack;
+	[] stage;
+}
+
+players = [];
+
+name="bob"
+@ i in range(1,2) {
+	players[] = player(name=(name+" "+i) );
+}
+deck = [];
+@ i in range(1,52) {
+	deck[] = make_card(i);
+}
+deck = shuffle(deck);
+
+@ deck.size > 0 {
+	@ p in players {
+		p.hand[] = del deck[first];
+	}
+}
+
+@ true {
+	//while one of the players stage areas is of size 0:
+	@ min(players[0].stage.size,players[1].stage.size) == 0 {
+		@ p in players {
+			if p.stage.size == 0 {
+				outputlist(["Turn: ",p.name,"\n"]);
+				answer = validinput("Do you want to turn a card?",["yes","no"]);
+				if answer == "yes" {
+					p.stage[] = del p.hand[first];
+				}
+			}
+		}
+	}
+	//both stage areas have a card
+
+	max_value = -1;
+	@ p in players {
+		
+	}
+
+
+
+}
+
+
+
+
+function max_card(c1,c2){
+	if c1.value > c2.value {
+		
+	}
+}
+
+
+function make_card(value){
+	suit = value % 4;
+	value = ceil(value/13);
+	return card(suit=suit,value=value);
+}

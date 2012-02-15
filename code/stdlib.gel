@@ -29,6 +29,7 @@ function shuffle(deck) {
                 deck[i] = t;
                 i = i-1;
         }
+        return deck;
 }
 
 /*
