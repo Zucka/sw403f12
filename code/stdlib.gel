@@ -31,3 +31,17 @@ function shuffle(deck) {
         }
 }
 
+/*
+        The range function returns the list:
+        [from,from+1,from+2, ... ,to]
+*/
+function range(from,to) {
+        f = from; //change the input?
+        t = to;
+        r = [];
+        @ f <= t {
+                r[] = f;
+                f = f + 1;
+        }
+        return r;
+}
