@@ -1,0 +1,34 @@
+//** Krig **//
+
+#include kort				//inkludere de nødvendige ting her, jeg ved ikke helt hvad der skal med her??
+#include hånd
+
+//hvert spiller tildeles 26 kort
+while (P1P2 vender kort){	//når hvert spiller vender kort!
+if P1Kort > P2Kort			//hvis spiller1 har en større kort end spiller 2, vinder spiller1 og får kortene
+	P1 vinder, få kort;
+else P1Kort < P2Kort		//hvis spiller2 har den størreste kort, vinder han og får kortene
+	P2 vinder, får kort;
+else if StartNæsteRunde;	//starter en nye runde, hvor spillerne skal vende en kort.
+};
+return 0
+
+----------------------------------------------------------------------------------------------------------------------------
+
+//**Fisk**//
+
+#include kort				//inkludere de nødvendige ting her, jeg ved ikke helt hvad der skal med her??
+#include hånd
+
+//hvert spiller tildeles 7 kort (jeg ved ikke hvordan man udtrykker sådan et funktion, men lad os bare sige at vi har en program der tildeler 7 kort)
+
+while (P1 har turen){		//Spiller1 har turen
+if P1.spørger.kort = P2.kort.hånd
+	P1 vinder, får kortet;
+else P1.spørger.kort < P2.kort.hånd
+	P2 vinder, P2 får turen;
+else if P1.spørger.kort > P2.kort.hånd
+	P2 vinder, P2 får turen;
+
+
+}
