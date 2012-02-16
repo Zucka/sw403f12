@@ -1,0 +1,48 @@
+number RAND_CURRENT_NUMBER; //Global variable so that random works just like in c
+
+function srand(seed) {
+        RAND_CURRENT_NUMBER = seed;
+}
+
+function rand(max) {
+        if (RAND_CURRENT_NUMBER = null){
+                RAND_CURRENT_NUMBER = 42834628; //Static seed if seed was not given
+        }
+        return RAND_CURRENT_NUMBER = ((1103515245*RAND_CURRENT_NUMBER+12345) % (4294967296)) % (max);
+}
+
+function count(deck) { //Should only be used if deck.size is not available
+        number i = 0;
+        @ j in deck {
+                i = i + 1;
+        }
+        return i;
+}
+
+function shuffle(deck) {
+        srand(time(now));
+        number i = count(deck);
+        @ i>0 {
+                number j = rand(i);
+                number t = deck[j];
+                deck[j] = deck[i];
+                deck[i] = t;
+                i = i-1;
+        }
+        return deck;
+}
+
+/*
+        The range function returns the list:
+        [from,from+1,from+2, ... ,to]
+*/
+function range(from,to) {
+        f = from; //change the input?
+        t = to;
+        r = [];
+        @ f <= t {
+                r[] = f;
+                f = f + 1;
+        }
+        return r;
+}

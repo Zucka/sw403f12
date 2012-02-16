@@ -1,0 +1,36 @@
+# for now, this language is called COLON, becaurse it's a cool name. eod.
+# everything between the # and next newline is a comment
+
+
+C: <type> <varname> = <expr>;
+:: <varname> = <expr>
+
+C: if (<expr>) {<block>}
+:: <expr> ? <block> ;;
+
+C: if (<expr>) { <block> } else { <block> }
+:: <expr> : <block> : <block> ;;
+
+C: if (<expr>) { <block> } else if (<expr>) { <block> }
+:: <expr> ? <block> : <expr> ? <block> : <block> ;; 
+#direct translation to C   if(<expr>){<block>}else{if(<expr>){<block}else{<block>}} #is this ok? (optimized?)
+
+C: for(<assignment>;<expr>;<increment>){<block>};
+# we don't do this. but if the goal was to iterate over an array A we would do:
+:: for i in A.size:<block>;;
+# if the goal was to iterate over a range from x to y:
+:: for i in (range x y):<block>;;
+
+C: while(<expr>){<block>}
+:: for <expr>:<block>;;
+
+C: do{<block>}while(<expr>);
+:: do:<block> while <expr>;;
+
+
+#COLON examples:
+#factorial
+factorial = n -> n > 0: n * (factorial n-1) ? 1
+
+( (factorial 1) + (factorial 2) + (factorial 3) == 9 ) #returns true
+

@@ -1,0 +1,141 @@
+/*
+	CARD {
+		value
+		color
+	}
+
+p1 has 5 cards {1,4,5,7,8}
+p2 has 5 cards {3,2,9,6,10}
+
+flip:
+	player 1 turns top card
+	player 2 turns top card
+
+compare:
+	p1 turned compared to p2 turned card
+
+p2 card highest, p2 gets both card
+
+flip;
+compare;
+p1 card highest - || -
+
+flip;
+compare;
+p2 highest
+
+flip;
+compare;
+p1 highest
+
+flip;
+compare;
+
+p2 highest
+
+*/
+
+// collections
+// the type: []
+// collections hold an internal pointer to an element in the list.
+// to reset: rewind(someList)
+// increment pointer and return element: next(someList) //OBS! this wraps. consider [1,2,3] with pointer at i=0
+// 	calling next the first time would increment the pointer to 1, and return that element ("2"). calling 
+//		next again would set i=2 and return "3", and calling it again would set i=0 and return 1
+// get element where pointer currently is: current(someList)
+// set pointer to random and return elem.: random(someList)
+// getting the actual pointer: get_position(someList)
+// setting the pointer set_position(someList,pos)
+// setting the position relative to current: set_relative_position(someList,deltaPos)
+// pop from list: remove(someList)
+// push to list:  append(someList,element)
+// empty list: empty(someList)
+
+//type def
+// def <id> <type> {<initialization>}
+
+def CARD {value,suit,value} (value) {
+	self.value = value
+	self.suit = value % 4
+	self.rank = ceil(value / 4)
+}
+
+
+def DECK [] {
+	for i in range(52) { 
+		append(self, CARD(i+1) )
+	}
+}
+
+def PLAYER {name,hand,points} (name) {
+	self.name = name
+	self.hand = []
+	self.points = 0
+}
+
+//assignment
+//<id> = <type>(<args>)
+//<id> = <variable>
+
+
+//functions
+//func <id> (<params>){<logic>} // returns nothing unless a return statement is defined
+
+func distribute (deck,playerlist) {
+	while deck.size > 0 {
+		move( deck , next(playerlist).hand ) //move(<from [] >,<to [] >)
+	}
+}
+
+
+myDeck = DECK() //create new deck
+myTable = [] // create a table to put cards.. its empty right now
+shuffle(myDeck) //built-in function: shuffle 
+myPlayerList = []
+
+//next line will keep promting the user until a valid input is given
+playerCount = receive(PROMPT("How many players? (2 to 4) ","Invalid input, try again"), INTEGER(2,4) )
+
+for i in range(playerCount) { // range returns a with length <arg>
+	append(myPlayerList,PLAYER( "Player" + (i+1) ))
+}
+
+
+distribute(myDeck,myPlayerList)
+//both players have equal amount of cards
+
+//lets define game logic
+
+func game () {
+	for i in myPlayerList {
+		if myPlayerList[i].hand.size <= 0 {
+			return
+		}
+		myTable.append( remove( myPlayerList[i].hand ) )
+	}
+	i_biggest = 0
+	for i in myTable {
+		if i == 0 {continue}
+		if myTable[i_biggest] < myTable[i] {
+			i_biggest = i
+		}
+	}
+	receive(PROMPT("Player "+(i_biggest+1)+" had the biggest card. press enter to continue..." ))
+	myPlayerList[i_biggest].points += myTable.size
+	empty(myTable)
+}
+
+
+
+
+//GAME:
+
+game()
+i_biggest = 0
+for i in myPlayerList {
+	if i == 0 {continue}
+	if myPlayerList[i_biggest].points < myPlayerList[i].points {
+		i_biggest = i
+	}
+}
+print("Player "+(i_biggest+1)+" won the game with "+myPlayerList[i_biggest].points+" points!")

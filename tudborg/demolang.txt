@@ -1,0 +1,138 @@
+
+# This document is a demo draft for the card language
+# Naming sugestings:
+# CaGLa (CArd Game LAnguage) "Kakla"
+# CaXL	(CArd eXpression Language) "Kaksel"
+# CGEL	(Common Game Expression Language) "Se,gæl"
+#
+#
+
+
+# LANGUAGE IDEA v0.0.1: advanced users
+# Thoughts: what if "everything" is a valid expression (where "everything" is legal syntax ofc.)
+# Design idea: Would it be possible to make any language syntax be valid everywhere else. i.e.
+# everything should validate correctly, depending on the context.
+# This would also imply that everything could be stored in a variable. even looping constructs.
+# examples:
+
+x = 3
+foo = for x < 10 : x *= x end
+
+#foo is NOT a function. foo is the value returned by the "for" expression.
+#you should look at "for" as a function that accepts behavior as an argument.
+#The return value should be the amount of loops performed by for.
+#hence foo would contain the value 2
+
+#but then what about functions?
+#functions is defined with the -> operator
+#say we wanted the previous example to return the new x, not the number of loops?
+
+foo = x -> for x < 10 : x *= x end return x
+
+#or written more readable:
+
+foo = x ->				#define foo as a function taking one argument called x
+		for x < 10 : 	#while x is below 10, 
+			x *= x 		#multiply x by itself
+		end 				#end the loop definition
+		return x 		#and return the new x
+
+#and using our new function
+
+foo 4 					#would return 16
+foo 3						#would return 81
+foo 2						#would return 16
+foo 1 					#would continue for ever and ever and ever...
+
+#could this be usable for card game programming?
+#first we should define some native types
+#and some way to store collections and structure native types
+#
+# let us keep the simple native types as in v.0.0.1:
+# NATIVE TYPES:		
+# text, number
+#
+# and still keep collections simple
+# COLLECTIONS:
+# list
+#
+# The keywords should also be roughly the same:
+# KEYWORDS:
+# define,for,in,:,end,return
+#
+# now, let os set the task of creating 20 cards where a card is a structure of a text and a number
+
+define card: 
+	text description, 
+	number value
+end
+
+myList = list card
+
+for i in 40:
+	myCard = card "description",42
+	add myCard to list
+end
+
+for myCard in myList:
+	print myCard
+end
+
+
+#
+#
+# LANGUAGE IDEA v0.0.1: beginners and teachers
+# this is a comment
+#
+# keywords:
+# define,as,for,in,do,end,on
+# 
+# native types:
+# text,number
+#
+# collections:
+# list
+#
+# collection operations:
+# add <item> on <collection>
+# remove <number> on <collection>
+
+define card as description text, value number		#define a new structure called card as a description of the type text and a value of the type number
+
+card_list = new list of card								#make a new (empty) list of cards
+
+for 20 do														#do something 20 times
+	myCard = new card "hello world",42					#create a new card with the description "hello world" and the value 42
+	add myCard on card_list									#put the myCard on top of the card_list list
+end for	#end the for loop
+
+for aCard in card_list do									#do something for all items in card_list. assign item to a variable called aCard
+	print aCard													#print out the aCard (of type card, so it contains a description and a value)
+end for															#end the for loop
+																	#a list of 10 cards is made, and they are all printet
+
+
+																	#printing variables and their attributes
+
+print card_list.size											#should print 20
+print card.size												#should print 2
+print card_list[1].size										#should also print 2
+print cardlist.size[1]										#should result in error(maybe warning)
+print card_list												#should print "card_list: a <list> of <card> holding 20 items
+
+																	#printing types,structures and collections	
+
+print card														#should print "a <card> contains: a text called "description", a number called "value"
+print list														#should print "a <list> is a collection of items"
+	
+																	#printing keywords (should be possible?!)
+
+print define													#should print "<define> is a keyword used to define new structures of data"
+print for														#should print "<for> is a keyword for looping"
+print do															#should print "<do> is a keyword used to express what you want to do in certain conditions"
+print in															#should print "<in> is a keyword used when looping over a collection of items"
+print on															#should print "<on> is a keyword used to do something "on" something else. (like adding items to a list)"
+print end														#should print "<end> is a keyword used to describe where a block of code ends"
+print text														#should print "<text> is a type used for storing text"
+print number													#should print "<number> is a type used for storing numbers"
+print print														#should print "<print> is a keyword to print items"

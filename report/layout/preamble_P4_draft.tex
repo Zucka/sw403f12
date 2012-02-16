@@ -1,0 +1,92 @@
+\documentclass[english,twoside,openright]{report}
+
+\usepackage[latin1,ansinew]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage{babel}
+
+\usepackage{rotating}
+\usepackage[ansinew]{inputenc}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{lipsum}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{hyperref}    % Creates links in the PDF
+\usepackage{listings}
+\usepackage{algorithmic}
+\usepackage{listings}
+\usepackage{subfig} %til resize af billeder
+\usepackage[usenames,dvipsnames]{color}
+\definecolor{lightgray}{RGB}{232,232,232}
+
+\lstdefinelanguage{cs}
+  {morekeywords={abstract,event,new,struct,as,explicit,null,switch
+		base,extern,object,this,bool,false,operator,throw,
+		break,finally,out,true,byte,fixed,override,try,
+		case,float,params,typeof,catch,for,private,uint,
+		char,foreach,protected,ulong,checked,goto,public,unchecked,
+		class,if,readonly,unsafe,const,implicit,ref,ushort,
+		continue,in,return,using,decimal,int,sbyte,virtual,
+		default,interface,sealed,volatile,delegate,internal,short,void,
+		do,is,sizeof,while,double,lock,stackalloc,
+		else,long,static,enum,namespace,string,MySQLTools,MySqlDataAdapter },
+	  sensitive=false,
+	  morecomment=[l]{//},
+	  morecomment=[s]{/*}{*/},
+	  morestring=[b]",
+}
+
+% CODE %
+\usepackage{listings}
+\usepackage{color}
+\usepackage{textcomp}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+	language=cs,
+	keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
+	identifierstyle=\ttfamily,
+	commentstyle=\color[rgb]{0.133,0.545,0.133},
+	stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+	showstringspaces=false,
+	basicstyle=\small,
+	numberstyle=\footnotesize,
+	numbers=left,
+	stepnumber=1,
+	numbersep=10pt,
+	tabsize=2,
+	breaklines=true,
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	breakatwhitespace=false,
+	aboveskip={1.5\baselineskip},
+  	columns=fixed,
+  	upquote=true,
+ 	extendedchars=true,
+}
+
+
+% URL %
+\usepackage{url}
+\makeatletter
+\def\url@leostyle{\@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\makeatother
+\urlstyle{leo}
+
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+ 
+ 
+\fancyhf{} % clear header and footer
+\fancyhead[LO, RE]{\textit{\rightmark}}
+\fancyhead[RO, LE]{\textit{\leftmark}}
+
+
+\fancypagestyle{plain}{
+\fancyhead[LE,RO,RE,LO]{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[RO,LE]{\thepage\ of \pageref{LastPage}}}
+\fancyfoot[RO,LE]{\thepage\ of \pageref{LastPage}}

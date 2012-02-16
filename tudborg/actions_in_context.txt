@@ -1,0 +1,119 @@
+# IDEA: (kind of insane but outside the box)
+#everything could be seen as:
+# ^<action> <manipulate> <parameters>* <context>$ aka AMPC
+
+#code:
+add card to list
+
+# translates to:
+# i am doing "add" - manipulating the "card" - in the context of "list"
+# generally, 		changing the <manipulate> by <action> it to the <context>
+# specifically, 	changing the <card> by <adding> it to the <list>
+# this works for all actions
+
+#code:
+
+new myCard1 
+	where 
+		description="hello world" 
+		value="30" 
+	from card
+
+new myCard2 
+	where 
+		description="hello world"
+		value="42" 
+	from card 
+
+new myList from list
+
+add myCard1 to myList
+add myCard2 to myList
+
+#now this kind of dies. I have no idea how to do loops in a meaningfull way without breaking the AMPC pattern
+#maybe?:
+
+#code:
+
+for {
+	print aCard if aCard.value = 42 to console
+} aCard in myList
+
+#but this "stricts" the language a little, since cluttering parameters would be dangerous. 
+#Hence the need for few and simple keywords
+#we could try and replace the "binding" words like "to", "from", "on" etc. with symbols that explains meaning?
+#so to rewrite everything from the top:
+
+#code:
+
+myCard1 <- card "hello world",30 							#sequentiel assignment
+myCard2 <- card value=42,description="hello world"		#keyword assignmenet
+
+myList <- list
+
+myCard1 <- myCard2
+
+myCard1 -> myList
+myCard2 -> myList
+
+for aCard << each myList:
+	if aCard.value = 42:
+		aCard -> output
+	end
+end
+
+#this is a cutdown in code from 19 to 13 lines. I don't think it is less readable, and the arrows describe most actions well.
+
+table of copy and ref operators:
+---------------------------------------------------------
+[left/right]	indicate the data in what side of the opeator
+---------------------------------------------------------
+  <-  |  make	[left] be a copy of			[right]
+  <<  |  make	[left] be a reference to	[right]
+  ->  |  give a copy of			[left] to	[right]
+  >>  |  give a reference of	[left] to	[right]
+
+#constructing new data is as easy as describing the data on the righthand side of the <-
+
+#the "each" is a function that takes a collection as argument
+# sets an iterator i to 0, and returns a reference to whatever item is at index i of the argument and increments the counter
+
+#an example implementation of each:
+
+#code: 
+
+each <- (someList):
+	iterator <- 0
+	__each_aux <- ():
+		if iterator in someList:
+			return someList[iterator++]
+		else:
+			return ;; #return no value
+		endif
+		end
+	return __each_aux(someList) end
+
+
+swap <- (a,b):
+	t <- a
+	a <- b
+	b <- t
+	return ;; 			# ;; = no value, or "null" of you will.
+
+
+
+#bubblesort
+
+#code:
+
+bubblesort <- (A):
+	do:
+		swapped <- false
+		for i in A.size - 1:
+			if A[i-1] > A[i]:
+				swap A[i-1], A[i]
+				swapped <- true
+			end
+		end
+	while swapped 
+	end
