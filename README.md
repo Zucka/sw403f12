@@ -1,2 +1,4 @@
-# Fuck YEAH!!
-_Kursiv tekst_
+# the GEL programming language!!
+_Compiler and language specificatins_
+
+
