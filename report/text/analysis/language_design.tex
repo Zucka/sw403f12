@@ -1,0 +1,84 @@
+\chapter{Language Design}
+
+This section has been based on the book ``Concepts of Progamming Languages'' \cite{CoPL}. \\
+The design of the language has been made using the language criteria in the table below. These criteria can be categorised into three primary categories; \textit{readability}, \textit{writability} and \textit{reliability}. These overall categories have a number of secondary categories, which will be used for specifying the language design even further. All of these categories can be seen in the table beneath.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+& & Criteria & \\ \hline
+\textit{Characteristic} & Readability & Writability & Reliability \\ \hline
+Simplicity & X & X & X \\ \hline
+Orthogonality & X & X & X \\ \hline
+Data types & X & X & X \\ \hline
+Syntax design & X & X & X  \\ \hline
+Support for abstraction & & X & X  \\ \hline
+Expressivity & & X & X \\ \hline
+Type checking & & & X \\ \hline
+Exception handling & & & X \\ \hline
+Restricted aliasing & & & V \\ \hline
+\end{tabular}
+\caption{Language evaluation criteria from the book ``Concepts of Programming Languages''\cite{CoPL}}
+\label{tbl:evaluation criteria}
+\end{table}
+
+\noindent{\textbf{Readability}} \\
+\\ \\
+\textbf{Reliability} \\
+\\ \\
+\textbf{Flexibility} \\
+\\ \\
+\textbf{Flexibility} \\
+\\ \\
+\textbf{Cost} \\
+When talking about the cost of making a programming language, there are some different aspects to consider, these are:
+\begin{enumerate}
+	\item The cost of training the programmers that is going to use the language, which are a function of simplicity, orthogonality and the experience of the programmers.
+	\item The cost of writing programs in the language, which is a function of writability.
+	\item The cost of compiling programs in the language.
+	\item The cost of executing programs written in the language. In this part of performance the expression \textit{optimization} is introduced, which is introduced to in-/decrease the size and/or the execution speed of the produced code. The reason that it can in- and/or decreased is that; programming beginners are compiling their programs frequently, whereas more experienced programmers are, potentially, executing their programs many times after the development of a particular program.
+	\item The cost of implementing the programming language.
+	\item The cost of, potential, poor reliability. If, for example, a system is unreliable, it can become costly to make it more reliable.
+	\item The cost of maintaining programs written in the language, including corrections, modifications and additions to the program in question. Because maintenance is often done by other people that the original programmer, readability is of great importance, to ease the job of maintenance.
+\end{enumerate}
+
+\noindent{In the programming language of this project, the cost has been deemed ``irrelevant'' because;}
+\begin{itemize}
+	\item It is not going to be taught to other programmers than the developers, because it is a proof of concept.
+	\item The only programs that are going to be written in the language are written by the developers themselves.
+	\item As with writing programs in the language, the only programs that are going to be compiled in the language are the programs written by the developers themselves.
+	\item As with writing and compiling programs in the language, the only programs that are going to be executed in the language are the programs written and compiled by the developers themselves.
+	\item The programs in the system will not be implemented in a bigger system, as to why the implementation costs are held at a minimum.
+	\item The reliability is not that big a concern for this programming language, because the programs written herein will not be implemented as part of a greater system, as mentioned before, but it should be seen as a proof of concept.
+	\item The maintenance will be kept as close to a minimum as possible, because when the programming language has been finished, and programs has been written in it; these will probably not be used again, why it will not be necessary to maintain them.
+\end{itemize}
+
+\noindent{\textbf{Orthogonality}} \\
+Orthogonality is the use of consistency, to avoid that some character that has been assigned to a certain value, is being used another place assigned to another value. When designing a programming language it is important avoid too heavily use of orthogonality, because otherwise it would result in an ``explosion``'' of combinations - resulting in a reduction of the simplicity of the program.
+\\ \\
+\noindent{In the programming language of this project, the orthogonality has been deemed ``important'', because it has been concluded to be important for the programming, but it is not the main priority of the language though, why it has not been deemed ``very important''.
+The reason that orthogonality is important for this programming language is that has to be a concise language, which makes it possible for a given programmer to do something at one list, and it should be possible to do the same action on another list subsequently. This should make it possible for the programmer to make sense of the programming language developed during the project.}
+\\ \\
+\textbf{Portability} \\
+Portability is also known as the ease whit which programs can be implemented on another platform than the one they were originally developed for. The way to make a programming language is by standardizing the language, which can be done by focusing on readability, writability and reliability, in particular. These do not standardize the language precisely, but provide a valuable insight into the design and evaluation of the programming language in question.
+\\ \\
+In the programming language of this project, the portability has been deemed ``important'', because it is very important that the programming language is made in a way where it is working ``out of the box'', regardless of the operating system the programmer is using. Furthermore, the group who is to develop the programming language in question are using some different operation systems, such as; Linux Ubuntu, Max OSx and Windows, which makes a good foundation for checking whether the programming language is working on these three operating systems, which gives the developers a good idea of the portability of the language.
+\\ \\
+Beneath is a table with the language design criteria that has been designed for the programming language for this project:
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+& Very important & Important & Less important & Irrelevant \\ \hline
+Cost & & & & X \\ \hline
+Flexibility & & X & &  \\ \hline
+Orthogonality & & X & & \\ \hline
+Portability & & X & & \\ \hline
+Readability & & & X & \\ \hline
+Reliability & & & X & \\ \hline
+Writability & X & & & \\ \hline
+\end{tabular}
+\caption{Language evaluation criteria defined for the programming language to be developed.}
+\label{tbl:evaluation criteria}
+\end{table}
