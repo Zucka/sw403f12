@@ -1,0 +1,50 @@
+config {
+	transition:slideleft
+}
+
+slide {
+	title: My Presentation
+	subtitle: A demo presentation
+
+}
+
+slide {
+	title: What we can do:
+	notes: @demonotes
+
+	* bullet points
+	* lots and lots
+
+	# ordered points
+	# lots and lots	
+
+	[http://google.com](hyperlinks)
+
+	__underlined text__, **bold text**, or __**both!**__
+}
+
+slide {
+	subtitle: We do images to, and float them automatically
+	notes: @demonotes
+
+	image {
+		url: https://www.google.com/intl/en_com/images/srpr/logo3w.png
+
+		billedtekst
+	}
+
+	image {
+		url: https://www.google.com/intl/en_com/images/srpr/logo3w.png
+
+		billedtekst
+	}
+}
+
+
+
+
+@demonotes {
+	this is the way we de notes to slides.
+	notes can be defined anywhere and attached to
+	several slides
+}
