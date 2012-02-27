@@ -1,50 +1,46 @@
-config {
-	transition:slideleft
+@slide {
+	@title {A presentation}
+	@subtitle {A demo presentation}
 }
 
-slide {
-	title: My Presentation
-	subtitle: A demo presentation
+@slide {
+	@note {
+		this is the way we de notes to slides.
+		notes can be defined anywhere and attached to
+		several slides
+	}
+	@title{what we can do:}
 
-}
-
-slide {
-	title: What we can do:
-	notes: @demonotes
-
-	* bullet points
+	* Bullet points
 	* lots and lots
 
 	# ordered points
-	# lots and lots	
+	# lots and lots
 
-	[http://google.com](hyperlinks)
+	@url{http://google.com @@ hyperlinks}
 
 	__underlined text__, **bold text**, or __**both!**__
 }
 
-slide {
-	subtitle: We do images to, and float them automatically
-	notes: @demonotes
-
-	image {
-		url: https://www.google.com/intl/en_com/images/srpr/logo3w.png
-
-		billedtekst
+@slide {
+	@note {
+		this is the way we de notes to slides.
+		notes can be defined anywhere and attached to
+		several slides
 	}
-
-	image {
-		url: https://www.google.com/intl/en_com/images/srpr/logo3w.png
-
-		billedtekst
+	@image {
+		@source{http://example.com/image.png}
+		@width{50%}
+		@description{Billedtekst}
+	}
+	@image {
+		@source{http://example.com/image.png}
+		@width{50%}
+		@description{Billedtekst}
+	}
+	@bottom {
+		We do images to, and float them automatically
 	}
 }
 
 
-
-
-@demonotes {
-	this is the way we de notes to slides.
-	notes can be defined anywhere and attached to
-	several slides
-}
