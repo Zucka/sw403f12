@@ -17,19 +17,21 @@ Support for abstraction & & X & X  \\ \hline
 Expressivity & & X & X \\ \hline
 Type checking & & & X \\ \hline
 Exception handling & & & X \\ \hline
-Restricted aliasing & & & V \\ \hline
+Restricted aliasing & & & X \\ \hline
 \end{tabular}
 \caption{Language evaluation criteria from the book ``Concepts of Programming Languages''\cite{CoPL}}
 \label{tbl:evaluation criteria}
 \end{table}
 
 \noindent{\textbf{Readability}} \\
+Readability is one of the most important criteria in designing a programming language. The definition of readability is, that the language which is being designed should be easy to read and understand. When a programmer is adapting to a new language, the most difficult things to remember is usually the context of the language and the name of the data types. Creating a syntax, that in some way is similar to popular languages such as Java or C, would make the language more readable and easy to understand. \\
+Readability and understanding of our language is not more important than the writability, because the language is meant to be a prototyping language, there will be more focus on writability than reliability.
 \\ \\
 \textbf{Reliability} \\
+Reliability and correctness refers to how reliable a programming language is. The language is reliable if it performs correctly and without errors under all conditions. The ability for the language to perform correctly under all conditions, it is insignificant in the programmin language, because it is only a prototyping programming language for card-based games, why it is not rated higher than readability.
 \\ \\
-\textbf{Flexibility} \\
-\\ \\
-\textbf{Flexibility} \\
+\textbf{Writability} \\
+Writability is another important criteria in designing program language. It refers to how easy it is to write programs using the language. A programming language is usually easier to use, if it shares some characteristics with other more popular languages. However a high writability ranking can also come from the language being simple to use. We have decided to rank the writability high, because our language is a prototyping programming language, otherwise there is no reason for the programmer to learn a new language to express card games.
 \\ \\
 \textbf{Cost} \\
 When talking about the cost of making a programming language, there are some different aspects to consider, these are:
@@ -71,13 +73,12 @@ Beneath is a table with the language design criteria that has been designed for 
 \begin{tabular}{|l|c|c|c|c|}
 \hline
 & Very important & Important & Less important & Irrelevant \\ \hline
-Cost & & & & X \\ \hline
-Flexibility & & X & &  \\ \hline
-Orthogonality & & X & & \\ \hline
-Portability & & X & & \\ \hline
 Readability & & & X & \\ \hline
-Reliability & & & X & \\ \hline
+Reliability & & X & & \\ \hline
 Writability & X & & & \\ \hline
+Cost & & & X & \\ \hline
+Orthogonality & & & & X \\ \hline
+Portability & X & & & \\ \hline
 \end{tabular}
 \caption{Language evaluation criteria defined for the programming language to be developed.}
 \label{tbl:evaluation criteria}
