@@ -1,0 +1,9 @@
+Hvad er et slideshow?
+
+- Et slideshow: er en endelig mængde af endelige slides.
+- Et slide er en endelig mængde af informationer som er visbart på en skærm, samt tilhørende kommentar.
+- Information er: tekst, billeder, tabeller og kode
+- Tekst: font, tranforms (bold, italic), size, color, puttlister
+- Billede:
+- Tabeller: kolonner, rækker, der indholder information.
+- Kode: Streng med predefineret syntaks.
