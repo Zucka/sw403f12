@@ -1,6 +1,6 @@
 \chapter{Language Design}
 
-This section has been based on the book ``Concepts of Progamming Languages'' \cite{CoPL}. The design of the language has been made using the language criteria in the table below. These criteria can be categorised into three primary categories; \textit{readability}, \textit{writability} and \textit{reliability}. These overall categories have a number of secondary categories, which will be used for specifying the language design even further. All of these categories can be seen in the table beneath.
+This section has been based on the book ``Concepts of Progamming Languages'' \cite{CoPL}. The design of the language has been made using the language criteria in the table below. These criteria can be categorised into three primary categories; \textit{readability}, \textit{writability} and \textit{reliability}. These overall categories have a number of secondary categories, which will be used for specifying the language design. What secondary categories that affects the overall categories can be seen in the table beneath.
 
 \begin{table}[htbp]
 \centering
@@ -24,13 +24,14 @@ Restricted aliasing & & & X \\ \hline
 
 \noindent{\textbf{Readability}} \\
 Readability is one of the most important criteria in designing a programming language. The definition of readability is, that the language which is being designed should be easy to read and understand. When a programmer is adapting to a new language, the most difficult things to remember is usually the context of the language and the name of the data types. Creating a syntax, that in some way is similar to popular languages such as Java or C, would make the language more readable and easy to understand. \\
-Readability of our programming language has been deemed �less important�, because it is not as important as the writability, though it still has to possible to read programs written in the language easily.
-\\ \\
-\textbf{Reliability} \\
-Reliability and correctness refers to how reliable a programming language is. The language is reliable if it performs correctly and without errors under all conditions, in this programming language meaning that the presentation behaves exactly as the user wants it to. The ability for the language to perform correctly under all conditions, has been deemed ``important'' because it is only a slide show programming language, which is why it is not rated higher than readability.
+Readability of our programming language has been deemed ``less important'', because it is not as important as the writability, though it still has to be possible to read programs written in the language.
 \\ \\
 \textbf{Writability} \\
-Writability is another important criteria in designing a programming language. It refers to how easy it is to write programs using the language, in this programming language it should be easy to write and express slides in the developed language. A programming language is usually easier to use, if it shares some characteristics with popular languages. However, a high writability ranking can also come from the language being simple to use. The writability has been deemed ``very important'', because our language is a slide show programming language, otherwise there is no reason for the programmer to learn a new language to express slide shows in.
+Writability is another important criteria in designing a programming language. It refers to how easy it is to write programs using the language, in this programming language it should be easy to write and express slides in the developed language. A programming language is usually easier to use, if it shares some characteristics with popular languages. However, a high writability ranking can also come from the language being simple to use. The writability has been deemed ``very important'', because our language is a slide show programming language, and considering that a slideshow is only made once.
+%otherwise there is no reason for the programmer to learn a new language to express slide shows in.
+\\ \\
+\textbf{Reliability} \\
+Reliability and correctness refers to how reliable a programming language is. The language is reliable if it performs correctly and without errors under all conditions, in this programming language meaning that the presentation behaves exactly as the user wants it to. The ability for the language to perform correctly under all conditions, has been deemed ``important'', because the user should be able to reli on the language in a way that makes them know what it would do, using the language.\\
 \\ \\
 \textbf{Cost} \\
 When talking about the cost of making a programming language, there are some different aspects to consider, these are:
@@ -77,8 +78,8 @@ Beneath is a table with the language design criteria that has been designed for 
 \hline
 & Very important & Important & Less important & Irrelevant \\ \hline
 Readability & & & X & \\ \hline
-Reliability & & X & & \\ \hline
 Writability & X & & & \\ \hline
+Reliability & & X & & \\ \hline
 Cost & & & X & \\ \hline
 Orthogonality & & & & X \\ \hline
 Portability & X & & & \\ \hline
