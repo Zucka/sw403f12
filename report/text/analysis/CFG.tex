@@ -1,0 +1,156 @@
+\chapter{CFG}
+% ``''	<-- how to make quotes
+Syntax:
+
+The following example are some of the basic elements in the language:
+Input:
+
+\begin{verbatim}
+@begin{fade|slide}
+    Hello World
+@end{|slide}
+\end{verbatim}
+
+Output: Hello World
+\\ \\
+Which says that a slide begins, with a transition ``fade'', and that the slide contains the text ``Hello World''. \\
+After an @, a keyword always begins, making it easy for the compiler to recognize a keyword.
+\\ \\
+Here is another keyword ``Setting'', in this example the setting is set for the type ``title'' to a font size of 40 points. \\
+A setting can be initiated outside, as well as inside, a slide. The difference is that, outside a slide the setting is applied to all the upcoming slides, if the setting is inside the slide, it is only applied to that slide.
+
+\begin{verbatim}
+Input: @setting{@font_size:40|title}
+\end{verbatim}
+
+Output: A way to use the title type can be by the following example:
+
+\begin{verbatim}
+Input:
+@begin{fade|slide}
+    @title{|Hello and welcome}
+@end{|slide}
+\end{verbatim}Output: Hello and welcome (in the title format)
+
+As you see, there are nothing on the left side of the pipe (The sign before ``Hello''). Between the left curly and the pipe, settings can be applied to that specific sentence, like:
+
+\begin{verbatim}
+Input: @title{@font_size: 70|Hello and welcome}
+\end{verbatim}
+
+Output: Hello and welcome (in title format with size 70)
+\\ \\
+Which sets ony this line of type ``title'' to font size 70, instead of 40 which was initialized above. This can also be applied to normal sentences like:
+
+\begin{verbatim}
+Input: @apply{@font_size:25 | Welcome to this slide}
+\end{verbatim}
+
+Output: Welcome to this slide (with fontsize 25)
+\\ \\
+You have to use the keyword ``apply'', to change the format of a regular text. Here the font size is set to 25, and the text is ``Welcome to this slide''.
+\\ \\
+The weight of text can be done in two ways, the first looks like the way we just changed the font size:
+
+\begin{verbatim}
+Input: @apply{@font_weight:bold | Welcome to bold text}
+\end{verbatim}
+
+Output: \textbf{Welcome to bold text}
+\\ \\
+A quicker way to set a bold text is as follows:
+
+\begin{verbatim}
+Input: @b{|Welcome to bold text}
+\end{verbatim}
+
+
+Output: \textbf{Welcome to bold text}
+\\ \\
+Furthermore, we now want to underline a single word in that sentence:
+
+\begin{verbatim}
+Input: @b{|Welcome to @u{|bold} text}
+\end{verbatim}
+
+Output: \textbf{Welcome to \textit{bold} text}
+\\ \\
+Which make the whole text bold and underlines the word ``bold''.
+\\ \\
+Combining them, would look like this:
+
+\begin{verbatim}
+Input: @apply{@font_weight:bold | Welcome to @u{|bold} text}
+\end{verbatim}
+
+Output: \textbf{Welcome to \textit{bold} text}
+\\ \\
+And gives the same result as the last one (eg. ref).
+\\ \\
+The following a larger example to demonstrate what is just used:
+
+\begin{verbatim}
+Input:
+@begin{fade|slide}
+    @title{|@b{Welcome to this course}
+    @Setting{@font_type: Arial | text}
+    This course will contain information about how you @u{underline} things, and how you do other    
+    @i{|weight stuff} on sentences.
+    @apply{@font_weight:bold | Like this}
+@end{|slide}
+\end{verbatim}
+Output:
+Welcome to this course (as title)
+This course will contain information about how you \underline{underline} things, and how you do other \textit{weight stuff} on sentences. (with font type Arial)
+\textbf{Like this.}  (with font type Arial)
+
+A setting does not have to be set at all, because if it is not set, the standard setting will be used
+
+\subsection{Lists}
+There are two types of lists, a list consists of either bullets or numerations. \\
+A bulletlist is made by writing the following:
+
+\begin{verbatim}
+Input:
+List of things to buy
+*  Milk
+*  Wolemeal bread
+** Light bread
+*  Coffee
+\end{verbatim}
+
+Output:
+\begin{itemize}
+\item Milk
+\item Wolemeal bread
+
+\begin{itemize}
+\item Light bread
+\end{itemize}
+
+\item Coffee
+\end{itemize}
+
+Where a star symbolises a bullet, and two bullets symbolises a bullet inside a bullet.
+Numeration is made by the following:
+
+\begin{verbatim}
+Input:
+Agenda
+#  Introduction
+#  Presentation
+## Code examples
+#  Evaluation
+\end{verbatim}
+
+Output:
+\begin{enumerate}
+\item Introduction
+\item Presentation
+\begin{enumerate}
+\item Code examples
+\end{enumerate}
+\item Evaluation
+\end{enumerate}
+
+Where a \# symbolises a number that incrementing. By using two \# creates a sub numeration starting from one.
