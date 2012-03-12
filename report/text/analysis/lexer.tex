@@ -1,0 +1,34 @@
+\chapter{Lexer}
+
+In order to create the syntax above, tokens has to be identified for later use.
+\\ \\
+The tokens for the language is as follows:
+
+\begin{verbatim}
+space  	   -> [\\s]$^+$
+settingkwd -> @setting
+beginkwd   -> @begin
+endkwd 	   -> @end 
+atsign 	   -> [@]
+lcurly 	   -> [{]
+rcurly 	   -> [}] 
+pipe   	   -> [|] 
+fslash     -> [/]
+bslash     -> [\]
+colon  	   -> [:] 
+scolon 	   -> [;] 
+blist  	   -> [*] 
+nlist  	   -> [#] 
+percent	   -> [%] 
+eol    	   -> [\n|\r\n] 
+char   	   -> [a-zA-Z_\.,]$^+$
+digit  	   -> [0-9]$^+$
+\end{verbatim}
+
+\noindent{The abnormal in this token list is the ``settingkwd’’, ``begindkwd’’ and ``endkwd’’ (kwd is short for: keyword). These keywords are explicit, because they are the keywords that differs from other keywords.}
+\\ \\
+The reason each special keyword has it’s own token, is to easily see the difference between the special tokens and the normal ones, without the need to check that a given token in the syntax analyser it is the right token.
+\\ \\
+``Char’’ is used whenever characters needs to used in the code. Char is also used for plain text, which require it to have the symbols underscore, backlash, comma and period. \\
+``Digit’’ is used whenever numbers need to be used in the code. \\
+When numbers or characters are expected, then one such has to occur at least once.

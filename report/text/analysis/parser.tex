@@ -1,0 +1,33 @@
+\chapter{Parser}
+
+The parser should be able to receive tokens, which can then be converted into parse trees, and report useful error messages, if the user has written something illegal according to the EBNF (Extended Backus–Naur Form). The parser should be LL(1) and not be ambiguous, to not make it find more than 1 parse tree.
+\\ \\
+The following is the EBNF of the language:
+
+\begin{verbatim}
+SS          	: {Blocks} 
+Blocks    	  -> BeginBlock {Lines} EndBlock 
+          	   | SettingBlock
+Lines     	  -> SettingBlock 
+              | Numeration
+              | Itemlist 
+              | Plains eol
+Numeration   -> nlist (Plains eol | Numeration)
+Itemlist 	   -> blist (Plains eol  | Itemlist)
+BeginBlock   -> beginkwd BEBlock eol
+EndBlock 	   -> endkwd BEBlock Eols
+BEBlock  	   -> lcurly (Ident Spaces | EPSILON) pipe Ident Spaces rcurly
+SettingBlock -> settingkwd lcurly ShortIdent pipe String rcurly eol
+Plains   	   -> (ShortBlock | CharSpace | Number)$^+$
+ShortBlock   -> Kwd lcurly {ShortIdent} pipe Plains rcurly
+ShortIdent   -> Kwd colon (Ident | Number) Spaces
+String   	   -> CharSpace$^+$
+CharSpace	   -> char 
+          	   | space
+Ident    	   -> char
+Number   	   -> digit
+Kwd      	   -> atsign Ident
+Spaces   	   -> space
+              | EPSILON
+Eols     	   -> eol+
+\end{verbatim}
