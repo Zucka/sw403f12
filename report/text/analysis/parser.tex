@@ -12,31 +12,31 @@ Requirements:
 The following is the EBNF of the language:
 
 \begin{spverbatim}
-SS        	: {Blocks} 
-Blocks    	-> BeginBlock {Lines} EndBlock 
-          	| SettingBlock
-Lines    	-> SettingBlock 
+SS          	: {Blocks} 
+Blocks       -> BeginBlock {Lines} EndBlock 
+            	| SettingBlock
+Lines        -> SettingBlock 
               | Numeration
               | Itemlist 
-          	| Plains eol
+            	| Plains eol
 Numeration   -> nlist (Plains eol | Numeration)
-Itemlist 	-> blist (Plains eol  | Itemlist)
+Itemlist     -> blist (Plains eol  | Itemlist)
 BeginBlock   -> beginkwd BEBlock eol
-EndBlock 	-> endkwd BEBlock Eols
-BEBlock  	-> lcurly (Ident Spaces | EPSILON) pipe Ident Spaces rcurly
+EndBlock     -> endkwd BEBlock Eols
+BEBlock  	   -> lcurly (Ident Spaces | EPSILON) pipe Ident Spaces rcurly
 SettingBlock -> settingkwd lcurly ShortIdent Spaces pipe String rcurly eol
-Plains   	-> (ShortBlock | CharSpace | Number)$^+$
+Plains       -> (ShortBlock | CharSpace | Number)+
 ShortBlock   -> Kwd lcurly {ShortIdent} pipe Plains rcurly
 ShortIdent   -> Kwd colon (Ident | Number) Spaces
-String   	-> CharSpace$^+$
-CharSpace	-> char 
-          	| space
-Ident    	-> char
-Number   	-> digit
-Kwd      	-> atsign Ident
-Spaces   	-> space
+String   	   -> CharSpace+
+CharSpace	   -> char 
+            	| space
+Ident    	   -> char
+Number   	   -> digit
+Kwd      	   -> atsign Ident
+Spaces     	 -> space
               | EPSILON
-Eols     	-> eol+
+Eols     	   -> eol+
 \end{spverbatim}
 
 This grammar is able to construct everything that is required of the language. \\
