@@ -27,7 +27,7 @@ Input: @setting{@font_size:40|title}
 A way to use the title type can be by the following example:\\
 
 \begin{verbatim}
-Input:   @title\{|Hello and welcome}
+Input:   @title{|Hello and welcome}
 \end{verbatim}
 
 \noindent{Output: Hello and welcome (in the title format)}
@@ -35,7 +35,7 @@ Input:   @title\{|Hello and welcome}
 As you see, there are nothing on the left side of the pipe (The sign before ``Hello''). Between the left curly and the pipe, settings can be applied to that specific sentence, like:\\
 
 \begin{verbatim}
-Input: @title\{@font_size:70 |Hello and welcome}
+Input: @title{@font_size:70 |Hello and welcome}
 \end{verbatim}
 
 \noindent{Output: Hello and welcome (in title format with size 70)} \\
@@ -103,7 +103,7 @@ The following is a larger example to demonstrate what is just used:\\
 Input:
 @begin{fade|slide}
     @title{|@b{|Welcome to this course}}
-    @Setting{@font_type: Arial | text}
+    @setting{@font_type: Arial | text}
     This course will contain information about how you @u{|underline} things, and how you do other    
     @i{|weight stuff} on sentences.
     @apply{@font_weight:bold | Like this.}
@@ -156,6 +156,7 @@ Agenda
 \end{verbatim}
 
 \noindent{Output:} \\
+Agenda
 \begin{enumerate}
 \item Introduction
 \item Presentation
@@ -167,7 +168,7 @@ Agenda
 
 Where a \# symbolises a number that incrementing. By using two \# creates a sub numeration starting from one.
 
-\subsection{Images}*
+\subsection*{Images}
 Importing pictures from the web and only from the web, can be done using the following code example:
 
 \begin{spverbatim}
