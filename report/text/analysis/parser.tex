@@ -14,11 +14,11 @@ The following is the EBNF of the language:
 \begin{spverbatim}
 SS          	: {Blocks} 
 Blocks       -> BeginBlock {Lines} EndBlock 
-            	| SettingBlock
+            	 | SettingBlock
 Lines        -> SettingBlock 
               | Numeration
               | Itemlist 
-            	| Plains eol
+            	 | Plains eol
 Numeration   -> nlist (Plains eol | Numeration)
 Itemlist     -> blist (Plains eol  | Itemlist)
 BeginBlock   -> beginkwd BEBlock eol
@@ -30,7 +30,7 @@ ShortBlock   -> Kwd lcurly {ShortIdent} pipe Plains rcurly
 ShortIdent   -> Kwd colon (Ident | Number) Spaces
 String   	   -> CharSpace+
 CharSpace	   -> char 
-            	| space
+            	 | space
 Ident    	   -> char
 Number   	   -> digit
 Kwd      	   -> atsign Ident
