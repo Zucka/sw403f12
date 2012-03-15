@@ -1,0 +1,185 @@
+\section{Syntax}
+
+The following example are some of the basic elements in the language:
+\begin{verbatim}
+Input:
+@begin{fade|slide}
+    Hello World
+@end{|slide}
+\end{verbatim}
+
+\noindent{Output: Hello World}
+\\ \\
+Which states that a slide begins, with a transition ``fade'', and that the slide contains the text ``Hello World'' \\
+The examples in the rest of this section is all written between @begin\{|slide\} and a @end\{|slide\} to save space.
+\\ \\
+After an @, a keyword always begins, making it easy for the compiler to recognize a keyword.
+Here is another keyword ``Setting'', in this example the setting is set for the type ``title'' to a font size of 40 points. \\
+A setting can be initiated outside, as well as inside, a slide. The difference is that, outside a slide the setting is applied to all the upcoming slides, if the setting is inside the slide, it is only applied to that slide. If no settings is set while making the slides, standard settings will be used.
+
+\begin{verbatim}
+Input: @setting{@font_size:40|title}
+\end{verbatim}
+
+\noindent{Output: (title font size set to 40)} \\
+
+A way to use the title type can be by the following example:\\
+
+\begin{verbatim}
+Input: @title{|Hello and welcome}
+\end{verbatim}
+
+\noindent{Output: Hello and welcome (in the title format)}\\
+
+As you see, there are nothing on the left side of the pipe (The sign before ``Hello''). Between the left curly and the pipe, settings can be applied to that specific sentence, like:\\
+
+\begin{verbatim}
+Input: @title{@font_size:70 |Hello and welcome}
+\end{verbatim}
+
+\noindent{Output: Hello and welcome (in title format with size 70)} \\
+
+
+Which sets only this line of type ``title'' to font size 70, instead of 40 which was initialized above.
+This can also be applied to normal sentences like:\\
+
+\begin{verbatim}
+Input: @apply{@font_size:25 | Welcome to this slide}
+\end{verbatim}
+
+\noindent{Output: Welcome to this slide (with font size 25)} \\
+
+You have to use the keyword ``apply'', to change the format of a regular text. More than one format change can be applied pr. sentence, each format change does not necessarily need to be separated by one or more spaces. The order of format changes is irrelevant to the compiler. Here the font size is set to 25, and the text is ``Welcome to this slide''.
+
+The weight of text can be done in two ways, the first looks like the way we just changed the font size:\\
+
+\begin{verbatim}
+Input: @apply{@font_weight:bold @font_size:25 | Welcome to bold text}
+\end{verbatim}
+
+\noindent{Output: \textbf{Welcome to bold text} (with font size 25)} \\
+
+A quicker way to set a bold text is as follows:\\
+
+\begin{verbatim}
+Input: @b{|Welcome to bold text}
+\end{verbatim}
+
+\noindent{Output: \textbf{Welcome to bold text}} \\
+
+Furthermore, we now want to underline a single word in that sentence:\\
+
+\begin{verbatim}
+Input: @b{|Welcome to @u{|bold} text}
+\end{verbatim}
+
+\noindent{Output: \textbf{Welcome to \textit{bold} text}} \\
+
+Which make the whole text bold and underlines the word ``bold''.\\
+
+Combining them, would look like this:\\
+
+\begin{verbatim}
+Input: @apply{@font_weight:bold | Welcome to @u{|bold} text}
+\end{verbatim}
+
+\noindent{Output: \textbf{Welcome to \textit{bold} text}} \\
+
+And gives the same result as the last one. (eg. ref)
+
+\subsection*{To summarize}
+``@begin'' to start a slide\\
+``@end'' to end a slide\\
+``@b'' makes bold text \\
+``@u'' makes underlined text \\
+``@i'' makes italic text \\
+``@apply'' changes a parameter for that line only\\
+``@setting'' changes a parameter for the slide or globally.\\
+
+The following is a larger example to demonstrate what is just used:\\
+
+\begin{spverbatim}
+Input:
+@begin{fade|slide}
+    @title{|@b{|Welcome to this course}}
+    @setting{@font_type: Arial | text}
+    This course will contain information about how you @u{|underline} things, and how you do other    
+    @i{|weight stuff} on sentences.
+    @apply{@font_weight:bold | Like this.}
+@end{|slide}
+\end{spverbatim}
+
+\noindent{Output:} \\
+\textbf{Welcome to this course} (as title) \\
+This course will contain information about how you \underline{underline} things, and how you do other \textit{weight stuff} on sentences. (with font type Arial) \\
+\textbf{Like this.}  (with font type Arial)
+\\ \\
+
+Settings does not have to be set at all, if they are not set, the standard settings will be used.
+
+\subsection*{Lists}
+There are two types of lists, a list consists of either bullets or numerations.
+A bullet list is made by writing the following:\\
+
+\begin{verbatim}
+Input:
+List of things to buy
+* 2 x milk
+* Bread
+** Light
+* BKI coffee
+\end{verbatim}
+ 
+\noindent{Output:} \\
+List of things to buy
+\begin{itemize}
+\item 2 x milk
+\item Bread
+\begin{itemize}
+\item Light
+\end{itemize}
+\item BKI coffee
+\end{itemize}
+
+Where a star symbolises a bullet, and two bullets symbolises a bullet inside a bullet.
+Numeration is made by the following: \\
+Between the \# or * and the text related to the sign, does not necessarily need to be separated by a space, the text can also contain spaces and numbers if needed.\\
+
+\begin{verbatim}
+Input:
+Agenda
+# Introduction
+# Presentation
+## Code examples
+# Evaluation
+\end{verbatim}
+
+\noindent{Output:} \\
+Agenda
+\begin{enumerate}
+\item Introduction
+\item Presentation
+\begin{enumerate}
+\item Code examples
+\end{enumerate}
+\item Evaluation
+\end{enumerate}
+
+Where a \# symbolises a number that incrementing. By using two \# creates a sub numeration starting from one.
+
+\subsection*{Images}
+Importing pictures from the web and only from the web, can be done using the following code example:
+
+\begin{spverbatim}
+Input: @image{@url: http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg  | Aalborg University logo}
+\end{spverbatim}
+
+\noindent{Output:} 
+\begin{figure}[! h]
+\centering
+	 \includegraphics[width=100px]{images/aau_logo.jpg}
+		 \caption{Aalborg University logo}	
+	\label{fig:Imageimport}
+\end{figure}
+
+Where the url to the image is before the pipe and after the keyword ``@url:''. The text after the pipe is the image text.
