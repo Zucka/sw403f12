@@ -1,4 +1,5 @@
 \part{Solution}
+\section*{Introduction}
 Constructing a compiler is split into four categories; lexer, parser, semantic analyser and code generator shown in \ref{fig:Compilerconstruction}.
 The user inputs some code, the program he wants to be compiled, which is first met by the lexer. The lexer’s job is to make a token for each of the characters that is provided in the code. If a character is not recognized, this stage will fail.\\
 
@@ -12,7 +13,7 @@ The abstract syntax tree is then given to the semantic analyser...Something Some
 
 \begin{figure}[! h]
 \centering
-	 \includegraphics[width=100px]{images/Compilerconstruction.png}
+	 \includegraphics[width=250px]{images/Compilerconstruction.png}
 		 \caption{Compiler construction}
 	\label{fig:Compilerconstruction}
 \end{figure}
