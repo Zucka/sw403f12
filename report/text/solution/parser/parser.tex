@@ -23,17 +23,21 @@ Numeration    = nlist (Plains eol | Numeration) ;
 Itemlist      = blist (Plains eol  | Itemlist) ;
 BeginBlock    = beginkwd BEBlock eol ;
 EndBlock      = endkwd BEBlock eol+ ;
-BEBlock       = lcurly char [space] [pipe char [space]] rcurly ;
-SettingBlock  = settingkwd lcurly ShortIdent [space] pipe String rcurly eol;
+BEBlock       = lcurly [space] char [space] [pipe char [space]] rcurly ;
+SettingBlock  = settingkwd lcurly ShortIdent [space] pipe [space] char [space] rcurly eol;
 Plains        = (ShortBlock | CharAll)+ ;
-ShortBlock    = format_kwd lcurly [ShortIdents] Plains rcurly ;
+ShortBlock    = format_kwd lcurly [space] [ShortIdents] Plains rcurly ;
 ShortIdents   = {ShortIdent}+ pipe ;
-ShortIdent    = Kwd colon (char | digit) [space] ;
-String        = CharSpace+ ;
-CharSpace     = char 
-              | space ;
+ShortIdent    = Kwd [space] colon [space] (char | digit) [space] ;
 Kwd           = atsign char ;
-CharAll       = colon | digit | scolon | percent | fslash | bslash | char | space ;
+CharAll       = colon 
+              | digit 
+              | scolon 
+              | percent 
+              | fslash 
+              | bslash 
+              | char 
+              | space ;
 \end{spverbatim}
 
 This grammar is able to construct everything that is required of the language. \\
