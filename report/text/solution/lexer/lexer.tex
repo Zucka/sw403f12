@@ -5,24 +5,25 @@ In order to create the syntax in chapter \ref{SSyntax}, tokens has to be identif
 The tokens for the language is as follows:
 
 \begin{verbatim}
-space  	   -> [\\s]+
-settingkwd -> @setting
-beginkwd   -> @begin
-endkwd 	   -> @end 
-atsign 	   -> [@]
-lcurly 	   -> [{]
-rcurly 	   -> [}] 
-pipe   	   -> [|] 
-fslash     -> [/]
-bslash     -> [\]
-colon  	   -> [:] 
-scolon 	   -> [;] 
-blist  	   -> [*] 
-nlist  	   -> [#] 
-percent	   -> [%] 
-eol    	   -> [\n|\r\n] 
-char   	   -> [a-zA-Z_\.,]+
-digit  	   -> [0-9]+
+format_kwd  = '@u' | '@b' | '@i' | '@apply' ;
+space       = [\\s]+ ;
+settingkwd  = '@setting' ;
+beginkwd    = '@begin' ;
+endkwd      = '@end' ;
+atsign      = [@] ;
+lcurly      = [\{] ;
+rcurly      = [\}] ;
+pipe        = [\|] ;
+fslash      = [/] ;
+bslash      = [\\] ;
+colon       = [:] ;
+scolon      = [;] ;
+blist       = [\*] ;
+nlist       = [#] ;
+percent     = [%] ;
+eol         = [\n|\r\n] ;
+char        = ? [a-zA-Z_\.]+ ? ;
+digit       = ? [0-9]+ ? ;
 \end{verbatim}
 
 \noindent{The abnormal in this token list is the ``settingkwd’’, ``begindkwd’’ and ``endkwd’’ (kwd is short for: keyword). These keywords are explicit, because they are the keywords that differs from other keywords.}
