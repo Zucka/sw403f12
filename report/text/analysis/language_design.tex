@@ -23,16 +23,25 @@ Restricted aliasing & & & X \\ \hline
 \label{tbl:evaluation criteria}
 \end{table}
 
-\noindent{\textbf{Readability}} \\
-Readability is one of the most important criteria in designing a programming language. The definition of readability is, that the language which is being designed should be easy to read and understand. When a programmer is adapting to a new language, the most difficult things to remember is usually the context of the language and the name of the data types. Creating a syntax, that in some way is similar to popular languages such as Java or C, would make the language more readable and easy to understand. \\
-Readability of our programming language has been deemed ``less important'', because it is not as important as the writability or reliability, though it still has to be possible to read codes written in the language.
-\\ \\
-\textbf{Writability} \\
+\noindent{\textbf{Writability}} \\
 Writability is another important criteria in designing a programming language. It refers to how easy it is to write programs using the language, in this programming language it should be easy to write and express slides in the developed language. A programming language is usually easier to use, if it shares some characteristics with popular languages. However, a high writability ranking can also come from the language being simple to use. The writability has been deemed ``very important'', because our language is a slide show programming language, and considering that a slideshow is only made once.
 %otherwise there is no reason for the programmer to learn a new language to express slide shows in.
 \\ \\
+\textbf{Portability} \\
+Portability is also known as the ease with which programs can be implemented on another platform than the one they were originally developed for. The way to make a programming language is by standardizing the language, which can be done by focusing on readability, reliability and writability, in particular. These do not standardize the language precisely, but provide a valuable insight into the design and evaluation of the programming language in question.
+\\ \\
+In the programming language of this project, the portability has been deemed ``very important'', because it is very important that the programming language is made in a way where it is working ``out of the box'', regardless of the operating system the programmer is using. Furthermore, the group who is to develop the programming language in question are using different operation systems, such as; Linux Ubuntu, Max OSx and Windows, which makes a good foundation for checking whether the programming language is working on these three operating systems, which gives the developers a good idea of the portability of the language. Furthermore, the slides created using the system should be able to be shown on different monitor/displays.
+\\ \\
 \textbf{Reliability} \\
 Reliability and correctness refers to how reliable a programming language is. The language is reliable if it performs correctly and without errors under all conditions, in this programming language meaning that the presentation behaves exactly as the user wants it to. The ability for the language to perform correctly under all conditions, has been deemed ``important'', because the user should be able to reli on the language in a way that makes them know what it would do, using the language.
+\\ \\
+\textbf{Expressivity} \\
+Is an expression covering the ease with which different operators in a programming language are designed. An example of this is using $count++$ instead of $count = count + 1$. Expressivity can
+be seen as an extension to writability, in that it can make it easier to express statements in a programming. In the developed programming language, expressivity has been deemed ``important'' because there has been a lot of focus on making the language as easy and convenient to write and express slide shows in.
+\\ \\
+\textbf{Readability} \\
+Readability is one of the most important criteria in designing a programming language. The definition of readability is, that the language which is being designed should be easy to read and understand. When a programmer is adapting to a new language, the most difficult things to remember is usually the context of the language and the name of the data types. Creating a syntax, that in some way is similar to popular languages such as Java or C, would make the language more readable and easy to understand. \\
+Readability of our programming language has been deemed ``less important'', because it is not as important as the writability or reliability, though it still has to be possible to read codes written in the language.
 \\ \\
 \textbf{Cost} \\
 When talking about the cost of making a programming language, there are some different aspects to consider, these are:
@@ -57,22 +66,12 @@ When talking about the cost of making a programming language, there are some dif
 	\item The reliability is not that big a concern for this programming language, because the programs written herein will not be implemented as part of a greater system, as mentioned before, but it should be seen as a proof of concept.
 	\item The maintenance will be kept as close to a minimum as possible, because when slideshows have been made, using the language, these will probably not be used again, which is why it will not be necessary to maintain them.
 	\item The server, from which the code is being compiled, has to have some performance, because of the possibility of multiple programmers creating slides simultaneously. The performance is not the main focus, but it is important to make sure that there will not be unnecessary waiting for the programmers using the programming language. \\
-\textbf{\textit{\underline{!!MAKE INTRUDUCTION TO (BEFORE) THIS SECTION!!}}}
 \end{itemize}
-
 \noindent{\textbf{Orthogonality}} \\
 Orthogonality is the use of consistency, to avoid that some variable that has been assigned to a certain type, is being used another place assigned to another type.
 \\ \\
 \noindent{In the programming language of this project, the orthogonality has been deemed ``irrelevant'', because there are no types in the developed programming language.}
-\\ \\
-\textbf{Portability} \\
-Portability is also known as the ease with which programs can be implemented on another platform than the one they were originally developed for. The way to make a programming language is by standardizing the language, which can be done by focusing on readability, reliability and writability, in particular. These do not standardize the language precisely, but provide a valuable insight into the design and evaluation of the programming language in question.
-\\ \\
-In the programming language of this project, the portability has been deemed ``very important'', because it is very important that the programming language is made in a way where it is working ``out of the box'', regardless of the operating system the programmer is using. Furthermore, the group who is to develop the programming language in question are using different operation systems, such as; Linux Ubuntu, Max OSx and Windows, which makes a good foundation for checking whether the programming language is working on these three operating systems, which gives the developers a good idea of the portability of the language. Furthermore, the slides created using the system should be able to be shown on different monitor/displays.
-\\ \\
-\textbf{Expressivity} \\
-Is an expression covering the ease with which different operators in a programming language are designed. An example of this is using $count++$ instead of $count = count + 1$. Expressivity can
-be seen as an extension to writability, in that it can make it easier to express statements in a programming. In the developed programming language, expressivity has been deemed ``important'' because there has been a lot of focus on making the language as easy and convenient to write and express slide shows in.
+\textbf{\textit{\underline{!!MAKE INTRUDUCTION TO (BEFORE) THIS SECTION!!}}}
 \\ \\
 Beneath is a table with the language design criteria that has been designed for the programming language design for this project:
 \begin{table}[htbp]
@@ -80,13 +79,15 @@ Beneath is a table with the language design criteria that has been designed for 
 \begin{tabular}{|l|c|c|c|c|}
 \hline
 & Very important & Important & Less important & Irrelevant \\ \hline
-Readability & & & X & \\ \hline
 Writability & X & & & \\ \hline
+Portability & X & & & \\ \hline
 Reliability & & X & & \\ \hline
+Expressivity & & X & & \\ \hline
+Readability & & & X & \\ \hline
 Cost & & & X & \\ \hline
 Orthogonality & & & & X \\ \hline
-Portability & X & & & \\ \hline
-Expressivity & & X & & \\ \hline
+
+
 \end{tabular}
 \caption{Language evaluation criteria defined for the programming language to be developed.}
 \label{tbl:evaluation criteria}
