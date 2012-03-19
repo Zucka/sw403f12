@@ -5,13 +5,13 @@ The following example are some of the basic elements in the language:
 Input:
 @begin{fade|slide}
     Hello World
-@end{|slide}
+@end{slide}
 \end{lstlisting}
 
 \noindent{\texttt{Output: Hello World}}
 
 Which states that a slide begins, with a transition ``fade'', and that the slide contains the text ``Hello World'' \\
-The examples in the rest of this section is all written between @begin\{|slide\} and a @end\{|slide\} to save space.
+The examples in the rest of this section is all written between @begin\{slide\} and a @end\{slide\} to save space.
 \\ \\
 After an @, a keyword always begins, making it easy for the compiler to recognize a keyword.
 Here is another keyword ``Setting'', in this example the setting is set for the type ``title'' to a font size of 40 points. \\
@@ -26,7 +26,7 @@ Input: @setting{@font_size:40|title}
 A way to use the title type can be by the following example:\\
 
 \begin{lstlisting}[frame=single]
-Input: @title{|Hello and welcome}
+Input: @title{Hello and welcome}
 \end{lstlisting}
 
 \noindent{\texttt{Output: Hello and welcome (in the title format)}}\\
@@ -61,7 +61,7 @@ Input: @apply{@font_weight:bold @font_size:25 | Welcome to bold text}
 A quicker way to set a bold text is as follows:\\
 
 \begin{lstlisting}[frame=single]
-Input: @b{|Welcome to bold text}
+Input: @b{Welcome to bold text}
 \end{lstlisting}
 
 \noindent{\texttt{Output: \textbf{Welcome to bold text}}} \\
@@ -69,7 +69,7 @@ Input: @b{|Welcome to bold text}
 Furthermore, we now want to underline a single word in that sentence:\\
 
 \begin{lstlisting}[frame=single]
-Input: @b{|Welcome to @u{|bold} text}
+Input: @b{Welcome to @u{bold} text}
 \end{lstlisting}
 
 \noindent{\texttt{Output: \textbf{Welcome to \underline{bold} text}}} \\
@@ -79,7 +79,7 @@ Which make the whole text bold and underlines the word ``bold''.\\
 Combining them, would look like this:\\
 
 \begin{lstlisting}[frame=single]
-Input: @apply{@font_weight:bold | Welcome to @u{|bold} text}
+Input: @apply{@font_weight:bold | Welcome to @u{bold} text}
 \end{lstlisting}
 
 \noindent{\texttt{Output: \textbf{Welcome to \underline{bold} text}}} \\
@@ -100,18 +100,18 @@ The following is a larger example to demonstrate what is just used:\\
 \begin{lstlisting}[frame=single]
 Input:
 @begin{fade|slide}
-    @title{|@b{|Welcome to this course}}
+    @title{@b{Welcome to this course}}
     @setting{@font_type: Arial | text}
-    This course will contain information about how you @u{|underline} things, and how you do other    
-    @i{|weight stuff} on sentences.
+    This course will contain information about how you @u{underline} things, and how you do other    
+    @i{weight stuff} on sentences.
     @apply{@font_weight:bold | Like this.}
-@end{|slide}
+@end{slide}
 \end{lstlisting}
 
-\noindent{\texttt{Output:}} \\
+\texttt{\noindent{Output:} \\
 \textbf{Welcome to this course} (as title) \\
 This course will contain information about how you \underline{underline} things, and how you do other \textit{weight stuff} on sentences. (with font type Arial) \\
-\textbf{Like this.}  (with font type Arial)
+\textbf{Like this.}  (with font type Arial)}
 \\ \\
 
 Settings does not have to be set at all, if they are not set, the standard settings will be used.
@@ -153,7 +153,7 @@ Agenda
 # Evaluation
 \end{lstlisting}
 
-\noindent{\texttt{Output:}} \\
+\texttt{\noindent{Output:} \\
 Agenda
 \begin{enumerate}
 \item Introduction
@@ -163,7 +163,7 @@ Agenda
 \end{enumerate}
 \item Evaluation
 \end{enumerate}
-
+}
 Where a \# symbolises a number that incrementing. By using two \# creates a sub numeration starting from one.
 
 \section{Images}
