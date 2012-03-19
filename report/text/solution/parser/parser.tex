@@ -11,7 +11,7 @@ Requirements:
 
 The following is the EBNF of the language:
 
-\begin{spverbatim}
+\begin{lstlisting}[frame=single]
 SS            = {Blocks} ;
 Blocks        = BeginBlock {Lines} EndBlock 
               | SettingBlock ;
@@ -38,17 +38,17 @@ CharAll       = colon
               | bslash 
               | char 
               | space ;
-\end{spverbatim}
+\end{lstlisting}
 
 This grammar is able to construct everything that is required of the language. \\
 Let's look at one of the previous examples:
 
-\begin{verbatim}
+\begin{lstlisting}[frame=single]
 Input:
 @begin{fade|slide}
     Hello World
 @end{|slide}
-\end{verbatim}
+\end{lstlisting}
 
 The parse tree for this would look like: 
 
