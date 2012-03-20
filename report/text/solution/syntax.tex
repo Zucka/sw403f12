@@ -1,135 +1,72 @@
-\chapter{Syntax}
-\label{SSyntax}
-
 \section{Keywords}
-This is
-a list of reserved words in the language, whereas the ones with the @-prefix
-may not be used otherwise.
-and may
-not be used otherwise.
+This is a list of reserved words in the language, whereas the ones with the @-prefix may not be used otherwise and may not be used otherwise.
 
 \begin{lstlising}[frame=single]
-slide,
-fade, @begin, @end,
-title,
-global, text, image, url,  
-#, *,
-@font_type,
-@font_color, @font_size, @font_weight, @u, @i, @b,
-@apply,
-@setting, @image, @url
+slide, fade, @begin, @end, 
+title, global, text, image, url,  
+#, *, 
+@font_type, @font_color, @font_size, @font_weight, @u, @i, @b, 
+@apply, @setting, @image, @url
 \end{lstlisting}
 
 \section{Expressions}
 
 \subsection{@begin}
-The
-expression \texttt{``@begin’’} determines when a slide begins. This has a
-\texttt{``transition’’} paramater seperated by a pipe char. As in the example:
+The expression \texttt{``@begin’’} determines when a slide begins. This has a \texttt{``transition’’} paramater seperated by a pipe char. As in the example:
 \begin{lstlising}[frame=single]
 @begin{transition|slide}
 \end{lstlisting}
-Where
-\texttt{``transition’’} is the form of transition to the slide.
+Where \texttt{``transition’’} is the form of transition to the slide. 
 
 \subsection{@end}
-The
-expression \texttt{``@end’’} is used to determine the end of a slide writing
-the line:
+The expression \texttt{``@end’’} is used to determine the end of a slide writing the line: 
 \begin{lstlising}[frame=single]
 @end{}
 \end{lstlisting}
 
 \subsection{@setting}
-This
-keyword sets a new setting for a specific type, or globally.
+This keyword sets a new setting for a specific type, or globally.
 \begin{lstlising}[frame=single]
-@setting{FontChanges:Value
-| Type}
+@setting{FontChanges:Value | Type}
 \end{lstlisting}
-Where
-\texttt{``FontChanges’’} is what kind of font setting that is changed, and
-\texttt{``Value’’}, is the value that it is set to. \texttt{``Type’’} is referring
-to which font class it will change, e.g. title, text, the keyword
-\texttt{``global’’} in this matter means that all font classes is changed.
+Where \texttt{``FontChanges’’} is what kind of font setting that is changed, and \texttt{``Value’’}, is the value that it is set to. \texttt{``Type’’} is referring to which font class it will change, e.g. title, text, the keyword \texttt{``global’’} in this matter means that all font classes is changed.
 
 \subsection{@apply}
-The
-expression \texttt{``apply’’} changes the font for some specific text.
+The expression \texttt{``apply’’} changes the font for some specific text.
 \begin{lstlising}[frame=single]
-@apply{FontChanges:Value
-| Text}
+@apply{FontChanges:Value | Text}
 \end{lstlisting}
-Where
-\texttt{``FontChanges’’} is what kind of font setting that is changed, and
-\texttt{``Value’’}, is the value that it is set to. The difference between this
-and the \texttt{``setting’’} expression is the chars after the pipe and the
-general meaning of the two expressions. \texttt{``Text’’} in the expression
-refers to any text the user would want in this expression. The
-\texttt{``Apply’’} expression only changes the font for the specific text which
-is in the expression, whereas \texttt{``@apply’’} only changes the font for the
-text inside the expression.
+Where \texttt{``FontChanges’’} is what kind of font setting that is changed, and \texttt{``Value’’}, is the value that it is set to. The difference between this and the \texttt{``setting’’} expression is the chars after the pipe and the general meaning of the two expressions. \texttt{``Text’’} in the expression refers to any text the user would wants in this expression. The \texttt{``Apply’’} expression only changes the font for the specific text which is in the expression, whereas \texttt{``@apply’’} only changes the font for the text inside the expression.
 
 \subsection{@image}
-The
-\texttt{``@image’’} expression imports an image from the Internet, the
-expression looks like this:
+The \texttt{``@image’’} expression imports an image from the Internet, the expression looks like this:
 \begin{lstlising}[frame=single]
-@image{@url:
-URL | Text }
+@image{@url: URL | Text }
 \end{lstlisting}
-\texttt{``@url’’}
-has to be there to indicate the start of an URL. \texttt{``URL’’} indicates an
-URL string. \texttt{``Text’’} refers to the text which is under the image, also
-called image description.
+\texttt{``@url’’} has to be there to indicate the start of an URL. \texttt{``URL’’} indicates an URL string. \texttt{``Text’’} refers to the text which is under the image, also called image description.
 
-\subsection{Star
-(*)}
-\texttt{``*’’}
-expression starts a list of bullets, where text after the star will be the text
-after the bullet.
-A star
-has to be set on each line that is going to be a bullet.
+ \subsection{Star (*)}
+\texttt{``*’’} expression starts a list of bullets, where text after the star will be the text after the bullet.
+A star has to be set on each line that is going to be a bullet.
 
-\subsection{Hash
-tag (#)}
-\texttt{``#’’}
-expression starts a numeration list starting from 1, and for each line the
-hastag is used, the number is incrementing. If there after a hash tag is a none
-hash tag-line, the numeration starts from 1 again.
+ \subsection{Hash tag (#)}
+\texttt{``#’’} expression starts a numeration list starting from 1, and for each line the has tag is used, the number is incrementing. If there after a hash tag is a none hash tag-line, the numeration starts from 1 again.
 
-\subsection{@u,
-@i, @b}
-These
-expressions does the same, more or less. \texttt{``@u’’} creates underlined
-text. \texttt{``@i’’} creates italic text. \texttt{``@b’’} creates bold text.
-And the full expression look like this:
+ \subsection{@u, @i, @b}
+These expressions does the same, more or less. \texttt{``@u’’} creates underlined text. \texttt{``@i’’} creates italic text. \texttt{``@b’’} creates bold text. And the full expression look like this:
 \begin{lstlising}[frame=single]
-@b{
-Text }
+@b{ Text }
 \end{lstlisting}
-Where
-texttt{``Text’’} is the text that is shown in the slide, with the proper change
-of font weight, in this case to bold. In this case a pipe is not needed because
-there is nothing to put there.
-There
-is a possibility to make font changes, in \texttt{``@u / @i / @b’’} like:
-\begin{lstlising}[frame=single]
-@b{
-FontChanges:Value | Text }
+Where texttt{``Text’’} is the text that is shown in the slide, with the proper change of font weight, in this case to bold. In this case a pipe is not needed because there is nothing to put there. 
+There is a possibility to make font changes, in \texttt{``@u / @i / @b’’} like:
+ \begin{lstlising}[frame=single]
+@b{ FontChanges:Value | Text }
 \end{lstlisting}
-Which
-looks familiar to the \texttt{``@apply’’} expression, and the functionality is
-basically the same, even though the text is set as any of the font weights \texttt{``@u
-/ @i / @b’’} to begin with. The \texttt{``@u / @i / @b’’} makes it much faster
-to make a weight on a text instead of writing:
-\begin{lstlising}[frame=single]
-@apply{
-@font_weight:bold | Text }
+Which looks familiar to the \texttt{``@apply’’} expression, and the functionality is basically the same, even though the text is set as any of the font weights \texttt{``@u / @i / @b’’} to begin with. The \texttt{``@u / @i / @b’’} makes it much faster to make a weight on a text instead of writing:
+ \begin{lstlising}[frame=single]
+@apply{ @font_weight:bold | Text }
 \end{lstlisting}
-each
-time to make a bold text
-
+each time to make a bold text.
 The following example are some of the basic elements in the language:
 \begin{lstlisting}[frame=single]
 Input:
