@@ -1,5 +1,135 @@
 \chapter{Syntax}
 \label{SSyntax}
+
+\section{Keywords}
+This is
+a list of reserved words in the language, whereas the ones with the @-prefix
+may not be used otherwise.
+and may
+not be used otherwise.
+
+\begin{lstlising}[frame=single]
+slide,
+fade, @begin, @end,
+title,
+global, text, image, url,  
+#, *,
+@font_type,
+@font_color, @font_size, @font_weight, @u, @i, @b,
+@apply,
+@setting, @image, @url
+\end{lstlisting}
+
+\section{Expressions}
+
+\subsection{@begin}
+The
+expression \texttt{``@begin’’} determines when a slide begins. This has a
+\texttt{``transition’’} paramater seperated by a pipe char. As in the example:
+\begin{lstlising}[frame=single]
+@begin{transition|slide}
+\end{lstlisting}
+Where
+\texttt{``transition’’} is the form of transition to the slide.
+
+\subsection{@end}
+The
+expression \texttt{``@end’’} is used to determine the end of a slide writing
+the line:
+\begin{lstlising}[frame=single]
+@end{}
+\end{lstlisting}
+
+\subsection{@setting}
+This
+keyword sets a new setting for a specific type, or globally.
+\begin{lstlising}[frame=single]
+@setting{FontChanges:Value
+| Type}
+\end{lstlisting}
+Where
+\texttt{``FontChanges’’} is what kind of font setting that is changed, and
+\texttt{``Value’’}, is the value that it is set to. \texttt{``Type’’} is referring
+to which font class it will change, e.g. title, text, the keyword
+\texttt{``global’’} in this matter means that all font classes is changed.
+
+\subsection{@apply}
+The
+expression \texttt{``apply’’} changes the font for some specific text.
+\begin{lstlising}[frame=single]
+@apply{FontChanges:Value
+| Text}
+\end{lstlisting}
+Where
+\texttt{``FontChanges’’} is what kind of font setting that is changed, and
+\texttt{``Value’’}, is the value that it is set to. The difference between this
+and the \texttt{``setting’’} expression is the chars after the pipe and the
+general meaning of the two expressions. \texttt{``Text’’} in the expression
+refers to any text the user would want in this expression. The
+\texttt{``Apply’’} expression only changes the font for the specific text which
+is in the expression, whereas \texttt{``@apply’’} only changes the font for the
+text inside the expression.
+
+\subsection{@image}
+The
+\texttt{``@image’’} expression imports an image from the Internet, the
+expression looks like this:
+\begin{lstlising}[frame=single]
+@image{@url:
+URL | Text }
+\end{lstlisting}
+\texttt{``@url’’}
+has to be there to indicate the start of an URL. \texttt{``URL’’} indicates an
+URL string. \texttt{``Text’’} refers to the text which is under the image, also
+called image description.
+
+\subsection{Star
+(*)}
+\texttt{``*’’}
+expression starts a list of bullets, where text after the star will be the text
+after the bullet.
+A star
+has to be set on each line that is going to be a bullet.
+
+\subsection{Hash
+tag (#)}
+\texttt{``#’’}
+expression starts a numeration list starting from 1, and for each line the
+hastag is used, the number is incrementing. If there after a hash tag is a none
+hash tag-line, the numeration starts from 1 again.
+
+\subsection{@u,
+@i, @b}
+These
+expressions does the same, more or less. \texttt{``@u’’} creates underlined
+text. \texttt{``@i’’} creates italic text. \texttt{``@b’’} creates bold text.
+And the full expression look like this:
+\begin{lstlising}[frame=single]
+@b{
+Text }
+\end{lstlisting}
+Where
+texttt{``Text’’} is the text that is shown in the slide, with the proper change
+of font weight, in this case to bold. In this case a pipe is not needed because
+there is nothing to put there.
+There
+is a possibility to make font changes, in \texttt{``@u / @i / @b’’} like:
+\begin{lstlising}[frame=single]
+@b{
+FontChanges:Value | Text }
+\end{lstlisting}
+Which
+looks familiar to the \texttt{``@apply’’} expression, and the functionality is
+basically the same, even though the text is set as any of the font weights \texttt{``@u
+/ @i / @b’’} to begin with. The \texttt{``@u / @i / @b’’} makes it much faster
+to make a weight on a text instead of writing:
+\begin{lstlising}[frame=single]
+@apply{
+@font_weight:bold | Text }
+\end{lstlisting}
+each
+time to make a bold text
+
 The following example are some of the basic elements in the language:
 \begin{lstlisting}[frame=single]
 Input:
@@ -7,7 +137,7 @@ Input:
     Hello World
 @end{slide}
 
-%Hello World%
+%Output:Hello World%
 \end{lstlisting}
 
 Which states that a slide begins, with a transition ``fade'', and that the slide contains the text ``Hello World'' \\
@@ -35,10 +165,10 @@ As you see, there are nothing on the left side of the pipe (The sign before ``He
 
 \begin{lstlisting}[frame=single]
 Input: @title{@font_size:70 |Hello and welcome}
+
+
+%Output: Hello and welcome (in title format with size 70)%
 \end{lstlisting}
-
-\noindent{\texttt{Output: Hello and welcome (in title format with size 70)}} \\
-
 Which sets only this line of type ``title'' to font size 70, instead of 40 which was initialized above.
 This can also be applied to normal sentences like:\\
 
@@ -46,17 +176,18 @@ This can also be applied to normal sentences like:\\
 Input: @apply{@font_size:25 | Welcome to this slide}
 \end{lstlisting}
 
-\noindent{\texttt{Output: Welcome to this slide (with font size 25)}} \\
-
+%Output: Welcome to this slide (with font size 25)%
+\end{lstlisting}
 You have to use the keyword ``apply'', to change the format of a regular text. More than one format change can be applied pr. sentence, each format change does not necessarily need to be separated by one or more spaces. The order of format changes is irrelevant to the compiler. Here the font size is set to 25, and the text is ``Welcome to this slide''.
 
 The weight of text can be done in two ways, the first looks like the way we just changed the font size:\\
 
 \begin{lstlisting}[frame=single]
 Input: @apply{@font_weight:bold @font_size:25 | Welcome to bold text}
-\end{lstlisting}
 
-\noindent{\texttt{Output: \textbf{Welcome to bold text} (with font size 25)}} \\
+
+%Output: \textbf{Welcome to bold text} (with font size 25)}%
+\end{lstlisting}
 
 A quicker way to set a bold text is as follows:\\
 
@@ -64,26 +195,26 @@ A quicker way to set a bold text is as follows:\\
 Input: @b{Welcome to bold text}
 \end{lstlisting}
 
-\noindent{\texttt{Output: \textbf{Welcome to bold text}}} \\
-
+%Output: \textbf{Welcome to bold text}%
+\end{lstlisting}
 Furthermore, we now want to underline a single word in that sentence:\\
 
 \begin{lstlisting}[frame=single]
 Input: @b{Welcome to @u{bold} text}
+
+
+%Output: \textbf{Welcome to \underline{bold} text}%
 \end{lstlisting}
-
-\noindent{\texttt{Output: \textbf{Welcome to \underline{bold} text}}} \\
-
 Which make the whole text bold and underlines the word ``bold''.\\
 
 Combining them, would look like this:\\
 
 \begin{lstlisting}[frame=single]
 Input: @apply{@font_weight:bold | Welcome to @u{bold} text}
+
+
+%Output: \textbf{Welcome to \underline{bold} text}%
 \end{lstlisting}
-
-\noindent{\texttt{Output: \textbf{Welcome to \underline{bold} text}}} \\
-
 And gives the same result as the last one. (eg. ref)
 
 \subsection*{To summarize}
@@ -106,13 +237,13 @@ Input:
     @i{weight stuff} on sentences.
     @apply{@font_weight:bold | Like this.}
 @end{slide}
-\end{lstlisting}
 
-\texttt{\noindent{Output:} \\
-\textbf{Welcome to this course} (as title) \\
-This course will contain information about how you \underline{underline} things, and how you do other \textit{weight stuff} on sentences. (with font type Arial) \\
-\textbf{Like this.}  (with font type Arial)}
-\\ \\
+
+%Output:%
+%\textbf{Welcome to this course} (as title)%
+%This course will contain information about how you \underline{underline} things, and how you do other \textit{weight stuff} on sentences. (with font type Arial)%
+%\textbf{Like this.}  (with font type Arial)%
+\end{lstlisting}
 
 Settings does not have to be set at all, if they are not set, the standard settings will be used.
 
@@ -127,18 +258,19 @@ List of things to buy
 * Bread
 ** Light
 * BKI coffee
-\end{lstlisting}
+
  
-\noindent{\texttt{Output:}} \\
-List of things to buy
+%Output:%
+%List of things to buy%
 \begin{itemize}
-\item 2 x milk
-\item Bread
+%\item 2 x milk%
+%\item Bread%
 \begin{itemize}
-\item Light
+%\item Light%
 \end{itemize}
-\item BKI coffee
+%\item BKI coffee%
 \end{itemize}
+\end{lstlisting}
 
 Where a star symbolises a bullet, and two bullets symbolises a bullet inside a bullet.
 Numeration is made by the following: \\
@@ -151,19 +283,19 @@ Agenda
 # Presentation
 ## Code examples
 # Evaluation
+
+%Output:%
+%Agenda%
+\begin{enumerate}
+%\item Introduction%
+%\item Presentation%
+\begin{enumerate}
+%\item Code examples%
+\end{enumerate}
+%\item Evaluation%
+\end{enumerate}
 \end{lstlisting}
 
-\texttt{\noindent{Output:} \\
-Agenda
-\begin{enumerate}
-\item Introduction
-\item Presentation
-\begin{enumerate}
-\item Code examples
-\end{enumerate}
-\item Evaluation
-\end{enumerate}
-}
 Where a \# symbolises a number that incrementing. By using two \# creates a sub numeration starting from one.
 
 \section{Images}
@@ -171,14 +303,9 @@ Importing pictures from the web and only from the web, can be done using the fol
 
 \begin{lstlisting}[frame=single]
 Input: @image{@url: http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg  | Aalborg University logo}
-\end{lstlisting}
 
-\noindent{\texttt{Output:}} 
-\begin{figure}[! h]
-\centering
-	 \includegraphics[width=100px]{images/aau_logo.jpg}
-		 \caption{Aalborg University logo}	
-	\label{fig:Imageimport}
-\end{figure}
+Output:
+(An image from the webpage http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg is shown  with the image description of ``Aalborg University logo’’)
+\end{lstlisting}
 
 Where the url to the image is before the pipe and after the keyword ``@url:''. The text after the pipe is the image text.
