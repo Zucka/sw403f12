@@ -4,8 +4,8 @@ This is a list of reserved words in the language, whereas the ones with the @-pr
 \begin{lstlising}[frame=single]
 slide, fade, @begin, @end, 
 title, global, text, image, url,  
-#, *, 
-@font_type, @font_color, @font_size, @font_weight, @u, @i, @b, 
+\#, *, 
+@font\_type, @font\_color, @font\_size, @font\_weight, @u, @i, @b, 
 @apply, @setting, @image, @url
 \end{lstlisting}
 
@@ -49,8 +49,8 @@ The \texttt{``@image’’} expression imports an image from the Internet, the expre
 \texttt{``*’’} expression starts a list of bullets, where text after the star will be the text after the bullet.
 A star has to be set on each line that is going to be a bullet.
 
- \subsection{Hash tag (#)}
-\texttt{``#’’} expression starts a numeration list starting from 1, and for each line the has tag is used, the number is incrementing. If there after a hash tag is a none hash tag-line, the numeration starts from 1 again.
+ \subsection{Hash tag (\#)}
+\texttt{``\#’’} expression starts a numeration list starting from 1, and for each line the has tag is used, the number is incrementing. If there after a hash tag is a none hash tag-line, the numeration starts from 1 again.
 
  \subsection{@u, @i, @b}
 These expressions does the same, more or less. \texttt{``@u’’} creates underlined text. \texttt{``@i’’} creates italic text. \texttt{``@b’’} creates bold text. And the full expression look like this:
@@ -64,7 +64,7 @@ There is a possibility to make font changes, in \texttt{``@u / @i / @b’’} like:
 \end{lstlisting}
 Which looks familiar to the \texttt{``@apply’’} expression, and the functionality is basically the same, even though the text is set as any of the font weights \texttt{``@u / @i / @b’’} to begin with. The \texttt{``@u / @i / @b’’} makes it much faster to make a weight on a text instead of writing:
  \begin{lstlising}[frame=single]
-@apply{ @font_weight:bold | Text }
+@apply{ @font\_weight:bold | Text }
 \end{lstlisting}
 each time to make a bold text.
 The following example are some of the basic elements in the language:
@@ -216,20 +216,20 @@ Between the \texttt{\#} or \texttt{*} and the text related to the sign, does not
 \begin{lstlisting}[frame=single]
 Input:
 Agenda
-# Introduction
-# Presentation
-## Code examples
-# Evaluation
+\# Introduction
+\# Presentation
+\#\# Code examples
+\# Evaluation
 
 %Output:%
 %Agenda%
 \begin{enumerate}
-%\item Introduction%
-%\item Presentation%
+\item %Introduction%
+\item %Presentation%
 \begin{enumerate}
-%\item Code examples%
+\item %Code examples%
 \end{enumerate}
-%\item Evaluation%
+\item %Evaluation%
 \end{enumerate}
 \end{lstlisting}
 
@@ -239,10 +239,10 @@ Where a \# symbolises a number that incrementing. By using two \# creates a sub 
 Importing pictures from the web and only from the web, can be done using the following code example:
 
 \begin{lstlisting}[frame=single]
-Input: @image{@url: http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg  | Aalborg University logo}
+Input: @image{@url: http://www.danwec.com/images/foto/thumbs3/aau\_logo.jpg  \| Aalborg University logo}
 
 Output:
-(An image from the webpage http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg is shown  with the image description of ``Aalborg University logo’’)
+(An image from the webpage http://www.danwec.com/images/foto/thumbs3/aau\_logo.jpg is shown  with the image description of ``Aalborg University logo’’)
 \end{lstlisting}
 
 Where the url to the image is before the pipe and after the keyword ``@url:''. The text after the pipe is the image text.
