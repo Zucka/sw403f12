@@ -15,7 +15,7 @@ The tokens for the language is as follows:
 
 \begin{lstlisting}[frame=single]
 format_kwd  = '@u' | '@b' | '@i' | '@apply' ;
-space       = [\s]+ ;
+space       = [\\s]+ ;
 settingkwd  = '@setting' ;
 beginkwd    = '@begin' ;
 endkwd      = '@end' ;
@@ -30,8 +30,8 @@ scolon      = [;] ;
 blist       = [*] ;
 nlist       = [#] ;
 percent     = [%] ;
-eol         = [\n |\r\n] ;
-char        = ? [a-zA-Z _ .,]+ ? ;
+eol         = [\\n |\\r\\n] ;
+char        = ? [a-zA-Z \_ .,]+ ? ;
 digit       = ? [ 0-9 ]+ ? ;
 \end{lstlisting}
 
