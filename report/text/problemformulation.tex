@@ -11,4 +11,29 @@ Which platform should be used for presentation? \\
 Who are the users of the language? \\
 Which layout decisions does the user need? \\
 What are the language limitations? \\
-What can be expressed in the language? \\
+What can be expressed in the language?
+\\ \\
+In this section some of the best known applications, Microsoft PowerPoint, Apple Keynote and Latex Beamer, is compared to the solution developed during this project.
+\\ \\
+Microsoft PowerPoint and Apple Keynote are slideshows application which uses drag-and-drop functions, why they will not be focused more on, because this approach to create slideshows violates the requirements of being a non-pointing device based application, specified in the problem statement of this report. Because these violate the problem statement, the main focus will be on the differences between Latex Beamer and the slideshow programming language developed in this project.
+\\ \\
+An example of Latex Beamer is as follows:
+
+\begin{lstlisting}[frame=single]
+\frame {
+	\frametitle{Welcome to this course}
+
+\textit{\fontfamily{uarial}\selectfont {This course will contain information about how you \underline{underline} things, and how you do other \textit{weight stuff} on sentences.} \\
+\textbf{\fontfamily{uarial}\selectfont {Like this}} \\
+	}
+}
+
+%Output:%
+%\textbf{Welcome to this course} (as title)%
+%This course will contain information about how you \underline{underline} things, and how you do other \textit{weight stuff} on sentences. (with font type Arial)%
+%\textbf{Like this.}  (with font type Arial)%
+\end{lstlisting}
+
+Which should be made more compact in the developed language to make slides faster to express.
+\\ \\
+A test between Latex Beamer and the developed language will be made to determine which and why the language is better than the other.
