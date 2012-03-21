@@ -1,0 +1,61 @@
+\chapter{Appendix}
+\section{kfG}
+\label{AkfG}
+This is the settings used in the program kfG, to be able to write AST examples of the defined language.
+\begin{lstlisting}[frame=single]
+SS           -> Blocks 
+Blocks       -> Block Blocks | EPSILON 
+Block        -> BeginBlock Lines EndBlock | SettingBlock
+Lines        -> Line Lines | SettingBlock Lines | EPSILON 
+Line         -> List | Plains eol
+List         -> Numeration | Itemlist 
+Numeration   -> nlist Numv1 
+Numv1        -> Plains eol | Numeration 
+Itemlist     -> blist Itemv1 
+Itemv1       -> Plains eol | Itemlist 
+BeginBlock   -> beginkwd BEBlock eol
+EndBlock     -> endkwd BEBlock Eols
+BEBlock      -> lcurly BEBlockv1 pipe Ident Space  rcurly
+BEBlockv1    -> Ident Space | EPSILON
+SettingBlock -> settingkwd lcurly Kwd colon Settingv1 Space pipe String rcurly eol
+Settingv1    -> Ident| Number
+Plains       -> Plain Plains | EPSILON
+Plain        -> ShortBlock | CharSpace | Number
+ShortBlock   -> Kwd lcurly ShortIdents pipe Plains rcurly
+ShortIdents  -> ShortIdent | EPSILON 
+ShortIdent   -> Kwd colon Settingv1 Space ShortIdents
+String       -> CharSpace Stringv1
+Stringv1     -> String  | EPSILON
+CharSpace    -> char | pace
+Ident        -> char Identv1
+Identv1      -> Ident | EPSILON
+Number       -> digit Numberv1
+Numberv1     -> Number | EPSILON
+Kwd          -> atsign Ident
+Space        -> pace Space | EPSILON
+CharAll      -> colon | char | digit | nlist | blist | scolon | percent | fslash | bslash
+Eols         -> eol Eolv1
+Eolv1        -> Eols | EPSILON
+
+
+
+pace       -> ' ' 
+settingkwd -> '@setting'
+beginkwd   -> '@begin'
+endkwd     -> '@end' 
+atsign     -> @
+lcurly     -> { 
+rcurly     -> } 
+seperator  -> <> 
+pipe       -> '|' 
+fslash     -> /
+bslash     -> \
+colon      -> : 
+scolon     -> ; 
+blist      -> * 
+nlist      -> # 
+percent    -> % 
+eol        -> \\n | \\r\\n 
+char       -> a|b|...|z|A|B|...|Z| \_ |.|,
+digit      -> 0|1|...|9
+\end{lstlisting}
