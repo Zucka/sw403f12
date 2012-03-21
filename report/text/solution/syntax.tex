@@ -83,8 +83,8 @@ Which states that a slide begins, with a transition ``fade'', and that the slide
 The examples in the rest of this section is all written between \texttt{@begin}\{slide\} and a \texttt{@end}\{slide\} to save space.
 \\ \\
 After an @, a keyword always begins, making it easy for the compiler to recognize a keyword.
-Here is another keyword ``Setting'', in this example the setting is set for the type ``title'' to a font size of 40 points. \\
-A setting can be initiated outside, as well as inside, a slide. The difference is that, outside a slide the setting is applied to all the upcoming slides, if the setting is inside the slide, it is only applied to that slide. If no settings is set while making the slides, standard settings will be used.
+Another keyword is ``setting'', in this example the setting is set for the type ``title'' to a font size of 40 points. \\
+A setting can be initiated outside, as well as inside, a slide. The difference is that, outside a slide the setting is applied to all the upcoming slides, if the setting is inside the slide, it is only applied to that slide. If no settings are set while making the slides, standard settings will be used.
 
 \begin{lstlisting}[frame=single]
 Input: @setting{@font_size:40|title}
@@ -100,7 +100,7 @@ Input: @title{Hello and welcome}
 %Output: Hello and welcome (in the title format)%
 \end{lstlisting}
 
-As you see, there are nothing on the left side of the pipe (The sign before ``Hello''). Between the left curly and the pipe, settings can be applied to that specific sentence, like:\\
+Because there are no additinal settings to be set on this sentence, no pipe has to accure. Between the left curly and the potential pipe, settings can be applied to that specific sentence, like:\\
 
 \begin{lstlisting}[frame=single]
 Input: @title{@font_size:70 |Hello and welcome}
@@ -157,11 +157,11 @@ And gives the same result as the last one. (eg. ref)
 \subsection*{To summarize}
 \texttt{@begin} to start a slide\\
 \texttt{@end} to end a slide\\
-\texttt{@}b makes bold text \\
+\texttt{@b} makes bold text \\
 \texttt{@u} makes underlined text \\
 \texttt{@i} makes italic text \\
 \texttt{@apply} changes a parameter for that line only\\
-\texttt{@setting} changes a parameter for the slide or globally.\\
+\texttt{@setting} changes a parameter for the slide or all upcomming slides.\\
 
 The following is a larger example to demonstrate what is just used:\\
 
