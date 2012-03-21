@@ -1,0 +1,72 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<title>SableCC Task</title>
+</head>
+
+<body>
+
+<h2><a name="sablecc">SableCC</a></h2>
+<h3>Description</h3>
+<p>
+  Invokes the <a HREF="http://www.sablecc.org/">SableCC</a> Translator generator
+  on a grammar file(s).
+</p>
+<p>
+  To use the SableCC task, set the <i>src</i> attribute to the name of the
+  grammar file to process, or to the directory containing grammar files. In the 
+  latter case you have to specify via include mechanism which files should be 
+  included for processing. SableCC follows standard MatchingTask conventions.
+  Optionally, you can also set the
+  <i>outputdirectory</i> to write the generated file to a specific directory.
+  Otherwise sablecc writes the generated files to the base directory.
+</p>
+
+<h3>Parameters</h3>
+<table border="1" cellpadding="2" cellspacing="0">
+  <tr>
+    <td valign="top"><b>Attribute</b></td>
+    <td valign="top"><b>Description</b></td>
+    <td align="center" valign="top"><b>Required</b></td>
+  </tr>
+  <tr>
+    <td valign="top">src</td>
+    <td valign="top">The grammar file or directory to process.</td>
+    <td valign="top" align="center">Yes</td>
+  </tr>
+  <tr>
+    <td valign="top">outputdirectory</td>
+    <td valign="top">
+      The directory to write the generated files to.  If not set, the files
+      are written to the directory containing the grammar file.
+    </td>
+    <td valign="top" align="center">No</td>
+  </tr>
+</table>
+<h3>Example 1</h3>
+<blockquote><pre>
+&lt;sablecc
+    src=&quot;etc/java.grammar&quot;
+    outputdirectory=&quot;build/src&quot;
+/&gt;
+</pre></blockquote>
+<p>
+  This invokes SableCC on grammar file etc/java.grammar, writing the generated
+  files to build/src.
+</p>
+<h3>Example 2</h3>
+<blockquote><pre>
+&lt;sablecc
+    src=&quot;etc&quot;
+    outputdirectory=&quot;build/src&quot; includes=&quot;*.grammar&quot; 
+/&gt;
+</pre></blockquote>
+<p>
+  This invokes SableCC on all grammar files from etc directory, writing the generated
+  files to build/src.
+</p>
+<hr>
+
+</body>
+</html>

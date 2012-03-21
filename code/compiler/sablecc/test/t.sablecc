@@ -1,0 +1,53 @@
+Package test;
+
+Tokens
+format_kwd  = '@u' | '@b' | '@i' | '@apply' ;
+space       = ( ' ' )+ ;
+settingkwd  = '@setting' ;
+beginkwd    = '@begin' ;
+endkwd      = '@end' ;
+atsign      = '@' ;
+lcurly      = '\{' ;
+rcurly      = '\}' ;
+pipe        = '\|' ;
+fslash      = '/' ;
+bslash      = '\\' ;
+colon       = ':' ;
+scolon      = ';' ;
+blist       = '\*' ;
+nlist       = '#' ;
+percent     = '%' ;
+eol    =    (' ' | 13 | 10);
+char = ['a' .. 'z']+ ;
+
+
+
+
+Productions
+test            = {Blocks} ;
+Blocks        = BeginBlock {Lines} EndBlock 
+              | SettingBlock ;
+Lines         = SettingBlock 
+              | Numeration
+              | Itemlist 
+              | Plains eol ;
+Numeration    = nlist (Plains eol | Numeration) ;
+Itemlist      = blist (Plains eol  | Itemlist) ;
+BeginBlock    = beginkwd BEBlock eol ;
+EndBlock      = endkwd BEBlock eol+ ;
+BEBlock       = lcurly [space] char [space] [pipe char [space]] rcurly ;
+SettingBlock  = settingkwd lcurly ShortIdent [space] pipe [space] char [space] rcurly eol;
+Plains        = (ShortBlock | CharAll)+ ;
+ShortBlock    = format_kwd lcurly [space] [ShortIdents] Plains rcurly ;
+ShortIdents   = {ShortIdent}+ pipe ;
+ShortIdent    = Kwd [space] colon [space] (char | digit) [space] ;
+Kwd           = atsign char ;
+CharAll       = colon 
+              | digit 
+              | scolon 
+              | percent 
+              | fslash 
+              | bslash 
+              | char 
+              | space ;
+
