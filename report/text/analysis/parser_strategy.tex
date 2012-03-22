@@ -1,10 +1,10 @@
 \section{Parser strategy}
-\subsection*{Top down} \\
+\subsection*{Top down}
 Top down derives the parse tree from the left. This means that a non-terminal cannot have two derivations with the same start terminal or nonterminal. e.g. A -> BC | BD. This way the parser does not know which derivation to take, because both of them start with the same nonterminal.
 This can be avoided by using a bottom up method.
 
 
-\subsection*{Bottom up} \\
+\subsection*{Bottom up}
 Bottom up derives the parse tree from the right side, which makes the expression: A -> BC | BD legal for a bottom up parser, because it looks at C and D first and then decides which derivation to pick.
 
 
