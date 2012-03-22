@@ -1,6 +1,3 @@
-\section{Initiating problem}
-How can a language remove the need for a pointing device \footnote{A pointing device is defined as a mouse, trackball, touchpad or pointing stick} when creating slide shows?
-
 \chapter{Problem formulation}
 The task of making a slide show in applications like Microsoft’s Power Point or Apple’s Keynote is a mouse based task. How can you make a better alternative to Latex Beamer? How can you create a programming language in which a user can make a slide show presentation without the need for a pointing device, and not have to think about the layout of single slides, but only define the general layout. Furthermore, how can you display the presentation in a way so that it will look equal on all computers. \\
 Challenges include creating a suitable domain specific language with weight on consistency and simplicity, enabling the user to focus on the content rather than the layout.
@@ -13,10 +10,12 @@ Which layout decisions does the user need? \\
 What are the language limitations? \\
 What can be expressed in the language?
 \\ \\
+\section{Known slideshow application}
 In this section some of the best known applications, Microsoft PowerPoint, Apple Keynote and Latex Beamer, is compared to the solution developed during this project.
 \\ \\
 Microsoft PowerPoint and Apple Keynote are slideshows application which uses drag-and-drop functions, why they will not be focused more on, because this approach to create slideshows violates the requirements of being a non-pointing device based application, specified in the problem statement of this report. Because these violate the problem statement, the main focus will be on the differences between Latex Beamer and the slideshow programming language developed in this project.
 \\ \\
+\section{Beamer}
 An example of Latex Beamer is as follows:
 
 \begin{lstlisting}[frame=single, caption={Beamer example}, label=lst_beamer]
