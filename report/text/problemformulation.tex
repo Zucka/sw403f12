@@ -19,13 +19,22 @@ Microsoft PowerPoint and Apple Keynote are slideshows application which uses dra
 \\ \\
 An example of Latex Beamer is as follows:
 
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}[frame=single, caption={Beamer example}, label=lst_beamer]
+
+\textbf{Main document:}
+\begin{document}
+
+\include{Slide_document.tex}
+
+\end{document}
+
+
+\textbf{Slide_document:}
 \frame {
 	\frametitle{Welcome to this course}
 
 \textit{\fontfamily{uarial}\selectfont {This course will contain information about how you \underline{underline} things, and how you do other \textit{weight stuff} on sentences.} \\
-\textbf{\fontfamily{uarial}\selectfont {Like this}} \\
-	}
+\textbf{\fontfamily{uarial}\selectfont {Like this}} \\	}
 }
 
 %Output:%
@@ -33,6 +42,7 @@ An example of Latex Beamer is as follows:
 %This course will contain information about how you \underline{underline} things, and how you do other \textit{weight stuff} on sentences. (with font type Arial)%
 %\textbf{Like this.}  (with font type Arial)%
 \end{lstlisting}
+The example seen in section \ref{lst_beamer}, is the Beamer-code for expressing the output. The Beamer-code seen here is only to express output. To make a slideshow using Beamer you have to set up a main document. In this document, all the settings about what theme, colours, inputs (other files), etc., for the slideshow is set up. The editor (TexMaker) only generates a very small amount of the main document, which leaves a lot of setup for the user, if additional settings is wanted. If only a general slideshow is required, the main document will not need much work. A general slideshow is without colours, themes or the need for additional packages.\\
 
 Which should be made more compact in the developed language to make slides faster to express.
 \\ \\
