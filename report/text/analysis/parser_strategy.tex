@@ -1,4 +1,5 @@
 \section{Parser strategy}
+\label{Parserstrategy}
 There are 2 ways of parsing an abstract syntax tree, which is the following.
 \subsection*{Top down}
 Top down derives the parse tree from the left. This means that a non-terminal cannot have two derivations with the same start terminal or nonterminal. e.g. A -> BC | BD. This way the parser does not know which derivation to take, because both of them start with the same nonterminal.
