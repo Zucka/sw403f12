@@ -13,7 +13,6 @@ public final class AShortident extends PShortident
     private TColon _colon_;
     private final LinkedList<TSpace> _first_ = new LinkedList<TSpace>();
     private PShortidentv1 _shortidentv1_;
-    private final LinkedList<TSpace> _second_ = new LinkedList<TSpace>();
 
     public AShortident()
     {
@@ -25,8 +24,7 @@ public final class AShortident extends PShortident
         @SuppressWarnings("hiding") List<TSpace> _space_,
         @SuppressWarnings("hiding") TColon _colon_,
         @SuppressWarnings("hiding") List<TSpace> _first_,
-        @SuppressWarnings("hiding") PShortidentv1 _shortidentv1_,
-        @SuppressWarnings("hiding") List<TSpace> _second_)
+        @SuppressWarnings("hiding") PShortidentv1 _shortidentv1_)
     {
         // Constructor
         setKwd(_kwd_);
@@ -39,8 +37,6 @@ public final class AShortident extends PShortident
 
         setShortidentv1(_shortidentv1_);
 
-        setSecond(_second_);
-
     }
 
     @Override
@@ -51,8 +47,7 @@ public final class AShortident extends PShortident
             cloneList(this._space_),
             cloneNode(this._colon_),
             cloneList(this._first_),
-            cloneNode(this._shortidentv1_),
-            cloneList(this._second_));
+            cloneNode(this._shortidentv1_));
     }
 
     public void apply(Switch sw)
@@ -175,26 +170,6 @@ public final class AShortident extends PShortident
         this._shortidentv1_ = node;
     }
 
-    public LinkedList<TSpace> getSecond()
-    {
-        return this._second_;
-    }
-
-    public void setSecond(List<TSpace> list)
-    {
-        this._second_.clear();
-        this._second_.addAll(list);
-        for(TSpace e : list)
-        {
-            if(e.parent() != null)
-            {
-                e.parent().removeChild(e);
-            }
-
-            e.parent(this);
-        }
-    }
-
     @Override
     public String toString()
     {
@@ -203,8 +178,7 @@ public final class AShortident extends PShortident
             + toString(this._space_)
             + toString(this._colon_)
             + toString(this._first_)
-            + toString(this._shortidentv1_)
-            + toString(this._second_);
+            + toString(this._shortidentv1_);
     }
 
     @Override
@@ -236,11 +210,6 @@ public final class AShortident extends PShortident
         if(this._shortidentv1_ == child)
         {
             this._shortidentv1_ = null;
-            return;
-        }
-
-        if(this._second_.remove(child))
-        {
             return;
         }
 
@@ -303,24 +272,6 @@ public final class AShortident extends PShortident
         {
             setShortidentv1((PShortidentv1) newChild);
             return;
-        }
-
-        for(ListIterator<TSpace> i = this._second_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
-                    i.set((TSpace) newChild);
-                    newChild.parent(this);
-                    oldChild.parent(null);
-                    return;
-                }
-
-                i.remove();
-                oldChild.parent(null);
-                return;
-            }
         }
 
         throw new RuntimeException("Not a child.");

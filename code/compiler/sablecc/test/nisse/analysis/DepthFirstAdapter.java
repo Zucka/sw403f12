@@ -469,12 +469,19 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getPipe().apply(this);
         }
+        {
+            List<TSpace> copy = new ArrayList<TSpace>(node.getFirst());
+            for(TSpace e : copy)
+            {
+                e.apply(this);
+            }
+        }
         if(node.getChar() != null)
         {
             node.getChar().apply(this);
         }
         {
-            List<TSpace> copy = new ArrayList<TSpace>(node.getSpace());
+            List<TSpace> copy = new ArrayList<TSpace>(node.getSecond());
             for(TSpace e : copy)
             {
                 e.apply(this);
@@ -637,16 +644,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getLcurly().apply(this);
         }
+        if(node.getShortblockv1() != null)
         {
-            List<TSpace> copy = new ArrayList<TSpace>(node.getSpace());
-            for(TSpace e : copy)
-            {
-                e.apply(this);
-            }
-        }
-        if(node.getShortidents() != null)
-        {
-            node.getShortidents().apply(this);
+            node.getShortblockv1().apply(this);
         }
         if(node.getPlains() != null)
         {
@@ -657,6 +657,31 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getRcurly().apply(this);
         }
         outAShortblock(node);
+    }
+
+    public void inAShortblockv1(AShortblockv1 node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAShortblockv1(AShortblockv1 node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAShortblockv1(AShortblockv1 node)
+    {
+        inAShortblockv1(node);
+        if(node.getSpace() != null)
+        {
+            node.getSpace().apply(this);
+        }
+        if(node.getShortidents() != null)
+        {
+            node.getShortidents().apply(this);
+        }
+        outAShortblockv1(node);
     }
 
     public void inAShortidents(AShortidents node)
@@ -726,13 +751,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
         if(node.getShortidentv1() != null)
         {
             node.getShortidentv1().apply(this);
-        }
-        {
-            List<TSpace> copy = new ArrayList<TSpace>(node.getSecond());
-            for(TSpace e : copy)
-            {
-                e.apply(this);
-            }
         }
         outAShortident(node);
     }
@@ -986,34 +1004,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseASpaceCharall(ASpaceCharall node)
     {
         inASpaceCharall(node);
-        if(node.getMorespace() != null)
+        if(node.getSpace() != null)
         {
-            node.getMorespace().apply(this);
+            node.getSpace().apply(this);
         }
         outASpaceCharall(node);
-    }
-
-    public void inAMorespace(AMorespace node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAMorespace(AMorespace node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAMorespace(AMorespace node)
-    {
-        inAMorespace(node);
-        {
-            List<TSpace> copy = new ArrayList<TSpace>(node.getSpace());
-            for(TSpace e : copy)
-            {
-                e.apply(this);
-            }
-        }
-        outAMorespace(node);
     }
 }

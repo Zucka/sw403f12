@@ -34,6 +34,7 @@ public interface Analysis extends Switch
     void caseAShortblockPlainsv1(AShortblockPlainsv1 node);
     void caseACharallPlainsv1(ACharallPlainsv1 node);
     void caseAShortblock(AShortblock node);
+    void caseAShortblockv1(AShortblockv1 node);
     void caseAShortidents(AShortidents node);
     void caseAShortident(AShortident node);
     void caseACharShortidentv1(ACharShortidentv1 node);
@@ -48,7 +49,6 @@ public interface Analysis extends Switch
     void caseAMorecharCharall(AMorecharCharall node);
     void caseACharCharall(ACharCharall node);
     void caseASpaceCharall(ASpaceCharall node);
-    void caseAMorespace(AMorespace node);
 
     void caseTFormatKwd(TFormatKwd node);
     void caseTSpace(TSpace node);

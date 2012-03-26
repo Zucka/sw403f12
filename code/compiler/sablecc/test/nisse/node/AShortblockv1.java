@@ -5,33 +5,38 @@ package nisse.node;
 import nisse.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ASpaceCharall extends PCharall
+public final class AShortblockv1 extends PShortblockv1
 {
     private TSpace _space_;
+    private PShortidents _shortidents_;
 
-    public ASpaceCharall()
+    public AShortblockv1()
     {
         // Constructor
     }
 
-    public ASpaceCharall(
-        @SuppressWarnings("hiding") TSpace _space_)
+    public AShortblockv1(
+        @SuppressWarnings("hiding") TSpace _space_,
+        @SuppressWarnings("hiding") PShortidents _shortidents_)
     {
         // Constructor
         setSpace(_space_);
+
+        setShortidents(_shortidents_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ASpaceCharall(
-            cloneNode(this._space_));
+        return new AShortblockv1(
+            cloneNode(this._space_),
+            cloneNode(this._shortidents_));
     }
 
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseASpaceCharall(this);
+        ((Analysis) sw).caseAShortblockv1(this);
     }
 
     public TSpace getSpace()
@@ -59,11 +64,37 @@ public final class ASpaceCharall extends PCharall
         this._space_ = node;
     }
 
+    public PShortidents getShortidents()
+    {
+        return this._shortidents_;
+    }
+
+    public void setShortidents(PShortidents node)
+    {
+        if(this._shortidents_ != null)
+        {
+            this._shortidents_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._shortidents_ = node;
+    }
+
     @Override
     public String toString()
     {
         return ""
-            + toString(this._space_);
+            + toString(this._space_)
+            + toString(this._shortidents_);
     }
 
     @Override
@@ -73,6 +104,12 @@ public final class ASpaceCharall extends PCharall
         if(this._space_ == child)
         {
             this._space_ = null;
+            return;
+        }
+
+        if(this._shortidents_ == child)
+        {
+            this._shortidents_ = null;
             return;
         }
 
@@ -86,6 +123,12 @@ public final class ASpaceCharall extends PCharall
         if(this._space_ == oldChild)
         {
             setSpace((TSpace) newChild);
+            return;
+        }
+
+        if(this._shortidents_ == oldChild)
+        {
+            setShortidents((PShortidents) newChild);
             return;
         }
 

@@ -179,6 +179,11 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseAShortblockv1(AShortblockv1 node)
+    {
+        defaultCase(node);
+    }
+
     public void caseAShortidents(AShortidents node)
     {
         defaultCase(node);
@@ -245,11 +250,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseASpaceCharall(ASpaceCharall node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAMorespace(AMorespace node)
     {
         defaultCase(node);
     }

@@ -9,8 +9,9 @@ import nisse.analysis.*;
 public final class ABeblockv1 extends PBeblockv1
 {
     private TPipe _pipe_;
+    private final LinkedList<TSpace> _first_ = new LinkedList<TSpace>();
     private TChar _char_;
-    private final LinkedList<TSpace> _space_ = new LinkedList<TSpace>();
+    private final LinkedList<TSpace> _second_ = new LinkedList<TSpace>();
 
     public ABeblockv1()
     {
@@ -19,15 +20,18 @@ public final class ABeblockv1 extends PBeblockv1
 
     public ABeblockv1(
         @SuppressWarnings("hiding") TPipe _pipe_,
+        @SuppressWarnings("hiding") List<TSpace> _first_,
         @SuppressWarnings("hiding") TChar _char_,
-        @SuppressWarnings("hiding") List<TSpace> _space_)
+        @SuppressWarnings("hiding") List<TSpace> _second_)
     {
         // Constructor
         setPipe(_pipe_);
 
+        setFirst(_first_);
+
         setChar(_char_);
 
-        setSpace(_space_);
+        setSecond(_second_);
 
     }
 
@@ -36,8 +40,9 @@ public final class ABeblockv1 extends PBeblockv1
     {
         return new ABeblockv1(
             cloneNode(this._pipe_),
+            cloneList(this._first_),
             cloneNode(this._char_),
-            cloneList(this._space_));
+            cloneList(this._second_));
     }
 
     public void apply(Switch sw)
@@ -70,6 +75,26 @@ public final class ABeblockv1 extends PBeblockv1
         this._pipe_ = node;
     }
 
+    public LinkedList<TSpace> getFirst()
+    {
+        return this._first_;
+    }
+
+    public void setFirst(List<TSpace> list)
+    {
+        this._first_.clear();
+        this._first_.addAll(list);
+        for(TSpace e : list)
+        {
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+        }
+    }
+
     public TChar getChar()
     {
         return this._char_;
@@ -95,15 +120,15 @@ public final class ABeblockv1 extends PBeblockv1
         this._char_ = node;
     }
 
-    public LinkedList<TSpace> getSpace()
+    public LinkedList<TSpace> getSecond()
     {
-        return this._space_;
+        return this._second_;
     }
 
-    public void setSpace(List<TSpace> list)
+    public void setSecond(List<TSpace> list)
     {
-        this._space_.clear();
-        this._space_.addAll(list);
+        this._second_.clear();
+        this._second_.addAll(list);
         for(TSpace e : list)
         {
             if(e.parent() != null)
@@ -120,8 +145,9 @@ public final class ABeblockv1 extends PBeblockv1
     {
         return ""
             + toString(this._pipe_)
+            + toString(this._first_)
             + toString(this._char_)
-            + toString(this._space_);
+            + toString(this._second_);
     }
 
     @Override
@@ -134,13 +160,18 @@ public final class ABeblockv1 extends PBeblockv1
             return;
         }
 
+        if(this._first_.remove(child))
+        {
+            return;
+        }
+
         if(this._char_ == child)
         {
             this._char_ = null;
             return;
         }
 
-        if(this._space_.remove(child))
+        if(this._second_.remove(child))
         {
             return;
         }
@@ -158,13 +189,31 @@ public final class ABeblockv1 extends PBeblockv1
             return;
         }
 
+        for(ListIterator<TSpace> i = this._first_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((TSpace) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
+        }
+
         if(this._char_ == oldChild)
         {
             setChar((TChar) newChild);
             return;
         }
 
-        for(ListIterator<TSpace> i = this._space_.listIterator(); i.hasNext();)
+        for(ListIterator<TSpace> i = this._second_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {

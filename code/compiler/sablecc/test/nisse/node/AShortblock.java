@@ -2,7 +2,6 @@
 
 package nisse.node;
 
-import java.util.*;
 import nisse.analysis.*;
 
 @SuppressWarnings("nls")
@@ -10,8 +9,7 @@ public final class AShortblock extends PShortblock
 {
     private TFormatKwd _formatKwd_;
     private TLcurly _lcurly_;
-    private final LinkedList<TSpace> _space_ = new LinkedList<TSpace>();
-    private PShortidents _shortidents_;
+    private PShortblockv1 _shortblockv1_;
     private PPlains _plains_;
     private TRcurly _rcurly_;
 
@@ -23,8 +21,7 @@ public final class AShortblock extends PShortblock
     public AShortblock(
         @SuppressWarnings("hiding") TFormatKwd _formatKwd_,
         @SuppressWarnings("hiding") TLcurly _lcurly_,
-        @SuppressWarnings("hiding") List<TSpace> _space_,
-        @SuppressWarnings("hiding") PShortidents _shortidents_,
+        @SuppressWarnings("hiding") PShortblockv1 _shortblockv1_,
         @SuppressWarnings("hiding") PPlains _plains_,
         @SuppressWarnings("hiding") TRcurly _rcurly_)
     {
@@ -33,9 +30,7 @@ public final class AShortblock extends PShortblock
 
         setLcurly(_lcurly_);
 
-        setSpace(_space_);
-
-        setShortidents(_shortidents_);
+        setShortblockv1(_shortblockv1_);
 
         setPlains(_plains_);
 
@@ -49,8 +44,7 @@ public final class AShortblock extends PShortblock
         return new AShortblock(
             cloneNode(this._formatKwd_),
             cloneNode(this._lcurly_),
-            cloneList(this._space_),
-            cloneNode(this._shortidents_),
+            cloneNode(this._shortblockv1_),
             cloneNode(this._plains_),
             cloneNode(this._rcurly_));
     }
@@ -110,36 +104,16 @@ public final class AShortblock extends PShortblock
         this._lcurly_ = node;
     }
 
-    public LinkedList<TSpace> getSpace()
+    public PShortblockv1 getShortblockv1()
     {
-        return this._space_;
+        return this._shortblockv1_;
     }
 
-    public void setSpace(List<TSpace> list)
+    public void setShortblockv1(PShortblockv1 node)
     {
-        this._space_.clear();
-        this._space_.addAll(list);
-        for(TSpace e : list)
+        if(this._shortblockv1_ != null)
         {
-            if(e.parent() != null)
-            {
-                e.parent().removeChild(e);
-            }
-
-            e.parent(this);
-        }
-    }
-
-    public PShortidents getShortidents()
-    {
-        return this._shortidents_;
-    }
-
-    public void setShortidents(PShortidents node)
-    {
-        if(this._shortidents_ != null)
-        {
-            this._shortidents_.parent(null);
+            this._shortblockv1_.parent(null);
         }
 
         if(node != null)
@@ -152,7 +126,7 @@ public final class AShortblock extends PShortblock
             node.parent(this);
         }
 
-        this._shortidents_ = node;
+        this._shortblockv1_ = node;
     }
 
     public PPlains getPlains()
@@ -211,8 +185,7 @@ public final class AShortblock extends PShortblock
         return ""
             + toString(this._formatKwd_)
             + toString(this._lcurly_)
-            + toString(this._space_)
-            + toString(this._shortidents_)
+            + toString(this._shortblockv1_)
             + toString(this._plains_)
             + toString(this._rcurly_);
     }
@@ -233,14 +206,9 @@ public final class AShortblock extends PShortblock
             return;
         }
 
-        if(this._space_.remove(child))
+        if(this._shortblockv1_ == child)
         {
-            return;
-        }
-
-        if(this._shortidents_ == child)
-        {
-            this._shortidents_ = null;
+            this._shortblockv1_ = null;
             return;
         }
 
@@ -275,27 +243,9 @@ public final class AShortblock extends PShortblock
             return;
         }
 
-        for(ListIterator<TSpace> i = this._space_.listIterator(); i.hasNext();)
+        if(this._shortblockv1_ == oldChild)
         {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
-                    i.set((TSpace) newChild);
-                    newChild.parent(this);
-                    oldChild.parent(null);
-                    return;
-                }
-
-                i.remove();
-                oldChild.parent(null);
-                return;
-            }
-        }
-
-        if(this._shortidents_ == oldChild)
-        {
-            setShortidents((PShortidents) newChild);
+            setShortblockv1((PShortblockv1) newChild);
             return;
         }
 
