@@ -47,24 +47,24 @@ Productions
        beginblock    = beginkwd beblock eol ;
        endblock      = endkwd beblock eol+ ;
        beblock       = lcurly [first]:space* char [second]:space* beblockv1? rcurly ;
-       beblockv1     = pipe char space*;
+       beblockv1     = pipe [first]:space* char [second]:space*;
        settingblock  = settingkwd lcurly shortident [first]:space* pipe [second]:space* char [third]:space* rcurly eol;
        plains        = plainsv1+;
        plainsv1      = {shortblock} shortblock 
                      | {charall} charall;
-       shortblock    = format_kwd lcurly space* shortidents? plains rcurly ;
+       shortblock    = format_kwd lcurly shortblockv1? plains rcurly ;
+       shortblockv1  = space shortidents;
        shortidents   = shortident+ pipe ;
-       shortident    = kwd space* colon [first]:space* shortidentv1 [second]:space* ;
+       shortident    = kwd space* colon [first]:space* shortidentv1;
        shortidentv1  = {char} char 
                      | {digit} digit;
        kwd           = atsign char ;
-       charall       = {colon} colon 
-                     | {digit} digit 
-                     | {semicolon} scolon 
-                     | {percent} percent 
-                     | {forwardslash} fslash 
-                     | {backslash} bslash 
+       charall       = {colon} colon
+                     | {digit} digit
+                     | {semicolon} scolon
+                     | {percent} percent
+                     | {forwardslash} fslash
+                     | {backslash} bslash
                      | {morechar} morechar 
                      | {char} char
-                     | {space} morespace ;
-       morespace     = space* ;
+                     | {space} space ;
