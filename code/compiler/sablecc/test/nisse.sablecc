@@ -1,65 +1,70 @@
-Package test.nisse;
+Package nisse;
+
+Helpers
+       charv1    = ['a' .. 'z'] | ['A' .. 'Z'] ;
+       digitv1   = ['0' .. '9'] ;
+       dot         = '.' ;
+       comma       = ',' ;
 
 Tokens
 
        format_kwd  = '@u' | '@b' | '@i' | '@apply' ;
-       space       = (' ');
+       space       =  ' ' ;
        settingkwd  = '@setting' ;
        beginkwd    = '@begin' ;
        endkwd      = '@end' ;
        atsign      = '@' ;
-       lcurly      = '\{' ;
-       rcurly      = '\}' ;
-       pipe        = '\|' ;
+       lcurly      = '{' ;
+       rcurly      = '}' ;
+       pipe        = '|' ;
        fslash      = '/' ;
-       bslash      = '\\' ;
+       bslash      = '\' ;
        colon       = ':' ;
        scolon      = ';' ;
-       blist       = '\*' ;
+       blist       = '*' ;
        nlist       = '#' ;
        percent     = '%' ;
-       eol         = (13 | 10);
-       char        = ['a' .. 'z'] | ['A' .. 'Z'] | '.' | ',' ;
-       digit       = ['0' .. '9']+ ;
+       eol         = 13 10 | 13 | 10;
+       char        = charv1+ ;
+       digit       = digitv1+ ;
+       morechar    = ( dot | comma )+ ;
 
+Productions 
 
-
-
-Productions
-
-       nisse         = {fisk};
-       fisk          = beginblock lines endblock 
-                     | settingblock;
-       lines         = {linesv1};
-       linesv1       = settingblock 
-                     | numeration
-                     | itemlist 
-                     | plains eol;
-       numeration    = nlist numerationv1;
-       numerationv1  = plains eol | numeration;
-       itemlist      = blist itemlistv1;
-       itemlistv1    = plains eol | itemlist;
+       nisse         = blocks* ;
+       blocks        = {block} beginblock lines* endblock 
+                     | {setting} settingblock ;
+       lines         = {setting} settingblock 
+                     | {numeration} numeration
+                     | {itemlist} itemlist 
+                     | {plaintext} plains eol ;
+       numeration    = nlist numerationv1 ;
+       numerationv1  = {plaintext} plains eol 
+                     | {numeration} numeration;
+       itemlist      = blist itemlistv1 ;
+       itemlistv1    = {plaintext} plains eol  
+                     | {itemlist} itemlist;
        beginblock    = beginkwd beblock eol ;
        endblock      = endkwd beblock eol+ ;
-       beblock       = lcurly spaces char spaces beblockv1 rcurly ;
-       beblockv1     = {beblockv2};
-       beblockv2     = pipe char spaces;
-       settingblock  = settingkwd lcurly shortident spaces pipe spaces char spaces rcurly eol;
-       plains        = plain+;
-       plain         = shortblock | charall;
-       shortblock    = format_kwd lcurly spaces shortidents plains rcurly ;
-       shortidents   = {shortidentsv1};
-       shortidentsv1 = {shortident} pipe;
-       shortident    = shortidentv1+;
-       shortidentv1  = kwd spaces colon spaces shortidentv2 spaces ;
-       shortidentv2  = char | digit;
+       beblock       = lcurly [first]:space* char [second]:space* beblockv1? rcurly ;
+       beblockv1     = pipe char space*;
+       settingblock  = settingkwd lcurly shortident [first]:space* pipe [second]:space* char [third]:space* rcurly eol;
+       plains        = plainsv1+;
+       plainsv1      = {shortblock} shortblock 
+                     | {charall} charall;
+       shortblock    = format_kwd lcurly space* shortidents? plains rcurly ;
+       shortidents   = shortident+ pipe ;
+       shortident    = kwd space* colon [first]:space* shortidentv1 [second]:space* ;
+       shortidentv1  = {char} char 
+                     | {digit} digit;
        kwd           = atsign char ;
-       charall       = colon 
-                     | digit 
-                     | scolon 
-                     | percent 
-                     | fslash 
-                     | bslash 
-                     | char 
-                     | space ;
-       spaces        = {space};
+       charall       = {colon} colon 
+                     | {digit} digit 
+                     | {semicolon} scolon 
+                     | {percent} percent 
+                     | {forwardslash} fslash 
+                     | {backslash} bslash 
+                     | {morechar} morechar 
+                     | {char} char
+                     | {space} morespace ;
+       morespace     = space* ;
