@@ -6,8 +6,7 @@ Requirements of the NISSE parser:
 \begin{itemize}
 	\item The parser should be able to receive tokens from the lexer, which it can then convert into a parse tree.
 	\item It should be able to report useful error messages, if the user has written something illegal according to the CFG of NISSE.
-	\item The CFG should be LL(1) in order to speed up the compiler.
-	\item The CFG should also not be ambiguous, so that we can make a parser for it. Because the CFG is LL(1) (as per the previous requirement) the CFG is also not ambiguous as per the definition of LL(1).
+	\item The CFG should not be ambiguous either, so that we can make a parser for it. The CFG is (KOM GERNE MED FORESLAG TIL ÆNDRING AF ORDLYD) concluded to be LL(1) according to the section \ref{Parserstrategy}, the CFG is not ambiguous either, as per the definition of LL(1).
 \end{itemize}
 \newpage
 \section{CFG}
@@ -39,7 +38,6 @@ CharAll       = colon
               | char 
               | space ;
 \end{lstlisting}
-
 Listing \ref{lst:ebnf} shows the CFG for NISSE in Extended Backus Naur Form, henceforth EBNF. It should be read as follow:
 \begin{center}
 \begin{tabular}{|l|l|}
@@ -87,3 +85,7 @@ The parse tree for this would look like:
 	\label{fig:Parsetree}
 \end{figure}
 The figure \ref{fig:Parsetree} shows how it would parse the tree, with the input in a slide of “Hello World''. 
+
+\section{LL(1)}
+
+The grammar for the language is LL(1) according to a tool called “kfg”, which was introduced in a lecture, which uses a special syntax that can be seen in appendix \ref{AkfG}. The syntax in the kfG is transferred to an EBNF which is used to generate the parser.
