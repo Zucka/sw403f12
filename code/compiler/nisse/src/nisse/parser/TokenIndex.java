@@ -5,9 +5,9 @@ package nisse.parser;
 import nisse.node.*;
 import nisse.analysis.*;
 
-public class TokenIndex extends AnalysisAdapter
+class TokenIndex extends AnalysisAdapter
 {
-    public int index;
+    int index;
 
     @Override
     public void caseTFormatKwd(@SuppressWarnings("unused") TFormatKwd node)

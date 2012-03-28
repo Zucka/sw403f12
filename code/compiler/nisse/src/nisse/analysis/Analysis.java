@@ -42,7 +42,6 @@ public interface Analysis extends Switch
     void caseAFloatShortidentv1(AFloatShortidentv1 node);
     void caseAColonShortidentv1(AColonShortidentv1 node);
     void caseAFslashShortidentv1(AFslashShortidentv1 node);
-    void caseAMorecharShortidentv1(AMorecharShortidentv1 node);
     void caseAAtKwd(AAtKwd node);
     void caseAUrlKwd(AUrlKwd node);
     void caseAColonCharall(AColonCharall node);

@@ -219,11 +219,6 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAMorecharShortidentv1(AMorecharShortidentv1 node)
-    {
-        defaultCase(node);
-    }
-
     public void caseAAtKwd(AAtKwd node)
     {
         defaultCase(node);

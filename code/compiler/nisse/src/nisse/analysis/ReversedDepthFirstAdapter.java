@@ -902,27 +902,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAFslashShortidentv1(node);
     }
 
-    public void inAMorecharShortidentv1(AMorecharShortidentv1 node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAMorecharShortidentv1(AMorecharShortidentv1 node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAMorecharShortidentv1(AMorecharShortidentv1 node)
-    {
-        inAMorecharShortidentv1(node);
-        if(node.getMorechar() != null)
-        {
-            node.getMorechar().apply(this);
-        }
-        outAMorecharShortidentv1(node);
-    }
-
     public void inAAtKwd(AAtKwd node)
     {
         defaultIn(node);
