@@ -1,12 +1,12 @@
 \chapter{Parser}
 
-In this chapter the requirements of NISSE will be presented, along with the context free grammar (CFG) of NISSE.
+In this chapter the requirements of NISSE will be presented, along with the context free grammar(CFG) of NISSE.
 \section{Requirements}
 Requirements of the NISSE parser:
 \begin{itemize}
 	\item The parser should be able to receive tokens from the lexer, which it can then convert into a parse tree.
 	\item It should be able to report useful error messages, if the user has written something illegal according to the CFG of NISSE.
-	\item The CFG should not be ambiguous either, so that we can make a parser for it. The CFG is (KOM GERNE MED FORESLAG TIL ÆNDRING AF ORDLYD) concluded to be LL(1) according to the section \ref{Parserstrategy}, the CFG is not ambiguous either, as per the definition of LL(1). (\cite{CaC} Chapter 5.1)
+	\item The CFG should not be ambiguous, so that we can make a parser for it. 
 \end{itemize}
 \newpage
 \section{CFG}
@@ -64,7 +64,7 @@ special sequence & ? ... ? \\
 \hline 
 \end{tabular}
 \end{center}
-An example is the line \lstinline!S = a {b}+ [ {c}+ ] ( a | b ) ;! that translates to \lstinline!S = a! followed by at least one \lstinline!b! followed by none or at least one \lstinline!c! followed by \lstinline!a! or \lstinline!b!. The special sequence is used for writing anything that is not directly EBNF. An example is \lstinline!char = ? a-zA-Z ? ;! where all letters from a to z is defined both capital and non-capital.
+An example is the line \lstinline!S = a {b}+ [ {c}+ ] ( a | b ) ;! that translates to \lstinline!S = a! followed by at least one \lstinline!b! followed by none or at least one \lstinline!c! followed by \lstinline!a! or \lstinline!b!. The special sequence is used for writing anything that is not directly EBNF. An example is \lstinline!char = ? a-zA-Z ? ;! where all letters from a to z is defined both capitol and non-capitol.
 
 NISSE's grammar is able to construct everything that is required of NISSE. \\
 Let's look at one of the previous examples:
@@ -88,4 +88,6 @@ The figure \ref{fig:Parsetree} shows how it would parse the tree, with the input
 
 \section{LL(1)}
 
-The grammar for the language is LL(1) according to a tool called “kfg”, which was introduced in a lecture, which uses a special syntax that can be seen in appendix \ref{AkfG}. The syntax in the kfG is transferred to an EBNF which is used to generate the parser.
+The grammar for the language is LL(1) according to a tool called “kfg”, which was introduced in a lecture, which uses a special syntax that can be seen in appendix \ref{AkfG}. The syntax in the kfG is transferred to an EBNF which is used to generate the parser. 
+
+The CFG is (KOM GERNE MED FORESLAG TIL ÆNDRING AF ORDLYD) concluded to be LL(1) according to the section \ref{Parserstrategy}, the CFG is not ambiguous either, as per the definition of LL(1).
