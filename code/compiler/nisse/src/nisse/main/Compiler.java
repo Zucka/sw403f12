@@ -5,6 +5,7 @@ import java.io.IOException;
 import nisse.analysis.DepthFirstAdapter;
 import nisse.lexer.Lexer;
 import nisse.lexer.LexerException;
+import nisse.node.EOF;
 import nisse.node.Start;
 import nisse.node.Switchable;
 import nisse.node.Token;
@@ -25,7 +26,7 @@ public class Compiler {
 	public void testLexer()
 	{
 		try {
-			while (index(lexer.peek()) != 19)
+			while (!(lexer.peek() instanceof EOF))
 			{
 				Token token = lexer.next();
 				System.out.print(index(token));
@@ -52,6 +53,11 @@ public class Compiler {
 			e.printStackTrace();
 		}
 		return start;
+	}
+	public void testSemanticAnalyser(Start start)
+	{
+		SemanticAnalyser analyser = new SemanticAnalyser();
+		start.apply(analyser);
 	}
 	private int index(Switchable token)
 	{
