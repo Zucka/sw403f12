@@ -1,6 +1,6 @@
 \chapter{Parser}
 
-In this chapter the requirements of NISSE will be presented, along with the context free grammar(CFG) of NISSE.
+In this chapter the requirements of NISSE will be presented, along with the context free grammar (CFG) of NISSE.
 \section{Requirements}
 Requirements of the NISSE parser:
 \begin{itemize}
@@ -64,7 +64,7 @@ special sequence & ? ... ? \\
 \hline 
 \end{tabular}
 \end{center}
-An example is the line \lstinline!S = a {b}+ [ {c}+ ] ( a | b ) ;! that translates to \lstinline!S = a! followed by at least one \lstinline!b! followed by none or at least one \lstinline!c! followed by \lstinline!a! or \lstinline!b!. The special sequence is used for writing anything that is not directly EBNF. An example is \lstinline!char = ? a-zA-Z ? ;! where all letters from a to z is defined both capitol and non-capitol.
+An example is the line \lstinline!S = a {b}+ [ {c}+ ] ( a | b ) ;! that translates to \lstinline!S = a! followed by at least one \lstinline!b! followed by none or at least one \lstinline!c! followed by \lstinline!a! or \lstinline!b!. The special sequence is used for writing anything that is not directly EBNF. An example is \lstinline!char = ? a-zA-Z ? ;! where all letters from a to z is defined both capital and non-capital.
 
 NISSE's grammar is able to construct everything that is required of NISSE. \\
 Let's look at one of the previous examples:
