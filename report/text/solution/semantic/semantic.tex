@@ -37,7 +37,7 @@ Between those 2 lines information can be stored.
 The generic setup for the 2 lines is shown in section \ref{@begin} and \ref{@end}.
 
     \subsection{Transition existence}
-In order for the compiler to apply a transition on a slide, the analyser has to check if the transition that is written exists in the database of transition. If the transition doesn’t exist an error has to occur. If the transition does exist, then it continues without error.
+In order for the compiler to apply a transition on a slide, the analyser has to check if the transition that is written exists in the database. If the transition doesn’t exist an error has to occur. If the transition does exist, then it continues without error.
 
     \subsection{Type checking}
 The type checking in a begin / end line, consists of checking that between the 2 brackets is the word texttt{slide}. In special cases where a transition in on a slide, then the word texttt{slide} must be between the pipe and the right bracket. The word seem redundant because no other word can be in it’s place at this time. But for further development, where a begin / end line can do more than just enclose a slide, this will come in hand.
