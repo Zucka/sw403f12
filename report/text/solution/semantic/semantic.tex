@@ -1,13 +1,61 @@
 \chapter{Semantic analyser}
 
-Something something much about Semantic analyser
+The semantic analyser checks for errors that the lexer and parser does not catch. The semantic analyser for the language has to have the following requirements for the code generator to be successful.
 
 \section{Requirements}
 \begin{itemize}
-	\item Check that the keyword exists, in the language.
+	\item Check that the dynamic keyword exists, in the language.
 	\item Check that setting in the setting block exists.
 	\item Check that it is a valid input after the colon in a setting block.
-	\item Check that it is a valid word on the right side of the pipe in a setting block.
+	\item Check that it is a valid scope on the right side of the pipe in a setting block.
 	\item Check that the transition exists in a begin block.
 	\item Check which number to put into the enumerate.
 \end{itemize}
+
+These requirements are put into categories, with more explanation to specify the function of the semantic analyser.
+
+\section{Semantic analysis for text formatting}
+
+    \subsection{Keyword existence}
+In order for settings to work, there needs to be a check to see if the given setting actually exists in that context. In order to check if the setting exists, a list of settings for a given context is set up beforehand so that it can be checked against. If the setting exists in the list the value of the setting checked to see if it matches a valid value of that setting. If the setting does not exist then an error is written to the user.
+
+    \subsection{Type checking}
+For a given setting there are a number of valid values, two example could be the settings \texttt{font\_size} and \texttt{font\_weight} , which sets the size or weight of a given text. In the case of \texttt{font\_size}, valid input would be any integer, and in the case of \texttt{font\_weight} it would be a valid string of a weight. Same as the keyword existence an error is written if the value of the setting is not valid.
+
+     
+\subsection{Scope checking}
+
+\subsubsection*{Targeted text}
+Every setting block has to be given a scope of what it is going to affect. An example could be \texttt{global}, which would for a given setting set that setting for all types of text in the given effect level unless it is overridden at a later stage.
+\subsubsection*{Effect level}
+When a setting block is inside a begin and end block, the setting only affects that slide.
+A setting block can also be used outside a slide, in which case that setting would apply to every slide following that setting unless overridden at a later stage. These scope settings has to be checked as to see what text that setting should apply to.
+
+\section{Semantic analysis for blocks}
+This section focus on blocks. A block consists of 2 lines, a \texttt{begin} line and an “end” line.
+Between those 2 lines information can be stored.
+The generic setup for the 2 lines is shown in section \ref{@begin} and \ref{@end}.
+
+    \subsection{Transition existence}
+In order for the compiler to apply a transition on a slide, the analyser has to check if the transition that is written exists in the database of transition. If the transition doesn’t exist an error has to occur. If the transition does exist, then it continues without error.
+
+    \subsection{Type checking}
+The type checking in a begin / end line, consists of checking that between the 2 brackets is the word texttt{slide}. In special cases where a transition in on a slide, then the word texttt{slide} must be between the pipe and the right bracket. The word seem redundant because no other word can be in it’s place at this time. But for further development, where a begin / end line can do more than just enclose a slide, this will come in hand.
+
+
+\section{Semantic analysis for other keywords}
+     \subsection{Image}
+\texttt{Image} has to check if there exists a picture on that specific url that is given. If it is not found, accessible or in a format that is not recognized by the compiler, an error should occur.
+
+
+     \subsection{Enumerate}
+The hash tag keyword has to keep track of the numbers. Meaning that it has to increment each time a line starts with hashtag. And when a line does not start with a hash tag, the number should start from 1 again. This is also applicable where hash tags are inside hash tags.
+
+\section{Exception handling}
+
+
+
+
+\section{Reachability and termination analysis}
+There are no need to check for unreachable code in the language, because there are no breakers in the language eg. return, break, exit, etc.
+This also means that the language always terminates normal, because there are no keywords to stop a normal termination. 
