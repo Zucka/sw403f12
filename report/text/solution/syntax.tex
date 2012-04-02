@@ -4,7 +4,7 @@
 The requirements for the language is defined in the section ´´Language design''\ref{LanguageRequirements}. Keywords are in the language to give it structure and flexibility. Theese  have different outcomes, allthough some are similar. Some of the keywords are used for structuring of slides in the slideshow others are used for text formatting or image placement. To give a higher level of readability keywords must have meaningfull names according to their use and effect. Secondly we need to define in which order these keywords are allowed in, and what they mean in that particualer order.
 
 \section{Keywords}
-This is a list of reserved words in the language, where the keywords with @-prefix may not be used otherwise.
+This is a list of reserved words in the language, where the words with @-prefix may not be used otherwise. Because @-prefix should state that an event is about to happen.
 
 \begin{lstlisting}[frame=single]
 slide, fade, @begin, @end, 
@@ -36,7 +36,7 @@ This keyword sets a new setting for a specific type, or globally.
 \end{lstlisting}
 Where \texttt{FontChanges} is what kind of font setting that is changed. 
 \texttt{FontChanges} could be font size, font type and so on, written in the language as \texttt{@font\_size} and \texttt{@font\_type} respectively. 
- \texttt{Value}, is the value that it is set to. \texttt{Type} is referring to which font class it will change, e.g. title, text, the keyword \texttt{global} in this matter means that all font classes is changed.
+ \texttt{Value}, is the value that it is set to. \texttt{Type} is referring to which font class it will change, e.g. title, text, the keyword \texttt{global} in this matter means that all font classes are changed.
 
 \subsection{@apply}
 The expression \texttt{apply} changes the font for some specific text.
@@ -57,7 +57,7 @@ The \texttt{@image} expression imports an image from the Internet, the expressio
 A star has to be set on each line that is going to be a bullet.
 
  \subsection{Hash tag (\#)}
-\texttt{\#} expression starts a numeration list starting from 1, and for each line the has tag is used, the number is incrementing. If the line after a hash tag line is not a hash tag line, the numeration list is ended and thus a new hash tag line would have it's numeration start with 1.
+\texttt{\#} expression starts a numeration list starting from 1, and for each line the has tag is used, the number is incremented. If the line after a hash tag line is not a hash tag line, the numeration list is ended and thus a new hash tag line would have it's numeration start with 1.
 
  \subsection{@u, @i, @b}
 These expressions are similar. \\
