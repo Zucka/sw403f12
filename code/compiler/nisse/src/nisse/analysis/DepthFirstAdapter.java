@@ -884,6 +884,27 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAFslashShortidentv1(node);
     }
 
+    public void inADotShortidentv1(ADotShortidentv1 node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADotShortidentv1(ADotShortidentv1 node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADotShortidentv1(ADotShortidentv1 node)
+    {
+        inADotShortidentv1(node);
+        if(node.getDot() != null)
+        {
+            node.getDot().apply(this);
+        }
+        outADotShortidentv1(node);
+    }
+
     public void inAAtKwd(AAtKwd node)
     {
         defaultIn(node);
@@ -1077,25 +1098,46 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAExclamationCharall(node);
     }
 
-    public void inAMorecharCharall(AMorecharCharall node)
+    public void inADotCharall(ADotCharall node)
     {
         defaultIn(node);
     }
 
-    public void outAMorecharCharall(AMorecharCharall node)
+    public void outADotCharall(ADotCharall node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAMorecharCharall(AMorecharCharall node)
+    public void caseADotCharall(ADotCharall node)
     {
-        inAMorecharCharall(node);
-        if(node.getMorechar() != null)
+        inADotCharall(node);
+        if(node.getDot() != null)
         {
-            node.getMorechar().apply(this);
+            node.getDot().apply(this);
         }
-        outAMorecharCharall(node);
+        outADotCharall(node);
+    }
+
+    public void inACommaCharall(ACommaCharall node)
+    {
+        defaultIn(node);
+    }
+
+    public void outACommaCharall(ACommaCharall node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseACommaCharall(ACommaCharall node)
+    {
+        inACommaCharall(node);
+        if(node.getComma() != null)
+        {
+            node.getComma().apply(this);
+        }
+        outACommaCharall(node);
     }
 
     public void inACharCharall(ACharCharall node)

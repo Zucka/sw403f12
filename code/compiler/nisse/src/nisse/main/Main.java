@@ -17,7 +17,7 @@ public class Main {
 		watch.start();
 		Reader input = null;
 		try {
-			input = new FileReader("c:/fisk/test.txt");
+			input = new FileReader("c:/fisk/test3.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -38,6 +38,8 @@ public class Main {
 		
 		watch.stop();
 		System.out.println("Compiling took "+watch.getElapsedTime()+" miliseconds");
+		Settings opt = new Settings();
+		opt.loadSettings();
 	}
 	
 	

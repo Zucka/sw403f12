@@ -5,9 +5,9 @@ package nisse.parser;
 import nisse.node.*;
 import nisse.analysis.*;
 
-class TokenIndex extends AnalysisAdapter
+public class TokenIndex extends AnalysisAdapter
 {
-    int index;
+    public int index;
 
     @Override
     public void caseTFormatKwd(@SuppressWarnings("unused") TFormatKwd node)
@@ -142,14 +142,20 @@ class TokenIndex extends AnalysisAdapter
     }
 
     @Override
-    public void caseTMorechar(@SuppressWarnings("unused") TMorechar node)
+    public void caseTDot(@SuppressWarnings("unused") TDot node)
     {
         this.index = 22;
     }
 
     @Override
-    public void caseEOF(@SuppressWarnings("unused") EOF node)
+    public void caseTComma(@SuppressWarnings("unused") TComma node)
     {
         this.index = 23;
+    }
+
+    @Override
+    public void caseEOF(@SuppressWarnings("unused") EOF node)
+    {
+        this.index = 24;
     }
 }

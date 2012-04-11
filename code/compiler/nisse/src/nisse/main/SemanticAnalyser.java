@@ -1,6 +1,12 @@
 package nisse.main;
 
 
+import java.awt.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import nisse.analysis.DepthFirstAdapter;
 import nisse.node.AAtKwd;
 import nisse.node.ABackslashCharall;
@@ -13,8 +19,11 @@ import nisse.node.ACharShortidentv1;
 import nisse.node.ACharallPlainsv1;
 import nisse.node.AColonCharall;
 import nisse.node.AColonShortidentv1;
+import nisse.node.ACommaCharall;
 import nisse.node.ADigitCharall;
 import nisse.node.ADigitShortidentv1;
+import nisse.node.ADotCharall;
+import nisse.node.ADotShortidentv1;
 import nisse.node.AEndblock;
 import nisse.node.AExclamationCharall;
 import nisse.node.AFloatShortidentv1;
@@ -23,8 +32,7 @@ import nisse.node.AFslashShortidentv1;
 import nisse.node.AItemlist;
 import nisse.node.AItemlistItemlistv1;
 import nisse.node.AItemlistLines;
-import nisse.node.AMorecharCharall;
-import nisse.node.AMorecharShortidentv1;
+import nisse.node.ANisse;
 import nisse.node.ANumeration;
 import nisse.node.ANumerationLines;
 import nisse.node.ANumerationNumerationv1;
@@ -36,6 +44,7 @@ import nisse.node.APlaintextNumerationv1;
 import nisse.node.ASemicolonCharall;
 import nisse.node.ASettingBlocks;
 import nisse.node.ASettingLines;
+import nisse.node.ASettingblock;
 import nisse.node.AShortblock;
 import nisse.node.AShortblockPlainsv1;
 import nisse.node.AShortblockv1;
@@ -48,13 +57,18 @@ import nisse.node.Start;
 
 public class SemanticAnalyser extends DepthFirstAdapter {
 	private int indent = 0;
+	public SemanticAnalyser()
+	{
+		
+	}
 	public void defaultIn(Node node)
 	{
 		
 	}
 	public void defaultOut(Node node)
 	{
-		
+		System.out.println(node.toString());
+		System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
 	}
 	public void printIndents()
 	{
@@ -65,10 +79,22 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		}
 		System.out.print(indents);
 	}
+	public void inANisse (ANisse node)
+	{
+		printIndents();
+		System.out.println("ANisse");
+		indent++;
+	}
 	public void inABlockBlocks (ABlockBlocks node)
 	{
 		printIndents();
 		System.out.println("ABlockBlocks");
+		indent++;
+	}
+	public void inASettingblock (ASettingblock node)
+	{
+		printIndents();
+		System.out.println("ASettingblock");
 		indent++;
 	}
 	public void inABeginblock (ABeginblock node)
@@ -155,6 +181,12 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		System.out.println("ADigitShortidentv1");
 		indent++;
 	}
+	public void inADotShortidentv1 (ADotShortidentv1 node)
+	{
+		printIndents();
+		System.out.println("ADotShortidentv1");
+		indent++;
+	}
 	public void inAFloatShortidentv1 (AFloatShortidentv1 node)
 	{
 		printIndents();
@@ -171,12 +203,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	{
 		printIndents();
 		System.out.println("AFslashShortidentv1");
-		indent++;
-	}
-	public void inAMorecharShortidentv1 (AMorecharShortidentv1 node)
-	{
-		printIndents();
-		System.out.println("AMorecharShortidentv1");
 		indent++;
 	}
 	public void inAAtKwd (AAtKwd node)
@@ -239,12 +265,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		System.out.println("AExclamationCharall");
 		indent++;
 	}
-	public void inAMorecharCharall (AMorecharCharall node)
-	{
-		printIndents();
-		System.out.println("AMorecharCharall");
-		indent++;
-	}
 	public void inACharCharall (ACharCharall node)
 	{
 		printIndents();
@@ -255,6 +275,18 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	{
 		printIndents();
 		System.out.println("ASpaceCharall");
+		indent++;
+	}
+	public void inADotCharall (ADotCharall node)
+	{
+		printIndents();
+		System.out.println("ADotCharall");
+		indent++;
+	}
+	public void inACommaCharall (ACommaCharall node)
+	{
+		printIndents();
+		System.out.println("ACommaCharall");
 		indent++;
 	}
 	public void inANumeration (ANumeration node)
@@ -317,7 +349,14 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		System.out.println("ASettingBlocks");
 		indent++;
 	}
-	
+	public void outANisse (ANisse node)
+	{
+		indent--;
+	}
+	public void outASettingblock (ASettingblock node)
+	{
+		indent--;
+	}
 	public void outABlockBlocks (ABlockBlocks node)
 	{
 		indent--;
@@ -378,6 +417,10 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	{
 		indent--;
 	}
+	public void outADotShortidentv1 (ADotShortidentv1 node)
+	{
+		indent--;
+	}
 	public void outAFloatShortidentv1 (AFloatShortidentv1 node)
 	{
 		indent--;
@@ -387,10 +430,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		indent--;
 	}
 	public void outAFslashShortidentv1 (AFslashShortidentv1 node)
-	{
-		indent--;
-	}
-	public void outAMorecharShortidentv1 (AMorecharShortidentv1 node)
 	{
 		indent--;
 	}
@@ -436,15 +475,19 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	{
 		indent--;
 	}
-	public void outAMorecharCharall (AMorecharCharall node)
-	{
-		indent--;
-	}
 	public void outACharCharall (ACharCharall node)
 	{
 		indent--;
 	}
 	public void outASpaceCharall (ASpaceCharall node)
+	{
+		indent--;
+	}
+	public void outADotCharall (ADotCharall node)
+	{
+		indent--;
+	}
+	public void outACommaCharall (ACommaCharall node)
 	{
 		indent--;
 	}
@@ -488,4 +531,5 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	{
 		indent--;
 	}
+	
 }

@@ -219,6 +219,11 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseADotShortidentv1(ADotShortidentv1 node)
+    {
+        defaultCase(node);
+    }
+
     public void caseAAtKwd(AAtKwd node)
     {
         defaultCase(node);
@@ -264,7 +269,12 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAMorecharCharall(AMorecharCharall node)
+    public void caseADotCharall(ADotCharall node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseACommaCharall(ACommaCharall node)
     {
         defaultCase(node);
     }
@@ -389,7 +399,12 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseTMorechar(TMorechar node)
+    public void caseTDot(TDot node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTComma(TComma node)
     {
         defaultCase(node);
     }

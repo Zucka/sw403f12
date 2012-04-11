@@ -59,7 +59,7 @@ public class Compiler {
 		SemanticAnalyser analyser = new SemanticAnalyser();
 		start.apply(analyser);
 	}
-	private int index(Switchable token)
+	public int index(Switchable token)
 	{
 		this.converter.index = -1;
 		token.apply(this.converter);
