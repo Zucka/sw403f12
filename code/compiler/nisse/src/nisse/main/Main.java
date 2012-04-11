@@ -17,7 +17,7 @@ public class Main {
 		watch.start();
 		Reader input = null;
 		try {
-			input = new FileReader("c:/fisk/test3.txt");
+			input = new FileReader("c:/fisk/test.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

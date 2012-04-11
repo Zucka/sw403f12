@@ -407,6 +407,32 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outAShortident (AShortident node)
 	{
+		String Kwd1 = node.getKwd().toString().trim();
+		System.out.println(Kwd1);
+		if (Kwd1.equals("@ font_color") || Kwd1.equals("@ font_bg_color") || Kwd1.equals("@ font_family") || Kwd1.equals("@ font_weight")){
+			String Value = node.getShortidentv1().getFirst().toString();
+			System.out.println("Værdien er stringen: " + Value);
+		}
+		else if (Kwd1.equals("@ font_size")){
+			String Value = node.getShortidentv1().getFirst().toString().trim();
+			try{
+			int val = Integer.parseInt(Value);
+			} catch(Exception a){
+				System.out.println("FEJL, font_size kan ikke konverteres til en int");
+			}
+		}
+		else if (Kwd1.equals("@ font_lineheight")){
+			String Value = node.getShortidentv1().getFirst().toString().trim();
+			try{
+			double val = Double.parseDouble(Value);
+			}
+			catch(Exception a){
+				System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+			}
+		}
+		else {
+			System.out.println("FEJL, Keyworded existere ikke");
+		}
 		indent--;
 	}
 	public void outACharShortidentv1 (ACharShortidentv1 node)
