@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 public class Settings {
 	private FileReader data = null;
 	public List<settings> sList = new ArrayList<settings>();
+	private int currentListLocation = 0;
 	public Settings ()
 	{
 		
@@ -37,35 +38,19 @@ public class Settings {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Pattern pattern = Pattern.compile("(\\x5B[a-zA-Z_]+\\x5D)");
-		Pattern pattern2 = Pattern.compile("[^(\\x5B\n\r)]+");
+		Pattern pattern = Pattern.compile("([^\n\r]+)");
 		Matcher matcher = pattern.matcher(builder);
-		Matcher matcher2 = pattern2.matcher(builder);
-		matcher.find();
-		int end = matcher.end(1);
-		int start = matcher.start(1);
-		do
+		while (matcher.find())
 		{
-			settings s = new settings();
-			s.name = matcher.group(1);
-			System.out.println(matcher.group(1));
-			while (matcher2.find(end))
+			if (matcher.group(0).substring(0, 1).contains("["))
 			{
-				System.out.println(matcher2.group());
-				String[] match = matcher2.group().split(":");
-				settingsOptions sOptions = new settingsOptions();
-				sOptions.name = match[0];
-				sOptions.value = match[1];
-				s.options.add(sOptions);
-				end = matcher2.end();
+				sList.add(new settings(matcher.group(0).substring(1, matcher.group(0).length())));
+				currentListLocation++;
 			}
-			sList.add(s);
-		} while (matcher.find());
+			
+			System.out.println(matcher.group(0).substring(1, matcher.group(0).length()-2));
+		}
 		System.out.println(sList.get(0).name);
-		System.out.println(sList.get(0).options.get(0).name);
-		System.out.println(sList.get(0).options.get(0).value);
-		//System.out.println("PRINTING SETTINGS:");
-		//System.out.println(buffer3[1]);
 		try {
 			data.close();
 		} catch (IOException e) {
@@ -80,6 +65,9 @@ public class Settings {
 	}
 	private class settings
 	{
+		public settings(String name) {
+			this.name = name;
+		}
 		public String name;
 		public String temp;
 		public List<settingsOptions> options = new ArrayList<settingsOptions>();

@@ -1,0 +1,81 @@
+Package nisse;
+
+Helpers
+       charv1    = ['a' .. 'z'] | ['A' .. 'Z'] | 'æ' | 'ø' | 'å' | 'Æ' | 'Ø' | 'Å' | '_';
+       digitv1   = ['0' .. '9'] ;
+       dot         = '.' ;
+       comma       = ',' ;
+       eolv1     = 13 10 | 13 | 10;
+Tokens
+
+       format_kwd  = '@u' | '@b' | '@i' | '@apply' | '@image' | '@title' | '@subtitle' | '@note' ;
+       url         = '@url' ;
+       space       =  ' ' ;
+       settingkwd  = '@setting' ;
+       beginkwd    = '@begin' ;
+       endkwd      = '@end' ;
+       atsign      = '@' ;
+       lcurly      = '{' ;
+       rcurly      = '}' ;
+       pipe        = '|' ;
+       fslash      = '/' ;
+       bslash      = '\' ;
+       colon       = ':' ;
+       scolon      = ';' ;
+       blist       = '*' ;
+       nlist       = '#' ;
+       percent     = '%' ;
+       exclamation = '!' ;
+       eol         = eolv1+;
+       char        = charv1+ ;
+       digit       = digitv1+ ;
+       float       = digitv1+ dot digitv1+ ;
+       dot         = dot+;
+       comma       = comma+ ;
+
+Productions 
+
+       nisse         = blocks* ;
+       blocks        = {block} beginblock lines* endblock 
+                     | {setting} settingblock ;
+       lines         = {setting} settingblock 
+                     | {numeration} numeration
+                     | {itemlist} itemlist 
+                     | {plaintext} plains eol ;
+       numeration    = nlist numerationv1 ;
+       numerationv1  = {plaintext} plains eol 
+                     | {numeration} numeration;
+       itemlist      = blist itemlistv1 ;
+       itemlistv1    = {plaintext} plains eol  
+                     | {itemlist} itemlist;
+       beginblock    = beginkwd space* beblock eol ;
+       endblock      = endkwd space* beblock eol ;
+       beblock       = lcurly [first]:space* char [second]:space* beblockv1? rcurly ;
+       beblockv1     = pipe [first]:space* char [second]:space*;
+       settingblock  = settingkwd lcurly shortident pipe [second]:space* char [third]:space* rcurly space* eol;
+       plains        = plainsv1+;
+       plainsv1      = {shortblock} shortblock 
+                     | {charall} charall;
+       shortblock    = format_kwd space* lcurly shortblockv1? plains rcurly ;
+       shortblockv1  = shortidents;
+       shortidents   = shortident+ pipe ;
+       shortident    = kwd space* colon [first]:space* shortidentv1+ [second]:space*;
+       shortidentv1  = {char} char 
+                     | {digit} digit
+                     | {float} float
+                     | {colon} colon
+                     | {fslash} fslash
+                     | {dot} dot;
+       kwd           = {at} atsign char
+                     | {url} url ;
+       charall       = {colon} colon
+                     | {digit} digit
+                     | {semicolon} scolon
+                     | {percent} percent
+                     | {forwardslash} fslash
+                     | {backslash} bslash
+                     | {exclamation} exclamation
+                     | {dot} dot 
+                     | {comma} comma
+                     | {char} char
+                     | {space} space ;
