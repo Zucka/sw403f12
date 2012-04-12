@@ -355,6 +355,12 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outASettingblock (ASettingblock node)
 	{
+		String Scope = node.getChar().toString().trim();
+		if (Scope.equals("global") || Scope.equals("text") || Scope.equals("title") || Scope.equals("image")){
+		}
+		else{
+			System.out.println("FEJL, Keyworded " + Scope + " existere ikke");
+		}
 		indent--;
 	}
 	public void outABlockBlocks (ABlockBlocks node)
@@ -375,6 +381,24 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outABeblock (ABeblock node)
 	{
+		String Parent = node.parent().toString();
+		String Char = node.getChar().toString().trim();
+		if (Parent.compareTo("@begin") > 5){	   // ved en begin block		
+			if (Char.equals("slide")){      // i tilfælde af at der ikke er nogen transition
+			}
+			else if (Char.equals("fade")) {    // Transition
+			}
+			else{
+				System.out.println("Fejl, Transition findes ikke. Eller slide er ikke skrevet i begin");
+			}
+		}
+		else if (Parent.compareTo("@end") > 4){    // ved en end block
+			if (Char.equals("slide")){
+			}
+			else{
+				System.out.println("Fejl, der skal stå slide imellem de 2 curly brackets i end");
+			}
+		}
 		indent--;
 	}
 	public void outABeblockv1 (ABeblockv1 node)
@@ -408,8 +432,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	public void outAShortident (AShortident node)
 	{
 		String Kwd1 = node.getKwd().toString().trim();
-		if (Kwd1.equals("@ font_color") || Kwd1.equals("@ font_bg_color") || Kwd1.equals("@ font_family") || Kwd1.equals("@ font_weight")){
-			String Value = node.getShortidentv1().getFirst().toString();
+		if (Kwd1.equals("@ font_color") || Kwd1.equals("@ font_bg_color") || Kwd1.equals("@ font_family") || Kwd1.equals("@ font_weight") || Kwd1.equals("@url")){	
 		}
 		else if (Kwd1.equals("@ font_size")){
 			String Value = node.getShortidentv1().getFirst().toString().trim();
