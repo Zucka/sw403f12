@@ -365,7 +365,35 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outABlockBlocks (ABlockBlocks node)
 	{
+		try{
+		String First =node.getLines().getFirst().toString();
+		System.out.println(First);
+		String Last =node.getLines().getLast().toString();
+		System.out.println(Last);
+		String Firstsub = First.substring(0, 6);
+		String Lastsub = Last.substring(0, 9);
+		if (Firstsub.equals("@title")){
+		//	System.out.println("Det findes en titel");
+			if (Lastsub.equals("@subtitle")){
+				System.out.println("Dette er en titel side");
+			}
+			else if (Last.equals(First)){
+				System.out.println("Dette er en titel side uden undertitel");
+			}
+			else {
+		//		System.out.println("Dette er ikke en titel side");
+			}
+		}
+		else{
+		//	System.out.println("Der findes ingen titel");
+		}
+		}
+		catch(Exception a){
+			System.out.println("Dette er ikke en title slide");
+			System.out.println("Da den første og/eller sidste linje højest sandsynlig er mindre end 8 chars lang");
+		}
 		indent--;
+		
 	}
 	public void outABeginblock (ABeginblock node)
 	{
