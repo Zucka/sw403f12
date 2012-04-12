@@ -367,9 +367,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	{
 		try{
 		String First =node.getLines().getFirst().toString();
-		System.out.println(First);
 		String Last =node.getLines().getLast().toString();
-		System.out.println(Last);
 		String Firstsub = First.substring(0, 6);
 		String Lastsub = Last.substring(0, 9);
 		if (Firstsub.equals("@title")){
