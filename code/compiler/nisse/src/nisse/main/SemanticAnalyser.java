@@ -408,9 +408,10 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	public void outAShortident (AShortident node)
 	{
 		String Kwd1 = node.getKwd().toString().trim();
+		System.out.println(Kwd1);
 		if (Kwd1.equals("@ font_color") || Kwd1.equals("@ font_bg_color") || Kwd1.equals("@ font_family") || Kwd1.equals("@ font_weight")){
 			String Value = node.getShortidentv1().getFirst().toString();
-//			System.out.println("Værdien er stringen: " + Value);
+			System.out.println("Værdien er stringen: " + Value);
 		}
 		else if (Kwd1.equals("@ font_size")){
 			String Value = node.getShortidentv1().getFirst().toString().trim();
@@ -430,7 +431,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			}
 		}
 		else {
-			System.out.println("FEJL, Keyworded: " + Kwd1 + " existere ikke");
+			System.out.println("FEJL, Keyworded existere ikke");
 		}
 		indent--;
 	}
