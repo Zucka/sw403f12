@@ -59,6 +59,37 @@ import nisse.node.Start;
 
 public class SemanticAnalyser extends DepthFirstAdapter {
 	private int indent = 0;
+	//Image Settings
+	int ImageFontSize = 15;
+	String ImageFontfamily = "arial";
+	String ImageFontColor  = "black";
+	double ImageFontLineheight  = 1.5;
+	String ImageFontWeight = null;
+	//Title Settings
+	int TitleFontSize = 36;
+	String TitleFontfamily = "arial";
+	String TitleFontColor  = "black";
+	double TitleFontLineheight  = 1.5;
+	String TitleFontWeight = null;
+	//Subtitle Settings
+	int SubtitleFontSize = 20;
+	String SubtitleFontfamily = "arial";
+	String SubtitleFontColor  = "black";
+	double SubtitleFontLineheight  = 1.5;
+	String SubtitleFontWeight = null;
+	//Text Settings
+	int TextFontSize = 16;
+	String TextFontfamily = "arial";
+	String TextFontColor  = "black";
+	double TextFontLineheight  = 1.5;
+	String TextFontWeight = null;
+	//Url Settings
+	int UrlFontSize = 16;
+	String UrlFontfamily = "arial";
+	String UrlFontColor  = "black";
+	double UrlFontLineheight  = 1.5;
+	String UrlFontWeight = null;
+	
 	public SemanticAnalyser()
 	{
 		
@@ -89,18 +120,356 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void inABlockBlocks (ABlockBlocks node)
 	{
+		//Image Settings
+		int NewImageFontSize = ImageFontSize;
+		String NewImageFontfamily = ImageFontfamily;
+		String NewImageFontColor  = ImageFontColor;
+		double NewImageFontLineheight  = ImageFontLineheight;
+		String NewImageFontWeight = ImageFontWeight;
+		//Title Settings
+		int NewTitleFontSize = TitleFontSize;
+		String NewTitleFontfamily = TitleFontfamily;
+		String NewTitleFontColor  = TitleFontColor;
+		double NewTitleFontLineheight  = TitleFontLineheight;
+		String NewTitleFontWeight = TitleFontWeight;
+		//Subtitle Settings
+		int NewSubtitleFontSize = SubtitleFontSize;
+		String NewSubtitleFontfamily = SubtitleFontfamily;
+		String NewSubtitleFontColor  = SubtitleFontColor;
+		double NewSubtitleFontLineheight  = SubtitleFontLineheight;
+		String NewSubtitleFontWeight = SubtitleFontWeight;
+		//Text Settings
+		int NewTextFontSize = TextFontSize;
+		String NewTextFontfamily = TextFontfamily;
+		String NewTextFontColor  = TextFontColor;
+		double NewTextFontLineheight  = TextFontLineheight;
+		String NewTextFontWeight = TextFontWeight;
+		//URL Settings
+		int NewUrlFontSize = UrlFontSize;
+		String NewUrlFontfamily = UrlFontfamily;
+		String NewUrlFontColor  = UrlFontColor;
+		double NewUrlFontLineheight  = UrlFontLineheight;
+		String NewUrlFontWeight = UrlFontWeight;
+			
 		printIndents();
 		System.out.println("ABlockBlocks");
 		indent++;
 	}
+	
+	
 	public void inASettingblock (ASettingblock node)
 	{
+		String SettingType = node.getShortident().toString().trim();
+		String Visability = node.getChar().toString().trim();
+		System.out.println(SettingType);
+		String Test = node.parent().parent().toString();
+		String Test1 = Test.substring(0, 6);
+		//ved lokal setting ændring
+		if (Test1.equals("@begin")){
+			System.out.println("Dette er en lokal variabel");
+			if (SettingType.startsWith("@ font_color")){
+				String Value = SettingType.substring(15);
+			//	System.out.println("Font color value = " + Value);
+				if (Visability.equals("global")){
+					System.out.println("Dette er global Visability");
+				}
+				else if (Visability.equals("text")){
+					System.out.println("Dette er text Visability");
+				}
+				else if (Visability.equals("image")){
+					System.out.println("Dette er image Visability");
+				}
+				else if (Visability.equals("title")){
+					System.out.println("Dette er title Visability");
+				}
+				else if (Visability.equals("subtitle")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				else if (Visability.equals("url")){
+					System.out.println("Dette er subtitle Visability");
+				}
+			}
+			else if (SettingType.startsWith("@ font_family")){	
+				String Value = SettingType.substring(16);
+			//	System.out.println("Font color value = " + Value);
+				
+				if (Visability.equals("global")){
+					System.out.println("Dette er global Visability");
+				}
+				else if (Visability.equals("text")){
+					System.out.println("Dette er text Visability");
+				}
+				else if (Visability.equals("image")){
+					System.out.println("Dette er image Visability");
+				}
+				else if (Visability.equals("title")){
+					System.out.println("Dette er title Visability");
+				}
+				else if (Visability.equals("subtitle")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				else if (Visability.equals("url")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				
+			}
+			else if (SettingType.startsWith("@ font_weight")){	
+				String Value = SettingType.substring(16);
+			//	System.out.println("Font color value = " + Value);
+				
+				if (Visability.equals("global")){
+					System.out.println("Dette er global Visability");
+				}
+				else if (Visability.equals("text")){
+					System.out.println("Dette er text Visability");
+				}
+				else if (Visability.equals("image")){
+					System.out.println("Dette er image Visability");
+				}
+				else if (Visability.equals("title")){
+					System.out.println("Dette er title Visability");
+				}
+				else if (Visability.equals("subtitle")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				else if (Visability.equals("url")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				
+			}
+			
+			else if (SettingType.startsWith("@ font_size")){
+				String Value = SettingType.substring(14);
+			//	System.out.println("Font size value = " + Value);
+			//	try{
+				int val = Integer.parseInt(Value);
+		//		NewTextFontSize = val;
+			//	} catch(Exception a){
+			//		System.out.println("FEJL, font_size kan ikke konverteres til en int");
+			//	}
+				System.out.println(Visability);
+				if (Visability.equals("global")){
+					System.out.println("Dette er global Visability");
+					TextFontSize = val;
+					TitleFontSize = val;
+					SubtitleFontSize = val;
+					ImageFontSize = val;
+					UrlFontSize = val;
+				}
+				else if (Visability.equals("text")){
+					System.out.println("Dette er text Visability");
+					TextFontSize = val;
+				}
+				else if (Visability.equals("image")){
+					System.out.println("Dette er image Visability");
+				//	ImageFontSize = val;
+				}
+				else if (Visability.equals("title")){
+					System.out.println("Dette er title Visability");
+				//	TitleFontSize = val;
+				}
+				else if (Visability.equals("subtitle")){
+					System.out.println("Dette er subtitle Visability");
+				//	SubtitleFontSize = val;
+				}
+				else if (Visability.equals("url")){
+					System.out.println("Dette er subtitle Visability");
+				//	UrlFontSize = val;
+				}
+				
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				String Value = SettingType.substring(20);
+			//	System.out.println("Font lineheight value = " + Value);
+				try{
+				double val = Double.parseDouble(Value);
+				}
+				catch(Exception a){
+					System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+				}
+				
+				if (Visability.equals("global")){
+					System.out.println("Dette er global Visability");
+				}
+				else if (Visability.equals("text")){
+					System.out.println("Dette er text Visability");
+				}
+				else if (Visability.equals("image")){
+					System.out.println("Dette er image Visability");
+				}
+				else if (Visability.equals("title")){
+					System.out.println("Dette er title Visability");
+				}
+				else if (Visability.equals("subtitle")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				else if (Visability.equals("url")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				
+			}
+		}
+		//ved Global setting ændring
+		else {
+			System.out.println("Dette er global Setting");
+			if (SettingType.startsWith("@ font_color")){
+				String Value = SettingType.substring(15);
+			//	System.out.println("Font color value = " + Value);
+				
+				
+				if (Visability.equals("global")){
+					System.out.println("Dette er global Visability");
+					
+				}
+				else if (Visability.equals("text")){
+					System.out.println("Dette er text Visability");
+				}
+				else if (Visability.equals("image")){
+					System.out.println("Dette er image Visability");
+				}
+				else if (Visability.equals("title")){
+					System.out.println("Dette er title Visability");
+				}
+				else if (Visability.equals("subtitle")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				else if (Visability.equals("url")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				
+				
+			}
+			else if (SettingType.startsWith("@ font_family")){	
+				String Value = SettingType.substring(16);
+			//	System.out.println("Font color value = " + Value);
+				
+				if (Visability.equals("global")){
+					System.out.println("Dette er global Visability");
+				}
+				else if (Visability.equals("text")){
+					System.out.println("Dette er text Visability");
+				}
+				else if (Visability.equals("image")){
+					System.out.println("Dette er image Visability");
+				}
+				else if (Visability.equals("title")){
+					System.out.println("Dette er title Visability");
+				}
+				else if (Visability.equals("subtitle")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				else if (Visability.equals("url")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				
+			}
+			else if (SettingType.startsWith("@ font_weight")){	
+				String Value = SettingType.substring(16);
+			//	System.out.println("Font color value = " + Value);
+				
+				if (Visability.equals("global")){
+					System.out.println("Dette er global Visability");
+				}
+				else if (Visability.equals("text")){
+					System.out.println("Dette er text Visability");
+				}
+				else if (Visability.equals("image")){
+					System.out.println("Dette er image Visability");
+				}
+				else if (Visability.equals("title")){
+					System.out.println("Dette er title Visability");
+				}
+				else if (Visability.equals("subtitle")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				else if (Visability.equals("url")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				
+			}
+			
+			else if (SettingType.startsWith("@ font_size")){
+				String Value = SettingType.substring(14);
+			//	System.out.println("Font size value = " + Value);
+			//	try{
+				int val = Integer.parseInt(Value);
+		//		NewTextFontSize = val;
+			//	} catch(Exception a){
+			//		System.out.println("FEJL, font_size kan ikke konverteres til en int");
+			//	}
+				
+				if (Visability.equals("global")){
+					System.out.println("Dette er global Visability");
+					TextFontSize = val;
+					TitleFontSize = val;
+					SubtitleFontSize = val;
+					ImageFontSize = val;
+					UrlFontSize = val;
+				}
+				else if (Visability.equals("text")){
+					System.out.println("Dette er text Visability");
+					TextFontSize = val;
+				}
+				else if (Visability.equals("image")){
+					System.out.println("Dette er image Visability");
+				//	ImageFontSize = val;
+				}
+				else if (Visability.equals("title")){
+					System.out.println("Dette er title Visability");
+				//	TitleFontSize = val;
+				}
+				else if (Visability.equals("subtitle")){
+					System.out.println("Dette er subtitle Visability");
+				//	SubtitleFontSize = val;
+				}
+				else if (Visability.equals("url")){
+					System.out.println("Dette er subtitle Visability");
+				//	UrlFontSize = val;
+				}
+				
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				String Value = SettingType.substring(20);
+			//	System.out.println("Font lineheight value = " + Value);
+				try{
+				double val = Double.parseDouble(Value);
+				}
+				catch(Exception a){
+					System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+				}
+				
+				if (Visability.equals("global")){
+					System.out.println("Dette er global Visability");
+				}
+				else if (Visability.equals("text")){
+					System.out.println("Dette er text Visability");
+				}
+				else if (Visability.equals("image")){
+					System.out.println("Dette er image Visability");
+				}
+				else if (Visability.equals("title")){
+					System.out.println("Dette er title Visability");
+				}
+				else if (Visability.equals("subtitle")){
+					System.out.println("Dette er subtitle Visability");
+				}
+				else if (Visability.equals("url")){
+					System.out.println("Dette er subtitle Visability");
+				}
+			
+			}
+		
+		
+	//	System.out.println(Visability);
+		}
 		printIndents();
+		System.out.println("End setting: " + TextFontSize);
 		System.out.println("ASettingblock");
 		indent++;
 	}
 	public void inABeginblock (ABeginblock node)
 	{
+		System.out.println("begin beginblock: " + TextFontSize);
 		printIndents();
 		System.out.println("ABeginblock");
 		indent++;
@@ -485,6 +854,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		else if (Kwd1.equals("@ font_size")){
 			try{
 			int val = Integer.parseInt(Value);
+			TextFontSize = val;
 			} catch(Exception a){
 				System.out.println("FEJL, font_size kan ikke konverteres til en int");
 			}
