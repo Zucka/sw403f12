@@ -355,11 +355,43 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outASettingblock (ASettingblock node)
 	{
+		String Scope = node.getChar().toString().trim();
+		if (Scope.equals("global") || Scope.equals("text") || Scope.equals("title") || Scope.equals("image")){
+		}
+		else{
+			System.out.println("FEJL, Keyworded " + Scope + " existere ikke");
+		}
 		indent--;
 	}
 	public void outABlockBlocks (ABlockBlocks node)
 	{
+		try{
+		String First =node.getLines().getFirst().toString();
+		String Last =node.getLines().getLast().toString();
+		String Firstsub = First.substring(0, 6);
+		String Lastsub = Last.substring(0, 9);
+		if (Firstsub.equals("@title")){
+		//	System.out.println("Det findes en titel");
+			if (Lastsub.equals("@subtitle")){
+				System.out.println("Dette er en titel side");
+			}
+			else if (Last.equals(First)){
+				System.out.println("Dette er en titel side uden undertitel");
+			}
+			else {
+		//		System.out.println("Dette er ikke en titel side");
+			}
+		}
+		else{
+		//	System.out.println("Der findes ingen titel");
+		}
+		}
+		catch(Exception a){
+			System.out.println("Dette er ikke en title slide");
+			System.out.println("Da den første og/eller sidste linje højest sandsynlig er mindre end 8 chars lang");
+		}
 		indent--;
+		
 	}
 	public void outABeginblock (ABeginblock node)
 	{
@@ -375,6 +407,24 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outABeblock (ABeblock node)
 	{
+		String Parent = node.parent().toString();
+		String Char = node.getChar().toString().trim();
+		if (Parent.compareTo("@begin") > 5){	   // ved en begin block		
+			if (Char.equals("slide")){      // i tilfælde af at der ikke er nogen transition
+			}
+			else if (Char.equals("fade")) {    // Transition
+			}
+			else{
+				System.out.println("Fejl, Transition findes ikke. Eller slide er ikke skrevet i begin");
+			}
+		}
+		else if (Parent.compareTo("@end") > 4){    // ved en end block
+			if (Char.equals("slide")){
+			}
+			else{
+				System.out.println("Fejl, der skal stå slide imellem de 2 curly brackets i end");
+			}
+		}
 		indent--;
 	}
 	public void outABeblockv1 (ABeblockv1 node)
@@ -407,6 +457,29 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outAShortident (AShortident node)
 	{
+		String Kwd1 = node.getKwd().toString().trim();
+		if (Kwd1.equals("@ font_color") || Kwd1.equals("@ font_bg_color") || Kwd1.equals("@ font_family") || Kwd1.equals("@ font_weight") || Kwd1.equals("@url")){	
+		}
+		else if (Kwd1.equals("@ font_size")){
+			String Value = node.getShortidentv1().getFirst().toString().trim();
+			try{
+			int val = Integer.parseInt(Value);
+			} catch(Exception a){
+				System.out.println("FEJL, font_size kan ikke konverteres til en int");
+			}
+		}
+		else if (Kwd1.equals("@ font_lineheight")){
+			String Value = node.getShortidentv1().getFirst().toString().trim();
+			try{
+			double val = Double.parseDouble(Value);
+			}
+			catch(Exception a){
+				System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+			}
+		}
+		else {
+			System.out.println("FEJL, Keyworded " + Kwd1 + " existere ikke");
+		}
 		indent--;
 	}
 	public void outACharShortidentv1 (ACharShortidentv1 node)
