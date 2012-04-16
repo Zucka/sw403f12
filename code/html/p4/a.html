@@ -43,22 +43,17 @@
 				position: absolute;
 				height:100%;
 				width:100%;
-				-webkit-transition: opacity 1s ease-in-out;
-				-moz-transition: opacity 1s ease-in-out;
-				-o-transition: opacity 1s ease-in-out;
-				-ms-transition: opacity 1s ease-in-out;	
-				transition: opacity 1s ease-in-out;
-				}
-
-			#cf2 img.transparent {
-				opacity:0;			
+				display: table;
+				display: table-cell; 
+				vertical-align: middle;
 			}
+
 
 			.slide {
 				position: absolute;
 				height:90%;
 				width:90%;
-				top:4.5%;
+				top:5%;
 				left:4.5%;
 				background:#fefefe;
 				padding:20px;
@@ -98,6 +93,7 @@
 			$(function(){
 
 				var slide_pointer = 0;
+				var slide_pointer_previous = 0;
 
 				function update_dimensions() {
 					var h = $(window).height();
@@ -131,18 +127,24 @@
 				function go_to_slide(nr) {
 					slide_pointer = nr;
 					selector = "#slide"+slide_pointer;
-
-					$(".slide_wrapper").not(selector).stop().fadeTo(200,0.2);
-					$(selector).stop().fadeTo(700,1);
+					selectorprevious = "#slide"+slide_pointer_previous;
+					$(selector).css('visibility','visible');
+					$(selectorprevious).stop().fadeTo(300,0);
+					$(selector).stop().fadeTo(300,1);
 					console.log( $(selector) );
+					if (selector != selectorprevious)
+					{
+						$(selectorprevious).css('visibility','hidden');
+					}
 
-					$("#axis").stop().animate({
+
+					/*$("#axis").stop().animate({
 						"left" : -(slide_pointer * 100) + "%"
-					},500);
+					},1);*/
 				}
 
 				$(document.body).keydown(function(e){
-
+					slide_pointer_previous = slide_pointer;
 					switch(e.keyCode){
 						case 37: //left
 							go_to_slide(Math.max(slide_pointer - 1,0));
@@ -171,7 +173,7 @@
 		<div id="wrapper" data-ratio="4/3">
 			<div id="axis" style="margin-left: 201px; ">
 
-				<div class="slide_wrapper" id="slide0" style="height: 735px; width: 980px; ">
+				<div class="slide_wrapper" id="slide0" style="height: 735px; width: 980px; opacity:1; visibility:visible; ">
 					<div class="slide">
 						<div class="titleslide">
 							<h1 class="title">A presentation</h1>
@@ -180,7 +182,7 @@
 					</div>
 				</div>
 
-				<div class="slide_wrapper" id="slide1" style="left: 100%; height: 735px; width: 980px; ">
+				<div class="slide_wrapper" id="slide1" style="height: 735px; width: 980px; opacity:0; visibility:hidden; ">
 					<div class="slide">
 						<h1 class="title">A presentation</h1>
 						<br>
@@ -206,7 +208,7 @@
 					</div>
 				</div>
 
-				<div class="slide_wrapper" id="slide2" style="left: 200%; height: 735px; width: 980px; ">
+				<div class="slide_wrapper" id="slide2" style="height: 735px; width: 980px; opacity:0; visibility:hidden; ">
 					<div class="slide">
 
 						<div class="image" style="width:46%">
