@@ -3,7 +3,11 @@
 		<title>A presentation</title>
 		<!-- css framework -->
 		<style type="text/css">
-			body,div,h1,h2,h3,h4 {
+			body,div{
+				margin:0px;
+				padding:0px;
+			}
+			h1,h2,h3,h4 {
 				margin:0px;
 				padding:0px;
 			}
@@ -39,6 +43,15 @@
 				position: absolute;
 				height:100%;
 				width:100%;
+				-webkit-transition: opacity 1s ease-in-out;
+				-moz-transition: opacity 1s ease-in-out;
+				-o-transition: opacity 1s ease-in-out;
+				-ms-transition: opacity 1s ease-in-out;	
+				transition: opacity 1s ease-in-out;
+				}
+
+			#cf2 img.transparent {
+				opacity:0;			
 			}
 
 			.slide {
@@ -48,10 +61,18 @@
 				top:4.5%;
 				left:4.5%;
 				background:#fefefe;
-				padding:8px;
+				padding:20px;
 				border:1px solid #666;
 				margin-top:-5px;
 				margin-left:-5px;
+				vertical-align: middle;
+				display: table;
+			}
+
+			.slide > .titleslide {
+				text-align:center;
+				display: table-cell; 
+				vertical-align: middle;"
 			}
 
 			.image {
@@ -131,7 +152,13 @@
 						case 37: //left
 							go_to_slide(Math.max(slide_pointer - 1,0));
 						break;
+						case 38: //up
+							go_to_slide(Math.max(slide_pointer - 1,0));
+						break;
 						case 39: //right
+							go_to_slide(Math.min(slide_pointer + 1, $(".slide_wrapper[id]").length-1 ));
+						break;
+						case 40: //down
 							go_to_slide(Math.min(slide_pointer + 1, $(".slide_wrapper[id]").length-1 ));
 						break;
 					}
@@ -151,8 +178,10 @@
 
 				<div class="slide_wrapper" id="slide0" style="height: 735px; width: 980px; ">
 					<div class="slide">
-						<h1 class="title">A presentation</h1><h1>
-						</h1><h2 class="subtitle">A demo presentation</h2>
+						<div class="titleslide">
+							<h1 class="title">A presentation</h1>
+							<h2 class="subtitle">A demo presentation</h2>
+						</div>
 					</div>
 				</div>
 
@@ -165,7 +194,7 @@
 							<ul>
 								<li>Bullet points</li>
 							</ul>
-							<li>lots <span style="color:red;font-size:20px">and</span> lots</li>
+							<li>lots <span style="color:red;font-size:">and</span> lots</li>
 						</ul>
 						<br>
 						<ol>
