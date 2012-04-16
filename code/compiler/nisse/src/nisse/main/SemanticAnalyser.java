@@ -375,7 +375,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		if (Firstsub.equals("@title")){
 		//	System.out.println("Det findes en titel");
 			if (Lastsub.equals("@subtitle")){
-				System.out.println("Dette er en titel side");
+				System.out.println("Dette er en titel side med undertitel");
 			}
 			else if (Last.equals(First)){
 				System.out.println("Dette er en titel side uden undertitel");
@@ -384,12 +384,16 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		//		System.out.println("Dette er ikke en titel side");
 			}
 		}
+		else if(Firstsub.equals("@image") && First.equals(Last)){
+			System.out.println("Dette er et slide kun bestående af et billede.");
+		}
 		else{
 		//	System.out.println("Der findes ingen titel");
 		}
 		}
 		catch(Exception a){
 			System.out.println("Dette er ikke en title slide");
+			System.out.println("Exception, no worries");
 			System.out.println("Da den første og/eller sidste linje højest sandsynlig er mindre end 8 chars lang");
 		}
 		indent--;
@@ -464,7 +468,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		{
 			builder.append(p.toString());
 		}
-		String Value = builder.toString();
+		String Value = builder.toString().trim();
 		String Kwd1 = node.getKwd().toString().trim();
 		if (Kwd1.equals("@ font_color") || Kwd1.equals("@ font_bg_color") || Kwd1.equals("@ font_family") || Kwd1.equals("@ font_weight") || Kwd1.equals("@url")){	
 		}
