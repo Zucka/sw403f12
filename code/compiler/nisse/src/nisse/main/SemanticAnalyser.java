@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Iterator;
 
 import nisse.analysis.DepthFirstAdapter;
 import nisse.node.AAtKwd;
@@ -53,6 +54,7 @@ import nisse.node.AShortidents;
 import nisse.node.ASpaceCharall;
 import nisse.node.AUrlKwd;
 import nisse.node.Node;
+import nisse.node.PShortidentv1;
 import nisse.node.Start;
 
 public class SemanticAnalyser extends DepthFirstAdapter {
@@ -457,11 +459,16 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outAShortident (AShortident node)
 	{
+		StringBuilder builder = new StringBuilder();
+		for (PShortidentv1 p : node.getShortidentv1())
+		{
+			builder.append(p.toString());
+		}
+		String Value = builder.toString();
 		String Kwd1 = node.getKwd().toString().trim();
 		if (Kwd1.equals("@ font_color") || Kwd1.equals("@ font_bg_color") || Kwd1.equals("@ font_family") || Kwd1.equals("@ font_weight") || Kwd1.equals("@url")){	
 		}
 		else if (Kwd1.equals("@ font_size")){
-			String Value = node.getShortidentv1().getFirst().toString().trim();
 			try{
 			int val = Integer.parseInt(Value);
 			} catch(Exception a){
@@ -469,7 +476,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			}
 		}
 		else if (Kwd1.equals("@ font_lineheight")){
-			String Value = node.getShortidentv1().getFirst().toString().trim();
 			try{
 			double val = Double.parseDouble(Value);
 			}

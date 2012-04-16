@@ -1,4 +1,4 @@
-\chapter{Generating tool}
+\chapter{Lexer and Parser Generation}
 
 The SableCC framework is used to generate the lexer and parser. The reason for choosing SableCC as the generator is that it takes an extended form of EBNF, which our grammar already is written in. SableCC also has the feature that it is very good at separating the generated code from the custom code(commonly called action code) of the compiler. The output from the generated parser is an AST. Included in the generated code from SableCC is also a class for tree walking the parse tree, this makes it easy to inherit  from this class in order to make the semantic analyser and the code generator. 
 
