@@ -1,7 +1,11 @@
 \chapter{Lexer and Parser Generation}
+In this chapter a number of lexer and parser generaters will be presented, in order to determine the best generater for our project.
 
-The SableCC framework is used to generate the lexer and parser. The reason for choosing SableCC as the generator is that it takes an extended form of EBNF, which our grammar already is written in. SableCC also has the feature that it is very good at separating the generated code from the custom code(commonly called action code) of the compiler. The output from the generated parser is an AST. Included in the generated code from SableCC is also a class for tree walking the parse tree, this makes it easy to inherit  from this class in order to make the semantic analyser and the code generator. 
+\section{SableCC}
+The SableCC framework can be used to generate the lexer and parser. SableCC takes an extended form of EBNF, to compile from. SableCC also has the feature that it is very good at separating the generated code from the custom code(commonly called action code) of the compiler. This means that it is easy to make new versions of the compiler without doing all the work of integrating code every time. The output from the generated parser is a parse tree using SableCC's own data structure. Included in the generated code from SableCC is also a class for tree walking the generated parse tree using the visitor pattern, this makes it easy to inherit from this class in order to make the semantic analyser and the code generator. 
 
-\section{A SableCC file}
+\subsection{A SableCC file}
 A SableCC file consists of 6 optional sections, Package, Helpers, States, Tokens, Ignored Tokens and Productions.
 Package indicates what package the generated files should be under. Helpers are either character sets or regular expressions denoted by an identifier. Helpers can only be used in Tokens. States are used to switch between states, but are not used in this project. Tokens are defined much like Helpers. The lexer will return the longest matching token or the token listed first in Tokens if two or more tokens is matched of the same length. Ignored Tokens are tokens that are not returned by the lexer. Finally Productions are the normal production rules of the grammar, although an identifier has to be given for every alternative to a production rule, and an identifier has to be given when more then one ocurrence of a production rule or token is in a given alternative.
+
+\Section{
