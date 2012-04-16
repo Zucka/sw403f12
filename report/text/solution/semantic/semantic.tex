@@ -1,10 +1,10 @@
 \chapter{Semantic analyser}
 
-The semantic analyser checks for errors that the lexer and parser does not catch. The semantic analyser for the language has to have the following requirements for the code generator to be successful.
+The semantic analyser checks for errors that the lexer and parser do not catch. The semantic analyser for the language have the following requirements to be able to generate the expected slide.
 
 \section{Requirements}
 \begin{itemize}
-	\item Check that the dynamic keyword exists, in the language.
+	\item Check that the user defined keyword exists, in the language.
 	\item Check that setting in the setting block exists.
 	\item Check that it is a valid input after the colon in a setting block.
 	\item Check that it is a valid scope on the right side of the pipe in a setting block.
@@ -32,15 +32,15 @@ When a setting block is inside a begin- and end block, the setting only affects 
 A setting block can also be used outside a slide, in which case that setting would apply to every slide following that setting unless overridden at a later stage. These scope settings has to be checked as to see what text that setting should apply to.
 
 \section{Semantic analysis for blocks}
-This section focus on blocks. A block consists of two lines, a \texttt{begin} line and an \texttt{end} line.
-Between those two lines information can be stored.
-The generic setup for the two lines is shown in section \ref{@begin} and \ref{@end}.
+This section focus on blocks. A block consists of at least two lines, a \texttt{begin} line and an \texttt{end} line.
+Between those two lines, information can be stored.
+The generic setup for the two lines are shown in section \ref{@begin} and \ref{@end}.
 
     \subsection{Transition existence}
 In order for the compiler to apply a transition on a slide, the analyser has to check if the transition that is written exists in the database of transitions. If the transition does not exist an error has to occur. If the transition does exist, then it continues without error.
 
     \subsection{Type checking}
-The type checking in a begin / end line, consists of checking that between the two brackets is the word texttt{slide}. In special cases, where a transition in on a slide, the word texttt{slide} must be between the pipe and the right bracket. The word seem redundant because no other word can be in its place at this time. But for further development, where a begin / end line can do more than just enclose a slide, this will come in hand.
+The type checking in a begin / end line, consists of checking that between the two brackets is the word \texttt{slide}. In special cases, where a transition in on a slide, the word \texttt{slide} must be between the pipe and the right bracket. The word seem redundant because no other word can be in its place at this time. But for further development, where a begin / end line can do more than just enclose a slide, this will come in hand.
 
 
 \section{Semantic analysis for other keywords}
