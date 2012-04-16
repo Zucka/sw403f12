@@ -88,6 +88,9 @@
 		<!-- jQuery -->
 		<script src="jquery.js"></script>
 
+		<!-- jQuery Swipe -->
+		<script src="jquery.swipe.js"></script>
+
 		<!-- JavaScript library -->
 		<script type="text/javascript">
 			$(function(){
@@ -161,6 +164,17 @@
 						break;
 					}
 				});
+
+				$(document.body).swipe({
+					swipeLeft: function() {
+						slide_pointer_previous = slide_pointer;
+						go_to_slide(Math.min(slide_pointer + 1, $(".slide_wrapper[id]").length-1 ));
+					},
+					swipeRight: function() {
+						slide_pointer_previous = slide_pointer;
+						go_to_slide(Math.max(slide_pointer - 1,0));
+					}
+				})
 
 				$(window).resize(function(e){
 					update_dimensions();
