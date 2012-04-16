@@ -367,6 +367,16 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outABlockBlocks (ABlockBlocks node)
 	{
+		//System.out.println("First1 = " + node.getLines().getFirst());
+		try{
+		String First =node.getLines().getFirst().toString();
+		String Last =node.getLines().getLast().toString();
+		}
+		catch(Exception a){
+			System.out.println("Slided er tomt");
+			indent--;
+			return;
+		}
 		try{
 		String First =node.getLines().getFirst().toString();
 		String Last =node.getLines().getLast().toString();
