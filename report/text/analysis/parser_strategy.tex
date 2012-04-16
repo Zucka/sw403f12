@@ -1,14 +1,13 @@
 \section{Parser Strategy}
 \label{Parserstrategy}
-There are 2 ways of parsing an abstract syntax tree, which is the following.
+There are two ways of parsing an abstract syntax tree, which is seen below:
+
 \subsection*{Top Down}
-Top down derives the parse tree from the left. This means that a non-terminal cannot have two derivations with the same start terminal or nonterminal. e.g. A -> BC | BD. This way the parser does not know which derivation to take, because both of them start with the same nonterminal.
+Top down derives the parse tree from the left. This means that a non-terminal cannot have two derivations with the same start terminal or nonterminal, e.g. A -> BC | BD. This way the parser does not know which derivation to take, because both of them start with the same nonterminal.
 This can be avoided by using a bottom up method.
 
-
 \subsection*{Bottom Up}
-Bottom up derives the parse tree from the right side, which makes the expression: A -> BC | BD legal for a bottom up parser, because it looks at C and D first and then decides which derivation to pick.
-
+Bottom up derives the parse tree from the right, which makes the expression: A -> BC | BD legal for a bottom up parser, because it looks at C and D first and then decides which derivation to pick.
 
 \subsection*{Conclusion}
-A top down (LL) derivation of the parser will be used in this language, because that was what the group learned first, because a useful program was introduced in a course, could check if the parser was LL. This was beneficial in making the parser LL.
+A top down (LL) derivation of the parser will be used in this language, because that is what the group learned first, because a useful program was introduced in a course, which could check if the parser is LL. This is beneficial in making the parser LL.
