@@ -89,7 +89,7 @@
 		<script src="jquery.js"></script>
 
 		<!-- jQuery Swipe -->
-		<script src="jquery.swipe.js"></script>
+		<script src="jquery.touchswipe.js"></script>
 
 		<!-- JavaScript library -->
 		<script type="text/javascript">
@@ -131,13 +131,14 @@
 					selector = "#slide"+slide_pointer;
 					selectorprevious = "#slide"+slide_pointer_previous;
 					//$(selector).css('visibility','visible');
+					if (selector != selectorprevious)
+					{
 					$(selectorprevious).stop().fadeTo(300,0,function()
 						{
 							$(selector).stop().fadeTo(300,1);
 						});
 					console.log( $(selector) );
-					if (selector != selectorprevious)
-					{
+					
 					//	$(selectorprevious).css('visibility','hidden');
 					}
 
@@ -165,16 +166,31 @@
 					}
 				});
 
-				$(document.body).swipe({
-					swipeLeft: function() {
+				var swipeOptions = 
+				{
+					swipe:swipe,
+					threshold:0
+				}
+				
+				$(function()
+					{
+						$('#wrapper').swipe(swipeOptions);
+					}
+				);
+
+				function swipe (event,direction)
+				{
+					if (direction == "left")
+					{
 						slide_pointer_previous = slide_pointer;
 						go_to_slide(Math.min(slide_pointer + 1, $(".slide_wrapper[id]").length-1 ));
-					},
-					swipeRight: function() {
+					}
+					else if (direction == "right")
+					{
 						slide_pointer_previous = slide_pointer;
 						go_to_slide(Math.max(slide_pointer - 1,0));
 					}
-				})
+				}
 
 				$(window).resize(function(e){
 					update_dimensions();
