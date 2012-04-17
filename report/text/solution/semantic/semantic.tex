@@ -20,7 +20,7 @@ The semantic analyser checks for errors that the lexer and the parser do not cat
 In order for the settings to work, a check to see if the given setting actually exists in that context is needed. In order to check if the setting exists, a list of settings for a given context is set up beforehand which it can be checked against. If the setting exists in the list the value of the setting is checked to see if it matches a valid value of that setting. If it does not exist, then an error is written to the user.
 
 \subsection{Type Checking}
-For a given setting there are a number of valid values, two examples could be the settings \texttt{font\_size} and \texttt{font\_weight} , which sets the size or weight of a given text. In the case of \texttt{font\_size}, a valid input would be any integer, and in the case of \texttt{font\_weight} it would be a valid string of a weight. As with the keyword, existence of an error is written if the value of the setting is not valid.
+For a given setting there is a number of valid values, two examples could be the settings \texttt{font\_size} and \texttt{font\_weight} , which sets the size or weight of a given text. In the case of \texttt{font\_size}, a valid input would be any integer, and in the case of \texttt{font\_weight} it would be a valid string of a weight. As with the keyword, existence of an error is written if the value of the setting is not valid.
      
 \subsection{Scope Checking}
 
@@ -39,7 +39,7 @@ The generic setup for the two lines are shown in section \ref{@begin} and \ref{@
 In order for the compiler to apply a transition on a slide, the analyser has to check if the transition that is written exists in the database of transitions. If the transition does not exist an error has to occur. If the transition does exist, then it continues without error.
 
     \subsection{Type Checking}
-The type checking in a begin / end line consists of checking that between the two brackets is the word \texttt{slide}. In special cases, where a transition is on a slide, the word \texttt{slide} must be between the pipe and the right bracket. The word seems redundant because no other word can be in its place at this time. But for further development, where a begin / end line can do more than just enclose a slide, this will come in handy.
+The type checking in a begin- and end line consists of checking that between the two brackets is the word \texttt{slide}. In special cases, where a transition is on a slide, the word \texttt{slide} must be between the pipe and the right bracket. The word seems redundant because no other word can be in its place at this time. But for further development, where a begin- and end line can do more than just enclose a slide, this will come in handy.
 
 
 \section{Semantic Analysis for Other Keywords}
@@ -48,7 +48,7 @@ The type checking in a begin / end line consists of checking that between the tw
 
 
      \subsection{Enumerate}
-The hash tag keyword has to keep track of the numbers, meaning that it has to increment each time a line starts with a hash tag. And when a line does not start with a hash tag, the number should start from 1 again. This is also applicable where hash tags are inside hash tags.
+The hash tag keyword has to keep track of the numbers, meaning that it has to increment each time a line starts with a hash tag. And when a line does not start with a hash tag, the number should start from one again. This is also applicable where hash tags are inside hash tags.
 
 \section{Exception Handling}
 
