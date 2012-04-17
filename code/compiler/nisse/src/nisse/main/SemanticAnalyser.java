@@ -48,7 +48,6 @@ import nisse.node.ASettingLines;
 import nisse.node.ASettingblock;
 import nisse.node.AShortblock;
 import nisse.node.AShortblockPlainsv1;
-import nisse.node.AShortblockv1;
 import nisse.node.AShortident;
 import nisse.node.AShortidents;
 import nisse.node.ASpaceCharall;
@@ -633,12 +632,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		System.out.println("AShortblock");
 		indent++;
 	}
-	public void inAShortblockv1 (AShortblockv1 node)
-	{
-		printIndents();
-		System.out.println("AShortblockv1");
-		indent++;
-	}
 	public void inAShortidents (AShortidents node)
 	{
 		printIndents();
@@ -941,74 +934,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outAShortblock (AShortblock node)
 	{
-		indent--;
-	}
-	public void outAShortblockv1 (AShortblockv1 node)
-	{
-		String FormatKwd = node.parent().toString();
-		String SettingType = node.getShortidents().toString();
-	//	'@u' | '@b' | '@i' | '@apply' | '@image' | '@title' | '@subtitle' | '@note' ;
-		if (FormatKwd.startsWith("@setting")){
-			// bliver bearbejdet af Setting
-		}
-		else if (FormatKwd.startsWith("@apply")){
-			
-			if (SettingType.startsWith("@ font_family")){
-				
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				
-				
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				
-			}
-			
-		}
-		else if (FormatKwd.startsWith("@i")){
-			
-		}
-		else if (FormatKwd.startsWith("@u")){
-			
-		}
-		else if (FormatKwd.startsWith("@b")){
-			
-		}
-		else if (FormatKwd.startsWith("@image")){
-			
-		}
-		else if (FormatKwd.startsWith("@title")){
-			
-		}
-		else if (FormatKwd.startsWith("@subtitle")){
-			
-		}
-		else if (FormatKwd.startsWith("@note")){
-			
-		}
-		else{
-			System.out.println("Format Keyword:" + FormatKwd + " ikke fundet");
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-
-		
-		
-		
-		
-		
 		indent--;
 	}
 	public void outAShortidents (AShortidents node)

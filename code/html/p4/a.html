@@ -105,16 +105,17 @@
 					req = $("#wrapper").attr("data-ratio").split("/").map(function(i){return parseInt(i);});
 					ratio = req[0] / req[1];
 					actual = w / h;
-
+					console.log(ratio+" "+actual);
+					console.log(h+" "+w);
 					if(actual > ratio) {
 						//change width, height is okay
 						new_height = parseInt(h);
 						new_width = parseInt(h * ratio);
 					} 
-					else if(ratio < actual) {
+					else if(ratio > actual) {
 						//change height, width is okay
 						new_width = parseInt(w);
-						new_height = parseInt(w * ratio);
+						new_height = parseInt(w / ratio);
 					}
 
 					$(".slide_wrapper").css({

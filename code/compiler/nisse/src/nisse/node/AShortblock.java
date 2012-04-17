@@ -11,7 +11,7 @@ public final class AShortblock extends PShortblock
     private TFormatKwd _formatKwd_;
     private final LinkedList<TSpace> _space_ = new LinkedList<TSpace>();
     private TLcurly _lcurly_;
-    private PShortblockv1 _shortblockv1_;
+    private PShortidents _shortidents_;
     private PPlains _plains_;
     private TRcurly _rcurly_;
 
@@ -24,7 +24,7 @@ public final class AShortblock extends PShortblock
         @SuppressWarnings("hiding") TFormatKwd _formatKwd_,
         @SuppressWarnings("hiding") List<TSpace> _space_,
         @SuppressWarnings("hiding") TLcurly _lcurly_,
-        @SuppressWarnings("hiding") PShortblockv1 _shortblockv1_,
+        @SuppressWarnings("hiding") PShortidents _shortidents_,
         @SuppressWarnings("hiding") PPlains _plains_,
         @SuppressWarnings("hiding") TRcurly _rcurly_)
     {
@@ -35,7 +35,7 @@ public final class AShortblock extends PShortblock
 
         setLcurly(_lcurly_);
 
-        setShortblockv1(_shortblockv1_);
+        setShortidents(_shortidents_);
 
         setPlains(_plains_);
 
@@ -50,7 +50,7 @@ public final class AShortblock extends PShortblock
             cloneNode(this._formatKwd_),
             cloneList(this._space_),
             cloneNode(this._lcurly_),
-            cloneNode(this._shortblockv1_),
+            cloneNode(this._shortidents_),
             cloneNode(this._plains_),
             cloneNode(this._rcurly_));
     }
@@ -130,16 +130,16 @@ public final class AShortblock extends PShortblock
         this._lcurly_ = node;
     }
 
-    public PShortblockv1 getShortblockv1()
+    public PShortidents getShortidents()
     {
-        return this._shortblockv1_;
+        return this._shortidents_;
     }
 
-    public void setShortblockv1(PShortblockv1 node)
+    public void setShortidents(PShortidents node)
     {
-        if(this._shortblockv1_ != null)
+        if(this._shortidents_ != null)
         {
-            this._shortblockv1_.parent(null);
+            this._shortidents_.parent(null);
         }
 
         if(node != null)
@@ -152,7 +152,7 @@ public final class AShortblock extends PShortblock
             node.parent(this);
         }
 
-        this._shortblockv1_ = node;
+        this._shortidents_ = node;
     }
 
     public PPlains getPlains()
@@ -212,7 +212,7 @@ public final class AShortblock extends PShortblock
             + toString(this._formatKwd_)
             + toString(this._space_)
             + toString(this._lcurly_)
-            + toString(this._shortblockv1_)
+            + toString(this._shortidents_)
             + toString(this._plains_)
             + toString(this._rcurly_);
     }
@@ -238,9 +238,9 @@ public final class AShortblock extends PShortblock
             return;
         }
 
-        if(this._shortblockv1_ == child)
+        if(this._shortidents_ == child)
         {
-            this._shortblockv1_ = null;
+            this._shortidents_ = null;
             return;
         }
 
@@ -293,9 +293,9 @@ public final class AShortblock extends PShortblock
             return;
         }
 
-        if(this._shortblockv1_ == oldChild)
+        if(this._shortidents_ == oldChild)
         {
-            setShortblockv1((PShortblockv1) newChild);
+            setShortidents((PShortidents) newChild);
             return;
         }
 

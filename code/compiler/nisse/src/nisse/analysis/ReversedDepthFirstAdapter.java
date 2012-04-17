@@ -667,9 +667,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getPlains().apply(this);
         }
-        if(node.getShortblockv1() != null)
+        if(node.getShortidents() != null)
         {
-            node.getShortblockv1().apply(this);
+            node.getShortidents().apply(this);
         }
         if(node.getLcurly() != null)
         {
@@ -688,27 +688,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getFormatKwd().apply(this);
         }
         outAShortblock(node);
-    }
-
-    public void inAShortblockv1(AShortblockv1 node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAShortblockv1(AShortblockv1 node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAShortblockv1(AShortblockv1 node)
-    {
-        inAShortblockv1(node);
-        if(node.getShortidents() != null)
-        {
-            node.getShortidents().apply(this);
-        }
-        outAShortblockv1(node);
     }
 
     public void inAShortidents(AShortidents node)
