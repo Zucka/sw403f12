@@ -58,6 +58,10 @@ import nisse.node.Start;
 
 public class SemanticAnalyser extends DepthFirstAdapter {
 	private int indent = 0;
+	
+	String[][] SymbolTable = new String[1000][10];
+	
+	
 	//Image Settings
 	int ImageFontSize = 15;
 	String ImageFontFamily = "arial";
@@ -88,6 +92,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	String UrlFontColor  = "black";
 	double UrlFontLineheight  = 1.5;
 	String UrlFontWeight = null;
+	
 	
 	
 	//Image Settings Lokal
@@ -123,6 +128,14 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	
 	
 	
+	public void PrintSymbolTabel(String SymbolTable[][]){
+		for (String[] a : SymbolTable){
+		    for (String[] b : SymbolTable){
+		    	System.out.print(b);
+		    }
+		}
+		
+	}
 	
 	public SemanticAnalyser()
 	{
@@ -942,7 +955,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outAShortident (AShortident node)
 	{
-		StringBuilder builder = new StringBuilder();
+	/*	StringBuilder builder = new StringBuilder();
 		for (PShortidentv1 p : node.getShortidentv1())
 		{
 			builder.append(p.toString());
@@ -951,11 +964,16 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		String Kwd1 = node.getKwd().toString().trim();
 		
 		String FormatKwd = node.parent().parent().toString();
-	//	System.out.println(FormatKwd + " ÆANBWFAEFNÆÆAEF");
-
+		System.out.println(FormatKwd + " ÆANBWFAEFNÆÆAEF");  */
 		
-	//	String FormatKwd = "node.parent().toString()";
-		String SettingType = node.toString();
+		
+		String FormatKwd = node.parent().parent().toString();
+		String SettingType = node.getKwd().toString();
+		String Value = node.getShortidentv1().getFirst().toString().trim();
+		System.out.println(SettingType + " First");
+		System.out.println(Value + " Second");
+		
+		
 	//	'@u' | '@b' | '@i' | '@apply' | '@image' | '@title' | '@subtitle' | '@note' ;
 		if (FormatKwd.startsWith("@setting")){
 			// bliver bearbejdet af Setting
@@ -969,34 +987,124 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				
 			}
 			else if (SettingType.startsWith("@ font_size")){
-				
+				int val = Integer.parseInt(Value);
 				
 			}
 			else if (SettingType.startsWith("@ font_weight")){
 				
 			}
 			else if (SettingType.startsWith("@ font_lineheight")){
-				
+				double val = Double.parseDouble(Value);
 			}
 			
 		}
 		else if (FormatKwd.startsWith("@i")){
-			
+			if (SettingType.startsWith("@ font_family")){
+				
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				int val = Integer.parseInt(Value);
+				
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				double val = Double.parseDouble(Value);
+			}
 		}
 		else if (FormatKwd.startsWith("@u")){
-			
+			if (SettingType.startsWith("@ font_family")){
+				
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				int val = Integer.parseInt(Value);
+				
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				double val = Double.parseDouble(Value);
+			}
 		}
 		else if (FormatKwd.startsWith("@b")){
-			
+			if (SettingType.startsWith("@ font_family")){
+				
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				int val = Integer.parseInt(Value);
+				
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				double val = Double.parseDouble(Value);
+			}
 		}
 		else if (FormatKwd.startsWith("@image")){
-			
+			if (SettingType.startsWith("@ font_family")){
+				
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				int val = Integer.parseInt(Value);
+				
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				double val = Double.parseDouble(Value);
+			}
 		}
 		else if (FormatKwd.startsWith("@title")){
-			
+			if (SettingType.startsWith("@ font_family")){
+				
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				int val = Integer.parseInt(Value);
+				
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				double val = Double.parseDouble(Value);
+			}
 		}
 		else if (FormatKwd.startsWith("@subtitle")){
-			
+			if (SettingType.startsWith("@ font_family")){
+				
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				int val = Integer.parseInt(Value);
+				
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				double val = Double.parseDouble(Value);
+			}
 		}
 		else if (FormatKwd.startsWith("@note")){
 			
@@ -1205,7 +1313,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		
 		
 		
-		if (Kwd1.equals("@ font_color") || Kwd1.equals("@ font_bg_color") || Kwd1.equals("@ font_family") || Kwd1.equals("@ font_weight") || Kwd1.equals("@url")){	
+/*		if (Kwd1.equals("@ font_color") || Kwd1.equals("@ font_bg_color") || Kwd1.equals("@ font_family") || Kwd1.equals("@ font_weight") || Kwd1.equals("@url")){	
 		}
 		else if (Kwd1.equals("@ font_size")){
 			try{
@@ -1224,7 +1332,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		}
 		else {
 			System.out.println("FEJL, Keyworded " + Kwd1 + " existere ikke");
-		}
+		} */
 		indent--;
 	}
 	public void outACharShortidentv1 (ACharShortidentv1 node)
