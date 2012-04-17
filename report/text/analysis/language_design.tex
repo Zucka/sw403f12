@@ -1,5 +1,5 @@
 \chapter{Language Design}
-This section has been based on the book ``Concepts of Progamming Languages'' \cite{CoPL}. The design of the language has been made using the language criteria in the table below. These criteria can be categorised into three primary categories; \textit{readability}, \textit{writability} and \textit{reliability}. These overall categories have a number of secondary categories, which will be used for specifying the language design. Which secondary categories that affects the overall categories can be seen in the table beneath.
+This section has been based on the book ``Concepts of Programming Languages'' \cite{CoPL}. The design of the language has been made using the language criteria in the table below. These criteria can be categorised into three primary categories; \textit{readability}, \textit{writability} and \textit{reliability}. These overall categories have a number of secondary categories, which will be used for specifying the language design. The secondary categories that affect the overall categories can be seen in the table beneath.
 
 \begin{table}[htbp]
 \centering
@@ -22,7 +22,7 @@ Restricted aliasing & & & X \\ \hline
 \end{table}
 
 \noindent{\textbf{Writability}} \\
-Writability is another important criteria in designing a programming language. It refers to how easy it is to write programs using the language, in this programming language it should be easy to write and express slides in the developed language. A programming language is usually easier to use, if it shares some characteristics with popular languages. However, a high writability ranking can also come from the language being simple to use. The writability has been deemed ``very important'', because our language is a slideshow programming language, and considering that a slideshow is only made once.
+Writability is another important criterion in designing a programming language. It refers to how easy it is to write programs using the language, in the developed programming language it should be easy to write and express slideshows. A programming language is usually easier to use, if it shares some characteristics with popular languages. However, a high writability ranking can also come from the language being simple to use. The writability has been deemed ``very important'', because our language is a slideshow programming language, and considering that a slideshow is only made once.
 %otherwise there is no reason for the programmer to learn a new language to express slideshows in.
 \\ \\
 \textbf{Portability} \\
@@ -33,7 +33,7 @@ Software is portable when it is less expensive to port a program to a new platfo
 In the programming language of this project, the portability has been deemed ``very important'', because it is very important that the programming language is made in a way where it is working ``out of the box'', regardless of the operating system the programmer is using. Furthermore, the group who is to develop the programming language in question are using different operation systems, such as; Ubuntu, Mac OS X, and Windows, which makes a good foundation for checking whether the programming language is working on these three operating systems, which gives the developers a good idea of the portability of the language. Furthermore, the slides created using the system should be able to be shown on different monitor/displays.
 \\ \\
 \textbf{Reliability} \\
-Reliability and correctness refers to how reliable a programming language is. The language is reliable if it performs correctly and without errors under all conditions, in this programming language meaning that the presentation behaves exactly as the user wants it to. The ability for the language to perform correctly under all conditions, has been deemed ``important'', because the user should be able to reli on the language in a way that makes them know what it would do, using the language.
+Reliability and correctness refers to how reliable a programming language is. The language is reliable if it performs correctly and without errors under all conditions, in this programming language meaning that the presentation behaves exactly as the user wants it to. The ability for the language to perform correctly under all conditions, has been deemed ``important'', because the user should be able to rely on the language in a way that makes him know what it would do, using the language.
 \\ \\
 \noindent{\textbf{Orthogonality}} \\
 Orthogonality can be seen as a consistent set of rules for combining primitive constructions. Such constructions could be to make text underlined and bold, which both are primitive constructions. \\
@@ -44,12 +44,12 @@ A low level of orthogonality results in that the user has to use many primitives
 \noindent{In the programming language of this project, the orthogonality has been deemed ``important'', because it is important that there are different ways to express text formatting - making it simpler and easier to use.} \\
 \\ \\
 \textbf{Expressivity} \\
-Is an expression covering the ease with which different operators in a programming language are designed. An example of this is using $count++$ instead of $count = count + 1$. Expressivity can
-be seen as an extension to writability, in that it can make it easier to express statements in a programming. In the developed programming language, expressivity has been deemed ``important'' because there has been a lot of focus on making the language as easy and convenient to write and express slidesshows in.
+Is an expression covering the ease with which different operators in a programming language is designed. An example of this is using $count++$ instead of $count = count + 1$. Expressivity can
+be seen as an extension to writability, in that it can make it easier to express statements in a programming language. In the developed programming language, expressivity has been deemed ``important'' because there has been a lot of focus on making the language as easy and convenient to write and express slideshows in.
 \\ \\
 \textbf{Readability} \\
-Readability is one of the most important criteria in designing a programming language. The definition of readability is, that the language which is being designed should be easy to read and understand. When a programmer is adapting to a new language, the most difficult things to remember is usually the context of the language and the name of the data types. Creating a syntax, that in some way is similar to popular languages such as Java or C, would make the language more readable and easy to understand. \\
-Readability of our programming language has been deemed ``less important'', because it is not as important as the writability or reliability, though it still has to be possible to read codes written in the language.
+Readability is one of the most important criteria in designing a programming language. The definition of readability is that the language which is being designed should be easy to read and understand. When a programmer is adapting to a new language, the most difficult things to remember is usually the context of the language and the name of the data types. Creating a syntax, that in some way is similar to popular languages such as Java or C, would make the language more readable and easy to understand. \\ 
+Readability of our programming language has been deemed ``less important'', because it is not as important as the writability or the reliability, though it still has to be possible to read code written in the language.
 \\ \\
 \textbf{Cost} \\
 When talking about the cost of making a programming language, there are some different aspects to consider, these are:
@@ -57,9 +57,9 @@ When talking about the cost of making a programming language, there are some dif
 	\item The cost of training the programmers that is going to use the language, which is a function of simplicity, orthogonality and the experience of the programmers.
 	\item The cost of writing programs in the language, which is a function of writability.
 	\item The cost of compiling programs in the language.
-	% \item The cost of executing programs written in the language. In this part of performance the expression optimization is introduced, which is introduced to in-/decrease the size and/or the execution speed of the produced code. The reason that it can in- or decreased is that; programming beginners are compiling their programs frequently, whereas more experienced programmers are, potentially, executing their programs many times after the development of a certain program.
+	% \item The cost of executing programs written in the language. In this part of the performance the expression ``optimization'' is introduced, which is done to in-/decrease the size and/or the execution speed of the produced code. The reason that it can in- or decrease is that; programming beginners are compiling their programs frequently, whereas more experienced programmers are, potentially, executing their programs many times after the development of a certain program.
 	\item The cost of implementing the programming language.
-	\item The cost of, potential, poor reliability. If, for example, a system is unreliable, it can be costly to increase it’s reliability.
+	\item The cost of, potential, poor reliability. If, for example, a system is unreliable, it can be costly to increase its reliability.
 	% \item The cost of maintaining programs written in the language, including corrections, modifications and additions to the program in question. Because maintenance is often done by other people than the original programmer, readability is of great importance, to ease the job of maintenance.
 \end{enumerate}
 
