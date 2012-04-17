@@ -56,8 +56,7 @@ Productions
        plains        = plainsv1+;
        plainsv1      = {shortblock} shortblock 
                      | {charall} charall;
-       shortblock    = format_kwd space* lcurly shortblockv1? plains rcurly ;
-       shortblockv1  = shortidents;
+       shortblock    = format_kwd space* lcurly shortidents? plains rcurly ;
        shortidents   = shortident+ pipe ;
        shortident    = kwd space* colon [first]:space* shortidentv1+ [second]:space*;
        shortidentv1  = {char} char 
