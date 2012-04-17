@@ -4,7 +4,7 @@ The user inputs some code, for the program he would like to have compiled, which
 
 %The token list is then given to the parser, which is building a parse tree, also called an abstract syntax tree (AST), constructed from a context-free grammar. 
 
-The parser asks the lexer for a token, which then is handled by the parser. This is being repeated until there are no tokens left. The parser's main function is to check the syntax of the source code, to check whether the source code contains any invalid sign of formatting. The parser is doing this by creating a parse tree, which it uses to check that all tokens are given in the right order. If the parser is able to create more than one AST, the code could behave differently each time it is compiled. There are also a number of ways for a parser to build an AST, which will be discussed later. If the parser fails to build an AST, this stage will fail. \\
+The parser asks the lexer for a token, which is then handled by the parser. This is being repeated until there are no tokens left. The parser's main function is to check the syntax of the source code, to check whether the source code contains any invalid sign of formatting. The parser is doing this by creating a parse tree, which it uses to check that all tokens are given in the right order. If the parser is able to create more than one AST, the code could behave differently each time it is compiled. There are also a number of ways for a parser to build an AST, which will be discussed later. If the parser fails to build an AST, this stage will fail. \\
 
 The abstract syntax tree is then given to the semantic analyser...Something Something
 

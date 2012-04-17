@@ -1,7 +1,7 @@
 \chapter{Syntax}
 \label{SSyntax}
 
-The requirements for the language is defined in the section ``Language design'' \ref{LanguageRequirements}. Keywords are in the language to give structure and flexibility. These have different outcomes, although some are similar. Some of the keywords are used for the structuring of slides in a slideshow, others are used for text formatting or image placement. To give a higher level of readability keywords must have meaningful names according to their use and effect. Secondly, it has to be defined in which order these keywords are allowed, and what they mean in that particular order.
+The requirements for the language is defined in the section ``Language design'' \ref{LanguageRequirements}. Keywords are in the language to give structure and flexibility. These have different outcomes, although some are similar. Some of the keywords are used for the structuring of slides in a slideshow, others are used for text formatting or image placement. To give a higher level of readability, keywords must have meaningful names according to their use and effect. Secondly, it has to be defined in which order these are allowed, and what they mean in that particular order.
 
 \section{Keywords}
 This is a list of reserved words in the language, where the words with the @-prefix may not be used otherwise, because the @-prefix should state that an event is about to happen.
@@ -18,7 +18,7 @@ title, global, text, image, url,
 
 \subsection{@begin}
 \label{@begin}
-The expression \texttt{@begin} determines when a slide begins. This has a \texttt{transition} parameter separated by a pipe character. As in the example:
+The expression \texttt{@begin} determines when a slide begins. This has a \texttt{transition} parameter separated by a pipe character, as seen in the example:
 \begin{lstlisting}[frame=single]
 @begin{transition|slide}
 \end{lstlisting}
@@ -39,14 +39,17 @@ This keyword sets a new setting for a specific type, or globally.
 Where \texttt{FontChanges} is what kind of font setting that is changed. 
 \texttt{FontChanges} could be font size, font type and so on, written in the language as \texttt{@font\_size} and \texttt{@font\_type} respectively. \\
 \texttt{Value}, is the value that it is set to. \\
-\texttt{Type} is referring to which font class it will change, e.g. title, text or the keyword. \\ \texttt{global} in this matter means that all font classes are changed.
+\texttt{Type} is referring to which font class it will change, e.g. title, text or the keyword. \\ %\texttt{global} in this matter means that all font classes are changed.
+\texttt{Global} in this matter means that all font classes are changed.
 
 \subsection{@apply}
 The expression \texttt{apply} changes the font for some specific text.
 \begin{lstlisting}[frame=single]
 @apply{FontChanges:Value | Text}
 \end{lstlisting}
-Where \texttt{FontChanges} is what kind of font setting that is changed, and \texttt{Value}, is the value that it is set to. The difference between this and the \texttt{setting} expression is the characters after the pipe and the general meaning of the two expressions. \texttt{Text} in the expression refers to any text the user would want in this expression. The \texttt{Apply} expression only changes the font for the specific text which is in the expression, whereas \texttt{@apply} only changes the font for the text inside the expression.
+Where \texttt{FontChanges} is what kind of font setting that is changed, and \texttt{Value}, is the value that it is set to. The difference between this and the \texttt{setting} expression is the characters after the pipe and the general meaning of the two expressions. \\
+The \texttt{Text} in the expression refers to any text the user would want in this expression. \\
+The \texttt{Apply} expression only changes the font for the specific text which is in the expression, whereas \texttt{@apply} only changes the font for the text inside the expression.
 
 \subsection{@image}
 The \texttt{@image} expression imports an image from the Internet, the expression looks like this:
@@ -60,7 +63,7 @@ The \texttt{*} expression starts a list of bullet points, where the text after t
 A star has to be set on each line that is going to be a bullet.
 
 \subsection{Hash tag (\#)}
-The \texttt{\#} expression starts a numeration list starting from 1, and for each line the hash tag is used, the number is incremented. If the line after a hash tag line is not a hash tag line, the numeration list is ended and thus a new hash tag line would have its numeration starting with 1.
+The \texttt{\#} expression starts a numeration list starting from one, and for each line the hash tag is used, the number is incremented. If the line after a hash tag line is not a hash tag line, the numeration list is ended and thus a new hash tag line would have its numeration starting with one.
 
 \subsection{@u, @i, @b}
 These expressions are similar. \\
@@ -76,9 +79,8 @@ It is possible to make font changes, using \texttt{@u / @i / @b}, like:
  \begin{lstlisting}[frame=single]
 @b{ FontChanges:Value | Text }
 \end{lstlisting}
-
 Which looks familiar to the \texttt{@apply} expression, and the functionality is basically the same, even though the text is set as any of the font weights \texttt{@u / @i / @b} to begin with. The \texttt{@u / @i / @b} makes it much faster to make a weight on a text instead of writing: @apply{ @font\_weight:bold | Text } \\
-each time to make a bold text.
+each time to make bold text.
 
 \section{Examples}
 The following example is some of the basic elements in the language:
@@ -95,7 +97,7 @@ Which states that a slide begins, with a transition ``fade'', and that the slide
 The examples in the rest of this section is all written between \texttt{@begin}\{slide\} and a \texttt{@end}\{slide\} to save space.
 \\ \\
 After an @, a keyword always begins, making it easy for the compiler to recognize a keyword.
-Another keyword is \texttt{setting}, in this example the setting is set for the type ``title'' to a font size of 40 points. \\
+Another keyword is \texttt{setting}, in this example the setting is set for the type ``title'' to a font size of 40. \\
 A setting can be initiated outside, as well as inside, a slide. The difference is that, outside a slide the setting is applied to all the upcoming slides, if the setting is inside the slide, it is only applied to that slide. If no settings are set while making the slides, default settings will be used.
 
 \begin{lstlisting}[frame=single]
@@ -104,7 +106,7 @@ Input: @setting{@font_size:40|title}
 %Output: (title font size set to 40)%
 \end{lstlisting}
 
-A way to use the title type can be as show in the following example:\\
+A way to use the title type can be as show in the following example: \\
 
 \begin{lstlisting}[frame=single]
 Input: @title{Hello and welcome}
@@ -128,7 +130,7 @@ Input: @apply{@font_size:25 | Welcome to this slide}
 
 %Output: Welcome to this slide (with font size 25)%
 \end{lstlisting}
-You have to use the keyword ``apply'', to change the format of regular text. More than one format change can be applied pr. sentence; each format change does not necessarily need to be separated by one or more spaces. The order of format changes is irrelevant to the compiler. Here the font size is set to 25, and the text is ``Welcome to this slide''.
+You have to use the keyword ``apply'', to change the format of regular text. More than one format change can be applied per sentence; each format change does not necessarily need to be separated by one or more spaces. The order of format changes is irrelevant to the compiler. Here the font size is set to 25, and the text is ``Welcome to this slide''.
 
 The weight of the text can be set in two ways, the first looks like the way we just changed the font size: \\
 
@@ -154,7 +156,6 @@ Input: @b{Welcome to @u{bold} text}
 %Output: \textbf{Welcome to \underline{bold} text}%
 \end{lstlisting}
 Which make the whole text bold and underlines the word ``bold''.\\
-
 Combining them, would look like this:\\
 
 \begin{lstlisting}[frame=single]
@@ -163,16 +164,16 @@ Input: @apply{@font_weight:bold | Welcome to @u{bold} text}
 
 %Output: \textbf{Welcome to \underline{bold} text}%
 \end{lstlisting}
-And gives the same result as the last one. (e.g. ref)
+Which gives the same result as the last one. (e.g. ref)
 
 \subsection*{To summarize}
-\texttt{@begin} to start a slide. \\
-\texttt{@end} to end a slide. \\
-\texttt{@b} makes bold text. \\
-\texttt{@u} makes underlined text. \\
-\texttt{@i} makes italic text. \\
-\texttt{@apply} changes a parameter for that line only. \\
-\texttt{@setting} changes a parameter for the slide or all upcoming slides.\\
+\texttt{@begin} To start a slide. \\
+\texttt{@end} To end a slide. \\
+\texttt{@b} Makes bold text. \\
+\texttt{@u} Makes underlined text. \\
+\texttt{@i} Makes italic text. \\
+\texttt{@apply}Changes a parameter for one specific line. \\
+\texttt{@setting} Changes a parameter for the slide or all upcoming slides.\\
 
 The following is a larger example to demonstrate what is just used: \\
 
@@ -208,12 +209,21 @@ List of things to buy
 * BKI coffee
 
  
-%Output:\\List of things to buy\\ \begin{itemize} \item 2 x milk \item Bread \begin{itemize} \item Light \end{itemize} \item BKI coffee \end{itemize}%
+%Output:\\
+List of things to buy\\
+\begin{itemize}
+\item 2 x milk
+\item Bread
+\begin{itemize}
+\item Light
+\end{itemize}
+\item BKI coffee
+\end{itemize}%
 \end{lstlisting}
 
 Where a star symbolises a bullet, two bullets symbolises a bullet inside a bullet.
 Numeration is made by the following: \\
-Between the \texttt{\#} and the \texttt{*} the text is related to the sign, does not necessarily need to be separated by a space, the text can also contain spaces and numbers if needed.\\
+Between the \texttt{\#} and the \texttt{*} the text that is related to the sign, does not necessarily need to be separated by a space, the text can also contain spaces and numbers if needed.\\
 
 \begin{lstlisting}[frame=single]
 Input:
@@ -244,7 +254,7 @@ Importing pictures from the internet and only from the internet can be done usin
 Input: @image{@url: http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg  | Aalborg University logo}
 
 %Output:\\
-(An image from the webpage \url{http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg} is shown with the image description of Aalborg University logo)%
+(An image from the webpage \url{http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg} is shown with the image description of the Aalborg University logo)%
 \end{lstlisting}
 
-Where the url to the image is before the pipe and after the keyword ``@url:''. The text after the pipe is the image text.
+Where the url to the image is placed before the pipe and after the keyword ``@url:''. The text after the pipe is the image text.
