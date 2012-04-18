@@ -59,7 +59,11 @@ import nisse.node.Start;
 public class SemanticAnalyser extends DepthFirstAdapter {
 	private int indent = 0;
 	
-	String[][] SymbolTable = new String[1000][10];
+	
+	String[][] SymbolTable = new String [][] { { "Nr.", "Text", "Type", "FontSize", "FontFamily", "FontColor", "FontLineheight", "FontWeight" },
+            { "X1", "Y1", "Y1", "Y1", "Y1", "Y1", "Y1", "Y1"},
+            { "X1", "Y1", "Y1", "Y1", "Y1", "Y1", "Y1", "Y1"},
+            };
 	
 	
 	//Image Settings
@@ -126,24 +130,30 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	double NewUrlFontLineheight  = UrlFontLineheight;
 	String NewUrlFontWeight = UrlFontWeight;
 	
-	
-	
+
+
 	public void PrintSymbolTabel(String SymbolTable[][]){
-		for (String[] a : SymbolTable){
-		    for (String[] b : SymbolTable){
-		    	System.out.print(b);
+		/*for (SymbolTable[][] ){
+		    for (){
+				System.out.println(SymbolTable[0][0]);
+				System.out.println(SymbolTable[0][1]);
+				System.out.println(SymbolTable[0][2]);
+				SymbolTable[1][0] = "hej";
+				System.out.println(SymbolTable[1][0]);
 		    }
-		}
+		}  */
 		
-	}
+	}  
 	
 	public SemanticAnalyser()
 	{
 		
+		
 	}
 	public void defaultIn(Node node)
 	{
-		
+	//	String[][] SymbolTable = new String[1000][10];
+	//	SymbolTable[0][0] = "hej";
 	}
 	public void defaultOut(Node node)
 	{
@@ -167,8 +177,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void inABlockBlocks (ABlockBlocks node)
 	{
-		//Image Settings
-
 			
 		printIndents();
 		System.out.println("ABlockBlocks");
@@ -178,6 +186,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	
 	public void inASettingblock (ASettingblock node)
 	{
+
 		String SettingType = node.getShortident().toString().trim();
 		String Visability = node.getChar().toString().trim();
 		System.out.println(SettingType);
