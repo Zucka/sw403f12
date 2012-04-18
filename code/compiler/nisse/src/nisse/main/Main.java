@@ -21,6 +21,8 @@ public class Main {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		
+		
 		PushbackReader in = new PushbackReader(input, 1024);
 		Lexer lexer = new Lexer(in);
 		Parser parser = new Parser(lexer);
@@ -40,6 +42,7 @@ public class Main {
 		System.out.println("Compiling took "+watch.getElapsedTime()+" miliseconds");
 		Settings opt = new Settings();
 		opt.loadSettings();
+
 	}
 	
 	
