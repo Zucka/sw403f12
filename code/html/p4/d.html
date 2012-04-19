@@ -192,10 +192,10 @@
 					slide_pointer = nr;
 					selector = "#slide"+slide_pointer;
 
-					$(".slide_wrapper").not(selector).stop().fadeTo(200,0.2);
+					$(".slide_wrapper").not(selector).stop().fadeTo(200,0);
 					$(selector).stop().fadeTo(700,1);
 
-					$("#axis").stop().animate({
+					$("#axis").stop({
 						"left" : -(slide_pointer * 100) + "%"
 					},500);
 				}
