@@ -6,7 +6,7 @@ import java.util.Hashtable;
 import javax.print.MultiDoc;
 
 public class SymbolTable {
-	static int Tæller = -1;
+	static int Counter = -1;
 	public static void CreateSymbolTable(){
 
 	//	 String[][] SymbolTable = new String[1000][10];
@@ -37,10 +37,10 @@ public class SymbolTable {
 
 	
 	public static int GetNextSymbolNumber(){
-		SymbolTable.Tæller = SymbolTable.Tæller + 1;
-		return Tæller;
+		SymbolTable.Counter = SymbolTable.Counter + 1;
+		return Counter;
 	}
 	public static int GetCurrentSymbolNumber(){
-		return Tæller;
+		return Counter;
 	}
 }
