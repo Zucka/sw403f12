@@ -60,10 +60,10 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	private int indent = 0;
 	
 	
-	String[][] SymbolTable = new String [][] { { "Nr.", "Text", "Type", "FontSize", "FontFamily", "FontColor", "FontLineheight", "FontWeight" },
+	/*String[][] SymbolTable = new String [][] { { "Nr.", "Text", "Type", "FontSize", "FontFamily", "FontColor", "FontLineheight", "FontWeight" },
             { "X1", "Y1", "Y1", "Y1", "Y1", "Y1", "Y1", "Y1"},
             { "X1", "Y1", "Y1", "Y1", "Y1", "Y1", "Y1", "Y1"},
-            };
+            };  */
 	
 	
 	//Image Settings
@@ -130,20 +130,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	double NewUrlFontLineheight  = UrlFontLineheight;
 	String NewUrlFontWeight = UrlFontWeight;
 	
-
-
-	public void PrintSymbolTabel(String SymbolTable[][]){
-		/*for (SymbolTable[][] ){
-		    for (){
-				System.out.println(SymbolTable[0][0]);
-				System.out.println(SymbolTable[0][1]);
-				System.out.println(SymbolTable[0][2]);
-				SymbolTable[1][0] = "hej";
-				System.out.println(SymbolTable[1][0]);
-		    }
-		}  */
-		
-	}  
 	
 	public SemanticAnalyser()
 	{
@@ -186,7 +172,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	
 	public void inASettingblock (ASettingblock node)
 	{
-
+		
 		String SettingType = node.getShortident().toString().trim();
 		String Visability = node.getChar().toString().trim();
 		System.out.println(SettingType);
@@ -862,6 +848,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outABlockBlocks (ABlockBlocks node)
 	{
+		System.out.println(SymbolTable.GetNextSymbolNumber());
 		//System.out.println("First1 = " + node.getLines().getFirst());
 		try{
 		String First =node.getLines().getFirst().toString();
