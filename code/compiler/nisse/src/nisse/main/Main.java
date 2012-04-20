@@ -13,8 +13,6 @@ public class Main {
 
 	
 	public static void main(String[] args) {
-		//System.out.println(SymbolTable.GetNextSymbolNumber(SymbolTable.Tæller));
-		int i = SymbolTable.SymbolTableAdd("Hej med dig", "du er dum");
 		StopWatch watch = new StopWatch();
 		watch.start();
 		Reader input = null;
@@ -23,7 +21,6 @@ public class Main {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		SymbolTable.CreateSymbolTable();
 		
 		PushbackReader in = new PushbackReader(input, 1024);
 		Lexer lexer = new Lexer(in);

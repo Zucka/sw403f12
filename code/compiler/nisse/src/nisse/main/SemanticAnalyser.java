@@ -848,7 +848,9 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outABlockBlocks (ABlockBlocks node)
 	{
-		System.out.println(SymbolTable.GetNextSymbolNumber());
+		
+		//SymbolTable.SymbolTableAdd("hej", "Type", 6, "FontFamily", "FontColor", 6, "FontWeight");
+		//SymbolTable.PrintSymbolTable();
 		//System.out.println("First1 = " + node.getLines().getFirst());
 		try{
 		String First =node.getLines().getFirst().toString();
