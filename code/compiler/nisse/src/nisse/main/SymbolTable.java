@@ -46,9 +46,9 @@ public class SymbolTable {
 	public static void PrintSymbolTable(){
 		int i= 0;
 		int j = GetCurrentSymbolNumber();
-		System.out.println(" ____________________________________________________________________________________________________________________");
-		System.out.println("| Text :: Type :: FontSize :: FontFamily :: FontColor :: FontLineheight :: FontWeight :: FontWeight1 :: FontWeight2 |");
-		System.out.println("|-------------------------------------------------------------------------------------------------------------------|");
+		System.out.println(" _______________________________________________________________________________________________________________________________");
+		System.out.println("| Symbolnr :: Text :: Type :: FontSize :: FontFamily :: FontColor :: FontLineheight :: FontWeight :: FontWeight1 :: FontWeight2 |");
+		System.out.println("|-------------------------------------------------------------------------------------------------------------------------------|");
 		while (i<j){
 			String[] TableLine = SymbolTable1.get(i);
 			int length = TableLine.length;
@@ -59,7 +59,7 @@ public class SymbolTable {
 			while (k < length){
 				
 				if (h == true){
-					System.out.print(TableLine[k]);
+					System.out.print( i + " :: " + TableLine[k]);
 					h = false;
 				}
 				else{
