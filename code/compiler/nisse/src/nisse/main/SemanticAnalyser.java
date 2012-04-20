@@ -991,7 +991,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		String FormatKwd = node.parent().parent().toString();
 		System.out.println(FormatKwd + " ÆANBWFAEFNÆÆAEF");  */
 		
-		
 		String FormatKwd = node.parent().parent().toString();
 		String SettingType = node.getKwd().toString();
 		String Value = node.getShortidentv1().getFirst().toString().trim();
