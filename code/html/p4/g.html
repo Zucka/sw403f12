@@ -137,6 +137,7 @@
 
 				$(document).ready(function() {
 					update_dimensions();
+					go_to_slide(0);
 				});
 
 				var slide_pointer = 0;
@@ -190,25 +191,21 @@
 
 				function go_to_slide(nr) {
 					slide_pointer = nr;
-					selector = "#slide"+slide_pointer;
-					selectorprevious = "#slide"+slide_pointer_previous;
-					if (slide_pointer != slide_pointer_previous)
-					{
-						var left = "-100%";
-						if (slide_pointer < slide_pointer_previous)
-						{
-							left = "100%";
-						}
-						$(selectorprevious).stop().fadeTo(200,0);
-						$(selector).stop().fadeTo(700,1);
+					next = "#slide"+slide_pointer;
+					current = "#slide"+slide_pointer_previous;
 
-						$(selector).stop().animate({
-							"left" : "0%"
-						},500);
-						$(selectorprevious).stop().animate({
-							"left" : left
-						},500);
-					}
+					// Current slide fades out 
+					$(current).stop().fadeTo(200,0);
+					// Next slide fades in
+					$(next).stop().fadeTo(700,1);
+
+					// Slide move
+					$(current).stop().animate({
+						"left" : - 100 + "%"
+					},500);
+					$(next).stop().animate({
+						"left" : - 100 + "%"
+					},500);
 				}
 				
 
@@ -269,7 +266,7 @@
 		<div id="wrapper" data-ratio="4/3">
 			<div id="axis" style="margin-left: 201px; ">
 
-				<div class="slide_wrapper" id="slide0" style="height: 735px; width: 980px; opacity:1;">
+				<div class="slide_wrapper" id="slide0" style="left:100%; height: 735px; width: 980px; opacity:1;">
 					<div class="slide">
 						<div class="titleslide">
 							<h1 class="title">A presentation</h1>
@@ -278,7 +275,7 @@
 					</div>
 				</div>
 
-				<div class="slide_wrapper" id="slide1" style="left:100%; height: 735px; width: 980px; opacity:1;">
+				<div class="slide_wrapper" id="slide1" style="left:100%; height: 735px; width: 980px; opacity:0;">
 					<div class="slide">
 						<div class="titleslide">
 							<h1 class="title">Title test</h1>
