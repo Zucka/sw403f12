@@ -636,8 +636,19 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			Plain = Plain.substring(0, kj - 1);
 			//System.out.println(Plain);
 			
-			if (Plain.startsWith("@")){
-			//	System.out.println("Dette er en shortblock");
+			if (Plain.startsWith("@i")){
+				InsetWeight("italic", Type);
+			}
+			else if (Plain.startsWith("@u")){
+				InsetWeight("underlined", Type);
+			}
+			else if (Plain.startsWith("@b")){
+				InsetWeight("bold", Type);
+			}
+			
+			
+			if (Plain.startsWith("@setting") || Plain.startsWith("@title") ){
+				
 			}
 			else if (Type == 1){
 				SymbolTable.SymbolTableAdd(Plain, "title", NewTitleFontSize, NewTitleFontFamily, NewTitleFontColor, NewTitleFontLineheight, NewTitleFontWeight);
