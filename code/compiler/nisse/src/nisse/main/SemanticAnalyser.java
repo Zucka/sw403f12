@@ -621,6 +621,43 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void inAPlains (APlains node)
 	{
+		
+		int Type = CheckType(node);
+		String Parent = node.parent().toString();
+		System.out.println(Parent);
+		LinkedList<PPlainsv1> Test = node.getPlainsv1();
+		Object[] a = Test.toArray();
+		int j = Test.size();
+		int i = 0;
+		while (i<j){
+			
+			String Plain = a[i].toString();
+			int kj = Plain.length();
+			Plain = Plain.substring(0, kj - 1);
+			//System.out.println(Plain);
+			
+			if (Plain.startsWith("@")){
+			//	System.out.println("Dette er en shortblock");
+			}
+			else if (Type == 1){
+				SymbolTable.SymbolTableAdd(Plain, "title", NewTitleFontSize, NewTitleFontFamily, NewTitleFontColor, NewTitleFontLineheight, NewTitleFontWeight);
+			}
+			else if (Type == 2){
+				SymbolTable.SymbolTableAdd(Plain, "subtitle", NewSubtitleFontSize, NewSubtitleFontFamily, NewSubtitleFontColor, NewSubtitleFontLineheight, NewSubtitleFontWeight);
+			}
+			else if (Type == 3){
+				SymbolTable.SymbolTableAdd(Plain, "image", NewImageFontSize, NewImageFontFamily, NewImageFontColor, NewImageFontLineheight, NewImageFontWeight);
+			}
+			//else if (Parent.startsWith("@note")){
+				
+			//} 
+			else {
+				SymbolTable.SymbolTableAdd(Plain, "text", NewTextFontSize, NewTextFontFamily, NewTextFontColor, NewTextFontLineheight, NewTextFontWeight);
+				
+			} 
+
+			i++;
+		}
 		printIndents();
 		System.out.println("APlains");
 		indent++;
@@ -937,6 +974,8 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outAPlains (APlains node)
 	{
+	/*	String Parent = node.parent().toString();
+		System.out.println(Parent);
 		LinkedList<PPlainsv1> Test = node.getPlainsv1();
 		Object[] a = Test.toArray();
 		int j = Test.size();
@@ -950,13 +989,25 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			if (Plain.startsWith("@")){
 			//	System.out.println("Dette er en shortblock");
 			}
+			else if (Parent.startsWith("@title")){
+				SymbolTable.SymbolTableAdd(Plain, "title", NewTextFontSize, NewTextFontFamily, NewTextFontColor, NewTextFontLineheight, NewTextFontWeight);
+			}
+			else if (Parent.startsWith("@subtitle")){
+				SymbolTable.SymbolTableAdd(Plain, "subtitle", NewTextFontSize, NewTextFontFamily, NewTextFontColor, NewTextFontLineheight, NewTextFontWeight);
+			}
+			else if (Parent.startsWith("@image")){
+				SymbolTable.SymbolTableAdd(Plain, "image", NewTextFontSize, NewTextFontFamily, NewTextFontColor, NewTextFontLineheight, NewTextFontWeight);
+			}
+			//else if (Parent.startsWith("@note")){
+				
+			//} 
 			else {
-				SymbolTable.SymbolTableAdd(Plain, "Text", NewTextFontSize, NewTextFontFamily, NewTextFontColor, NewTextFontLineheight, NewTextFontWeight, null, null);
+				SymbolTable.SymbolTableAdd(Plain, "text", NewTextFontSize, NewTextFontFamily, NewTextFontColor, NewTextFontLineheight, NewTextFontWeight);
 				
 			} 
 
 			i++;
-		}
+		}  */
 		
 	//	System.out.println("Linked list: " + Test);
 	//	System.out.println("Linked list er størrelsen: " + i);
@@ -972,12 +1023,154 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outAShortblock (AShortblock node)
 	{
+		
 		indent--;
 	}
-	public void outAShortidents (AShortidents node)
+	public void outAShortidents (AShortblock node)
 	{
 		indent--;
 	}
+
+	public int CheckType(APlains node){
+		
+		String Parent = node.parent().toString();
+		System.out.println(Parent);
+		if (Parent.startsWith("@setting")){
+			return 6;
+		}
+		else if (Parent.startsWith("@begin")){
+			return 5;
+		}
+		else if (Parent.startsWith("@apply")){
+			return 5;
+		}
+		else if (Parent.startsWith("@title")){
+		return 1;
+		}
+		else if (Parent.startsWith("@subtitle")){
+		return 2;
+		}
+		else if (Parent.startsWith("@image")){
+		return 3;
+		}
+		else if (Parent.startsWith("@note")){
+		return 4;
+		}
+		else {
+			String Parent1 = node.parent().parent().toString();
+			if (Parent1.startsWith("@title")){
+				return 1;
+			}
+			else if (Parent1.startsWith("@subtitle")){
+				return 2;
+			}
+			else if (Parent1.startsWith("@image")){
+				return 3;
+			}
+			else if (Parent1.startsWith("@note")){
+				return 4;
+			}
+			else {
+				String Parent2 = node.parent().parent().parent().toString();
+				if (Parent2.startsWith("@title")){
+					return 1;
+				}
+				else if (Parent2.startsWith("@subtitle")){
+					return 2;
+				}
+				else if (Parent2.startsWith("@image")){
+					return 3;
+				}
+				else if (Parent2.startsWith("@note")){
+					return 4;
+				}
+			}
+		}
+		return 0;
+		
+	}
+	
+	
+	public void InsetWeight(String Weight, int Type){
+		
+		if(Type == 1){
+			NewTitleFontWeight =  NewTitleFontWeight + Weight;
+		}
+		else if(Type == 2){
+			NewSubtitleFontWeight =  NewSubtitleFontWeight + Weight;
+		}
+		else if(Type == 3){
+			NewImageFontWeight =  NewImageFontWeight + Weight;
+		}
+		else if(Type == 4){
+		//	NewImageFontWeight =  NewImageFontWeight + Weight;
+		}
+		else{
+			System.out.println("InsetWeight function error, Type = "+ Type + " Weight = " + Weight );
+		}
+		System.out.println("Type = "+ Type + " Weight = " + Weight);
+		
+	}
+	
+public int CheckType1(AShortident node){
+		
+		String Parent = node.parent().toString();
+		System.out.println(Parent);
+		if (Parent.startsWith("@setting")){
+			return 6;
+		}
+		else if (Parent.startsWith("@begin")){
+			return 5;
+		}
+		else if (Parent.startsWith("@apply")){
+			return 5;
+		}
+		else if (Parent.startsWith("@title")){
+		return 1;
+		}
+		else if (Parent.startsWith("@subtitle")){
+		return 2;
+		}
+		else if (Parent.startsWith("@image")){
+		return 3;
+		}
+		else if (Parent.startsWith("@note")){
+		return 4;
+		}
+		else {
+			String Parent1 = node.parent().parent().toString();
+			if (Parent1.startsWith("@title")){
+				return 1;
+			}
+			else if (Parent1.startsWith("@subtitle")){
+				return 2;
+			}
+			else if (Parent1.startsWith("@image")){
+				return 3;
+			}
+			else if (Parent1.startsWith("@note")){
+				return 4;
+			}
+			else {
+				String Parent2 = node.parent().parent().parent().toString();
+				if (Parent2.startsWith("@title")){
+					return 1;
+				}
+				else if (Parent2.startsWith("@subtitle")){
+					return 2;
+				}
+				else if (Parent2.startsWith("@image")){
+					return 3;
+				}
+				else if (Parent2.startsWith("@note")){
+					return 4;
+				}
+			}
+		}
+		return 0;
+		
+	}
+	
 	public void outAShortident (AShortident node)
 	{
 	/*	StringBuilder builder = new StringBuilder();
@@ -992,11 +1185,13 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		System.out.println(FormatKwd + " ÆANBWFAEFNÆÆAEF");  */
 		
 		String FormatKwd = node.parent().parent().toString();
+		System.out.println(FormatKwd);
 		String SettingType = node.getKwd().toString();
 		String Value = node.getShortidentv1().getFirst().toString().trim();
+		int Type = CheckType1(node);
+	//	System.out.println("Shortident Type = " + Type);
 	//	System.out.println(SettingType + " First");
 	//	System.out.println(Value + " Second");
-		
 		
 	//	'@u' | '@b' | '@i' | '@apply' | '@image' | '@title' | '@subtitle' | '@note' ;
 		if (FormatKwd.startsWith("@setting")){
@@ -1005,129 +1200,142 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		else if (FormatKwd.startsWith("@apply")){
 			
 			if (SettingType.startsWith("@ font_family")){
-				
+				NewTextFontFamily = Value;
 			}
 			else if (SettingType.startsWith("@ font_color")){
-				
+				NewTextFontColor = Value;
 			}
 			else if (SettingType.startsWith("@ font_size")){
 				int val = Integer.parseInt(Value);
-				
+				NewTextFontSize = val;
 			}
 			else if (SettingType.startsWith("@ font_weight")){
-				
+				NewTextFontWeight = NewTextFontWeight + " " + Value;
 			}
 			else if (SettingType.startsWith("@ font_lineheight")){
 				double val = Double.parseDouble(Value);
+				NewTextFontLineheight = val;
 			}
-			
 		}
 		else if (FormatKwd.startsWith("@i")){
+
+			InsetWeight("italic", Type);
+			
+			NewTextFontWeight =  NewTextFontWeight + "italic";
 			if (SettingType.startsWith("@ font_family")){
-				
+				NewTextFontFamily = Value;
 			}
 			else if (SettingType.startsWith("@ font_color")){
-				
+				NewTextFontColor = Value;
 			}
 			else if (SettingType.startsWith("@ font_size")){
 				int val = Integer.parseInt(Value);
-				
+				NewTextFontSize = val;
 			}
 			else if (SettingType.startsWith("@ font_weight")){
-				
+				NewTextFontWeight = NewTextFontWeight + " " + Value;
 			}
 			else if (SettingType.startsWith("@ font_lineheight")){
 				double val = Double.parseDouble(Value);
+				NewTextFontLineheight = val;
 			}
 		}
 		else if (FormatKwd.startsWith("@u")){
+			InsetWeight("underlined", Type);
+			
 			if (SettingType.startsWith("@ font_family")){
-				
+				NewTextFontFamily = Value;
 			}
 			else if (SettingType.startsWith("@ font_color")){
-				
+				NewTextFontColor = Value;
 			}
 			else if (SettingType.startsWith("@ font_size")){
 				int val = Integer.parseInt(Value);
-				
+				NewTextFontSize = val;
 			}
 			else if (SettingType.startsWith("@ font_weight")){
-				
+				NewTextFontWeight = NewTextFontWeight + " " + Value;
 			}
 			else if (SettingType.startsWith("@ font_lineheight")){
 				double val = Double.parseDouble(Value);
+				NewTextFontLineheight = val;
 			}
 		}
 		else if (FormatKwd.startsWith("@b")){
+			InsetWeight("bold", Type);
 			if (SettingType.startsWith("@ font_family")){
-				
+				NewTextFontFamily = Value;
 			}
 			else if (SettingType.startsWith("@ font_color")){
-				
+				NewTextFontColor = Value;
 			}
 			else if (SettingType.startsWith("@ font_size")){
 				int val = Integer.parseInt(Value);
-				
+				NewTextFontSize = val;
 			}
 			else if (SettingType.startsWith("@ font_weight")){
-				
+				NewTextFontWeight = NewTextFontWeight + " " + Value;
 			}
 			else if (SettingType.startsWith("@ font_lineheight")){
 				double val = Double.parseDouble(Value);
+				NewTextFontLineheight = val;
 			}
 		}
 		else if (FormatKwd.startsWith("@image")){
 			if (SettingType.startsWith("@ font_family")){
-				
+				NewImageFontFamily = Value;
 			}
 			else if (SettingType.startsWith("@ font_color")){
-				
+				NewImageFontColor = Value;
 			}
 			else if (SettingType.startsWith("@ font_size")){
 				int val = Integer.parseInt(Value);
-				
+				NewImageFontSize = val;
 			}
 			else if (SettingType.startsWith("@ font_weight")){
-				
+				NewImageFontWeight = NewImageFontWeight + " " + Value;
 			}
 			else if (SettingType.startsWith("@ font_lineheight")){
 				double val = Double.parseDouble(Value);
+				NewImageFontLineheight = val;
 			}
 		}
 		else if (FormatKwd.startsWith("@title")){
 			if (SettingType.startsWith("@ font_family")){
-				
+				NewTitleFontFamily = Value;
 			}
 			else if (SettingType.startsWith("@ font_color")){
-				
+				NewTitleFontColor = Value;
 			}
 			else if (SettingType.startsWith("@ font_size")){
 				int val = Integer.parseInt(Value);
-				
+				NewTitleFontSize = val;
 			}
 			else if (SettingType.startsWith("@ font_weight")){
-				
+				NewTitleFontWeight = NewTitleFontWeight + " " + Value;
 			}
 			else if (SettingType.startsWith("@ font_lineheight")){
 				double val = Double.parseDouble(Value);
+				NewTitleFontLineheight = val;
 			}
 		}
 		else if (FormatKwd.startsWith("@subtitle")){
 			if (SettingType.startsWith("@ font_family")){
-				
+				NewSubtitleFontFamily = Value;
 			}
 			else if (SettingType.startsWith("@ font_color")){
-				
+				NewSubtitleFontColor = Value;
 			}
 			else if (SettingType.startsWith("@ font_size")){
 				int val = Integer.parseInt(Value);
-				
+				NewSubtitleFontSize = val;
 			}
 			else if (SettingType.startsWith("@ font_weight")){
-				
+				NewSubtitleFontWeight = NewSubtitleFontWeight + " " + Value;
 			}
 			else if (SettingType.startsWith("@ font_lineheight")){
 				double val = Double.parseDouble(Value);
+				NewSubtitleFontLineheight = val;
 			}
 		}
 		else if (FormatKwd.startsWith("@note")){
@@ -1138,225 +1346,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		}
 		
 		
-		
-		
-		
-		
-		
-	/*	if (SettingType.startsWith("@ font_color")){
-			String Value = SettingType.substring(15);
-		//	System.out.println("Font color value = " + Value);
-			if (Visability.equals("global")){
-				System.out.println("Dette er global Visability");
-				NewTextFontColor = Value;
-				NewTitleFontColor = Value;
-				NewSubtitleFontColor = Value;
-				NewImageFontColor = Value;
-				NewUrlFontColor = Value;
-			}
-			else if (Visability.equals("text")){
-				System.out.println("Dette er text Visability");
-				NewTitleFontColor = Value;
-			}
-			else if (Visability.equals("image")){
-				System.out.println("Dette er image Visability");
-				NewImageFontColor = Value;
-			}
-			else if (Visability.equals("title")){
-				System.out.println("Dette er title Visability");
-				NewTitleFontColor = Value;
-			}
-			else if (Visability.equals("subtitle")){
-				System.out.println("Dette er subtitle Visability");
-				NewSubtitleFontColor = Value;
-			}
-			else if (Visability.equals("url")){
-				System.out.println("Dette er url Visability");
-				NewUrlFontColor = Value;
-			}
-		}
-		else if (SettingType.startsWith("@ font_family")){	
-			String Value = SettingType.substring(16);
-		//	System.out.println("Font color value = " + Value);
-			
-			if (Visability.equals("global")){
-				System.out.println("Dette er global Visability");
-				NewTextFontFamily = Value;
-				NewTitleFontFamily = Value;
-				NewSubtitleFontFamily = Value;
-				NewImageFontFamily = Value;
-				NewUrlFontFamily = Value;
-			}
-			else if (Visability.equals("text")){
-				System.out.println("Dette er text Visability");
-				NewTextFontFamily = Value;
-			}
-			else if (Visability.equals("image")){
-				System.out.println("Dette er image Visability");
-				NewImageFontFamily = Value;
-			}
-			else if (Visability.equals("title")){
-				System.out.println("Dette er title Visability");
-				NewTitleFontFamily = Value;
-			}
-			else if (Visability.equals("subtitle")){
-				System.out.println("Dette er subtitle Visability");
-				NewSubtitleFontFamily = Value;
-			}
-			else if (Visability.equals("url")){
-				System.out.println("Dette er url Visability");
-				NewUrlFontFamily = Value;
-			}
-		}
-		else if (SettingType.startsWith("@ font_weight")){	
-			String Value = SettingType.substring(16);
-		//	System.out.println("Font color value = " + Value);
-			if (Visability.equals("global")){
-				System.out.println("Dette er global Visability");
-				NewTextFontWeight = Value;
-				NewTitleFontWeight = Value;
-				NewSubtitleFontWeight = Value;
-				NewImageFontWeight = Value;
-				NewUrlFontWeight = Value;
-			}
-			else if (Visability.equals("text")){
-				System.out.println("Dette er text Visability");
-				NewTextFontWeight = Value;
-			}
-			else if (Visability.equals("image")){
-				System.out.println("Dette er image Visability");
-				NewImageFontWeight = Value;
-			}
-			else if (Visability.equals("title")){
-				System.out.println("Dette er title Visability");
-				NewTitleFontWeight = Value;
-			}
-			else if (Visability.equals("subtitle")){
-				System.out.println("Dette er subtitle Visability");
-				NewSubtitleFontWeight = Value;
-			}
-			else if (Visability.equals("url")){
-				System.out.println("Dette er url Visability");
-				NewUrlFontWeight = Value;
-			}
-			
-		}
-		
-		else if (SettingType.startsWith("@ font_size")){
-			String Value = SettingType.substring(14);
-		//	System.out.println("Font size value = " + Value);
-		//	try{
-			int val = Integer.parseInt(Value);
-		//	NewTextFontSize = val;
-		//	} catch(Exception a){
-		//		System.out.println("FEJL, font_size kan ikke konverteres til en int");
-		//	}
-			if (Visability.equals("global")){
-				System.out.println("Dette er global Visability");
-				NewTextFontSize = val;
-				NewTitleFontSize = val;
-				NewSubtitleFontSize = val;
-				NewImageFontSize = val;
-				NewUrlFontSize = val;
-			}
-			else if (Visability.equals("text")){
-				System.out.println("Dette er text Visability");
-				NewTextFontSize = val;
-			}
-			else if (Visability.equals("image")){
-				System.out.println("Dette er image Visability");
-				NewImageFontSize = val;
-			}
-			else if (Visability.equals("title")){
-				System.out.println("Dette er title Visability");
-				NewTitleFontSize = val;
-			}
-			else if (Visability.equals("subtitle")){
-				System.out.println("Dette er subtitle Visability");
-				NewSubtitleFontSize = val;
-			}
-			else if (Visability.equals("url")){
-				System.out.println("Dette er url Visability");
-				NewUrlFontSize = val;
-			}
-			
-		}
-		else if (SettingType.startsWith("@ font_lineheight")){
-			String Value = SettingType.substring(20);
-		//	System.out.println("Font lineheight value = " + Value);
-		//	try{
-			double val = Double.parseDouble(Value);
-		//	}
-		//	catch(Exception a){
-		//		System.out.println("FEJL, lineheight kan ikke konverteres til en double");
-		//	}
-			
-			if (Visability.equals("global")){
-				System.out.println("Dette er global Visability");
-				NewTextFontLineheight = val;
-				NewTitleFontLineheight = val;
-				NewSubtitleFontLineheight = val;
-				NewImageFontLineheight = val;
-				NewUrlFontLineheight = val;
-			}
-			else if (Visability.equals("text")){
-				System.out.println("Dette er text Visability");
-				NewTextFontLineheight = val;
-			}
-			else if (Visability.equals("image")){
-				System.out.println("Dette er image Visability");
-				NewImageFontLineheight = val;
-			}
-			else if (Visability.equals("title")){
-				System.out.println("Dette er title Visability");
-				NewTitleFontLineheight = val;
-			}
-			else if (Visability.equals("subtitle")){
-				System.out.println("Dette er subtitle Visability");
-				NewSubtitleFontLineheight = val;
-			}
-			else if (Visability.equals("url")){
-				System.out.println("Dette er url Visability");
-				NewUrlFontLineheight = val;
-			}
-			
-		}  */
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-/*		if (Kwd1.equals("@ font_color") || Kwd1.equals("@ font_bg_color") || Kwd1.equals("@ font_family") || Kwd1.equals("@ font_weight") || Kwd1.equals("@url")){	
-		}
-		else if (Kwd1.equals("@ font_size")){
-			try{
-			int val = Integer.parseInt(Value);
-			} catch(Exception a){
-				System.out.println("FEJL, font_size kan ikke konverteres til en int");
-			}
-		}
-		else if (Kwd1.equals("@ font_lineheight")){
-			try{
-			double val = Double.parseDouble(Value);
-			}
-			catch(Exception a){
-				System.out.println("FEJL, lineheight kan ikke konverteres til en double");
-			}
-		}
-		else {
-			System.out.println("FEJL, Keyworded " + Kwd1 + " existere ikke");
-		} */
 		indent--;
 	}
 	public void outACharShortidentv1 (ACharShortidentv1 node)

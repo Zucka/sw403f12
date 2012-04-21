@@ -1,6 +1,7 @@
 package nisse.main;
 
 import java.util.Enumeration;
+import nisse.node.AShortident;
 import java.util.Hashtable;
 
 import javax.print.MultiDoc;
@@ -16,8 +17,10 @@ public class SymbolTable {
 		String[] Values = {Text, Type, FontSizeString, FontFamily, FontColor, FontLineheightString, FontWeight};
 		SymbolTable1.put(GetCurrentSymbolNumber(), Values);
 		NextSymbolNumber();
+		
 	}
-	//Ved 2 Weight parametere
+	
+/*	//Ved 2 Weight parametere
 	public static void SymbolTableAdd(String Text, String Type, int FontSize, String FontFamily,String FontColor, double FontLineheight, String FontWeight, String FontWeight1){
 		String FontSizeString = Integer.toString(FontSize);
 		String FontLineheightString = Double.toString(FontLineheight);
@@ -32,7 +35,7 @@ public class SymbolTable {
 		String[] Values = {Text, Type, FontSizeString, FontFamily, FontColor, FontLineheightString, FontWeight, FontWeight1, FontWeight2 };
 		SymbolTable1.put(GetCurrentSymbolNumber(), Values);
 		NextSymbolNumber();
-	}
+	} */
 	
 	
 	public static void NextSymbolNumber(){
