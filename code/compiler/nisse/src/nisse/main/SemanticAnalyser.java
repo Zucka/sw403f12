@@ -906,6 +906,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outAEndblock (AEndblock node)
 	{
+		SymbolTable.PrintSymbolTable();
 		indent--;
 	}
 	public void outABeblock (ABeblock node)
@@ -940,25 +941,24 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		Object[] a = Test.toArray();
 		int j = Test.size();
 		int i = 0;
-		//Object c;
 		while (i<j){
 			
 			String Plain = a[i].toString();
-			System.out.println(Plain);
+			int kj = Plain.length();
+			Plain = Plain.substring(0, kj - 1);
+			//System.out.println(Plain);
 			if (Plain.startsWith("@")){
-				System.out.println("Dette er en shortblock");
+			//	System.out.println("Dette er en shortblock");
 			}
-			else{
-				//a[0] + a[1] = c;
-			}
+			else {
+				SymbolTable.SymbolTableAdd(Plain, "Text", NewTextFontSize, NewTextFontFamily, NewTextFontColor, NewTextFontLineheight, NewTextFontWeight, null, null);
+				
+			} 
 
 			i++;
 		}
-	//	node.getPlainsv1().set(index, element);
-	//	node.getPlainsv1().remove(0);
-	//	node.getPlainsv1().add(X, element);
 		
-		System.out.println("Linked list: " + Test);
+	//	System.out.println("Linked list: " + Test);
 	//	System.out.println("Linked list er størrelsen: " + i);
 		indent--;
 	}
@@ -968,7 +968,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outACharallPlainsv1 (ACharallPlainsv1 node)
 	{
-		System.out.println(node.getCharall().toString());
 		indent--;
 	}
 	public void outAShortblock (AShortblock node)
@@ -991,7 +990,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		
 		String FormatKwd = node.parent().parent().toString();
 		System.out.println(FormatKwd + " ÆANBWFAEFNÆÆAEF");  */
-		
 		
 		String FormatKwd = node.parent().parent().toString();
 		String SettingType = node.getKwd().toString();
