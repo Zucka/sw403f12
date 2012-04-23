@@ -646,7 +646,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		String Text = node.toString();
 		int j = Text.length();
 		Text = Text.substring(0, j - 1);
-		
 		String ParentParent = node.parent().parent().toString();
 			if (ParentParent.startsWith("@title")){
 				SymbolTable.SymbolTableAdd(Text, "title", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]);
