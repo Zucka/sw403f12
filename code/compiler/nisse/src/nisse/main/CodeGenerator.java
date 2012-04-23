@@ -8,6 +8,10 @@ import java.net.URL;
 
 import nisse.analysis.DepthFirstAdapter;
 import nisse.node.ABlockBlocks;
+import nisse.node.ACharallPlainsv1;
+import nisse.node.APlaintextLines;
+import nisse.node.ASettingblock;
+import nisse.node.AShortblock;
 import nisse.node.Node;
 import nisse.node.Start;
 
@@ -16,6 +20,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 	BufferedWriter out = null;
 	FileReader in = null;
 	int slideCounter = 0;
+	int divsToPrintFromSettings = 0;
 	public CodeGenerator()
 	{
 		try {
@@ -62,7 +67,11 @@ public class CodeGenerator extends DepthFirstAdapter{
 	}
 	public void outStart(Start node)
 	{
-		writeToStream("</div>\n</div>\n</body></html>");
+		String divs = "";
+		for (int i = 0; i < divsToPrintFromSettings; i++) {
+			divs += "</div>\n";
+		}
+		writeToStream(divs+"</div>\n</div>\n</body></html>");
 		try {
 			out.close();
 		} catch (IOException e) {
@@ -73,17 +82,34 @@ public class CodeGenerator extends DepthFirstAdapter{
 	public void inABlockBlocks(ABlockBlocks node)
 	{
 		// NEED TO FIND OUT IF SLIDE IS TITLESLIDE, IMAGESLIDE OR NORMAL SLIDE
-		String opacity = "1";
+		String transition = "fade"; //NEED TO KNOW THIS ALSO (TEST TRANSITION)
+		String opacity = "0";
+		String top = "100%";
 		if (slideCounter == 0)
 		{
-			opacity = "0";
+			opacity = "1";
+			top = "0%";
 		}
-		String str = "<div class=\"slide_wrapper\" id=\"slide"+slideCounter+"\" style=\"opacity: "+opacity+"; height: 936px; width: 1248px; \">\n<div class=\"slide\">";
+		String str = "<div class=\"slide_wrapper\" id=\"slide"+slideCounter+"\" data-transition=\""+transition+"\" style=\"top: "+top+"; opacity: "+opacity+"; height: 936px; width: 1248px; \">\n<div class=\"slide\">";
 		writeToStream(str);
 		slideCounter++;
 	}
 	public void outABlockBlocks(ABlockBlocks node)
 	{
 		writeToStream("</div></div>");
+	}
+	public void inASettingblock(ASettingblock node)
+	{
+		//Find out which setting to set
+		writeToStream("<div style=\"\">");
+		divsToPrintFromSettings++;
+	}
+	public void inACharallPlainsv1(ACharallPlainsv1 node)
+	{
+		//Write the plain text
+	}
+	public void inAShortblock(AShortblock node)
+	{
+		//Write the text with the given "settings"
 	}
 }
