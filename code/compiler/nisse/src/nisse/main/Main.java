@@ -34,6 +34,7 @@ public class Main {
 		Start start = compiler.testParser();
 		System.out.println("Lexing and Parsing took "+watch.getElapsedTime()+" miliseconds");
 		
+		SymbolTable.CreateScopeTable();
 		//SEMANTIC ANALYSER (YOU NEED THE START NODE FROM THE PARSER HERE)
 		compiler.testSemanticAnalyser(start);
 		

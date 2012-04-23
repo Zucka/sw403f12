@@ -62,15 +62,8 @@ import nisse.node.TChar;
 public class SemanticAnalyser extends DepthFirstAdapter {
 	private int indent = 0;
 	
-	
-	/*String[][] SymbolTable = new String [][] { { "Nr.", "Text", "Type", "FontSize", "FontFamily", "FontColor", "FontLineheight", "FontWeight" },
-            { "X1", "Y1", "Y1", "Y1", "Y1", "Y1", "Y1", "Y1"},
-            { "X1", "Y1", "Y1", "Y1", "Y1", "Y1", "Y1", "Y1"},
-            };  */
-	
-	
 	//Image Settings
-	int ImageFontSize = 15;
+/*	int ImageFontSize = 15;
 	String ImageFontFamily = "arial";
 	String ImageFontColor  = "black";
 	double ImageFontLineheight  = 1.5;
@@ -131,12 +124,12 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	String NewUrlFontFamily = UrlFontFamily;
 	String NewUrlFontColor  = UrlFontColor;
 	double NewUrlFontLineheight  = UrlFontLineheight;
-	String NewUrlFontWeight = UrlFontWeight;
+	String NewUrlFontWeight = UrlFontWeight;    */
 	
 	
 	public SemanticAnalyser()
 	{
-		
+		int sdgf = SymbolTable.NewImageFontSize;
 		
 	}
 	public void defaultIn(Node node)
@@ -177,6 +170,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	{
 		
 		String SettingType = node.getShortident().toString().trim();
+		
 		String Visability = node.getChar().toString().trim();
 		//System.out.println(SettingType);
 		String Test = node.parent().parent().toString();
@@ -189,31 +183,31 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//	System.out.println("Font color value = " + Value);
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
-					NewTextFontColor = Value;
-					NewTitleFontColor = Value;
-					NewSubtitleFontColor = Value;
-					NewImageFontColor = Value;
-					NewUrlFontColor = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
 				}
 				else if (Visability.equals("text")){
 			//		System.out.println("Dette er text Visability");
-					NewTitleFontColor = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
 				}
 				else if (Visability.equals("image")){
 			//		System.out.println("Dette er image Visability");
-					NewImageFontColor = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
 				}
 				else if (Visability.equals("title")){
 			//		System.out.println("Dette er title Visability");
-					NewTitleFontColor = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
 				}
 				else if (Visability.equals("subtitle")){
 			//		System.out.println("Dette er subtitle Visability");
-					NewSubtitleFontColor = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
 				}
 				else if (Visability.equals("url")){
 			//		System.out.println("Dette er url Visability");
-					NewUrlFontColor = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
 				}
 			}
 			else if (SettingType.startsWith("@ font_family")){	
@@ -222,31 +216,31 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
-					NewTextFontFamily = Value;
-					NewTitleFontFamily = Value;
-					NewSubtitleFontFamily = Value;
-					NewImageFontFamily = Value;
-					NewUrlFontFamily = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily] = Value;
 				}
 				else if (Visability.equals("text")){
 			//		System.out.println("Dette er text Visability");
-					NewTextFontFamily = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
 				}
 				else if (Visability.equals("image")){
 			//		System.out.println("Dette er image Visability");
-					NewImageFontFamily = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily] = Value;
 				}
 				else if (Visability.equals("title")){
 			//		System.out.println("Dette er title Visability");
-					NewTitleFontFamily = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily] = Value;
 				}
 				else if (Visability.equals("subtitle")){
 			//		System.out.println("Dette er subtitle Visability");
-					NewSubtitleFontFamily = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily] = Value;
 				}
 				else if (Visability.equals("url")){
 			//		System.out.println("Dette er url Visability");
-					NewUrlFontFamily = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily] = Value;
 				}
 			}
 			else if (SettingType.startsWith("@ font_weight")){	
@@ -254,31 +248,31 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//	System.out.println("Font color value = " + Value);
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
-					NewTextFontWeight = Value;
-					NewTitleFontWeight = Value;
-					NewSubtitleFontWeight = Value;
-					NewImageFontWeight = Value;
-					NewUrlFontWeight = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = Value;
 				}
 				else if (Visability.equals("text")){
 			//		System.out.println("Dette er text Visability");
-					NewTextFontWeight = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = Value;
 				}
 				else if (Visability.equals("image")){
 					//		System.out.println("Dette er image Visability");
-					NewImageFontWeight = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = Value;
 				}
 				else if (Visability.equals("title")){
 			//		System.out.println("Dette er title Visability");
-					NewTitleFontWeight = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = Value;
 				}
 				else if (Visability.equals("subtitle")){
 			//		System.out.println("Dette er subtitle Visability");
-					NewSubtitleFontWeight = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = Value;
 				}
 				else if (Visability.equals("url")){
 			//		System.out.println("Dette er url Visability");
-					NewUrlFontWeight = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = Value;
 				}
 				
 			}
@@ -286,79 +280,78 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			else if (SettingType.startsWith("@ font_size")){
 				String Value = SettingType.substring(14);
 			//	System.out.println("Font size value = " + Value);
-			//	try{
+				try{
 				int val = Integer.parseInt(Value);
-			//	NewTextFontSize = val;
-			//	} catch(Exception a){
-			//		System.out.println("FEJL, font_size kan ikke konverteres til en int");
-			//	}
+				} catch(Exception a){
+					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+				}
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
-					NewTextFontSize = val;
-					NewTitleFontSize = val;
-					NewSubtitleFontSize = val;
-					NewImageFontSize = val;
-					NewUrlFontSize = val;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize] = Value;
 				}
 				else if (Visability.equals("text")){
 			//		System.out.println("Dette er text Visability");
-					NewTextFontSize = val;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
 				}
 				else if (Visability.equals("image")){
 			//		System.out.println("Dette er image Visability");
-					NewImageFontSize = val;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize] = Value;
 				}
 				else if (Visability.equals("title")){
 			//		System.out.println("Dette er title Visability");
-					NewTitleFontSize = val;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
 				}
 				else if (Visability.equals("subtitle")){
 			//		System.out.println("Dette er subtitle Visability");
-					NewSubtitleFontSize = val;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize] = Value;
 				}
 				else if (Visability.equals("url")){
 			//		System.out.println("Dette er url Visability");
-					NewUrlFontSize = val;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize] = Value;
 				}
 				
 			}
 			else if (SettingType.startsWith("@ font_lineheight")){
 				String Value = SettingType.substring(20);
 			//	System.out.println("Font lineheight value = " + Value);
-			//	try{
+				try{
 				double val = Double.parseDouble(Value);
-			//	}
-			//	catch(Exception a){
-			//		System.out.println("FEJL, lineheight kan ikke konverteres til en double");
-			//	}
+				}
+				catch(Exception a){
+					System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+				}
 				
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
-					NewTextFontLineheight = val;
-					NewTitleFontLineheight = val;
-					NewSubtitleFontLineheight = val;
-					NewImageFontLineheight = val;
-					NewUrlFontLineheight = val;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight] = Value;
 				}
 				else if (Visability.equals("text")){
 			//		System.out.println("Dette er text Visability");
-					NewTextFontLineheight = val;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight] = Value;
 				}
 				else if (Visability.equals("image")){
 			//		System.out.println("Dette er image Visability");
-					NewImageFontLineheight = val;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight] = Value;
 				}
 				else if (Visability.equals("title")){
 			//		System.out.println("Dette er title Visability");
-					NewTitleFontLineheight = val;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight] = Value;
 				}
 				else if (Visability.equals("subtitle")){
 			//		System.out.println("Dette er subtitle Visability");
-					NewSubtitleFontLineheight = val;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight] = Value;
 				}
 				else if (Visability.equals("url")){
 			//		System.out.println("Dette er url Visability");
-					NewUrlFontLineheight = val;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight] = Value;
 				}
 				
 			}
@@ -373,32 +366,32 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
-					TextFontColor = Value;
-					TitleFontColor = Value;
-					SubtitleFontColor = Value;
-					ImageFontColor = Value;
-					UrlFontColor = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontColor] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontColor] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontColor] = Value;
 					
 				}
 				else if (Visability.equals("text")){
 			//		System.out.println("Dette er text Visability");
-					TextFontColor = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor] = Value;
 				}
 				else if (Visability.equals("image")){
 			//		System.out.println("Dette er image Visability");
-					ImageFontColor = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor] = Value;
 				}
 				else if (Visability.equals("title")){
 			//		System.out.println("Dette er title Visability");
-					TitleFontColor = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontColor] = Value;
 				}
 				else if (Visability.equals("subtitle")){
 			//		System.out.println("Dette er subtitle Visability");
-					SubtitleFontColor = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontColor] = Value;
 				}
 				else if (Visability.equals("url")){
 			//		System.out.println("Dette er url Visability");
-					UrlFontColor = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontColor] = Value;
 				}
 				
 				
@@ -409,31 +402,31 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
-					TextFontFamily = Value;
-					TitleFontFamily = Value;
-					SubtitleFontFamily = Value;
-					ImageFontFamily = Value;
-					UrlFontFamily = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontFamily] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontFamily] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontFamily] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontFamily] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontFamily] = Value;
 				}
 				else if (Visability.equals("text")){
 			//		System.out.println("Dette er text Visability");
-					TextFontFamily = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontFamily] = Value;
 				}
 				else if (Visability.equals("image")){
 			//		System.out.println("Dette er image Visability");
-					ImageFontFamily = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontFamily] = Value;
 				}
 				else if (Visability.equals("title")){
 			//		System.out.println("Dette er title Visability");
-					TitleFontFamily = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontFamily] = Value;
 				}
 				else if (Visability.equals("subtitle")){
 			//		System.out.println("Dette er subtitle Visability");
-					SubtitleFontFamily = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontFamily] = Value;
 				}
 				else if (Visability.equals("url")){
 			//		System.out.println("Dette er url Visability");
-					UrlFontFamily = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontFamily] = Value;
 				}
 				
 			}
@@ -443,31 +436,31 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
-					TextFontWeight = Value;
-					TitleFontWeight = Value;
-					SubtitleFontWeight = Value;
-					ImageFontWeight = Value;
-					UrlFontWeight = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontWeight] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontWeight] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontWeight] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontWeight] = Value;
 				}
 				else if (Visability.equals("text")){
 			//		System.out.println("Dette er text Visability");
-					TextFontWeight = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight] = Value;
 				}
 				else if (Visability.equals("image")){
 			//		System.out.println("Dette er image Visability");
-					ImageFontWeight = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontWeight] = Value;
 				}
 				else if (Visability.equals("title")){
 			//		System.out.println("Dette er title Visability");
-					TitleFontWeight = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontWeight] = Value;
 				}
 				else if (Visability.equals("subtitle")){
 			//		System.out.println("Dette er subtitle Visability");
-					SubtitleFontWeight = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontWeight] = Value;
 				}
 				else if (Visability.equals("url")){
 			//		System.out.println("Dette er url Visability");
-					UrlFontWeight = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontWeight] = Value;
 				}
 				
 			}
@@ -475,80 +468,80 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			else if (SettingType.startsWith("@ font_size")){
 				String Value = SettingType.substring(14);
 			//	System.out.println("Font size value = " + Value);
-			//	try{
+				try{
 				int val = Integer.parseInt(Value);
 		//		NewTextFontSize = val;
-			//	} catch(Exception a){
-			//		System.out.println("FEJL, font_size kan ikke konverteres til en int");
-			//	}
+				} catch(Exception a){
+					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+				}
 				
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
-					TextFontSize = val;
-					TitleFontSize = val;
-					SubtitleFontSize = val;
-					ImageFontSize = val;
-					UrlFontSize = val;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontSize] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontSize] = Value;
 				}
 				else if (Visability.equals("text")){
 			//		System.out.println("Dette er text Visability");
-					TextFontSize = val;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize] = Value;
 				}
 				else if (Visability.equals("image")){
 			//		System.out.println("Dette er image Visability");
-					ImageFontSize = val;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontSize] = Value;
 				}
 				else if (Visability.equals("title")){
 			//		System.out.println("Dette er title Visability");
-					TitleFontSize = val;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize] = Value;
 				}
 				else if (Visability.equals("subtitle")){
 			//		System.out.println("Dette er subtitle Visability");
-					SubtitleFontSize = val;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize] = Value;
 				}
 				else if (Visability.equals("url")){
 					System.out.println("Dette er url Visability");
-					UrlFontSize = val;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontSize] = Value;
 				}
 				
 			}
 			else if (SettingType.startsWith("@ font_lineheight")){
 				String Value = SettingType.substring(20);
 			//	System.out.println("Font lineheight value = " + Value);
-			//	try{
+				try{
 				double val = Double.parseDouble(Value);
-			//	}
-			//	catch(Exception a){
-			//		System.out.println("FEJL, lineheight kan ikke konverteres til en double");
-			//	}
+				}
+				catch(Exception a){
+					System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+				}
 				
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
-					TextFontLineheight = val;
-					TitleFontLineheight = val;
-					SubtitleFontLineheight = val;
-					ImageFontLineheight = val;
-					UrlFontLineheight = val;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontLineheight] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontLineheight] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontLineheight] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontLineheight] = Value;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontLineheight] = Value;
 				}
 				else if (Visability.equals("text")){
 			//		System.out.println("Dette er text Visability");
-					TextFontLineheight = val;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontLineheight] = Value;
 				}
 				else if (Visability.equals("image")){
 			//		System.out.println("Dette er image Visability");
-					ImageFontLineheight = val;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontLineheight] = Value;
 				}
 				else if (Visability.equals("title")){
 			//		System.out.println("Dette er title Visability");
-					TitleFontLineheight = val;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontLineheight] = Value;
 				}
 				else if (Visability.equals("subtitle")){
 			//		System.out.println("Dette er subtitle Visability");
-					SubtitleFontLineheight = val;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontLineheight] = Value;
 				}
 				else if (Visability.equals("url")){
 			//		System.out.println("Dette er url Visability");
-					UrlFontLineheight = val;
+					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontLineheight] = Value;
 				}
 			}
 		}
@@ -558,39 +551,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void inABeginblock (ABeginblock node)
 	{
-		
-		
-		//Image Settings Lokal
-		NewImageFontSize = ImageFontSize;
-		NewImageFontFamily = ImageFontFamily;
-		NewImageFontColor  = ImageFontColor;
-		NewImageFontLineheight  = ImageFontLineheight;
-		NewImageFontWeight = ImageFontWeight;
-		//Title Settings Lokal
-		NewTitleFontSize = TitleFontSize;
-		NewTitleFontFamily = TitleFontFamily;
-		NewTitleFontColor  = TitleFontColor;
-		NewTitleFontLineheight  = TitleFontLineheight;
-		NewTitleFontWeight = TitleFontWeight;
-		//Subtitle Settings Lokal
-		NewSubtitleFontSize = SubtitleFontSize;
-		NewSubtitleFontFamily = SubtitleFontFamily;
-		NewSubtitleFontColor  = SubtitleFontColor;
-		NewSubtitleFontLineheight  = SubtitleFontLineheight;
-		NewSubtitleFontWeight = SubtitleFontWeight;
-		//Text Settings Lokal
-		NewTextFontSize = TextFontSize;
-		NewTextFontFamily = TextFontFamily;
-		NewTextFontColor  = TextFontColor;
-		NewTextFontLineheight  = TextFontLineheight;
-		NewTextFontWeight = TextFontWeight;
-		//URL Settings Lokal
-		NewUrlFontSize = UrlFontSize;
-		NewUrlFontFamily = UrlFontFamily;
-		NewUrlFontColor  = UrlFontColor;
-		NewUrlFontLineheight  = UrlFontLineheight;
-		NewUrlFontWeight = UrlFontWeight;
-		
+		SymbolTable.OpenScope();
 		printIndents();
 		System.out.println("ABeginblock");
 		indent++;
@@ -622,7 +583,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	public void inAPlains (APlains node)
 	{
 		
-		int Type = CheckType(node);
+	/*	int Type = CheckType(node);
 		String Parent = node.parent().toString();
 		System.out.println(Parent);
 		LinkedList<PPlainsv1> Test = node.getPlainsv1();
@@ -668,7 +629,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			} 
 
 			i++;
-		}
+		} */
 		printIndents();
 		System.out.println("APlains");
 		indent++;
@@ -687,6 +648,14 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void inAShortblock (AShortblock node)
 	{
+		SymbolTable.OpenScope();
+		
+		
+		
+		
+		
+		
+		
 		printIndents();
 		System.out.println("AShortblock");
 		indent++;
@@ -699,6 +668,235 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void inAShortident (AShortident node)
 	{
+		
+		String FormatKwd = node.parent().parent().toString();
+		System.out.println(FormatKwd);
+		String SettingType = node.getKwd().toString();
+		String Value = node.getShortidentv1().getFirst().toString().trim();
+		int Type = CheckType1(node);
+	//	System.out.println("Shortident Type = " + Type);
+	//	System.out.println(SettingType + " First");
+	//	System.out.println(Value + " Second");
+		
+	//	'@u' | '@b' | '@i' | '@apply' | '@image' | '@title' | '@subtitle' | '@note' ;
+		if (FormatKwd.startsWith("@setting")){
+			// bliver bearbejdet af Setting
+		}
+		else if (FormatKwd.startsWith("@apply")){
+			
+			if (SettingType.startsWith("@ font_family")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				try{
+					int val = Integer.parseInt(Value);
+				} catch(Exception a){
+					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+				}
+
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + Value;
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				try{
+					double val = Double.parseDouble(Value);
+					}
+					catch(Exception a){
+						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					}
+				
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight] = Value;
+			}
+		}
+		else if (FormatKwd.startsWith("@i")){
+
+			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " +  "italic";
+
+			if (SettingType.startsWith("@ font_family")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				try{
+					int val = Integer.parseInt(Value);
+				} catch(Exception a){
+					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+				}
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + Value;
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				try{
+					double val = Double.parseDouble(Value);
+					}
+					catch(Exception a){
+						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					}
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight] = Value;
+			}
+		}
+		else if (FormatKwd.startsWith("@u")){
+			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "underlined";
+			if (SettingType.startsWith("@ font_family")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				try{
+					int val = Integer.parseInt(Value);
+				} catch(Exception a){
+					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+				}
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + Value;
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				try{
+					double val = Double.parseDouble(Value);
+					}
+					catch(Exception a){
+						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					}
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight] = Value;
+			}
+		}
+		else if (FormatKwd.startsWith("@b")){
+			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "bold";
+			if (SettingType.startsWith("@ font_family")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				try{
+					int val = Integer.parseInt(Value);
+				} catch(Exception a){
+					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+				}
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + Value;
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				try{
+					double val = Double.parseDouble(Value);
+					}
+					catch(Exception a){
+						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					}
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight] = Value;
+			}
+		}
+		else if (FormatKwd.startsWith("@image")){
+			if (SettingType.startsWith("@ font_family")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily] = Value;
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				try{
+					int val = Integer.parseInt(Value);
+				} catch(Exception a){
+					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+				}
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize] = Value;
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] + " " + Value;
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				try{
+					double val = Double.parseDouble(Value);
+					}
+					catch(Exception a){
+						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					}
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight] = Value;
+			}
+		}
+		else if (FormatKwd.startsWith("@title")){
+			if (SettingType.startsWith("@ font_family")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily] = Value;
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				try{
+					int val = Integer.parseInt(Value);
+				} catch(Exception a){
+					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+				}
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] + " " + Value;
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				try{
+					double val = Double.parseDouble(Value);
+					}
+					catch(Exception a){
+						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					}
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight] = Value;
+			}
+		}
+		else if (FormatKwd.startsWith("@subtitle")){
+			if (SettingType.startsWith("@ font_family")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily] = Value;
+			}
+			else if (SettingType.startsWith("@ font_color")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
+			}
+			else if (SettingType.startsWith("@ font_size")){
+				try{
+					int val = Integer.parseInt(Value);
+				} catch(Exception a){
+					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+				}
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize] = Value;
+			}
+			else if (SettingType.startsWith("@ font_weight")){
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + Value;
+			}
+			else if (SettingType.startsWith("@ font_lineheight")){
+				try{
+					double val = Double.parseDouble(Value);
+					}
+					catch(Exception a){
+						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					}
+				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight] = Value;
+			}
+		}
+		else if (FormatKwd.startsWith("@note")){
+			
+		}
+		else{
+			System.out.println("Format Keyword:" + FormatKwd + " ikke fundet");
+		}
+		
+		
+		
+		
+		
 		printIndents();
 		System.out.println("AShortident");
 		indent++;
@@ -954,6 +1152,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outAEndblock (AEndblock node)
 	{
+		SymbolTable.CloseScope();
 		SymbolTable.PrintSymbolTable();
 		indent--;
 	}
@@ -1034,7 +1233,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outAShortblock (AShortblock node)
 	{
-		
+		SymbolTable.CloseScope();
 		indent--;
 	}
 	public void outAShortidents (AShortblock node)
@@ -1102,7 +1301,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	
 	
-	public void InsetWeight(String Weight, int Type){
+/*	public void InsetWeight(String Weight, int Type){
 		
 		if(Type == 1){
 			NewTitleFontWeight =  NewTitleFontWeight + Weight;
@@ -1121,7 +1320,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		}
 		System.out.println("Type = "+ Type + " Weight = " + Weight);
 		
-	}
+	} */
 	
 public int CheckType1(AShortident node){
 		
@@ -1195,166 +1394,7 @@ public int CheckType1(AShortident node){
 		String FormatKwd = node.parent().parent().toString();
 		System.out.println(FormatKwd + " ÆANBWFAEFNÆÆAEF");  */
 		
-		String FormatKwd = node.parent().parent().toString();
-		System.out.println(FormatKwd);
-		String SettingType = node.getKwd().toString();
-		String Value = node.getShortidentv1().getFirst().toString().trim();
-		int Type = CheckType1(node);
-	//	System.out.println("Shortident Type = " + Type);
-	//	System.out.println(SettingType + " First");
-	//	System.out.println(Value + " Second");
 		
-	//	'@u' | '@b' | '@i' | '@apply' | '@image' | '@title' | '@subtitle' | '@note' ;
-		if (FormatKwd.startsWith("@setting")){
-			// bliver bearbejdet af Setting
-		}
-		else if (FormatKwd.startsWith("@apply")){
-			
-			if (SettingType.startsWith("@ font_family")){
-				NewTextFontFamily = Value;
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				NewTextFontColor = Value;
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				int val = Integer.parseInt(Value);
-				NewTextFontSize = val;
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				NewTextFontWeight = NewTextFontWeight + " " + Value;
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				double val = Double.parseDouble(Value);
-				NewTextFontLineheight = val;
-			}
-		}
-		else if (FormatKwd.startsWith("@i")){
-
-			InsetWeight("italic", Type);
-			
-			NewTextFontWeight =  NewTextFontWeight + "italic";
-			if (SettingType.startsWith("@ font_family")){
-				NewTextFontFamily = Value;
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				NewTextFontColor = Value;
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				int val = Integer.parseInt(Value);
-				NewTextFontSize = val;
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				NewTextFontWeight = NewTextFontWeight + " " + Value;
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				double val = Double.parseDouble(Value);
-				NewTextFontLineheight = val;
-			}
-		}
-		else if (FormatKwd.startsWith("@u")){
-			InsetWeight("underlined", Type);
-			
-			if (SettingType.startsWith("@ font_family")){
-				NewTextFontFamily = Value;
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				NewTextFontColor = Value;
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				int val = Integer.parseInt(Value);
-				NewTextFontSize = val;
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				NewTextFontWeight = NewTextFontWeight + " " + Value;
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				double val = Double.parseDouble(Value);
-				NewTextFontLineheight = val;
-			}
-		}
-		else if (FormatKwd.startsWith("@b")){
-			InsetWeight("bold", Type);
-			if (SettingType.startsWith("@ font_family")){
-				NewTextFontFamily = Value;
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				NewTextFontColor = Value;
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				int val = Integer.parseInt(Value);
-				NewTextFontSize = val;
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				NewTextFontWeight = NewTextFontWeight + " " + Value;
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				double val = Double.parseDouble(Value);
-				NewTextFontLineheight = val;
-			}
-		}
-		else if (FormatKwd.startsWith("@image")){
-			if (SettingType.startsWith("@ font_family")){
-				NewImageFontFamily = Value;
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				NewImageFontColor = Value;
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				int val = Integer.parseInt(Value);
-				NewImageFontSize = val;
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				NewImageFontWeight = NewImageFontWeight + " " + Value;
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				double val = Double.parseDouble(Value);
-				NewImageFontLineheight = val;
-			}
-		}
-		else if (FormatKwd.startsWith("@title")){
-			if (SettingType.startsWith("@ font_family")){
-				NewTitleFontFamily = Value;
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				NewTitleFontColor = Value;
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				int val = Integer.parseInt(Value);
-				NewTitleFontSize = val;
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				NewTitleFontWeight = NewTitleFontWeight + " " + Value;
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				double val = Double.parseDouble(Value);
-				NewTitleFontLineheight = val;
-			}
-		}
-		else if (FormatKwd.startsWith("@subtitle")){
-			if (SettingType.startsWith("@ font_family")){
-				NewSubtitleFontFamily = Value;
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				NewSubtitleFontColor = Value;
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				int val = Integer.parseInt(Value);
-				NewSubtitleFontSize = val;
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				NewSubtitleFontWeight = NewSubtitleFontWeight + " " + Value;
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				double val = Double.parseDouble(Value);
-				NewSubtitleFontLineheight = val;
-			}
-		}
-		else if (FormatKwd.startsWith("@note")){
-			
-		}
-		else{
-			System.out.println("Format Keyword:" + FormatKwd + " ikke fundet");
-		}
 		
 		
 		indent--;
