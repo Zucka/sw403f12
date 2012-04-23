@@ -39,6 +39,7 @@ public class SymbolTable {
 	static String UrlFontColor  = "black";
 	static String UrlFontLineheight  = "1.5";
 	static String UrlFontWeight = "";
+	static String UrlHyperlink = "";
 	
 
 	//Title Settings Lokal
@@ -71,7 +72,7 @@ public class SymbolTable {
 	static int NewUrlFontColor  = 43;
 	static int NewUrlFontLineheight  = 44;
 	static int NewUrlFontWeight = 45;
-	
+	static int NewUrlHyperlink = 46;
 	
 	
 	
@@ -87,15 +88,15 @@ public class SymbolTable {
 		
 	}
 	
-/*	//Ved 2 Weight parametere
-	public static void SymbolTableAdd(String Text, String Type, int FontSize, String FontFamily,String FontColor, double FontLineheight, String FontWeight, String FontWeight1){
-		String FontSizeString = Integer.toString(FontSize);
-		String FontLineheightString = Double.toString(FontLineheight);
-		String[] Values = {Text, Type, FontSizeString, FontFamily, FontColor, FontLineheightString, FontWeight, FontWeight1 };
+	public static void SymbolTableAdd(String Text, String Type, String FontSize, String FontFamily,String FontColor, String FontLineheight, String FontWeight, String Link){
+	//	String FontSizeString = Integer.toString(FontSize);
+	//	String FontLineheightString = Double.toString(FontLineheight);
+		String[] Values = {Text, Type, FontSize, FontFamily, FontColor, FontLineheight, FontWeight, Link};
 		SymbolTable1.put(GetCurrentSymbolNumber(), Values);
 		NextSymbolNumber();
+		
 	}
-	//Ved 3 Weight parametere
+/*	//Ved 3 Weight parametere
 	public static void SymbolTableAdd(String Text, String Type, int FontSize, String FontFamily,String FontColor, double FontLineheight, String FontWeight, String FontWeight1, String FontWeight2){
 		String FontSizeString = Integer.toString(FontSize);
 		String FontLineheightString = Double.toString(FontLineheight);
@@ -144,7 +145,7 @@ public class SymbolTable {
 		Scope[ScopeLevel][NewUrlFontColor]  = UrlFontColor;
 		Scope[ScopeLevel][NewUrlFontLineheight]  = UrlFontLineheight;
 		Scope[ScopeLevel][NewUrlFontWeight] = UrlFontWeight;
-		
+		Scope[ScopeLevel][NewUrlHyperlink] = UrlHyperlink;
 	}
 
 	
@@ -180,7 +181,7 @@ public class SymbolTable {
 		Scope[ScopeLevel][NewUrlFontColor]  = Scope[ScopeLevel-1][NewUrlFontColor];
 		Scope[ScopeLevel][NewUrlFontLineheight]  = Scope[ScopeLevel-1][NewUrlFontLineheight];
 		Scope[ScopeLevel][NewUrlFontWeight] = Scope[ScopeLevel-1][NewUrlFontWeight];
-		
+		Scope[ScopeLevel][NewUrlHyperlink] = Scope[ScopeLevel-1][NewUrlHyperlink];
 		
 	}
 	
@@ -195,9 +196,9 @@ public class SymbolTable {
 	public static void PrintSymbolTable(){
 		int i= 0;
 		int j = GetCurrentSymbolNumber();
-		System.out.println(" _________________________________________________________________________________________________");
-		System.out.println("| Symbolnr :: Text :: Type :: FontSize :: FontFamily :: FontColor :: FontLineheight :: FontWeight |");
-		System.out.println("|-------------------------------------------------------------------------------------------------|");
+		System.out.println(" _________________________________________________________________________________________________________");
+		System.out.println("| Symbolnr :: Text :: Type :: FontSize :: FontFamily :: FontColor :: FontLineheight :: FontWeight :: URL |");
+		System.out.println("|--------------------------------------------------------------------------------------------------------|");
 		while (i<j){
 			String[] TableLine = SymbolTable1.get(i);
 			int length = TableLine.length;
