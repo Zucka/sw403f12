@@ -13,32 +13,30 @@ Requirements for the NISSE parser:
 \newpage
 \section{CFG}
 \begin{lstlisting}[frame=single, caption={CFG of NISSE in EBNF.}, label={lst:ebnf}, language=NISSE]
-SS            = {Blocks} ;
-Blocks        = BeginBlock {Lines} EndBlock 
-              | SettingBlock ;
-Lines         = SettingBlock 
-              | Numeration
-              | Itemlist 
-              | Plains eol ;
-Numeration    = nlist (Plains eol | Numeration) ;
-Itemlist      = blist (Plains eol  | Itemlist) ;
-BeginBlock    = beginkwd BEBlock eol ;
-EndBlock      = endkwd BEBlock eol+ ;
-BEBlock       = lcurly [space] char [space] [pipe char [space]] rcurly ;
-SettingBlock  = settingkwd lcurly ShortIdent [space] pipe [space] char [space] rcurly eol;
-Plains        = (ShortBlock | CharAll)+ ;
-ShortBlock    = format_kwd lcurly [space] [ShortIdents] Plains rcurly ;
-ShortIdents   = {ShortIdent}+ pipe ;
-ShortIdent    = Kwd [space] colon [space] (char | digit) [space] ;
-Kwd           = atsign char ;
-CharAll       = colon 
-              | digit 
-              | scolon 
-              | percent 
-              | fslash 
-              | bslash 
-              | char 
-              | space ;
+SS              = Blocks ;
+Blocks          = BeginBlock {Lines} Endblock | SettingBlock ;
+Lines           = SettingBlock | Numeration | Itemlist | Plains eol ;
+Numeration      = nlist (Plains eol | Numeration) ;
+Itemlist        = blist (Plains eol | Itemlist) ;
+BeginBlock      = beginkwd {space} BEBlock eol ;
+EndBlock        = endkwd {space} BEBlock eol ;
+BEBlock         = lcurly {space} char {space} [BEBlockv1] rcurly ;
+BEBlockv1       = pipe {space} char {space}  ;
+SettingBlock    = settingkwd lcurly ShortIdent {space} pipe {space} char {space} rcurly {space} eol ;
+Plains          = (ShortBlock | CharAll),{(ShortBlock | CharAll)} ;
+ShortBlock      = format_kwd lcurly {space} [ShortIdents] Plains rcurly ;
+ShortIdents     = ShortIdent pipe ;
+ShortIdent      = Kwd {space} colon {space} ShortIdentv1,{ShortIdentv1} {space} ;
+ShortIdentv1    = char | digit | Float | colon | fslash | dot ;
+Kwd             = atsign char | url ;
+CharAll         = colon | digit | scolon | percent | fslash | bslash | exclamation | dot | comma | char | space ;
+Float           = digit dot digit ; 
+eol             = \n|\r\n ;
+char            = ? [a-ÂA-≈_\.,]+ ? ;
+digit           = ? [0-9]+ ? ;
+dot             = '.' ;
+commav1         = ',' ;
+eolv1           = \n | \r\n ;
 \end{lstlisting}
 Listing \ref{lst:ebnf} shows the CFG for NISSE in Extended Backus Naur Form, henceforth EBNF. It should be read as follow:
 \begin{center}
