@@ -640,38 +640,14 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		System.out.println("AShortblockPlainsv1");
 		indent++;
 	}
+	
 	public void inACharallPlainsv1 (ACharallPlainsv1 node)
 	{
 		String Text = node.toString();
 		int j = Text.length();
 		Text = Text.substring(0, j - 1);
 		
-		//System.out.println("CharAll Text = " + Text);
 		String ParentParent = node.parent().parent().toString();
-		//System.out.println("CharAll ParentParent = " +ParentParent);
-		String ParentParentParent = node.parent().parent().parent().toString();
-		//System.out.println("CharAll ParentParentParent = " +ParentParentParent);
-		//String ParentParentParentParent = node.parent().parent().parent().parent().toString();
-		//System.out.println("CharAll ParentParentParentParent = " +ParentParentParentParent);
-		String ParentParentParentParentParent = node.parent().parent().parent().parent().parent().toString();
-		//System.out.println("CharAll ParentParentParentParentParent = " +ParentParentParentParentParent);
-		
-		
-		
-		
-		/*String Parent = node.parent().toString();
-		System.out.println(Parent);
-		LinkedList<PPlainsv1> Test = node.getPlainsv1();
-		Object[] a = Test.toArray();
-		int j = Test.size();
-		int i = 0;
-
-			String Plain = a[i].toString();
-			int kj = Plain.length();
-			Plain = Plain.substring(0, kj - 1);
-			//System.out.println(Plain);
-			*/
-
 			if (ParentParent.startsWith("@title")){
 				SymbolTable.SymbolTableAdd(Text, "title", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]);
 			}
@@ -685,6 +661,8 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				
 			//} 
 			else {
+				String ParentParentParent = node.parent().parent().parent().toString();
+				String ParentParentParentParentParent = node.parent().parent().parent().parent().parent().toString();
 				if (ParentParentParent.startsWith("@begin")){
 					SymbolTable.SymbolTableAdd(Text, "text", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight]);
 				}
