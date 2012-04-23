@@ -5,10 +5,9 @@ import java.util.Hashtable;
 
 public class SymbolTable {
 	static int Counter = 0;
-	static String[][] Scope;
+	static String[][] Scope = new String[6][100];
 	static int ScopeLevel = 0;
 	static int OuterMostScope = 0;
-	 //Image Settings
 
 	//Title Settings
 	static String TitleFontSize = "36";
@@ -79,10 +78,10 @@ public class SymbolTable {
 	static Hashtable<Integer, String[]> SymbolTable1 = new Hashtable<Integer, String[]>();
 	
 	//Ved 1 Weight parametere
-	public static void SymbolTableAdd(String Text, String Type, int FontSize, String FontFamily,String FontColor, double FontLineheight, String FontWeight){
-		String FontSizeString = Integer.toString(FontSize);
-		String FontLineheightString = Double.toString(FontLineheight);
-		String[] Values = {Text, Type, FontSizeString, FontFamily, FontColor, FontLineheightString, FontWeight};
+	public static void SymbolTableAdd(String Text, String Type, String FontSize, String FontFamily,String FontColor, String FontLineheight, String FontWeight){
+	//	String FontSizeString = Integer.toString(FontSize);
+	//	String FontLineheightString = Double.toString(FontLineheight);
+		String[] Values = {Text, Type, FontSize, FontFamily, FontColor, FontLineheight, FontWeight};
 		SymbolTable1.put(GetCurrentSymbolNumber(), Values);
 		NextSymbolNumber();
 		
@@ -145,8 +144,6 @@ public class SymbolTable {
 		Scope[ScopeLevel][NewUrlFontColor]  = UrlFontColor;
 		Scope[ScopeLevel][NewUrlFontLineheight]  = UrlFontLineheight;
 		Scope[ScopeLevel][NewUrlFontWeight] = UrlFontWeight;
-		
-		
 		
 	}
 
