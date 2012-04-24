@@ -1,35 +1,48 @@
 \chapter{Lexer}
+In this chapter the requirements of the lexer for NISSE will be presented, along with a listing of the tokens for NISSE.
+\section{Requirements}
+Requirements for the lexer:
+\begin{itemize}
+		\item The lexer should be able to take any plain text file as input.
+		\item The lexer should be able to recognize the input and make tokens according to the token list for NISSE.
+		\item The lexer should be able to output meaningful error messages when it cannot match the input to any token.
+		\item The lexer should be able to output the tokens so that the parser can use them.
+\end{itemize}
 
-In order to create the syntax in chapter \ref{SSyntax}, tokens has to be identified for later use.
+\newpage
+\section{Token List}
+In order to create the syntax in chapter \ref{SSyntax}, tokens have to be identified for later use.
 \\ \\
-The tokens for the language is as follows:
+The tokens for the language are as follows:
 
 \begin{lstlisting}[frame=single]
-format_kwd  = '@u' | '@b' | '@i' | '@apply' ;
-space       = [\\s]+ ;
-settingkwd  = '@setting' ;
-beginkwd    = '@begin' ;
-endkwd      = '@end' ;
-atsign      = [@] ;
-lcurly      = [\{] ;
-rcurly      = [\}] ;
-pipe        = [\|] ;
-fslash      = [/] ;
-bslash      = [\\] ;
-colon       = [:] ;
-scolon      = [;] ;
-blist       = [\*] ;
-nlist       = [#] ;
-percent     = [%] ;
-eol         = [\\n |\\r\\n] ;
-char        = ? [a-zA-Z \_ .,]+ ? ;
-digit       = ? [ 0-9 ]+ ? ;
+format_kwd      = '@u' | '@b' | '@i' | '@apply' | '@image' | '@title' | '@subtitle' | '@note' ;
+url             = '@url' ;
+space           =  ' ' ;
+settingkwd      = '@setting' ;
+beginkwd        = '@begin' ;
+endkwd          = '@end' ;
+atsign          = '@' ;
+lcurly          = '{' ;
+rcurly          = '}' ;
+pipe            = '|' ;
+fslash          = '/' ;
+bslash          = '\' ;
+colon           = ':' ;
+scolon          = ';' ;
+blist           = '*' ;
+nlist           = '#' ;
+percent         = 'percent' ;
+exclamation     = '!' ;
+eol             = eolv1 , {eolv1} ;
+dot             = dotv1 , {;
+comma           = commav1,{commav1} ;
 \end{lstlisting}
 
-\noindent{The abnormal in this token list is the \texttt{``settingkwd’’}, \texttt{``begindkwd’’} and \texttt{``endkwd’’} (kwd is short for: keyword). These keywords are explicit, because they are the keywords that differs from other keywords.}
+\noindent{The abnormal in this token list is \texttt{``settingkwd''}, \texttt{``begindkwd''} and \texttt{``endkwd''}, (kwd is short for: keyword). These keywords are explicit, because they are the keywords that differ from other keywords.}
 \\ \\
-The reason each special keyword has it’s own token, is to easily see the difference between the special tokens and the normal ones, without the need to check that a given token in the syntax analyser it is the right token.
+The reason each special keyword has its own token, is to easily see the difference between the special tokens and the normal ones, without the need to check that a given token in the syntax analyser is the right token.
 \\ \\
-\texttt{``Char’’} is used whenever characters needs to used in the code. Char is also used for plain text, which require it to have the symbols underscore, backlash, comma and period. \\
-\texttt{``Digit’’} is used whenever numbers need to be used in the code. \\
+\texttt{``Char''} is used whenever characters needs to be used in the code. Char is also used for plain text, which requires it to have the symbols' underscore, backlash, comma and period. \\
+\texttt{``Digit''} is used whenever numbers need to be used in the code. \\
 When numbers or characters are expected, then one such has to occur at least once.

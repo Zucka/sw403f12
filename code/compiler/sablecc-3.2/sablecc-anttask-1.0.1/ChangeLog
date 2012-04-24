@@ -1,0 +1,51 @@
+This file contains the history of changes.
+
+Time is shown in UTC.
+
+2001-01-30 02:56  Etienne M. Gagnon <egagnon@j-meg.com>
+
+	* build.xml:
+	
+	Changed package name and updated version.
+
+2000-12-22 16:15  Etienne M. Gagnon <egagnon@j-meg.com>
+
+	* AUTHORS, COPYING-LESSER, LICENSE, README, build.xml,
+	src/org/apache/tools/ant/BuildException.java,
+	src/org/apache/tools/ant/DirectoryScanner.java,
+	src/org/apache/tools/ant/FileScanner.java,
+	src/org/apache/tools/ant/Project.java,
+	src/org/apache/tools/ant/Task.java,
+	src/org/apache/tools/ant/taskdefs/MatchingTask.java,
+	src/org/sablecc/ant/taskdef/Sablecc.java,
+	src/org/sablecc/sablecc/SableCC.java:
+	
+	Made a new build.xml file, based on SableCC's.	Addedd missing
+	copyright and license information.
+
+2000-12-16 03:06  Mariusz Nowostawski <mariusz@marni.otago.ac.nz>
+
+	* build.xml:
+	
+	Removing build dependency on ant.jar and sablecc.jar.  Changing
+	name to sablecctask (thus sablecctask.jar is being built).
+
+2000-12-15 17:32  Etienne M. Gagnon <egagnon@j-meg.com>
+
+	* src/org/: apache/tools/ant/BuildException.java,
+	apache/tools/ant/DirectoryScanner.java,
+	apache/tools/ant/FileScanner.java, apache/tools/ant/Project.java,
+	apache/tools/ant/Task.java,
+	apache/tools/ant/taskdefs/MatchingTask.java,
+	sablecc/sablecc/SableCC.java:
+	
+	Added empty-shell classes necessary at build time.
+
+2000-12-15 03:51  Mariusz Nowostawski <mariusz@marni.otago.ac.nz>
+
+	* build.xml, doc/sablecc.html, etc/manifest,
+	src/org/sablecc/ant/taskdef/Sablecc.java:
+	
+	Initial revision of sablecc task for ANT.  Tested with and designed
+	for ANT 1.3.
+

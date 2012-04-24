@@ -17,13 +17,21 @@
 	\tableofcontents	
 	\addcontentsline{toc}{chapter}{Table of Contents}
 	\newpage
+	\input{text/introduction.tex}
 	\input{text/problemstatement.tex}
 	\input{text/problemformulation.tex}
+	
+	% Part Analysis
+	\part{Analysis}
+	\input{text/analysis/beamer.tex}
 	\input{text/analysis/language_design.tex}
 	\input{text/analysis/requirements.tex}
 	\input{text/analysis/typefast.tex}
 	\input{text/analysis/parser_strategy.tex}
+	\input{text/solution/tool.tex}
 	
+	% Part Solution
+	\part{Solution}
 	\input{text/solution/solution_introduction.tex}
 	\input{text/solution/syntax.tex}
 	\input{text/solution/lexer/lexer.tex}

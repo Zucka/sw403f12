@@ -1,0 +1,12 @@
+[FONT_PARAMETERS]
+font_color:COLOR
+font_bg_color:COLOR
+font_family:FONT
+font_size:INT
+font_lineheight:LINEHEIGHT
+font_weight:DOTS
+
+[IMAGE_PARAMETERS]
+height: NUMBER_OF_PIXELSpx
+width: NUMBER_OF_PIXELSpx
+scale: n.n%

@@ -1,0 +1,65 @@
+Package test.nisse;
+
+Tokens
+
+       format_kwd  = '@u' | '@b' | '@i' | '@apply' ;
+       space       = (' ');
+       settingkwd  = '@setting' ;
+       beginkwd    = '@begin' ;
+       endkwd      = '@end' ;
+       atsign      = '@' ;
+       lcurly      = '\{' ;
+       rcurly      = '\}' ;
+       pipe        = '\|' ;
+       fslash      = '/' ;
+       bslash      = '\\' ;
+       colon       = ':' ;
+       scolon      = ';' ;
+       blist       = '\*' ;
+       nlist       = '#' ;
+       percent     = '%' ;
+       eol         = (13 | 10);
+       char        = ['a' .. 'z'] | ['A' .. 'Z'] | '.' | ',' ;
+       digit       = ['0' .. '9']+ ;
+
+
+
+
+Productions
+
+       nisse         = {blocks};
+       blocks        = beginblock lines endblock 
+                     | settingblock;
+       lines         = {linesv1};
+       linesv1       = settingblock 
+                     | numeration
+                     | itemlist 
+                     | plains eol;
+       numeration    = nlist numerationv1;
+       numerationv1  = plains eol | numeration;
+       itemlist      = blist itemlistv1;
+       itemlistv1    = plains eol  | itemlist;
+       beginblock    = beginkwd beblock eol ;
+       endblock      = endkwd beblock eol+ ;
+       beblock       = lcurly spaces char spaces beblockv1 rcurly ;
+       beblockv1     = {beblockv2};
+       beblockv2     = pipe char spaces;
+       settingblock  = settingkwd lcurly shortident spaces pipe spaces char spaces rcurly eol;
+       plains        = plain+;
+       plain         = shortblock | charall;
+       shortblock    = format_kwd lcurly spaces shortidents plains rcurly ;
+       shortidents   = {shortidentsv1};
+       shortidentsv1 = {shortident} pipe;
+       shortident    = shortidentv1+;
+       shortidentv1  = kwd spaces colon spaces shortidentv2 spaces ;
+       shortidentv2  = char | digit;
+       kwd           = atsign char ;
+       charall       = colon 
+                     | digit 
+                     | scolon 
+                     | percent 
+                     | fslash 
+                     | bslash 
+                     | char 
+                     | space ;
+       spaces        = {space};

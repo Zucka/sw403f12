@@ -1,0 +1,141 @@
+\chapter{Appendix}
+\section{kfG}
+\label{AkfG}
+This is the settings used in the program kfG Edit, to be able to write AST examples of the defined language.
+\begin{lstlisting}[frame=single]
+SS           -> Blocks 
+Blocks       -> Block Blocks | EPSILON 
+Block        -> BeginBlock Lines EndBlock | SettingBlock
+Lines        -> Line Lines | SettingBlock Lines | EPSILON 
+Line         -> List | Plains eol
+List         -> Numeration | Itemlist 
+Numeration   -> nlist Numv1 
+Numv1        -> Plains eol | Numeration 
+Itemlist     -> blist Itemv1 
+Itemv1       -> Plains eol | Itemlist 
+BeginBlock   -> beginkwd BEBlock eol
+EndBlock     -> endkwd BEBlock Eols
+BEBlock      -> lcurly BEBlockv1 pipe Ident Space  rcurly
+BEBlockv1    -> Ident Space | EPSILON
+SettingBlock -> settingkwd lcurly Kwd colon Settingv1 Space pipe String rcurly eol
+Settingv1    -> Ident| Number
+Plains       -> Plain Plains | EPSILON
+Plain        -> ShortBlock | CharSpace | Number
+ShortBlock   -> Kwd lcurly ShortIdents pipe Plains rcurly
+ShortIdents  -> ShortIdent | EPSILON 
+ShortIdent   -> Kwd colon Settingv1 Space ShortIdents
+String       -> CharSpace Stringv1
+Stringv1     -> String  | EPSILON
+CharSpace    -> char | pace
+Ident        -> char Identv1
+Identv1      -> Ident | EPSILON
+Number       -> digit Numberv1
+Numberv1     -> Number | EPSILON
+Kwd          -> atsign Ident
+Space        -> pace Space | EPSILON
+CharAll      -> colon | char | digit | nlist | blist | scolon | percent | fslash | bslash
+Eols         -> eol Eolv1
+Eolv1        -> Eols | EPSILON
+
+
+
+pace       -> ' ' 
+settingkwd -> '@setting'
+beginkwd   -> '@begin'
+endkwd     -> '@end' 
+atsign     -> @
+lcurly     -> { 
+rcurly     -> } 
+seperator  -> <> 
+pipe       -> '|' 
+fslash     -> /
+bslash     -> \
+colon      -> : 
+scolon     -> ; 
+blist      -> * 
+nlist      -> # 
+percent    -> % 
+eol        -> \\n | \\r\\n 
+char       -> a|b|...|z|A|B|...|Z| \_ |.|,
+digit      -> 0|1|...|9
+\end{lstlisting}
+
+
+\section{CFG(SableCC)}
+\label{SableCC}
+This is the settings used in the program kfG Edit, to be able to write AST examples of the defined language.
+\begin{lstlisting}[frame=single]
+charv1    = ['a' .. 'z'] | ['A' .. 'Z'] | 'æ' | 'ø' | 'å' | 'Æ' | 'Ø' | 'Å' | '_';
+digitv1   = ['0' .. '9'] ;
+dot         = . ;
+comma       = , ;
+eolv1       = 13 10 | 13 | 10;
+format_kwd  = @u | @b | @i | @apply | @image | @title | @subtitle | @note ;
+url         = @url ;
+space       =  ' ' ;
+settingkwd  = @setting ;
+beginkwd    = @begin ;
+endkwd      = @end ;
+atsign      = @ ;
+lcurly      = { ;
+rcurly      = } ;
+pipe        = | ;
+fslash      = / ;
+bslash      = \ ;
+colon       = : ;
+scolon      = ; ;
+blist       = * ;
+nlist       = # ;
+percent     = percent ;
+exclamation = ! ;
+eol         = eolv1+ ;
+char        = charv1+ ;
+digit       = digitv1+ ;
+float       = digitv1+ dot digitv1+ ;
+dot         = dot+;
+comma       = comma+ ;
+ 
+nisse         = blocks* ;
+blocks        = {block} beginblock lines* endblock 
+              | {setting} settingblock ;
+lines         = {setting} settingblock 
+              | {numeration} numeration
+              | {itemlist} itemlist 
+              | {plaintext} plains eol ;
+numeration    = nlist numerationv1 ;
+numerationv1  = {plaintext} plains eol 
+              | {numeration} numeration;
+itemlist      = blist itemlistv1 ;
+itemlistv1    = {plaintext} plains eol  
+              | {itemlist} itemlist;
+beginblock    = beginkwd space* beblock eol ;
+endblock      = endkwd space* beblock eol ;
+beblock       = lcurly [first]:space* char [second]:space* beblockv1? rcurly ;
+beblockv1     = pipe [first]:space* char [second]:space*;
+settingblock  = settingkwd lcurly shortident pipe [second]:space* char [third]:space* rcurly space* eol;
+plains        = plainsv1+;
+plainsv1      = {shortblock} shortblock 
+              | {charall} charall;
+shortblock    = $format_kwd$ space* lcurly shortidents? plains rcurly ;
+shortidents   = shortident+ pipe ;
+shortident    = $kwd space*$ colon [first]:space* shortidentv1+ [second]:space*;
+shortidentv1  = {char} char 
+              | {digit} digit
+              | {float} float
+              | {colon} colon
+              | {fslash} fslash
+              | {dot} dot;
+kwd           = {at} atsign char
+              | {url} url ;
+charall       = {colon} colon
+              | {digit} digit
+              | {semicolon} scolon
+              | {percent} percent
+              | {forwardslash} fslash
+              | {backslash} bslash
+              | {exclamation} exclamation
+              | {dot} dot 
+              | {comma} comma
+              | {char} char
+              | {space} space ;
+\end{lstlisting}
