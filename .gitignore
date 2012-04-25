@@ -6,3 +6,4 @@ draft.pdf
 *.bbl
 *.toc
 *.synctex.gz
+*.class
