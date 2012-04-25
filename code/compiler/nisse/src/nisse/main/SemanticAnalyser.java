@@ -671,6 +671,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		}
 		else if (Parent.startsWith("@title")){
 			SymbolTable.SymbolTableAdd(Text, "title", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]);
+			//System.out.println(Text);
 			return 1;
 		}
 		else if (Parent.startsWith("@subtitle")){
@@ -700,68 +701,117 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		
 		int Check = CheckThanAdd(Text, "empty" , Parentx2);
 		
-		//System.out.println("Parent = " + ParentParent);
-		
 		if (Check == 1){
 		}
 		else {
 			String Parentx3 = node.parent().parent().parent().toString();
-			Check = CheckThanAdd(Text, Parentx3,  Parent);
+			Check = CheckThanAdd(Text, "empty",  Parentx3);
 			if (Check == 1){
 			}
 			else {
 				String Parentx4 = node.parent().parent().parent().parent().toString();
-				Check = CheckThanAdd(Text, Parentx4, Parentx2);
+				Check = CheckThanAdd(Text, "empty" , Parentx4);
 				if (Check == 1){
 				}
 				else {
 					String Parentx5 = node.parent().parent().parent().parent().parent().toString();
-					Check = CheckThanAdd(Text, Parentx5, Parentx3);
+					Check = CheckThanAdd(Text, Parentx5, Parent);
 					if (Check == 1){
 					}
 					else {
 						String Parentx6 = node.parent().parent().parent().parent().parent().parent().toString();
-						Check = CheckThanAdd(Text, Parentx6, Parentx4);
+						Check = CheckThanAdd(Text, Parentx6, Parentx2);
 						if (Check == 1){
 						}
 						else {
 							String Parentx7 = node.parent().parent().parent().parent().parent().parent().parent().toString();
-							Check = CheckThanAdd(Text, Parentx7, Parentx5);
+							Check = CheckThanAdd(Text, Parentx7, Parentx3);
 							if (Check == 1){
 							}
 							else {
 								String Parentx8 = node.parent().parent().parent().parent().parent().parent().parent().parent().toString();
-								Check = CheckThanAdd(Text, Parentx8, Parentx6);
+								Check = CheckThanAdd(Text, Parentx8, Parentx4);
 								if (Check == 1){
 								}
 								else {
 									String Parentx9 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-									Check = CheckThanAdd(Text, Parentx9, Parentx7);
+									Check = CheckThanAdd(Text, Parentx9, Parentx5);
 									if (Check == 1){
 									}
 									else {
 										String Parentx10 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-										Check = CheckThanAdd(Text, Parentx10, Parentx8);
+										Check = CheckThanAdd(Text, Parentx10, Parentx6);
 										if (Check == 1){
 										}
 										else {
 											String Parentx11 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-											Check = CheckThanAdd(Text, Parentx11, Parentx9);
+											Check = CheckThanAdd(Text, Parentx11, Parentx7);
 											if (Check == 1){
 											}
 											else {
 												String Parentx12 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-												Check = CheckThanAdd(Text, Parentx12, Parentx10);
+												Check = CheckThanAdd(Text, Parentx12, Parentx8);
 												if (Check == 1){
+													
 												}
 												else {
 													String Parentx13 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-													Check = CheckThanAdd(Text, Parentx13, Parentx11);
+													Check = CheckThanAdd(Text, Parentx13, Parentx9);
+													
 													if (Check == 1){
+														
 													}
 													else {
-														System.out.println("Text type could not be found");
-														System.out.println("Text " + Text);
+														 String Parentx14 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+														Check = CheckThanAdd(Text, Parentx14, Parentx10);
+														
+														if (Check == 1){
+															
+														}
+														else {
+															String Parentx15 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+															Check = CheckThanAdd(Text, Parentx15, Parentx11);
+															
+															if (Check == 1){
+															}
+															else {
+																String Parentx16 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+																Check = CheckThanAdd(Text, Parentx16, Parentx12);
+																//System.out.println(Parentx16);
+																//System.out.println(Parentx12);
+																//System.out.println(Text);
+																if (Check == 1){
+																}
+																else {
+																	/*String Parentx17 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+																	Check = CheckThanAdd(Text, Parentx17, Parentx15);
+																	if (Check == 1){
+																	}
+																	else {
+																		String Parentx18 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+																		Check = CheckThanAdd(Text, Parentx18, Parentx16);
+																		if (Check == 1){
+																		}
+																		else {
+																			String Parentx19 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+																			Check = CheckThanAdd(Text, Parentx19, Parentx17);
+																			if (Check == 1){
+																			}
+																			else {
+																				String Parentx20 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+																				Check = CheckThanAdd(Text, Parentx20, Parentx18);
+																				if (Check == 1){
+																				}
+																				else { */
+																				System.out.println("Text type could not be found");
+																				System.out.println("Text " + Text);
+																				/*}
+																			}
+																		}
+																	} */
+																}
+															} 
+														}
 													}
 												}
 											}
@@ -1127,11 +1177,11 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		}
 		}
 		else if (FormatKwd.startsWith("@b")){
-			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "bold";
-			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + "bold";
-			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + "bold";
-			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] + " " + "bold";
-			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] + " " + "bold";
+			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "b";
+			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + "b";
+			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + "b";
+			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] + " " + "b";
+			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] + " " + "b";
 
 			try{
 				String SettingType = node.getShortidents().toString();
