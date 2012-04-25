@@ -196,9 +196,9 @@ public class SymbolTable {
 	public static void PrintSymbolTable(){
 		int i= 0;
 		int j = GetCurrentSymbolNumber();
-		System.out.println(" _________________________________________________________________________________________________________");
-		System.out.println("| Symbolnr :: Text :: Type :: FontSize :: FontFamily :: FontColor :: FontLineheight :: FontWeight :: URL |");
-		System.out.println("|--------------------------------------------------------------------------------------------------------|");
+		System.out.println("_______________________________________________________________________________________________________________________");
+		System.out.println("| Symnr ::         Text          ::   Type    :: F_Size    :: F_Family  :: F_Color   ::  F_LH     :: F_Weight  :: URL |");
+		System.out.println("|---------------------------------------------------------------------------------------------------------------------|");
 		while (i<j){
 			String[] TableLine = SymbolTable1.get(i);
 			int length = TableLine.length;
@@ -209,11 +209,11 @@ public class SymbolTable {
 			while (k < length){
 				
 				if (h == true){
-					System.out.print( i + " :: " + TableLine[k]);
+					System.out.printf( "%5d :: %20s ", i , TableLine[k]);
 					h = false;
 				}
 				else{
-					System.out.print( " :: " + TableLine[k]);
+					System.out.printf( " :: %8s ", TableLine[k]);
 				}
 				k++;
 			}
@@ -222,6 +222,8 @@ public class SymbolTable {
 			System.out.print("\n");
 			i++;
 		}
+		System.out.println("_______________________________________________________________________________________________________________________");
+		
 		
 	}
 }
