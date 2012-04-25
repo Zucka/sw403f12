@@ -5,7 +5,7 @@ import java.util.Hashtable;
 
 public class SymbolTable {
 	static int Counter = 0;
-	static String[][] Scope = new String[6][100];
+	static String[][] Scope = new String[10][100];
 	static int ScopeLevel = 0;
 	static int OuterMostScope = 0;
 
@@ -15,31 +15,35 @@ public class SymbolTable {
 	static String TitleFontColor  = "black";
 	static String TitleFontLineheight  = "1.5";
 	static String TitleFontWeight = "";
+//	static String TitleHyperlink = "";
 	//Subtitle Settings
 	static String SubtitleFontSize = "20";
 	static String SubtitleFontFamily = "arial";
 	static String SubtitleFontColor  = "black";
 	static String SubtitleFontLineheight  = "1.5";
 	static String SubtitleFontWeight = "";
+//	static String SubtitleHyperlink = "";
 	//Text Settings
 	static String TextFontSize = "16";
 	static String TextFontFamily = "arial";
 	static String TextFontColor  = "black";
 	static String TextFontLineheight  = "1.5";
 	static String TextFontWeight = "";
+//	static String TextHyperlink = "";
 	//Image Settings
 	static String ImageFontSize = "15";
 	static String ImageFontFamily = "arial";
 	static String ImageFontColor  = "black";
 	static String ImageFontLineheight  = "1.5";
 	static String ImageFontWeight = "";
+//	static String ImageHyperlink = "";
 	//Url Settings
 	static String UrlFontSize = "16";
 	static String UrlFontFamily = "arial";
 	static String UrlFontColor  = "black";
 	static String UrlFontLineheight  = "1.5";
 	static String UrlFontWeight = "";
-	static String UrlHyperlink = "";
+	static String UrlHyperlink = ""; 
 	
 
 	//Title Settings Lokal
@@ -48,31 +52,35 @@ public class SymbolTable {
 	static int NewTitleFontColor  = 3;
 	static int NewTitleFontLineheight  = 4;
 	static int NewTitleFontWeight = 5;
+//	static int NewTitleHyperlink = 6;
 	//Subtitle Settings Lokal
 	static int NewSubtitleFontSize = 11;
 	static int NewSubtitleFontFamily = 12;
 	static int NewSubtitleFontColor  = 13;
 	static int NewSubtitleFontLineheight  = 14;
 	static int NewSubtitleFontWeight = 15;
+//	static int NewSubtitleHyperlink = 16;
 	//Text Settings Lokal
 	static int NewTextFontSize = 21;
 	static int NewTextFontFamily = 22;
 	static int NewTextFontColor  = 23;
 	static int NewTextFontLineheight  = 24;
 	static int NewTextFontWeight = 25;
+//	static int NewTextHyperlink = 26;
 	//Image Settings
 	static int NewImageFontSize = 31;
 	static int NewImageFontFamily = 32;
 	static int NewImageFontColor  = 33;
 	static int NewImageFontLineheight  = 34;
 	static int NewImageFontWeight = 35;
+//	static int NewImageHyperlink = 46;
 	//URL Settings Lokal
 	static int NewUrlFontSize = 41;
 	static int NewUrlFontFamily = 42;
 	static int NewUrlFontColor  = 43;
 	static int NewUrlFontLineheight  = 44;
 	static int NewUrlFontWeight = 45;
-	static int NewUrlHyperlink = 46;
+	static int NewUrlHyperlink = 46;  
 	
 	
 	
@@ -121,31 +129,35 @@ public class SymbolTable {
 		Scope[ScopeLevel][NewTitleFontColor]  = TitleFontColor;
 		Scope[ScopeLevel][NewTitleFontLineheight]  = TitleFontLineheight;
 		Scope[ScopeLevel][NewTitleFontWeight] =  TitleFontWeight;
+//		Scope[ScopeLevel][NewTitleHyperlink] =  TitleHyperlink;
 		//Subtitle Settings Lokal
 		Scope[ScopeLevel][NewSubtitleFontSize] = SubtitleFontSize;
 		Scope[ScopeLevel][NewSubtitleFontFamily] = SubtitleFontFamily;
 		Scope[ScopeLevel][NewSubtitleFontColor]  = SubtitleFontColor;
 		Scope[ScopeLevel][NewSubtitleFontLineheight]  = SubtitleFontLineheight;
 		Scope[ScopeLevel][NewSubtitleFontWeight] = SubtitleFontWeight;
+//		Scope[ScopeLevel][NewSubtitleHyperlink] = SubtitleHyperlink;
 		//Text Settings Lokal
 		Scope[ScopeLevel][NewTextFontSize] = TextFontSize;
 		Scope[ScopeLevel][NewTextFontFamily] = TextFontFamily;
 		Scope[ScopeLevel][NewTextFontColor]  = TextFontColor;
 		Scope[ScopeLevel][NewTextFontLineheight]  = TextFontLineheight;
 		Scope[ScopeLevel][NewTextFontWeight] = TextFontWeight;
+//		Scope[ScopeLevel][NewTextHyperlink] = TextHyperlink;
 		//Image Settings
 		Scope[ScopeLevel][NewImageFontSize] = ImageFontSize;
 		Scope[ScopeLevel][NewImageFontFamily] = ImageFontFamily;
 		Scope[ScopeLevel][NewImageFontColor]  = ImageFontColor;
 		Scope[ScopeLevel][NewImageFontLineheight]  = ImageFontLineheight;
 		Scope[ScopeLevel][NewImageFontWeight] = ImageFontWeight;
+//		Scope[ScopeLevel][NewImageHyperlink] = ImageHyperlink;
 		//URL Settings Lokal
 		Scope[ScopeLevel][NewUrlFontSize] = UrlFontSize;
 		Scope[ScopeLevel][NewUrlFontFamily] = UrlFontFamily;
 		Scope[ScopeLevel][NewUrlFontColor]  = UrlFontColor;
 		Scope[ScopeLevel][NewUrlFontLineheight]  = UrlFontLineheight;
 		Scope[ScopeLevel][NewUrlFontWeight] = UrlFontWeight;
-		Scope[ScopeLevel][NewUrlHyperlink] = UrlHyperlink;
+		Scope[ScopeLevel][NewUrlHyperlink] = UrlHyperlink; 
 	}
 
 	
@@ -157,31 +169,35 @@ public class SymbolTable {
 		Scope[ScopeLevel][NewTitleFontColor]  = Scope[ScopeLevel-1][NewTitleFontColor];
 		Scope[ScopeLevel][NewTitleFontLineheight]  = Scope[ScopeLevel-1][NewTitleFontLineheight];
 		Scope[ScopeLevel][NewTitleFontWeight] = Scope[ScopeLevel-1][NewTitleFontWeight];
+//		Scope[ScopeLevel][NewTitleHyperlink] = Scope[ScopeLevel-1][NewTitleHyperlink];
 		//Subtitle Settings Lokal
 		Scope[ScopeLevel][NewSubtitleFontSize] = Scope[ScopeLevel-1][NewSubtitleFontSize];
 		Scope[ScopeLevel][NewSubtitleFontFamily] = Scope[ScopeLevel-1][NewSubtitleFontFamily];
 		Scope[ScopeLevel][NewSubtitleFontColor]  = Scope[ScopeLevel-1][NewSubtitleFontColor];
 		Scope[ScopeLevel][NewSubtitleFontLineheight]  = Scope[ScopeLevel-1][NewSubtitleFontLineheight];
 		Scope[ScopeLevel][NewSubtitleFontWeight] = Scope[ScopeLevel-1][NewSubtitleFontWeight];
+//		Scope[ScopeLevel][NewSubtitleHyperlink] = Scope[ScopeLevel-1][NewSubtitleHyperlink];
 		//Text Settings Lokal
 		Scope[ScopeLevel][NewTextFontSize] = Scope[ScopeLevel-1][NewTextFontSize];
 		Scope[ScopeLevel][NewTextFontFamily] = Scope[ScopeLevel-1][NewTextFontFamily];
 		Scope[ScopeLevel][NewTextFontColor]  = Scope[ScopeLevel-1][NewTextFontColor];
 		Scope[ScopeLevel][NewTextFontLineheight]  = Scope[ScopeLevel-1][NewTextFontLineheight];
 		Scope[ScopeLevel][NewTextFontWeight] = Scope[ScopeLevel-1][NewTextFontWeight];
+//		Scope[ScopeLevel][NewTextHyperlink] = Scope[ScopeLevel-1][NewTextHyperlink];
 		//Image Settings
 		Scope[ScopeLevel][NewImageFontSize] = Scope[ScopeLevel-1][NewImageFontSize];
 		Scope[ScopeLevel][NewImageFontFamily] = Scope[ScopeLevel-1][NewImageFontFamily];
 		Scope[ScopeLevel][NewImageFontColor]  = Scope[ScopeLevel-1][NewImageFontColor];
 		Scope[ScopeLevel][NewImageFontLineheight]  = Scope[ScopeLevel-1][NewImageFontLineheight];
 		Scope[ScopeLevel][NewImageFontWeight] = Scope[ScopeLevel-1][NewImageFontWeight];
+//		Scope[ScopeLevel][NewImageHyperlink] = Scope[ScopeLevel-1][NewImageHyperlink];
 		//URL Settings Lokal
 		Scope[ScopeLevel][NewUrlFontSize] = Scope[ScopeLevel-1][NewUrlFontSize];
 		Scope[ScopeLevel][NewUrlFontFamily] = Scope[ScopeLevel-1][NewUrlFontFamily];
 		Scope[ScopeLevel][NewUrlFontColor]  = Scope[ScopeLevel-1][NewUrlFontColor];
 		Scope[ScopeLevel][NewUrlFontLineheight]  = Scope[ScopeLevel-1][NewUrlFontLineheight];
 		Scope[ScopeLevel][NewUrlFontWeight] = Scope[ScopeLevel-1][NewUrlFontWeight];
-		Scope[ScopeLevel][NewUrlHyperlink] = Scope[ScopeLevel-1][NewUrlHyperlink];
+		Scope[ScopeLevel][NewUrlHyperlink] = Scope[ScopeLevel-1][NewUrlHyperlink];   
 		
 	}
 	
