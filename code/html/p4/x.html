@@ -137,6 +137,13 @@
 
 				$(document).ready(function() {
 					update_dimensions();
+					if (window.location.hash.substring(1) != "")
+					{
+						if ($("#slide"+(window.location.hash.substring(1)-1)).length)
+						{
+							go_to_slide(window.location.hash.substring(1)-1);
+						}
+					}
 				});
 
 				var slide_pointer = 0;
@@ -257,6 +264,10 @@
 						}
 						$(selector).css('top','0%');
 						$(selector).css('opacity','1');
+						$(selector).css('-webkit-transform','scale(1)');
+ 						$(selector).css('-moz-transform','scale(1)'); 
+  						$(selector).css('-o-transform','scale(1)'); 
+  						$(selector).css('-ms-transform','scale(1)'); 
 						$(selectorprevious).stop().fadeTo(200,0);
 						$(selector).stop().fadeTo(700,1);
 
@@ -282,6 +293,10 @@
 					{
 						$(selector).css('opacity','0');
 						$(selector).css('top','0%');
+						$(selector).css('-webkit-transform','scale(1)');
+ 						$(selector).css('-moz-transform','scale(1)'); 
+  						$(selector).css('-o-transform','scale(1)'); 
+  						$(selector).css('-ms-transform','scale(1)'); 
 						$(selectorprevious).stop().fadeTo(300,0,function()
 							{
 								$(selector).stop().fadeTo(300,1, function() {
@@ -346,7 +361,7 @@
 
 				function go_to_slide(nr)
 				{
-					var type = document.getElementById('slide'+nr).getAttribute("data-transition");
+					var type = document.getElementById('slide'+slide_pointer_previous).getAttribute("data-transition");
 					switch(type)
 					{
 						case "rotate_scale":

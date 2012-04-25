@@ -136,9 +136,13 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	{
 	//	String[][] SymbolTable = new String[1000][10];
 	//	SymbolTable[0][0] = "hej";
+		System.out.println(node.getClass().getName());
+		System.out.println(node.toString());
+		System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
 	}
 	public void defaultOut(Node node)
 	{
+		System.out.println(node.getClass().getName());
 		System.out.println(node.toString());
 		System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
 	}
@@ -1546,7 +1550,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		SymbolTable.CloseScope();
 		indent--;
 	}
-	public void outAShortidents (AShortblock node)
+	public void outAShortidents (AShortidents node)
 	{
 		indent--;
 	}
