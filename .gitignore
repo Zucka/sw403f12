@@ -7,3 +7,4 @@ draft.pdf
 *.toc
 *.synctex.gz
 *.class
+code/compiler/nisse/bin/nisse
