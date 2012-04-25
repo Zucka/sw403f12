@@ -283,7 +283,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				try{
 				int val = Integer.parseInt(Value);
 				} catch(Exception a){
-					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 				}
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
@@ -472,7 +472,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				int val = Integer.parseInt(Value);
 		//		NewTextFontSize = val;
 				} catch(Exception a){
-					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 				}
 				
 				if (Visability.equals("global")){
@@ -812,7 +812,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				try{
 					int val = Integer.parseInt(Value);
 				} catch(Exception a){
-					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 				}
 
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
@@ -837,7 +837,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				int Length = Value.length()-1;
 				Value = Value.substring(0, Length).trim();
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink] = Value;
-				System.out.println(Value);
+			//	System.out.println(Value);
 			}
 			} catch (Exception a){
 				//System.out.println("Ingen Settingtype ændringer i @apply");
@@ -873,7 +873,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				try{
 					int val = Integer.parseInt(Value);
 				} catch(Exception a){
-					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 				}
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
@@ -908,7 +908,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				int Length = Value.length()-1;
 				Value = Value.substring(0, Length).trim();
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink] = Value;
-				System.out.println(Value);
+			//	System.out.println(Value);
 			}
 			}catch(Exception a){
 				//System.out.println("Ingen Settingtype ændringer i @i");
@@ -946,7 +946,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				try{
 					int val = Integer.parseInt(Value);
 				} catch(Exception a){
-					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 				}
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
@@ -984,7 +984,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				int Length = Value.length()-1;
 				Value = Value.substring(0, Length).trim();
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink] = Value;
-				System.out.println(Value);
+			//	System.out.println(Value);
 			}
 			
 		} catch (Exception a){
@@ -1023,7 +1023,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				try{
 					int val = Integer.parseInt(Value);
 				} catch(Exception a){
-					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 				}
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
@@ -1061,7 +1061,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				int Length = Value.length()-1;
 				Value = Value.substring(0, Length).trim();
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink] = Value;
-				System.out.println(Value);
+			//	System.out.println(Value);
 			}
 			} catch (Exception a){
 				//System.out.println("Ingen Settingtype ændringer i @b");
@@ -1083,7 +1083,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				try{
 					int val = Integer.parseInt(Value);
 				} catch(Exception a){
-					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 				}
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize] = Value;
 			}
@@ -1121,7 +1121,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				try{
 					int val = Integer.parseInt(Value);
 				} catch(Exception a){
-					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 				}
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
 			}
@@ -1159,7 +1159,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				try{
 					int val = Integer.parseInt(Value);
 				} catch(Exception a){
-					System.out.println("FEJL, font_size kan ikke konverteres til en int");
+					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 				}
 				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize] = Value;
 			}
