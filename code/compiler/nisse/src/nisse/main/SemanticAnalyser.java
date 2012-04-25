@@ -645,29 +645,114 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		indent++;
 	}
 	
+	public int CheckThanAdd(String Text, String Parent){
+		if (Parent.startsWith("@begin") || Parent.startsWith("@begin") ){
+			SymbolTable.SymbolTableAdd(Text, "text", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight]);
+			return 1;
+		}
+		else if (Parent.startsWith("@title")){
+			SymbolTable.SymbolTableAdd(Text, "title", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]);
+			return 1;
+		}
+		else if (Parent.startsWith("@subtitle")){
+			SymbolTable.SymbolTableAdd(Text, "subtitle", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight]);
+			return 1;
+		}
+		else if (Parent.startsWith("@image")){
+			SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight]);
+			return 1;
+		}
+		else if (Parent.startsWith("@apply { @url")){
+			SymbolTable.SymbolTableAdd(Text, "url", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
+			return 1;
+		}
+		else {
+		return 0;
+		}
+	}
+	
 	public void inACharallPlainsv1 (ACharallPlainsv1 node)
 	{
 		String Text = node.toString();
 		int j = Text.length();
 		Text = Text.substring(0, j - 1);
-		String ParentParent = node.parent().parent().toString();
+		String Parentx2 = node.parent().parent().toString();
+		int Check = CheckThanAdd(Text, Parentx2);
 		//System.out.println("Parent = " + ParentParent);
-			if (ParentParent.startsWith("@title")){
-				SymbolTable.SymbolTableAdd(Text, "title", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]);
+		if (Check == 1){
+		}
+		else {
+			String Parentx3 = node.parent().parent().parent().toString();
+			Check = CheckThanAdd(Text, Parentx3);
+			if (Check == 1){
 			}
-			else if (ParentParent.startsWith("@subtitle")){
-				SymbolTable.SymbolTableAdd(Text, "subtitle", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight]);
-			}
-			else if (ParentParent.startsWith("@image")){
-				SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight]);
-			}
-			else if (ParentParent.startsWith("@apply { @url")){
-				SymbolTable.SymbolTableAdd(Text, "url", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
-			}
-			//else if (Parent.startsWith("@note")){
-				
-			//} 
 			else {
+				String Parentx4 = node.parent().parent().parent().parent().toString();
+				Check = CheckThanAdd(Text, Parentx4);
+				if (Check == 1){
+				}
+				else {
+					String Parentx5 = node.parent().parent().parent().parent().parent().toString();
+					Check = CheckThanAdd(Text, Parentx5);
+					if (Check == 1){
+					}
+					else {
+						String Parentx6 = node.parent().parent().parent().parent().parent().parent().toString();
+						Check = CheckThanAdd(Text, Parentx6);
+						if (Check == 1){
+						}
+						else {
+							String Parentx7 = node.parent().parent().parent().parent().parent().parent().parent().toString();
+							Check = CheckThanAdd(Text, Parentx7);
+							if (Check == 1){
+							}
+							else {
+								String Parentx8 = node.parent().parent().parent().parent().parent().parent().parent().parent().toString();
+								Check = CheckThanAdd(Text, Parentx8);
+								if (Check == 1){
+								}
+								else {
+									String Parentx9 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+									Check = CheckThanAdd(Text, Parentx9);
+									if (Check == 1){
+									}
+									else {
+										String Parentx10 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+										Check = CheckThanAdd(Text, Parentx10);
+										if (Check == 1){
+										}
+										else {
+											String Parentx11 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+											Check = CheckThanAdd(Text, Parentx11);
+											if (Check == 1){
+											}
+											else {
+												String Parentx12 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+												Check = CheckThanAdd(Text, Parentx12);
+												if (Check == 1){
+												}
+												else {
+													String Parentx13 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+													Check = CheckThanAdd(Text, Parentx13);
+													if (Check == 1){
+													}
+													else {
+														System.out.println("Text type could not be found");
+														System.out.println("Text " + Text);
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+				/*
+				
 				String ParentParentParent = node.parent().parent().parent().toString();
 				String ParentParentParentParentParent = node.parent().parent().parent().parent().parent().toString();
 				if (ParentParentParent.startsWith("@begin") || ParentParentParentParentParent.startsWith("@begin") ){
@@ -687,7 +772,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				}
 				else {
 					String ParentParentParentParentParentParent = node.parent().parent().parent().parent().parent().parent().toString();
-					//System.out.println("CharAll ParentParentParentParentParentParent = " +ParentParentParentParentParentParent);
+					System.out.println("CharAll ParentParentParentParentParentParent = " +ParentParentParentParentParentParent);
 					if (ParentParentParentParentParentParent.startsWith("@begin")){
 						SymbolTable.SymbolTableAdd(Text, "text", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight]);
 					}
@@ -774,7 +859,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 					
 				}
 				
-			} 
+			} */
 
 			
 		  
@@ -1205,7 +1290,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void inAShortident (AShortident node)
 	{
-		
 		
 		
 		
