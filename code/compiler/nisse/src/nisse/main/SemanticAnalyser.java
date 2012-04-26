@@ -709,80 +709,76 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			}
 			else {
 				String Parentx4 = node.parent().parent().parent().parent().toString();
-				Check = CheckThanAdd(Text, "empty" ,"empty" , Parentx4);
+				String Parentx5 = node.parent().parent().parent().parent().parent().toString();
+				Check = CheckThanAdd(Text, Parentx5, Parent, Parentx4);
 				if (Check == 1){
 				}
 				else {
-					String Parentx5 = node.parent().parent().parent().parent().parent().toString();
-					Check = CheckThanAdd(Text, Parentx5, Parent, Parentx4);
+					String Parentx6 = node.parent().parent().parent().parent().parent().parent().toString();
+					Check = CheckThanAdd(Text, Parentx6, Parentx2, Parentx5);
 					if (Check == 1){
 					}
 					else {
-						String Parentx6 = node.parent().parent().parent().parent().parent().parent().toString();
-						Check = CheckThanAdd(Text, Parentx6, Parentx2, Parentx5);
+						String Parentx7 = node.parent().parent().parent().parent().parent().parent().parent().toString();
+						Check = CheckThanAdd(Text, Parentx7, Parentx3, Parentx6);
 						if (Check == 1){
 						}
 						else {
-							String Parentx7 = node.parent().parent().parent().parent().parent().parent().parent().toString();
-							Check = CheckThanAdd(Text, Parentx7, Parentx3, Parentx6);
+							String Parentx8 = node.parent().parent().parent().parent().parent().parent().parent().parent().toString();
+							Check = CheckThanAdd(Text, Parentx8, Parentx4, Parentx7);
 							if (Check == 1){
 							}
 							else {
-								String Parentx8 = node.parent().parent().parent().parent().parent().parent().parent().parent().toString();
-								Check = CheckThanAdd(Text, Parentx8, Parentx4, Parentx7);
+								String Parentx9 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+								Check = CheckThanAdd(Text, Parentx9, Parentx5, Parentx8);
 								if (Check == 1){
 								}
 								else {
-									String Parentx9 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-									Check = CheckThanAdd(Text, Parentx9, Parentx5, Parentx8);
+									String Parentx10 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+									Check = CheckThanAdd(Text, Parentx10, Parentx6, Parentx9);
 									if (Check == 1){
 									}
 									else {
-										String Parentx10 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-										Check = CheckThanAdd(Text, Parentx10, Parentx6, Parentx9);
+										String Parentx11 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+										Check = CheckThanAdd(Text, Parentx11, Parentx7, Parentx10);
 										if (Check == 1){
 										}
 										else {
-											String Parentx11 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-											Check = CheckThanAdd(Text, Parentx11, Parentx7, Parentx10);
+											String Parentx12 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+											Check = CheckThanAdd(Text, Parentx12, Parentx8, Parentx11);
 											if (Check == 1){
+
 											}
 											else {
-												String Parentx12 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-												Check = CheckThanAdd(Text, Parentx12, Parentx8, Parentx11);
+												String Parentx13 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+												Check = CheckThanAdd(Text, Parentx13, Parentx9, Parentx12);
+
 												if (Check == 1){
-													
+
 												}
 												else {
-													String Parentx13 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-													Check = CheckThanAdd(Text, Parentx13, Parentx9, Parentx12);
-													
+													String Parentx14 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+													Check = CheckThanAdd(Text, Parentx14, Parentx10, Parentx13);
+
 													if (Check == 1){
-														
+
 													}
 													else {
-														 String Parentx14 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-														Check = CheckThanAdd(Text, Parentx14, Parentx10, Parentx13);
-														
+														String Parentx15 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+														Check = CheckThanAdd(Text, Parentx15, Parentx11, Parentx14);
+
 														if (Check == 1){
-															
 														}
 														else {
-															String Parentx15 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-															Check = CheckThanAdd(Text, Parentx15, Parentx11, Parentx14);
-															
+															String Parentx16 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+															Check = CheckThanAdd(Text, Parentx16, Parentx12, Parentx15);
+															//System.out.println(Parentx16);
+															//System.out.println(Parentx12);
+															//System.out.println(Text);
 															if (Check == 1){
 															}
 															else {
-																String Parentx16 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-																Check = CheckThanAdd(Text, Parentx16, Parentx12, Parentx15);
-																//System.out.println(Parentx16);
-																//System.out.println(Parentx12);
-																//System.out.println(Text);
-																if (Check == 1){
-																}
-																else {
-																	/*String Parentx17 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
+																/*String Parentx17 = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
 																	Check = CheckThanAdd(Text, Parentx17, Parentx15);
 																	if (Check == 1){
 																	}
@@ -802,15 +798,15 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 																				if (Check == 1){
 																				}
 																				else { */
-																				System.out.println("Text type could not be found");
-																				System.out.println("Text " + Text);
-																				/*}
+																System.out.println("Text type could not be found");
+																System.out.println("Text " + Text);
+																/*}
 																			}
 																		}
 																	} */
-																}
-															} 
-														}
+															}
+														} 
+
 													}
 												}
 											}
