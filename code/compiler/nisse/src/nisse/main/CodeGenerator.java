@@ -100,7 +100,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 			opacity = "1";
 			top = "0%";
 		}
-		String str = "<div class=\"slide_wrapper\" id=\"slide"+slideCounter+"\" data-transition=\""+transition+"\" style=\"top: "+top+"; opacity: "+opacity+"; height: 936px; width: 1248px; \">\n<div class=\"slide\">";
+		String str = "<div class=\"slide_wrapper\" id=\"slide"+slideCounter+"\" data-transition=\""+Transition+"\" style=\"top: "+top+"; opacity: "+opacity+"; height: 936px; width: 1248px; \">\n<div class=\"slide\">";
 		writeToStream(str);
 		slideCounter++;
 	}
