@@ -82,7 +82,17 @@ public class CodeGenerator extends DepthFirstAdapter{
 	public void inABlockBlocks(ABlockBlocks node)
 	{
 		// NEED TO FIND OUT IF SLIDE IS TITLESLIDE, IMAGESLIDE OR NORMAL SLIDE
-		String transition = "fade"; //NEED TO KNOW THIS ALSO (TEST TRANSITION)
+//		String transition = "fade"; 
+		int i = 1;
+//		while (i<SymbolTable.SymbolTableForSlide.size()){
+		String[] SlideData = SymbolTable.SymbolTableForSlide.get(i);
+//		i++;
+//		}
+		int SlideType = 0;
+		int SlideTransition = 1;
+		String Transition = SlideData[SlideTransition];
+		String Type = SlideData[SlideType];
+		//SymbolTableForSlide //NEED TO KNOW THIS ALSO (TEST TRANSITION)
 		String opacity = "0";
 		String top = "100%";
 		if (slideCounter == 0)
