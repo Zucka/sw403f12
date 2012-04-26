@@ -1400,7 +1400,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		//String Value = node.getShortidentv1().toString().trim();
 	//	int Length = Value.length() - 1;
 	//	Value = Value.substring(1, Length).trim();
-		System.out.println(Value);
+	//	System.out.println(Value);
 		try{
 		if (SettingType.startsWith("@ font_family")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
