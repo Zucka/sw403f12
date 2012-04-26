@@ -1662,34 +1662,57 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	//	SymbolTable.SymbolTableAdd("hej", "Type", 6, "FontFamily", "FontColor", 6, "FontWeight", null, null);
 	//	SymbolTable.PrintSymbolTable();
 		//System.out.println("First1 = " + node.getLines().getFirst());
+		String Transition = node.getBeginblock().toString();
+		Transition = Transition.substring(9);
+		//System.out.println(Transition);
+		String Transition1 = "none";
+		if (Transition.startsWith("slide")){
+		}
+		else if (Transition.startsWith("fade")){
+			Transition1 = "fade";
+		}
+		else if (Transition.startsWith("swipe")){
+			Transition1 = "swipe";
+		}
+		else if (Transition.startsWith("scale")){
+			Transition1 = "scale";
+		}
+		else if (Transition.startsWith("rotate-scale")){
+			Transition1 = "rotate-scale";
+		}
 		try{
 		String First =node.getLines().getFirst().toString();
 		String Last =node.getLines().getLast().toString();
 		}
 		catch(Exception a){
-			System.out.println("Slided er tomt");
+			//System.out.println("Slided er tomt");
 			indent--;
 			return;
 		}
+		String SlideType = "Normal";
 		try{
 		String First =node.getLines().getFirst().toString();
 		String Last =node.getLines().getLast().toString();
 		String Firstsub = First.substring(0, 6);
 		String Lastsub = Last.substring(0, 9);
+		
 		if (Firstsub.equals("@title")){
 		//	System.out.println("Det findes en titel");
 			if (Lastsub.equals("@subtitle")){
-				System.out.println("Dette er en titel side med undertitel");
+				//System.out.println("Dette er en titel side med undertitel");
+				SlideType = "TitleWithSubtitle";
 			}
 			else if (Last.equals(First)){
-				System.out.println("Dette er en titel side uden undertitel");
+				//System.out.println("Dette er en titel side uden undertitel");
+				SlideType = "Title";
 			}
 			else {
 		//		System.out.println("Dette er ikke en titel side");
 			}
 		}
 		else if(Firstsub.equals("@image") && First.equals(Last)){
-			System.out.println("Dette er et slide kun bestående af et billede.");
+			//System.out.println("Dette er et slide kun bestående af et billede.");
+			SlideType = "Image";
 		}
 		else{
 		//	System.out.println("Der findes ingen titel");
@@ -1700,6 +1723,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			System.out.println("Exception, no worries");
 			System.out.println("Da den første og/eller sidste linje højest sandsynlig er mindre end 8 chars lang");
 		}
+		SymbolTable.SlideTableAdd(SlideType, Transition1);
 		indent--;
 		
 	}
@@ -1994,6 +2018,7 @@ public int CheckType1(AShortident node){
 	}
 	public void outStart (Start node)
 	{
+		SymbolTable.PrintSlideTable();
 		indent--;
 		printIndents();
 		System.out.println("EOF");
