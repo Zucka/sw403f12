@@ -177,11 +177,13 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		
 		String Visability = node.getChar().toString().trim();
 		//System.out.println(SettingType);
-		String Test = node.parent().parent().toString();
-		String Test1 = Test.substring(0, 6);
+		//String Test = node.parent().parent().toString();
+		//String Test1 = Test.substring(0, 6);
+		String Test = node.parent().parent().getClass().toString();
+		//System.out.println(Test);
 		//ved lokal setting ændring
-		if (Test1.equals("@begin")){
-		//	System.out.println("Dette er en lokal variabel");
+		if (Test.equals("class nisse.node.ABlockBlocks")){
+			//System.out.println("Dette er en lokal variabel");
 			if (SettingType.startsWith("@ font_color")){
 				String Value = SettingType.substring(15);
 			//	System.out.println("Font color value = " + Value);
