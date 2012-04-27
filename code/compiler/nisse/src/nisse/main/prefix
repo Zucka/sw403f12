@@ -253,8 +253,3 @@
 				});
 			});
 		</script>
-	</head>
-	<body style="font-size: 58.5%; ">
-		<div id="wrapper" data-ratio="4/3">
-			<div id="axis" style="margin-left: 336px; ">
-				<div class="slide_wrapper" id="slide0" style="opacity: 1; height: 936px; width: 1248px; ">
