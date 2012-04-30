@@ -252,7 +252,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			else if (SettingType.startsWith("@ font_weight")){	
 				String Value = SettingType.substring(16);
 				Value = Value.substring(0, 1);
-			//	System.out.println("Font color value = " + Value);
+				//System.out.println("Font color value = " + Value);
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = Value;
@@ -441,8 +441,9 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				String Value = SettingType.substring(16);
 			//	System.out.println("Font color value = " + Value);
 				Value = Value.substring(0, 1);
+				System.out.println("Font weight value = " + Value);
 				if (Visability.equals("global")){
-			//		System.out.println("Dette er global Visability");
+					//System.out.println("Dette er global Visability");
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight] = Value;
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontWeight] = Value;
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontWeight] = Value;
@@ -1389,6 +1390,8 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	public void inAShortident (AShortident node)
 	{		
 		String SettingType = node.getKwd().toString().trim();
+		String IfSetting = node.parent().parent().toString().trim();
+		System.out.println(IfSetting);
 		//System.out.println(SettingType);
 		int Length1 = node.getShortidentv1().size();
 		Object[] Value1 = node.getShortidentv1().toArray();
@@ -1405,7 +1408,10 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	//	Value = Value.substring(1, Length).trim();
 	//	System.out.println(Value);
 		try{
-		if (SettingType.startsWith("@ font_family")){
+		if (IfSetting.startsWith("@setting")){
+			
+		}
+		else if (SettingType.startsWith("@ font_family")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily] = Value;
@@ -1432,6 +1438,9 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize] = Value;
 		}
 		else if (SettingType.startsWith("@ font_weight")){
+			//Value = SettingType.substring(16);
+			Value = Value.substring(0, 1);
+			System.out.println("Font weight value1 = " + Value);
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + Value;
