@@ -9,9 +9,13 @@ import java.net.URL;
 import nisse.analysis.DepthFirstAdapter;
 import nisse.node.ABlockBlocks;
 import nisse.node.ACharallPlainsv1;
+import nisse.node.AItemlistItemlistv1;
 import nisse.node.AItemlistLines;
 import nisse.node.ANumerationLines;
+import nisse.node.ANumerationNumerationv1;
+import nisse.node.APlaintextItemlistv1;
 import nisse.node.APlaintextLines;
+import nisse.node.APlaintextNumerationv1;
 import nisse.node.ASettingBlocks;
 import nisse.node.ASettingLines;
 import nisse.node.ASettingblock;
@@ -218,5 +222,29 @@ public class CodeGenerator extends DepthFirstAdapter{
 			writeToStream("</ul>");
 			isItemlisting = false;
 		}
+	}
+	public void inANumerationNumerationv1 (ANumerationNumerationv1 node)
+	{
+		writeToStream("<ol>");
+	}
+	public void outANumerationNumerationv1 (ANumerationNumerationv1 node)
+	{
+		writeToStream("</ol>");
+	}
+	public void inAItemlistItemlistv1 (AItemlistItemlistv1 node)
+	{
+		writeToStream("<ul>");
+	}
+	public void outAItemlistItemlistv1 (AItemlistItemlistv1 node)
+	{
+		writeToStream("</ul>");
+	}
+	public void inAPlaintextNumerationv1 (APlaintextNumerationv1 node)
+	{
+		writeToStream("<li>THE PLAINTEXT</li>");
+	}
+	public void inAPlaintextItemlistv1 (APlaintextItemlistv1 node)
+	{
+		writeToStream("<li>THE PLAINTEXT</li>");
 	}
 }
