@@ -270,6 +270,9 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 						//		System.out.println("Dette er url Visability");
 						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
 					}
+					else {
+			    	    System.out.println("Visability word not recognized");
+			    	  }
 				}
 				else {
 					System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
