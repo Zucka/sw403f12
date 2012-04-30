@@ -82,7 +82,11 @@ Visibility word in this section means which font type is changed, eg. title, tex
 Listing \ref{LSTSemanticSetting} illustrate setting typecheck, and changes parameters according to the visibility word, which is placed just before the right curly bracet in a setting block.\\
 Line 2 fetches the setting, node \textit{Shortident}, it contains information about what setting to change and what to change it to, which is converted to a string and then the excess spaces are removed.\\
 Line 3 fetches the visibility declaration, which is in the node \textit{Char}, which is also converted to a string a excess spaces are removed.\\
-
+Line 4 finds out which class the setting block belongs to. This is necessary to determin if the setting block is inside or outside a slide. Which also is the first to be checked in line 5. An else construction is made for this if sentence which is executed when the setting should be applied on very upcomming slide.\\
+Line 7 checks which keyword that is going to be changed, is this case it is \textit{Font\_Color}. The parameter is then stored in a string called \textit{Value}, which takes the substring of SettingType, starting a char 15. The reason it is 15 is because a space is added after each token. So there is a space after \textit{font\_color} and a space after the colon (:) which makes the parameter start at the 15'th char.\\
+Because it is a color, it checks in the function \textit{CheckColor}, at line 9 to 11, if the color is allowed to be inseted. If it is not allowed, it will not change the color, and then skip to line 38.\\
+From line 12 to 33 it check what the visibility keyword is. Depending on the word, it changes the parameter for that specific visibility.\\
+Line 13 enters the document SymbolTable and the array \textit{Scope}, which insets the parameter at the current scope level, and in the cell containing the information about text font color.\\
 If the string \texttt{Test} is not equal to \texttt{class nisse.node.ABlockBlocks} the setting is an OuterMost setting, which changes the parameter for the setting for the upcomming slides.
 
 \subsubsection*{Effect Level}
