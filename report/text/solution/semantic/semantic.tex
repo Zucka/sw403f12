@@ -19,13 +19,72 @@ The semantic analyser checks for errors that the lexer and the parser do not cat
 \subsection{Keyword Existence}
 In order for the settings to work, a check to see if the given setting actually exists in that context is needed. In order to check if the setting exists, a list of settings for a given context is set up beforehand which it can be checked against. If the setting exists in the list the value of the setting is checked to see if it matches a valid value of that setting. If it does not exist, then an error is written to the user.
 
+
 \subsection{Type Checking}
 For a given setting there is a number of valid values, two examples could be the settings \texttt{font\_size} and \texttt{font\_weight} , which sets the size or weight of a given text. In the case of \texttt{font\_size}, a valid input would be any integer, and in the case of \texttt{font\_weight} it would be a valid string of a weight. As with the keyword, existence of an error is written if the value of the setting is not valid.
+The type checking for integers and integers with decimals, is done by converting the value from a string to an int or float respectively.
+Typechecking for specific strings is done with \texttt{if} sentences, if they do not match any, an error occures.
      
 \subsection{Scope Checking}
 
 \subsubsection*{Targeted text}
 Every setting block has to be given a scope of what it is going to affect. An example could be \texttt{global}, which, for a given setting would set all types of text in the given effect level unless it is overridden at a later stage.
+
+\begin{lstlisting}[frame=single,caption=SettingBlock, label=LSTSemanticSetting, language=java]
+public void inASettingblock (ASettingblock node){
+	String SettingType = node.getShortident().toString().trim();
+	String Visability = node.getChar().toString().trim();
+	String Test = node.parent().parent().getClass().toString();
+	if (Test.equals("class nisse.node.ABlockBlocks")){
+		//	System.out.println("Dette er en lokal variabel");
+		if (SettingType.startsWith("@ font_color")){
+			String Value = SettingType.substring(15);
+			Boolean CheckColor1;
+			CheckColor1 = CheckColor(Value);
+			if (CheckColor1 == true){
+				if (Visability.equals("global")){
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;					
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
+				}
+				else if (Visability.equals("text")){
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
+				}
+				else if (Visability.equals("image")){
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
+				}
+				else if (Visability.equals("title")){
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
+				}
+				else if (Visability.equals("subtitle")){
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
+				}
+				else if (Visability.equals("url")){
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
+				}
+    	  else {
+    	    System.out.println("Visability word not recognized");
+    	  }
+    	}
+    	else {
+					System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small letters");
+			}
+		}
+		else if (SettingType.startsWith("@ font_family")){	
+			String Value = SettingType.substring(16);
+		…...
+
+\end{lstlisting}
+
+Visibility word in this section means which font type is changed, eg. title, text, subtitle.
+Listing \ref{LSTSemanticSetting} illustrate setting typecheck, and changes parameters according to the visibility word, which is placed just before the right curly bracet in a setting block.\\
+Line 2 fetches the setting, node \textit{Shortident}, it contains information about what setting to change and what to change it to, which is converted to a string and then the excess spaces are removed.\\
+Line 3 fetches the visibility declaration, which is in the node \textit{Char}, which is also converted to a string a excess spaces are removed.\\
+
+If the string \texttt{Test} is not equal to \texttt{class nisse.node.ABlockBlocks} the setting is an OuterMost setting, which changes the parameter for the setting for the upcomming slides.
+
 \subsubsection*{Effect Level}
 When a setting block is inside a begin- and end block, the setting only affects that particular slide.
 A setting block can also be used outside a slide, in which case that setting would apply to every slide following that setting unless overridden at a later stage. These scope settings have to be checked as to see what text that setting should apply to.
@@ -41,14 +100,84 @@ In order for the compiler to apply a transition on a slide, the analyser has to 
     \subsection{Type Checking}
 The type checking in a begin- and end line consists of checking that between the two brackets is the word \texttt{slide}. In special cases, where a transition is on a slide, the word \texttt{slide} must be between the pipe and the right bracket. The word seems redundant because no other word can be in its place at this time. But for further development, where a begin- and end line can do more than just enclose a slide, this will come in handy.
 
+\begin{lstlisting}[frame=single,caption=Function: OutBlockBlocks, label=LSTOutBlockBlocks]
+
+public void outABlockBlocks (ABlockBlocks node)
+	{
+		String Transition = node.getBeginblock().toString();
+		Transition = Transition.substring(9);  //starts the string at 9.th letter
+		String Transition1 = "none";
+		if (Transition.startsWith("slide")){
+		}
+		else if (Transition.startsWith("fade")){
+			Transition1 = "fade";
+		}
+		else if (Transition.startsWith("swipe")){
+			Transition1 = "swipe";
+		}
+		else if (Transition.startsWith("scale")){
+			Transition1 = "scale";
+		}
+		else if (Transition.startsWith("rotate-scale")){
+			Transition1 = "rotate-scale";
+		}
+		try{
+		String First =node.getLines().getFirst().toString();
+		String Last =node.getLines().getLast().toString();
+		}
+		catch(Exception a){
+			//System.out.println("Slided er tomt");
+			indent--;
+			return;
+		}
+		String SlideType = "Normal";
+		try{
+		String First =node.getLines().getFirst().toString();
+		String Last =node.getLines().getLast().toString();
+		String Firstsub = First.substring(0, 6);
+		String Lastsub = Last.substring(0, 9);
+		
+		if (Firstsub.equals("@title")){
+		//	System.out.println("Det findes en titel");
+			if (Lastsub.equals("@subtitle")){
+				//System.out.println("Dette er en titel side med undertitel");
+				SlideType = "TitleWithSubtitle";
+			}
+			else if (Last.equals(First)){
+				//System.out.println("Dette er en titel side uden undertitel");
+				SlideType = "Title";
+			}
+			else {
+		//		System.out.println("Dette er ikke en titel side");
+			}
+		}
+		else if(Firstsub.equals("@image") && First.equals(Last)){
+			//System.out.println("Dette er et slide kun bestående af et billede.");
+			SlideType = "Image";
+		}
+		else{
+		//	System.out.println("Der findes ingen titel");
+		}
+		}
+		catch(Exception a){
+			System.out.println("Dette er ikke en title slide");
+			System.out.println("Exception, no worries");
+			System.out.println("Da den første og/eller sidste linje højest sandsynlig er mindre end 8 chars lang");
+		}
+		SymbolTable.SlideTableAdd(SlideType, Transition1);
+	}
+\end{lstlisting}
 
 \section{Semantic Analysis for Other Keywords}
      \subsection{Image}
 \texttt{Image} has to check if there exists an image on that specific url. If no image is found, accessible or in a format that is not recognized by the compiler, an error should occur.
 
 
+
      \subsection{Enumerate}
 The hash tag keyword has to keep track of the numbers, meaning that it has to increment each time a line starts with a hash tag. And when a line does not start with a hash tag, the number should start from one again. This is also applicable where hash tags are inside hash tags.
+
+(Bliver checket i code gen)
 
 \section{Exception Handling}
 
@@ -58,3 +187,23 @@ The hash tag keyword has to keep track of the numbers, meaning that it has to in
 \section{Reachability and Termination Analysis}
 There is no need to check for unreachable code in the language, because there are no breakers in the language e.g. return, break, exit, etc.
 This also means that the language always terminates normally, because there are no keywords to stop a normal termination.
+
+
+
+\section{SymbolTable}
+
+in order to know the properties for each token that is written by the user, a symbol is added to the symbol table, containing the necessary information for the code generator to display the token correctly.
+
+\begin{lstlisting}[frame=single,caption=Function: Function: SymbolTableAdd, label=LSTSemanticSymbolTableAdd]
+public static void SymbolTableAdd(String Text, String Type, String FontSize, String FontFamily,String FontColor, String FontLineheight, String FontWeight, String Link){
+String[] Values = {Text, Type, FontSize, FontFamily, FontColor, FontLineheight, FontWeight, Link};
+SymbolTable1.put(GetCurrentSymbolNumber(), Values);
+NextSymbolNumber();
+}
+\end{lstlisting}
+
+Listing \ref{LSTSemanticSymbolTableAdd} shows the function called to create a symbol in the symbol table. It stores all the variables in an array which is inside a hashtable. Each hash entry has unique number in order to fetch the entry. before the function ends the number is incremented by 1, which is the next unique hashkey.
+
+
+\section{SlideTable}
+An additional table is created to keep track of the overall properties in a slide, meaning the transition between the slides, and which type of slide it is, eg. a title page or a normal page.
