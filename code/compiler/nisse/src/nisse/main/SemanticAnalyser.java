@@ -750,7 +750,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			return 1;
 		}
 		else if (Parentx2.startsWith("@image")){
-			SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight]);
+			SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
 			return 1;
 		}
 		
@@ -1749,6 +1749,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	//	SymbolTable.SymbolTableAdd("hej", "Type", 6, "FontFamily", "FontColor", 6, "FontWeight", null, null);
 	//	SymbolTable.PrintSymbolTable();
 		//System.out.println("First1 = " + node.getLines().getFirst());
+		
 		String Transition = node.getBeginblock().toString();
 		Transition = Transition.substring(9);
 		//System.out.println(Transition);
@@ -1764,10 +1765,10 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		else if (Transition.startsWith("scale")){
 			Transition1 = "scale";
 		}
-		else if (Transition.startsWith("rotate-scale")){
-			Transition1 = "rotate-scale";
+		else if (Transition.startsWith("rotatescale")){
+			Transition1 = "rotatescale";
 		}
-		try{
+/*		try{
 		String First =node.getLines().getFirst().toString();
 		String Last =node.getLines().getLast().toString();
 		}
@@ -1775,9 +1776,46 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//System.out.println("Slided er tomt");
 			indent--;
 			return;
+		}   */
+		String SlideType = "Unknown";
+		Object[] Slide = node.getLines().toArray();
+		int Lines = Slide.length;
+		int i = 0;
+		int title = 0;
+		int subtitle = 0;
+		int image = 0;
+		while(i<Lines){
+			String Slide1 = Slide[i].toString();
+			if (Slide1.startsWith("@setting")  ||  Slide1.startsWith("@note")){
+			}
+			else if (Slide1.startsWith("@title") ) {
+				title++;
+			}
+			else if (Slide1.startsWith("@subtitle") ) {
+				subtitle++;
+			}
+			else if (Slide1.startsWith("@image") ) {
+				image++;
+			}
+			else {
+				SlideType = "Normal";
+				SymbolTable.SlideTableAdd(SlideType, Transition1);
+				indent--;
+				return;
+			}
+			i++;
 		}
-		String SlideType = "Normal";
-		try{
+		if (title > 0 && subtitle == 0 && image == 0){
+			SlideType = "Title";
+		}
+		else if (title > 0 && subtitle > 0 && image == 0){
+			SlideType = "TitleWithSubtitle";
+		}
+		else if (image > 0){
+			SlideType = "Image";
+		}
+			
+/*		try{
 		String First =node.getLines().getFirst().toString();
 		String Last =node.getLines().getLast().toString();
 		String Firstsub = First.substring(0, 6);
@@ -1809,7 +1847,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			System.out.println("Dette er ikke en title slide");
 			System.out.println("Exception, no worries");
 			System.out.println("Da den første og/eller sidste linje højest sandsynlig er mindre end 8 chars lang");
-		}
+		}   */
 		SymbolTable.SlideTableAdd(SlideType, Transition1);
 		indent--;
 		

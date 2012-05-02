@@ -105,17 +105,14 @@ In order for the compiler to apply a transition on a slide, the analyser has to 
 
 %    \subsection{Type Checking}
 %The type checking in a begin- and end line consists of checking that between the two brackets is the word \texttt{slide}. In special cases, where a transition is on a slide, the word \texttt{slide} must be between the pipe and the right bracket. The word seems redundant because no other word can be in its place at this time. But for further development, where a begin- and end line can do more than just enclose a slide, this will come in handy.
-
 \subsection{Slide type checking}
 There are diffent type of slide layouts. For instance most slide presentations starts with a title slide, with or without a subtitle. This frontpage has its' title and if subtitle, is in the middle of the slide. Instead of giving the user the explicit choice of this. The semantic analyser will check this, and create the correct type of slide according to the textinput from the user.
 
 
 \begin{lstlisting}[frame=single,caption=Function: OutBlockBlocks, label=LSTOutBlockBlocks, language=java]
-
-public void outABlockBlocks (ABlockBlocks node)
-	{
+public void outABlockBlocks (ABlockBlocks node){
 		String Transition = node.getBeginblock().toString();
-		Transition = Transition.substring(9);  //starts the string at 9.th letter
+		Transition = Transition.substring(9);
 		String Transition1 = "none";
 		if (Transition.startsWith("slide")){
 		}
@@ -128,55 +125,51 @@ public void outABlockBlocks (ABlockBlocks node)
 		else if (Transition.startsWith("scale")){
 			Transition1 = "scale";
 		}
-		else if (Transition.startsWith("rotate-scale")){
-			Transition1 = "rotate-scale";
+		else if (Transition.startsWith("rotatescale")){
+			Transition1 = "rotatescale";
 		}
-		String SlideType = "Normal";
-		try{
-		String First =node.getLines().getFirst().toString();
-		String Last =node.getLines().getLast().toString();
-		}
-		catch(Exception a){
-			//System.out.println("Slided er tomt");
-			indent--;
-			return;
-		}
-		try{
-		String First =node.getLines().getFirst().toString();
-		String Last =node.getLines().getLast().toString();
-		String Firstsub = First.substring(0, 6);
-		String Lastsub = Last.substring(0, 9);
-		
-		if (Firstsub.equals("@title")){
-		//	System.out.println("Det findes en titel");
-			if (Lastsub.equals("@subtitle")){
-				//System.out.println("Dette er en titel side med undertitel");
-				SlideType = "TitleWithSubtitle";
+		String SlideType = "Unknown";
+		Object[] Slide = node.getLines().toArray();
+		int Lines = Slide.length;
+		int i = 0;
+		int title = 0;
+		int subtitle = 0;
+		int image = 0;
+		while(i<Lines){
+			String Slide1 = Slide[i].toString();
+			if (Slide1.startsWith("@setting")  ||  Slide1.startsWith("@note")){
 			}
-			else if (Last.equals(First)){
-				//System.out.println("Dette er en titel side uden undertitel");
-				SlideType = "Title";
+			else if (Slide1.startsWith("@title") ) {
+				title++;
+			}
+			else if (Slide1.startsWith("@subtitle") ) {
+				subtitle++;
+			}
+			else if (Slide1.startsWith("@image") ) {
+				image++;
 			}
 			else {
-		//		System.out.println("Dette er ikke en titel side");
+				SlideType = "Normal";
+				SymbolTable.SlideTableAdd(SlideType, Transition1);
+				indent--;
+				return;
 			}
+			i++;
 		}
-		else if(Firstsub.equals("@image") && First.equals(Last)){
-			//System.out.println("Dette er et slide kun bestående af et billede.");
+		if (title > 0 && subtitle == 0 && image == 0){
+			SlideType = "Title";
+		}
+		else if (title > 0 && subtitle > 0 && image == 0){
+			SlideType = "TitleWithSubtitle";
+		}
+		else if (image > 0){
 			SlideType = "Image";
-		}
-		else{
-		//	System.out.println("Der findes ingen titel");
-		}
-		}
-		catch(Exception a){
-			System.out.println("Dette er ikke en title slide");
-			System.out.println("Exception, no worries");
-			System.out.println("Da den første og/eller sidste linje højest sandsynlig er mindre end 8 chars lang");
-		}
+		}		
 		SymbolTable.SlideTableAdd(SlideType, Transition1);
 	}
 \end{lstlisting}
+
+In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if and what transition the slide has. In line 2 it creates the \texttt{@begin} line to a string, which can be operated on. In line 3 it creates a substring of line 2 beginning at char 9 which is where the transition should be written if any. Line 4 sets the transition to \texttt{none}. From line 5 it checks if the transition is \texttt{slide}, in this case there are no transition and the transition remains to be \texttt{none}. From line 10 to 18 it checks which kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have none.
 
 
 
