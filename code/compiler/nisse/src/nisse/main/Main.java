@@ -11,7 +11,7 @@ import nisse.parser.Parser;
 
 public class Main {
 	
-	static int Debug1 = 6;
+	static int Debug1 = 0;
 	/* 1 Symbol table
 	 * 2 Slide table
 	 * 3 = 2 + 1
