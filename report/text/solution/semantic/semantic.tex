@@ -214,7 +214,7 @@ Listing \ref{LSTSemanticSymbolTableAdd} shows the function called to create a sy
 
 \section{SlideTable}
 An additional table is created to keep track of the overall properties in a slide, meaning the transition between the slides, and which type of slide it is, eg. a title page or a normal page.
-The slide type is determined in listing \ref{LSTOutBlockBlocks}. In line 56 in listing \ref{LSTOutBlockBlocks}, it calls the function SlideTableAdd, which is shown in listing \ref{LSTSlideTableAdd}. Where the transition at the beginning is set to \texttt{none}, but can be modified in the function \texttt{outABlockBlocks}. The slide table looks more or like the symbol table, only with fewer elements in the array.
+The slide type is determined in listing \ref{LSTOutBlockBlocks}. In line 56 in listing \ref{LSTOutBlockBlocks}, it calls the function SlideTableAdd, which is shown in listing \ref{LSTSlideTableAdd}. Where the transition at the beginning is set to \texttt{none}, but can be modified in the function \texttt{outABlockBlocks} in listing \ref{LSTOutBlockBlocks}. The slide table looks more or like the symbol table, only with fewer elements in the array.
 
 \begin{lstlisting}[frame=single,caption=Function: Function: SlideTableAdd, label=LSTSlideTableAdd]
 static String Transition = "none";
