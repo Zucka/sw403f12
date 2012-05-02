@@ -1463,6 +1463,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	//	System.out.println(SettingType);
 		int Length1 = node.getShortidentv1().size();
 		Object[] Value1 = node.getShortidentv1().toArray();
+		
 				
 		int i = 0;
 		String Value = "";
@@ -1477,7 +1478,25 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	//	System.out.println(Value);
 		try{
 		if (IfSetting.startsWith("@setting { @ transition")){
-			SymbolTable.Transition = Value;
+			if (Value.startsWith("slide")){
+				SymbolTable.Transition = Value;
+			}
+			else if (Value.startsWith("fade")){
+				SymbolTable.Transition = Value;
+			}
+			else if (Value.startsWith("swipe")){
+				SymbolTable.Transition = Value;
+			}
+			else if (Value.startsWith("scale")){
+				SymbolTable.Transition = Value;
+			}
+			else if (Value.startsWith("rotatescale")){
+				SymbolTable.Transition = Value;
+			}
+			else {
+				System.out.println("Transition:" + Value + " in @setting not found");
+			}
+			
 		}
 		else if (IfSetting.startsWith("@setting")){
 			
@@ -1756,7 +1775,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	//	SymbolTable.SymbolTableAdd("hej", "Type", 6, "FontFamily", "FontColor", 6, "FontWeight", null, null);
 	//	SymbolTable.PrintSymbolTable();
 		//System.out.println("First1 = " + node.getLines().getFirst());
-		System.out.println(SymbolTable.Transition);
+		//System.out.println(SymbolTable.Transition);
 		String Transition = node.getBeginblock().toString();
 		Transition = Transition.substring(9);
 		//System.out.println(Transition);
@@ -1871,12 +1890,12 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	public void outAEndblock (AEndblock node)
 	{
 		SymbolTable.CloseScope();
-		SymbolTable.PrintSymbolTable();
+		//SymbolTable.PrintSymbolTable();
 		indent--;
 	}
 	public void outABeblock (ABeblock node)
 	{
-		String Parent = node.parent().toString();
+/*		String Parent = node.parent().toString();
 		String Char = node.getChar().toString().trim();
 		if (Parent.compareTo("@begin") > 5){	   // ved en begin block		
 			if (Char.equals("slide")){      // i tilfælde af at der ikke er nogen transition
@@ -1893,7 +1912,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			else{
 				System.out.println("Fejl, der skal stå slide imellem de 2 curly brackets i end");
 			}
-		}
+		} */
 		indent--;
 	}
 	public void outABeblockv1 (ABeblockv1 node)
@@ -2151,6 +2170,7 @@ public int CheckType1(AShortident node){
 	}
 	public void outStart (Start node)
 	{
+		SymbolTable.PrintSymbolTable();
 		SymbolTable.PrintSlideTable();
 		indent--;
 		printIndents();
