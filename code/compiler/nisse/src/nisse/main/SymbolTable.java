@@ -10,6 +10,8 @@ public class SymbolTable {
 	static int ScopeLevel = 0;
 	static int OuterMostScope = 0;
 
+	static String Transition = "none";
+	
 	//Title Settings
 	static String TitleFontSize = "36";
 	static String TitleFontFamily = "arial";

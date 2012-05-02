@@ -1459,8 +1459,8 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	{		
 		String SettingType = node.getKwd().toString().trim();
 		String IfSetting = node.parent().parent().toString().trim();
-		System.out.println(IfSetting);
-		System.out.println(SettingType);
+	//	System.out.println(IfSetting);
+	//	System.out.println(SettingType);
 		int Length1 = node.getShortidentv1().size();
 		Object[] Value1 = node.getShortidentv1().toArray();
 				
@@ -1476,7 +1476,10 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	//	Value = Value.substring(1, Length).trim();
 	//	System.out.println(Value);
 		try{
-		if (IfSetting.startsWith("@setting")){
+		if (IfSetting.startsWith("@setting { @ transition")){
+			SymbolTable.Transition = Value;
+		}
+		else if (IfSetting.startsWith("@setting")){
 			
 		}
 		else if (SettingType.startsWith("@ font_family")){
@@ -1539,6 +1542,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink] = Value;
 		//	System.out.println(Value);
 		}
+		
 		if (IfSetting.startsWith("@image") && SettingType.startsWith("@url")){
 			SymbolTable.SymbolTableAdd("", "image", "", "", "", "", "", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
 		}
@@ -1752,12 +1756,13 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	//	SymbolTable.SymbolTableAdd("hej", "Type", 6, "FontFamily", "FontColor", 6, "FontWeight", null, null);
 	//	SymbolTable.PrintSymbolTable();
 		//System.out.println("First1 = " + node.getLines().getFirst());
-		
+		System.out.println(SymbolTable.Transition);
 		String Transition = node.getBeginblock().toString();
 		Transition = Transition.substring(9);
 		//System.out.println(Transition);
 		String Transition1 = "none";
 		if (Transition.startsWith("slide")){
+			Transition1 = SymbolTable.Transition;
 		}
 		else if (Transition.startsWith("fade")){
 			Transition1 = "fade";
