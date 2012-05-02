@@ -175,15 +175,13 @@ In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if a
 \subsection{Slide type checking}
 In listing \ref{LSTOutBlockBlocks} from line 19 to 54, we find out which type the slide it is. It starts by being \texttt{Unknown}, but it should never be that in the end. Then in line 20 it
 
-
-
 \section{Semantic Analysis for Other Keywords}
-     \subsection{Image}
+\subsection{Image}
 \texttt{Image} has to check if there exists an image on that specific url. If no image is found, accessible or in a format that is not recognized by the compiler, an error should occur.
 
 
 
-     \subsection{Enumerate}
+\subsection{Enumerate}
 The hash tag keyword has to keep track of the numbers, meaning that it has to increment each time a line starts with a hash tag. And when a line does not start with a hash tag, the number should start from one again. This is also applicable where hash tags are inside hash tags.
 
 (Bliver checket i code gen)
