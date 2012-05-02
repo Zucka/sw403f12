@@ -19,6 +19,15 @@ public class Main {
 	 * 5 = 4 + 1
 	 * 6 = 4 + 2
 	 * 7 = 4 + 2 + 1
+	 * 8 =
+	 * 9 = 8 + 1
+	 * 10 = 8 + 2
+	 * 11 = 8 + 2 + 1
+	 * 12 = 8 + 4
+	 * 13 = 8 + 4 + 1
+	 * 14 = 8 + 4 + 2
+	 * 15 = 8 + 4 + 2 + 1
+	 * 16 = 
 	 */
 	static boolean SymbolTableB = false;
 	static boolean SlideTableB = false;
