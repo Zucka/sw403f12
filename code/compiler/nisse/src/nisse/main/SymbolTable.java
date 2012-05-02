@@ -37,7 +37,7 @@ public class SymbolTable {
 	//Url Settings
 	static String UrlFontSize = "16";
 	static String UrlFontFamily = "arial";
-	static String UrlFontColor  = "black";
+	static String UrlFontColor  = "blue";
 	static String UrlFontLineheight  = "1.5";
 	static String UrlFontWeight = "";
 	static String UrlHyperlink = "";
