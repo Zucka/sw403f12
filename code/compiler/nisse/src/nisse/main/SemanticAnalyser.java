@@ -1099,7 +1099,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			}
 			  									*/
 		} 
-		else if (FormatKwd.startsWith("@i")){
+		else if (FormatKwd.startsWith("@i ")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "i";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + "i";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + "i";
@@ -1168,7 +1168,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				//System.out.println("Ingen Settingtype ændringer i @i");
 			}           */
 		}
-		else if (FormatKwd.startsWith("@u")){
+		else if (FormatKwd.startsWith("@u ")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "u";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + "u";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + "u";
@@ -1244,7 +1244,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//System.out.println("Ingen Settingtype ændringer i @u");
 		}						*/
 		}
-		else if (FormatKwd.startsWith("@b")){
+		else if (FormatKwd.startsWith("@b ")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "b";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + "b";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + "b";

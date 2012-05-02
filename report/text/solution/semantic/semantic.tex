@@ -105,6 +105,7 @@ In order for the compiler to apply a transition on a slide, the analyser has to 
 
 %    \subsection{Type Checking}
 %The type checking in a begin- and end line consists of checking that between the two brackets is the word \texttt{slide}. In special cases, where a transition is on a slide, the word \texttt{slide} must be between the pipe and the right bracket. The word seems redundant because no other word can be in its place at this time. But for further development, where a begin- and end line can do more than just enclose a slide, this will come in handy.
+
 \subsection{Slide type checking}
 There are diffent type of slide layouts. For instance most slide presentations starts with a title slide, with or without a subtitle. This frontpage has its' title and if subtitle, is in the middle of the slide. Instead of giving the user the explicit choice of this. The semantic analyser will check this, and create the correct type of slide according to the textinput from the user.
 
@@ -169,7 +170,10 @@ public void outABlockBlocks (ABlockBlocks node){
 	}
 \end{lstlisting}
 
-In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if and what transition the slide has. In line 2 it creates the \texttt{@begin} line to a string, which can be operated on. In line 3 it creates a substring of line 2 beginning at char 9 which is where the transition should be written if any. Line 4 sets the transition to \texttt{none}. From line 5 it checks if the transition is \texttt{slide}, in this case there are no transition and the transition remains to be \texttt{none}. From line 10 to 18 it checks which kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have none.
+\subsection{Transition Existence}
+In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if and what transition the slide has. In line 2 it creates the \texttt{@begin} line to a string, which can be operated on. In line 3 it creates a substring of line 2 beginning at char 9 which is where the transition should be written if any. Line 4 sets the transition to \texttt{none}. From line 5 it checks if the transition is \texttt{slide}, in this case there are no transition and the transition remains to be \texttt{none}. From line 10 to 18 it checks which kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have none.\\
+\subsection{Slide type checking}
+In listing \ref{LSTOutBlockBlocks} from line 19 to 54, we find out which type the slide it is. It starts by being \texttt{Unknown}, but it should never be that in the end. Then in line 20 it
 
 
 
