@@ -719,7 +719,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	
 	public int CheckThanAdd(String Text, String Parentx3, String Parent, String Parentx2){
 		if (Parent.startsWith("@apply { @url") && Parentx3.startsWith("@image")){
-			SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
+			SymbolTable.SymbolTableAdd(Text, "imagetext", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight]);
 			return 1;
 		} 
 		else if (Parent.startsWith("@apply { @url") && Parentx3.startsWith("@title")){
@@ -750,7 +750,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			return 1;
 		}
 		else if (Parentx2.startsWith("@image")){
-			SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
+			SymbolTable.SymbolTableAdd(Text, "imagetext", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight]);
 			return 1;
 		}
 		
@@ -1099,7 +1099,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			}
 			  									*/
 		} 
-		else if (FormatKwd.startsWith("@i")){
+		else if (FormatKwd.startsWith("@i ")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "i";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + "i";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + "i";
@@ -1168,7 +1168,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				//System.out.println("Ingen Settingtype ændringer i @i");
 			}           */
 		}
-		else if (FormatKwd.startsWith("@u")){
+		else if (FormatKwd.startsWith("@u ")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "u";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + "u";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + "u";
@@ -1244,7 +1244,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//System.out.println("Ingen Settingtype ændringer i @u");
 		}						*/
 		}
-		else if (FormatKwd.startsWith("@b")){
+		else if (FormatKwd.startsWith("@b ")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "b";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + "b";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + "b";
@@ -1459,10 +1459,11 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	{		
 		String SettingType = node.getKwd().toString().trim();
 		String IfSetting = node.parent().parent().toString().trim();
-		System.out.println(IfSetting);
-		//System.out.println(SettingType);
+	//	System.out.println(IfSetting);
+	//	System.out.println(SettingType);
 		int Length1 = node.getShortidentv1().size();
 		Object[] Value1 = node.getShortidentv1().toArray();
+		
 				
 		int i = 0;
 		String Value = "";
@@ -1476,7 +1477,28 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	//	Value = Value.substring(1, Length).trim();
 	//	System.out.println(Value);
 		try{
-		if (IfSetting.startsWith("@setting")){
+		if (IfSetting.startsWith("@setting { @ transition")){
+			if (Value.startsWith("slide")){
+				SymbolTable.Transition = Value;
+			}
+			else if (Value.startsWith("fade")){
+				SymbolTable.Transition = Value;
+			}
+			else if (Value.startsWith("swipe")){
+				SymbolTable.Transition = Value;
+			}
+			else if (Value.startsWith("scale")){
+				SymbolTable.Transition = Value;
+			}
+			else if (Value.startsWith("rotatescale")){
+				SymbolTable.Transition = Value;
+			}
+			else {
+				System.out.println("Transition:" + Value + " in @setting not found");
+			}
+			
+		}
+		else if (IfSetting.startsWith("@setting")){
 			
 		}
 		else if (SettingType.startsWith("@ font_family")){
@@ -1538,6 +1560,10 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		else if (SettingType.startsWith("@url")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink] = Value;
 		//	System.out.println(Value);
+		}
+		
+		if (IfSetting.startsWith("@image") && SettingType.startsWith("@url")){
+			SymbolTable.SymbolTableAdd("", "image", "", "", "", "", "", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
 		}
 		} catch (Exception a){
 			//System.out.println("Ingen Settingtype ændringer i @apply");
@@ -1749,12 +1775,13 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	//	SymbolTable.SymbolTableAdd("hej", "Type", 6, "FontFamily", "FontColor", 6, "FontWeight", null, null);
 	//	SymbolTable.PrintSymbolTable();
 		//System.out.println("First1 = " + node.getLines().getFirst());
-		
+		//System.out.println(SymbolTable.Transition);
 		String Transition = node.getBeginblock().toString();
 		Transition = Transition.substring(9);
 		//System.out.println(Transition);
 		String Transition1 = "none";
 		if (Transition.startsWith("slide")){
+			Transition1 = SymbolTable.Transition;
 		}
 		else if (Transition.startsWith("fade")){
 			Transition1 = "fade";
@@ -1863,12 +1890,12 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	public void outAEndblock (AEndblock node)
 	{
 		SymbolTable.CloseScope();
-		SymbolTable.PrintSymbolTable();
+		//SymbolTable.PrintSymbolTable();
 		indent--;
 	}
 	public void outABeblock (ABeblock node)
 	{
-		String Parent = node.parent().toString();
+/*		String Parent = node.parent().toString();
 		String Char = node.getChar().toString().trim();
 		if (Parent.compareTo("@begin") > 5){	   // ved en begin block		
 			if (Char.equals("slide")){      // i tilfælde af at der ikke er nogen transition
@@ -1885,7 +1912,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			else{
 				System.out.println("Fejl, der skal stå slide imellem de 2 curly brackets i end");
 			}
-		}
+		} */
 		indent--;
 	}
 	public void outABeblockv1 (ABeblockv1 node)
@@ -2143,6 +2170,7 @@ public int CheckType1(AShortident node){
 	}
 	public void outStart (Start node)
 	{
+		SymbolTable.PrintSymbolTable();
 		SymbolTable.PrintSlideTable();
 		indent--;
 		printIndents();
