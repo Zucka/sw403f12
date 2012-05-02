@@ -59,6 +59,11 @@ public class Compiler {
 		SemanticAnalyser analyser = new SemanticAnalyser();
 		start.apply(analyser);
 	}
+	public void testCodeGenerator(Start start)
+	{
+		CodeGenerator generator = new CodeGenerator();
+		start.apply(generator);
+	}
 	public int index(Switchable token)
 	{
 		this.converter.index = -1;

@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
 
 import nisse.analysis.DepthFirstAdapter;
 import nisse.node.ABlockBlocks;
@@ -28,8 +29,16 @@ public class CodeGenerator extends DepthFirstAdapter{
 	BufferedWriter out = null;
 	FileReader in = null;
 	int slideCounter = 0;
+	int symbolCounter = 0;
 	boolean isEnumerating = false;
 	boolean isItemlisting = false;
+	boolean isInTitle = false;
+	boolean isInSubtitle = false;
+	boolean isInDiv = false;
+	boolean isInUrl = false;
+	String prevStyle = "";
+	String prevUrl = "";
+	
 	public CodeGenerator()
 	{
 		try {
@@ -45,7 +54,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 	private void writeToStream(String str)
 	{
 		try {
-			out.write(str+"\n");
+			out.write(str);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,14 +82,35 @@ public class CodeGenerator extends DepthFirstAdapter{
 		}
 		
 		writeToStream(builder.toString());
-		
-		writeToStream("<style type=\"text/css\">");
-		writeToStream("image {\n");
+		try {
+			out.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		writeToStream("\n<style type=\"text/css\">\n");
+		writeToStream("img {\n");
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontLineheight]+";\n");
 		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontSize]+";\n");
-		writeToStream("font-weight:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontWeight]+";\n");
+		String weight = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontWeight];
+		String[] weights = weight.split("\\s");
+		weight = "";
+		for (String string : weights) {
+			if (string.contains("b"))
+			{
+				writeToStream("font-weight:bold;\n");
+			}
+			else if (string.contains("i"))
+			{
+				writeToStream("font-style:italic;\n");
+			}
+			else if (string.contains("u"))
+			{
+				writeToStream("text-decoration:underline\n");
+			}
+		}
 		writeToStream("}\n");
 		
 		writeToStream(".subtitle {\n");
@@ -88,7 +118,23 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontLineheight]+";\n");
 		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize]+";\n");
-		writeToStream("font-weight:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontWeight]+";\n");
+		String weight1 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontWeight];
+		String[] weights1 = weight1.split("\\s");
+		weight1 = "";
+		for (String string : weights1) {
+			if (string.contains("b"))
+			{
+				writeToStream("font-weight:bold;\n");
+			}
+			else if (string.contains("i"))
+			{
+				writeToStream("font-style:italic;\n");
+			}
+			else if (string.contains("u"))
+			{
+				writeToStream("text-decoration:underline\n");
+			}
+		}
 		writeToStream("}\n");
 		
 		writeToStream("body {\n");
@@ -96,7 +142,23 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontLineheight]+";\n");
 		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize]+";\n");
-		writeToStream("font-weight:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight]+";\n");
+		String weight2 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight];
+		String[] weights2 = weight2.split("\\s");
+		weight2 = "";
+		for (String string : weights2) {
+			if (string.contains("b"))
+			{
+				writeToStream("font-weight:bold;\n");
+			}
+			else if (string.contains("i"))
+			{
+				writeToStream("font-style:italic;\n");
+			}
+			else if (string.contains("u"))
+			{
+				writeToStream("text-decoration:underline\n");
+			}
+		}
 		writeToStream("}\n");
 		
 		writeToStream(".title {\n");
@@ -104,7 +166,23 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontLineheight]+";\n");
 		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize]+";\n");
-		writeToStream("font-weight:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontWeight]+";\n");
+		String weight3 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontWeight];
+		String[] weights3 = weight3.split("\\s");
+		weight3 = "";
+		for (String string : weights3) {
+			if (string.contains("b"))
+			{
+				writeToStream("font-weight:bold;\n");
+			}
+			else if (string.contains("i"))
+			{
+				writeToStream("font-style:italic;\n");
+			}
+			else if (string.contains("u"))
+			{
+				writeToStream("text-decoration:underline\n");
+			}
+		}
 		writeToStream("}\n");
 		
 		writeToStream("a {\n");
@@ -112,7 +190,23 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontLineheight]+";\n");
 		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontSize]+";\n");
-		writeToStream("font-weight:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontWeight]+";\n");
+		String weight4 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontWeight];
+		String[] weights4 = weight4.split("\\s");
+		weight4 = "";
+		for (String string : weights4) {
+			if (string.contains("b"))
+			{
+				writeToStream("font-weight:bold;\n");
+			}
+			else if (string.contains("i"))
+			{
+				writeToStream("font-style:italic;\n");
+			}
+			else if (string.contains("u"))
+			{
+				writeToStream("text-decoration:underline\n");
+			}
+		}
 		writeToStream("}\n");
 		writeToStream("</style>");
 		
@@ -122,6 +216,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 	{
 		writeToStream("</div>\n</div>\n</body></html>");
 		try {
+			out.flush();
 			out.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -134,6 +229,10 @@ public class CodeGenerator extends DepthFirstAdapter{
 		int SlideType = 0;
 		int SlideTransition = 1;
 		String Transition = SlideData[SlideTransition];
+		if (Transition == "none")
+		{
+			Transition = "fade";
+		}
 		String Type1 = SlideData[SlideType];
 		String Type = "";
 		if (Type1 == "Title" || Type1 == "TitleWithSubtitle")
@@ -151,13 +250,33 @@ public class CodeGenerator extends DepthFirstAdapter{
 			opacity = "1";
 			top = "0%";
 		}
-		String str = "<div class=\"slide_wrapper\" id=\"slide"+slideCounter+"\" data-transition=\""+Transition+"\" style=\"top: "+top+"; opacity: "+opacity+"; height: 936px; width: 1248px; \">\n<div class=\"slide\">\n<div class=\""+Type+"\">";
+		String str = "<div class=\"slide_wrapper\" id=\"slide"+slideCounter+"\" data-transition=\""+Transition+"\" style=\"top: "+top+"; opacity: "+opacity+"; height: 936px; width: 1248px; \">\n<div class=\"slide\">\n<div class=\""+Type+"\">\n";
 		writeToStream(str);
 		slideCounter++;
 	}
 	public void outABlockBlocks(ABlockBlocks node)
 	{
-		writeToStream("</div></div>");
+		if (isInUrl)
+		{
+			writeToStream("</a>\n");
+			isInUrl = false;
+		}
+		if (isInDiv)
+		{
+			writeToStream("</span>\n");
+			isInDiv = false;
+		}
+		if (isInSubtitle) 
+		{
+			writeToStream("</h2>\n");
+			isInSubtitle = false;
+		}
+		if (isInTitle)
+		{
+			writeToStream("</h1>\n");
+			isInTitle = false;
+		}
+		writeToStream("</div></div></div>\n");
 	}
 	public void inASettingBlocks(ASettingBlocks node)
 	{
@@ -165,6 +284,202 @@ public class CodeGenerator extends DepthFirstAdapter{
 	}
 	public void inACharallPlainsv1(ACharallPlainsv1 node)
 	{
+		String[] symbol = SymbolTable.SymbolTable1.get(symbolCounter);
+		String style = "";
+		String output = "";
+		boolean printA = false;
+		String font_size = symbol.length > 2 ? symbol[2] : "";
+		String font_family = symbol.length > 3 ? symbol[3] : "";
+		String font_color = symbol.length > 4 ? symbol[4] : "";
+		String font_lineheight = symbol.length > 5 ? symbol[5] : "";
+		String font_weight = symbol.length > 6 ? symbol[6] : "";
+		String url = symbol.length > 7 ? symbol[7] : "";
+		if (url != prevUrl && isInUrl)
+		{
+			output += "</a>";
+			isInUrl = false;
+		}
+		if (font_size != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize])
+		{
+			style += "font-size:"+font_size+"; ";
+		}
+		if (font_family != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontFamily])
+		{
+			style += "font-family:"+font_family+"; ";
+		}
+		if (font_color != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor])
+		{
+			style += "color:"+font_color+"; ";
+		}
+		if (font_lineheight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontLineheight])
+		{
+			style += "line-height:"+font_lineheight+"; ";
+		}
+		if (font_weight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight])
+		{
+			String[] weights = font_weight.split("\\s");
+			
+			for (String string : weights) {
+				if (string.contains("b"))
+				{
+					
+					style += "font-weight:bold; ";
+				}
+				else if (string.contains("i"))
+				{
+					style += "font-style:italic; ";
+				}
+				else if (string.contains("u"))
+				{
+					style += "text-decoration:underline; ";
+				}
+			}
+		}
+		if (style != "")
+		{
+			style = "style=\""+style+"\"";
+		}
+		if (style.equals(prevStyle) && (isInDiv || isInSubtitle || isInTitle))
+		{
+			output += symbol[0];
+		}
+		else {
+			if (symbol[1] == "text")
+			{
+				if (isInDiv)
+				{
+					if (isInUrl)
+					{
+						output += "</a>\n";
+						isInUrl = false;
+					}
+					output += "</span>\n";
+					isInDiv = false;
+				}
+				if (isInTitle)
+				{
+					if (isInUrl)
+					{
+						output += "</a>\n";
+						isInUrl = false;
+					}
+					output += "</h1>\n";
+					isInTitle = false;
+				}
+				if (isInSubtitle)
+				{
+					if (isInUrl)
+					{
+						output += "</a>\n";
+						isInUrl = false;
+					}
+					output += "</h2>\n";
+					isInSubtitle = false;
+				}
+				if (!isInDiv)
+				{
+					output += "<span "+style+">";
+					
+					isInDiv = true;
+				}
+				if (url != "")
+				{
+					if (prevUrl != url || !isInUrl)
+					{
+						output += "<a href=\""+url+"\">";
+						isInUrl = true;
+					}
+				}
+				output += symbol[0];
+			}
+			else if (symbol[1] == "title")
+			{
+				if (isInDiv)
+				{
+					if (isInUrl)
+					{
+						output += "</a>\n";
+						isInUrl = false;
+					}
+					output += "</span>\n";
+					isInDiv = false;
+				}
+				if (isInSubtitle)
+				{
+					if (isInUrl)
+					{
+						output += "</a>\n";
+						isInUrl = false;
+					}
+					output += "</h2>\n";
+					isInSubtitle = false;
+				}
+				if (isInTitle)
+				{
+					output += "<span "+style+">";
+					isInDiv = true;
+				}
+				if (!isInTitle)
+				{
+					output += "<h1 class =\"title\"><span "+style+">";
+					
+					isInTitle = true;
+					isInDiv = true;
+				}
+				if (url != "")
+				{
+					if (prevUrl != url || !isInUrl)
+					{
+						output += "<a href=\""+url+"\">";
+						printA = true;
+						isInUrl = true;
+					}
+				}
+				output += symbol[0];
+			}
+			else if (symbol[1] == "subtitle")
+			{
+				if (isInDiv)
+				{
+					if (isInUrl)
+					{
+						output += "</a>\n";
+						isInUrl = false;
+					}
+					output += "</span>\n";
+					isInDiv = false;
+				}
+				if (isInTitle)
+				{
+					if (isInUrl)
+					{
+						output += "</a>\n";
+						isInUrl = false;
+					}
+					output += "</h1>\n";
+					isInTitle = false;
+				}
+				if (!isInSubtitle)
+				{
+					output += "<h2 class=\"subtitle\" "+style+">";
+					isInSubtitle = true;
+				}
+				if (url != "")
+				{
+					if (prevUrl != url || !isInUrl)
+					{
+						output += "<a href=\""+url+"\">";
+						printA = true;
+						isInUrl = true;
+					}
+				}
+				output += symbol[0];
+			}
+		}
+		writeToStream(output);
+		symbolCounter++;
+		prevStyle = style;
+		prevUrl = url;
 		//Write the plain text
 	}
 	public void inAShortblock(AShortblock node)
@@ -175,12 +490,27 @@ public class CodeGenerator extends DepthFirstAdapter{
 	{
 		if (isItemlisting == true)
 		{
-			writeToStream("</ul>");
+			writeToStream("</ul>\n");
 			isItemlisting = false;
 		}
 		if (isEnumerating == false)
 		{
-			writeToStream("<ol>");
+			if (isInDiv)
+			{
+				writeToStream("</span>\n");
+				isInDiv = false;
+			}
+			if (isInTitle)
+			{
+				writeToStream("</h1>\n");
+				isInTitle = false;
+			}
+			if (isInSubtitle)
+			{
+				writeToStream("</h2>\n");
+				isInSubtitle = false;
+			}
+			writeToStream("<ol>\n");
 		}
 		isEnumerating = true;
 	}
@@ -188,12 +518,27 @@ public class CodeGenerator extends DepthFirstAdapter{
 	{
 		if (isEnumerating == true)
 		{
-			writeToStream("</ol>");
+			writeToStream("</ol>\n");
 			isEnumerating = false;
 		}
 		if (isItemlisting == false)
 		{
-			writeToStream("<ul>");
+			if (isInDiv)
+			{
+				writeToStream("</span>\n");
+				isInDiv = false;
+			}
+			if (isInTitle)
+			{
+				writeToStream("</h1>\n");
+				isInTitle = false;
+			}
+			if (isInSubtitle)
+			{
+				writeToStream("</h2>\n");
+				isInSubtitle = false;
+			}
+			writeToStream("<ul>\n");
 		}
 		isItemlisting = true;
 	}
@@ -201,12 +546,12 @@ public class CodeGenerator extends DepthFirstAdapter{
 	{
 		if (isEnumerating == true)
 		{
-			writeToStream("</ol>");
+			writeToStream("</ol>\n");
 			isEnumerating = false;
 		}
 		if (isItemlisting == true)
 		{
-			writeToStream("</ul>");
+			writeToStream("</ul>\n");
 			isItemlisting = false;
 		}
 	}
@@ -214,37 +559,75 @@ public class CodeGenerator extends DepthFirstAdapter{
 	{
 		if (isEnumerating == true)
 		{
-			writeToStream("</ol>");
+			writeToStream("</ol>\n");
 			isEnumerating = false;
 		}
 		if (isItemlisting == true)
 		{
-			writeToStream("</ul>");
+			writeToStream("</ul>\n");
 			isItemlisting = false;
 		}
 	}
 	public void inANumerationNumerationv1 (ANumerationNumerationv1 node)
 	{
-		writeToStream("<ol>");
+		writeToStream("<ol>\n");
 	}
 	public void outANumerationNumerationv1 (ANumerationNumerationv1 node)
 	{
-		writeToStream("</ol>");
+		writeToStream("</ol>\n");
 	}
 	public void inAItemlistItemlistv1 (AItemlistItemlistv1 node)
 	{
-		writeToStream("<ul>");
+		writeToStream("<ul>\n");
 	}
 	public void outAItemlistItemlistv1 (AItemlistItemlistv1 node)
 	{
-		writeToStream("</ul>");
+		writeToStream("</ul>\n");
 	}
 	public void inAPlaintextNumerationv1 (APlaintextNumerationv1 node)
 	{
-		writeToStream("<li>THE PLAINTEXT</li>");
+		writeToStream("<li>\n");
+	}
+	public void outAPlaintextNumerationv1 (APlaintextNumerationv1 node)
+	{
+		if (isInDiv)
+		{
+			writeToStream("</span>\n");
+			isInDiv = false;
+		}
+		if (isInTitle)
+		{
+			writeToStream("</h1>\n");
+			isInTitle = false;
+		}
+		if (isInSubtitle)
+		{
+			writeToStream("</h2>\n");
+			isInSubtitle = false;
+		}
+		writeToStream("</li>\n");
 	}
 	public void inAPlaintextItemlistv1 (APlaintextItemlistv1 node)
 	{
-		writeToStream("<li>THE PLAINTEXT</li>");
+		writeToStream("<li>\n");
+	}
+	public void outAPlaintextItemlistv1 (APlaintextItemlistv1 node)
+	{
+		if (isInDiv)
+		{
+			writeToStream("</span>\n");
+			isInDiv = false;
+		}
+		if (isInTitle)
+		{
+			writeToStream("</h1>\n");
+			isInTitle = false;
+		}
+		if (isInSubtitle)
+		{
+			writeToStream("</h2>\n");
+			isInSubtitle = false;
+		}
+		writeToStream("</li>\n");
 	}
 }

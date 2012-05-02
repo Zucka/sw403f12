@@ -38,10 +38,12 @@ public class Main {
 		//SEMANTIC ANALYSER (YOU NEED THE START NODE FROM THE PARSER HERE)
 		compiler.testSemanticAnalyser(start);
 		
+		//CODE GENERATOR
+		compiler.testCodeGenerator(start);
+		
 		watch.stop();
 		System.out.println("Compiling took "+watch.getElapsedTime()+" miliseconds");
-		Settings opt = new Settings();
-		opt.loadSettings();
+		System.out.flush();
 
 	}
 
