@@ -364,7 +364,7 @@
 					var type = document.getElementById('slide'+slide_pointer_previous).getAttribute("data-transition");
 					switch(type)
 					{
-						case "rotate_scale":
+						case "rotatescale":
 						{
 							go_to_slide_rotate_scale(nr);
 							break;

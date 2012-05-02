@@ -36,6 +36,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 	boolean isInSubtitle = false;
 	boolean isInDiv = false;
 	boolean isInUrl = false;
+	boolean isInImage = false;
 	String prevStyle = "";
 	String prevUrl = "";
 	
@@ -275,6 +276,10 @@ public class CodeGenerator extends DepthFirstAdapter{
 		{
 			writeToStream("</h1>\n");
 			isInTitle = false;
+		}
+		if (isInImage)
+		{
+			
 		}
 		writeToStream("</div></div></div>\n");
 	}
