@@ -719,7 +719,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	
 	public int CheckThanAdd(String Text, String Parentx3, String Parent, String Parentx2){
 		if (Parent.startsWith("@apply { @url") && Parentx3.startsWith("@image")){
-			SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
+			SymbolTable.SymbolTableAdd(Text, "imagetext", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight]);
 			return 1;
 		} 
 		else if (Parent.startsWith("@apply { @url") && Parentx3.startsWith("@title")){
@@ -750,7 +750,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			return 1;
 		}
 		else if (Parentx2.startsWith("@image")){
-			SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
+			SymbolTable.SymbolTableAdd(Text, "imagetext", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight]);
 			return 1;
 		}
 		
@@ -1460,7 +1460,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		String SettingType = node.getKwd().toString().trim();
 		String IfSetting = node.parent().parent().toString().trim();
 		System.out.println(IfSetting);
-		//System.out.println(SettingType);
+		System.out.println(SettingType);
 		int Length1 = node.getShortidentv1().size();
 		Object[] Value1 = node.getShortidentv1().toArray();
 				
@@ -1538,6 +1538,9 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		else if (SettingType.startsWith("@url")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink] = Value;
 		//	System.out.println(Value);
+		}
+		if (IfSetting.startsWith("@image") && SettingType.startsWith("@url")){
+			SymbolTable.SymbolTableAdd("", "image", "", "", "", "", "", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
 		}
 		} catch (Exception a){
 			//System.out.println("Ingen Settingtype ændringer i @apply");
