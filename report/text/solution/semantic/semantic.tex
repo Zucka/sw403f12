@@ -103,10 +103,14 @@ The generic setup for the two lines are shown in section \ref{@begin} and \ref{@
     \subsection{Transition Existence}
 In order for the compiler to apply a transition on a slide, the analyser has to check if the transition that is written exists in the database of transitions. If the transition does not exist an error has to occur. If the transition does exist, then it continues without error.
 
-    \subsection{Type Checking}
-The type checking in a begin- and end line consists of checking that between the two brackets is the word \texttt{slide}. In special cases, where a transition is on a slide, the word \texttt{slide} must be between the pipe and the right bracket. The word seems redundant because no other word can be in its place at this time. But for further development, where a begin- and end line can do more than just enclose a slide, this will come in handy.
+%    \subsection{Type Checking}
+%The type checking in a begin- and end line consists of checking that between the two brackets is the word \texttt{slide}. In special cases, where a transition is on a slide, the word \texttt{slide} must be between the pipe and the right bracket. The word seems redundant because no other word can be in its place at this time. But for further development, where a begin- and end line can do more than just enclose a slide, this will come in handy.
 
-\begin{lstlisting}[frame=single,caption=Function: OutBlockBlocks, label=LSTOutBlockBlocks]
+\subsection{Slide type checking}
+There are diffent type of slide layouts. For instance most slide presentations starts with a title slide, with or without a subtitle. This frontpage has its' title and if subtitle, is in the middle of the slide. Instead of giving the user the explicit choice of this. The semantic analyser will check this, and create the correct type of slide according to the textinput from the user.
+
+
+\begin{lstlisting}[frame=single,caption=Function: OutBlockBlocks, label=LSTOutBlockBlocks, language=java]
 
 public void outABlockBlocks (ABlockBlocks node)
 	{
@@ -127,6 +131,7 @@ public void outABlockBlocks (ABlockBlocks node)
 		else if (Transition.startsWith("rotate-scale")){
 			Transition1 = "rotate-scale";
 		}
+		String SlideType = "Normal";
 		try{
 		String First =node.getLines().getFirst().toString();
 		String Last =node.getLines().getLast().toString();
@@ -136,7 +141,6 @@ public void outABlockBlocks (ABlockBlocks node)
 			indent--;
 			return;
 		}
-		String SlideType = "Normal";
 		try{
 		String First =node.getLines().getFirst().toString();
 		String Last =node.getLines().getLast().toString();
@@ -173,6 +177,8 @@ public void outABlockBlocks (ABlockBlocks node)
 		SymbolTable.SlideTableAdd(SlideType, Transition1);
 	}
 \end{lstlisting}
+
+
 
 \section{Semantic Analysis for Other Keywords}
      \subsection{Image}
