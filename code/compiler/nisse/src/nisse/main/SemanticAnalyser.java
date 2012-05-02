@@ -134,8 +134,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void defaultIn(Node node)
 	{
-	//	String[][] SymbolTable = new String[1000][10];
-	//	SymbolTable[0][0] = "hej";
 		System.out.println(node.getClass().getName());
 		System.out.println(node.toString());
 		System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
@@ -157,15 +155,18 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void inANisse (ANisse node)
 	{
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("ANisse");
+		}
 		indent++;
 	}
 	public void inABlockBlocks (ABlockBlocks node)
 	{
-			
+		if (Main.NodesB == true ){	
 		printIndents();
 		System.out.println("ABlockBlocks");
+		}
 		indent++;
 	}
 	public boolean CheckColor(String Value){
@@ -621,39 +622,51 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				}
 			}
 		}
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("ASettingblock");
+		}
 		indent++;
 	}
 	public void inABeginblock (ABeginblock node)
 	{
 		SymbolTable.OpenScope();
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("ABeginblock");
+		}
 		indent++;
 	}
 	public void inAPlaintextLines (APlaintextLines node)
 	{
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("APlaintextLines");
+		}
 		indent++;
 	}
 	public void inAEndblock (AEndblock node)
 	{
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("AEndblock");
+		}
 		indent++;
 	}
 	public void inABeblock (ABeblock node)
 	{
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("ABeblock");
+		}
 		indent++;
 	}
 	public void inABeblockv1 (ABeblockv1 node)
 	{
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("ABeblockv1");
+		}
 		indent++;
 	}
 	public void inAPlains (APlains node)
@@ -706,14 +719,19 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 
 			i++;
 		} */
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("APlains");
+		}
 		indent++;
+		
 	}
 	public void inAShortblockPlainsv1 (AShortblockPlainsv1 node)
 	{
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("AShortblockPlainsv1");
+		}
 		indent++;
 	}
 	
@@ -1003,10 +1021,10 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 
 			
 		  
-		
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("ACharallPlainsv1");
-		indent++;
+		} indent++;
 	}
 	
 	public String TakeValue(String SettingType, int start){
@@ -1444,16 +1462,17 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			System.out.println("Format Keyword:" + FormatKwd + " ikke fundet");
 		}
 		
-		
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("AShortblock");
-		indent++;
+		} indent++;
 	}
 	public void inAShortidents (AShortidents node)
 	{
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("AShortidents");
-		indent++;
+		} indent++;
 	}
 	public void inAShortident (AShortident node)
 	{		
@@ -1570,190 +1589,192 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		}
 		
 		
-		
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("AShortident");
-		indent++;
+		} indent++;
 	}
 	public void inACharShortidentv1 (ACharShortidentv1 node)
 	{
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("ACharShortidentv1");
-		indent++;
+		} indent++;
 	}
 	public void inADigitShortidentv1 (ADigitShortidentv1 node)
 	{
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("ADigitShortidentv1");
-		indent++;
+		} indent++;
 	}
 	public void inADotShortidentv1 (ADotShortidentv1 node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ADotShortidentv1");
-		indent++;
+		} indent++;
 	}
 	public void inAFloatShortidentv1 (AFloatShortidentv1 node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("AFloatShortidentv1");
-		indent++;
+		} indent++;
 	}
 	public void inAColonShortidentv1 (AColonShortidentv1 node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("AColonShortidentv1");
-		indent++;
+		} indent++;
 	}
 	public void inAFslashShortidentv1 (AFslashShortidentv1 node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("AFslashShortidentv1");
-		indent++;
+		} indent++;
 	}
 	public void inAAtKwd (AAtKwd node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("AAtKwd");
-		indent++;
+		} indent++;
 	}
 	public void inAUrlKwd (AUrlKwd node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("AUrlKwd");
-		indent++;
+		} indent++;
 	}
 	public void inStart (Start node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("Start");
-		indent++;
+		} indent++;
 	}
 	public void inAColonCharall (AColonCharall node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("AColonCharall");
-		indent++;
+		} indent++;
 	}
 	public void inADigitCharall (ADigitCharall node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ADigitCharall");
-		indent++;
+		} indent++;
 	}
 	public void inASemicolonCharall (ASemicolonCharall node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ASemicolonCharall");
-		indent++;
+		} indent++;
 	}
 	public void inAPercentCharall (APercentCharall node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("APercentCharall");
-		indent++;
+		} indent++;
 	}
 	public void inAForwardslashCharall (AForwardslashCharall node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("AForwardslashCharall");
-		indent++;
+		} indent++;
 	}
 	public void inABackslashCharall (ABackslashCharall node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ABackslashCharall");
-		indent++;
+		} indent++;
 	}
 	public void inAExclamationCharall (AExclamationCharall node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("AExclamationCharall");
-		indent++;
+		} indent++;
 	}
 	public void inACharCharall (ACharCharall node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ACharCharall");
-		indent++;
+		} indent++;
 	}
 	public void inASpaceCharall (ASpaceCharall node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ASpaceCharall");
-		indent++;
+		} indent++;
 	}
 	public void inADotCharall (ADotCharall node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ADotCharall");
-		indent++;
+		} indent++;
 	}
 	public void inACommaCharall (ACommaCharall node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ACommaCharall");
-		indent++;
+		} indent++;
 	}
 	public void inANumeration (ANumeration node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ANumeration");
-		indent++;
+		} indent++;
 	}
 	public void inAPlaintextNumerationv1 (APlaintextNumerationv1 node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("APlaintextNumerationv1");
-		indent++;
+		} indent++;
 	}
 	public void inANumerationNumerationv1 (ANumerationNumerationv1 node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ANumerationNumerationv1");
-		indent++;
+		} indent++;
 	}
 	public void inAItemlist (AItemlist node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("AItemlist");
-		indent++;
+		} indent++;
 	}
 	public void inAPlaintextItemlistv1 (APlaintextItemlistv1 node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("APlaintextItemlistv1");
-		indent++;
+		} indent++;
 	}
 	public void inAItemlistItemlistv1 (AItemlistItemlistv1 node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("AItemlistItemlistv1");
-		indent++;
+		} indent++;
 	}
 	public void inANumerationLines (ANumerationLines node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ANumerationLines");
-		indent++;
+		} indent++;
 	}
 	public void inAItemlistLines (AItemlistLines node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("AItemlistLines");
-		indent++;
+		} indent++;
 	}
 	public void inASettingLines (ASettingLines node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ASettingLines");
-		indent++;
+		} indent++;
 	}
 	public void inASettingBlocks (ASettingBlocks node)
 	{
-		printIndents();
+		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ASettingBlocks");
-		indent++;
+		} indent++;
 	}
 	public void outANisse (ANisse node)
 	{
@@ -2168,13 +2189,34 @@ public int CheckType1(AShortident node){
 	{
 		indent--;
 	}
+/*	public void printDebugMenu(){
+		System.out.println("##############################################");
+		System.out.println("Debugging menu");
+		System.out.println("Write the number in Main.Debug array, to apply the output");
+		System.out.println(" ______________________");
+		System.out.println("| Nr = Descripsion     |");
+		System.out.println("| ---------------------|");
+		System.out.println("|  1 = Symbol tabel    |");
+		System.out.println("|  2 = Slide tabel     |");
+		System.out.println("|  3 = nodes           |");		
+		System.out.println("|______________________|");
+	}  */
+	
 	public void outStart (Start node)
 	{
-		SymbolTable.PrintSymbolTable();
-		SymbolTable.PrintSlideTable();
+		
+		if (Main.SymbolTableB == true ){
+			SymbolTable.PrintSymbolTable();
+		}
+		if (Main.SlideTableB == true ){
+			SymbolTable.PrintSlideTable();
+		}
+	
 		indent--;
+		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("EOF");
+		}
 	}
 	public void outAColonCharall (AColonCharall node)
 	{

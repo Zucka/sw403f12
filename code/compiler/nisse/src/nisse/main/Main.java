@@ -10,14 +10,52 @@ import nisse.node.Start;
 import nisse.parser.Parser;
 
 public class Main {
-
+	
+	static int Debug1 = 6;
+	/* 1 Symbol table
+	 * 2 Slide table
+	 * 3 = 2 + 1
+	 * 4 Noder
+	 * 5 = 4 + 1
+	 * 6 = 4 + 2
+	 * 7 = 4 + 2 + 1
+	 */
+	static boolean SymbolTableB = false;
+	static boolean SlideTableB = false;
+	static boolean NodesB = false;
+	public static void Debugging(int Debug){
+		int DebugTest = Debug - 16;
+		if (DebugTest >= 0){
+			Debug = Debug - 16;
+		}
+		DebugTest = Debug - 8;
+		if (DebugTest >= 0){
+			Debug = Debug - 8;
+		}
+		DebugTest = Debug - 4;
+		if (DebugTest >= 0){
+			Debug = Debug - 4;
+			NodesB = true;
+		}
+		DebugTest = Debug - 2;
+		if (DebugTest >= 0){
+			Debug = Debug - 2;
+			SlideTableB = true;
+		}
+		DebugTest = Debug - 1;
+		if (DebugTest >= 0){
+			Debug = Debug - 1;
+			SymbolTableB = true;
+		}
+	}
 	
 	public static void main(String[] args) {
+		Debugging(Debug1);
 		StopWatch watch = new StopWatch();
 		watch.start();
 		Reader input = null;
 		try {
-			input = new FileReader("/home/zfire/test.txt");
+			input = new FileReader("c:/fisk/test.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
