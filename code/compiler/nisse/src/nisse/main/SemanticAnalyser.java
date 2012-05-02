@@ -168,7 +168,59 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		System.out.println("ABlockBlocks");
 		indent++;
 	}
-	
+	public boolean CheckColor(String Value){
+		if (Value.startsWith("brown")){
+			return true;
+		}
+		else if (Value.startsWith("blue")){
+			return true;
+		}
+		else if (Value.startsWith("black")){
+			return true;
+		}
+		else if (Value.startsWith("red")){
+			return true;
+		}
+		else if (Value.startsWith("teal")){
+			return true;
+		}
+		else if (Value.startsWith("pink")){
+			return true;
+		}
+		else if (Value.startsWith("cyan")){
+			return true;
+		}
+		else if (Value.startsWith("grey")){
+			return true;
+		}
+		else if (Value.startsWith("gray")){
+			return true;
+		}
+		else if (Value.startsWith("violet")){
+			return true;
+		}
+		else if (Value.startsWith("yellow")){
+			return true;
+		}
+		else if (Value.startsWith("green")){
+			return true;
+		}
+		else if (Value.startsWith("indigo")){
+			return true;
+		}
+		else if (Value.startsWith("lime")){
+			return true;
+		}
+		else if (Value.startsWith("navy")){
+			return true;
+		}
+		else if (Value.startsWith("purple")){
+			return true;
+		}
+		else {
+		return false;
+		}
+	}
 	
 	public void inASettingblock (ASettingblock node)
 	{
@@ -186,34 +238,44 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//System.out.println("Dette er en lokal variabel");
 			if (SettingType.startsWith("@ font_color")){
 				String Value = SettingType.substring(15);
-			//	System.out.println("Font color value = " + Value);
-				if (Visability.equals("global")){
-			//		System.out.println("Dette er global Visability");
-					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
-					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
-					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
-					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
-					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
+				Boolean CheckColor1;
+				CheckColor1 = CheckColor(Value);
+				if (CheckColor1 == true){
+					//	System.out.println("Font color value = " + Value);
+					if (Visability.equals("global")){
+						//		System.out.println("Dette er global Visability");
+						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
+						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
+						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
+						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
+						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
+					}
+					else if (Visability.equals("text")){
+						//		System.out.println("Dette er text Visability");
+						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
+					}
+					else if (Visability.equals("image")){
+						//		System.out.println("Dette er image Visability");
+						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
+					}
+					else if (Visability.equals("title")){
+						//		System.out.println("Dette er title Visability");
+						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
+					}
+					else if (Visability.equals("subtitle")){
+						//		System.out.println("Dette er subtitle Visability");
+						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
+					}
+					else if (Visability.equals("url")){
+						//		System.out.println("Dette er url Visability");
+						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
+					}
+					else {
+			    	    System.out.println("Visability word not recognized");
+			    	  }
 				}
-				else if (Visability.equals("text")){
-			//		System.out.println("Dette er text Visability");
-					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
-				}
-				else if (Visability.equals("image")){
-			//		System.out.println("Dette er image Visability");
-					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
-				}
-				else if (Visability.equals("title")){
-			//		System.out.println("Dette er title Visability");
-					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
-				}
-				else if (Visability.equals("subtitle")){
-			//		System.out.println("Dette er subtitle Visability");
-					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
-				}
-				else if (Visability.equals("url")){
-			//		System.out.println("Dette er url Visability");
-					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
+				else {
+					System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
 				}
 			}
 			else if (SettingType.startsWith("@ font_family")){	
@@ -365,43 +427,49 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		}
 		//VED GLOBAL SETTING ÆNDRING
 		else {
-		//	System.out.println("Dette er global Setting");
+			//	System.out.println("Dette er global Setting");
 			if (SettingType.startsWith("@ font_color")){
 				String Value = SettingType.substring(15);
-			//	System.out.println("Font color value = " + Value);
-				
-				
-				if (Visability.equals("global")){
-			//		System.out.println("Dette er global Visability");
-					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor] = Value;
-					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontColor] = Value;
-					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontColor] = Value;
-					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor] = Value;
-					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontColor] = Value;
+				//	System.out.println("Font color value = " + Value);
+				Boolean CheckColor1;
+				CheckColor1 = CheckColor(Value);
+				if (CheckColor1 == true){
 					
+					if (Visability.equals("global")){
+						//		System.out.println("Dette er global Visability");
+						SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor] = Value;
+						SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontColor] = Value;
+						SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontColor] = Value;
+						SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor] = Value;
+						SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontColor] = Value;
+
+					}
+					else if (Visability.equals("text")){
+						//		System.out.println("Dette er text Visability");
+						SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor] = Value;
+					}
+					else if (Visability.equals("image")){
+						//		System.out.println("Dette er image Visability");
+						SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor] = Value;
+					}
+					else if (Visability.equals("title")){
+						//		System.out.println("Dette er title Visability");
+						SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontColor] = Value;
+					}
+					else if (Visability.equals("subtitle")){
+						//		System.out.println("Dette er subtitle Visability");
+						SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontColor] = Value;
+					}
+					else if (Visability.equals("url")){
+						//		System.out.println("Dette er url Visability");
+						SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontColor] = Value;
+					}
 				}
-				else if (Visability.equals("text")){
-			//		System.out.println("Dette er text Visability");
-					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor] = Value;
+				else {
+					System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
 				}
-				else if (Visability.equals("image")){
-			//		System.out.println("Dette er image Visability");
-					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor] = Value;
-				}
-				else if (Visability.equals("title")){
-			//		System.out.println("Dette er title Visability");
-					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontColor] = Value;
-				}
-				else if (Visability.equals("subtitle")){
-			//		System.out.println("Dette er subtitle Visability");
-					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontColor] = Value;
-				}
-				else if (Visability.equals("url")){
-			//		System.out.println("Dette er url Visability");
-					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontColor] = Value;
-				}
-				
-				
+
+
 			}
 			else if (SettingType.startsWith("@ font_family")){	
 				String Value = SettingType.substring(16);
@@ -441,7 +509,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				String Value = SettingType.substring(16);
 			//	System.out.println("Font color value = " + Value);
 				Value = Value.substring(0, 1);
-				System.out.println("Font weight value = " + Value);
+				//System.out.println("Font weight value = " + Value);
 				if (Visability.equals("global")){
 					//System.out.println("Dette er global Visability");
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight] = Value;
@@ -682,7 +750,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			return 1;
 		}
 		else if (Parentx2.startsWith("@image")){
-			SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight]);
+			SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
 			return 1;
 		}
 		
@@ -1419,11 +1487,18 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily] = Value;
 		}
 		else if (SettingType.startsWith("@ font_color")){
+			Boolean CheckColor1;
+			CheckColor1 = CheckColor(Value);
+			if (CheckColor1 == true){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
+			}
+			else {
+				System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
+			}
 		}
 		else if (SettingType.startsWith("@ font_size")){
 			try{
@@ -1440,7 +1515,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		else if (SettingType.startsWith("@ font_weight")){
 			//Value = SettingType.substring(16);
 			Value = Value.substring(0, 1);
-			System.out.println("Font weight value1 = " + Value);
+			//System.out.println("Font weight value1 = " + Value);
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + Value;
@@ -1674,6 +1749,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	//	SymbolTable.SymbolTableAdd("hej", "Type", 6, "FontFamily", "FontColor", 6, "FontWeight", null, null);
 	//	SymbolTable.PrintSymbolTable();
 		//System.out.println("First1 = " + node.getLines().getFirst());
+		
 		String Transition = node.getBeginblock().toString();
 		Transition = Transition.substring(9);
 		//System.out.println(Transition);
@@ -1689,10 +1765,10 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		else if (Transition.startsWith("scale")){
 			Transition1 = "scale";
 		}
-		else if (Transition.startsWith("rotate-scale")){
-			Transition1 = "rotate-scale";
+		else if (Transition.startsWith("rotatescale")){
+			Transition1 = "rotatescale";
 		}
-		try{
+/*		try{
 		String First =node.getLines().getFirst().toString();
 		String Last =node.getLines().getLast().toString();
 		}
@@ -1700,9 +1776,46 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//System.out.println("Slided er tomt");
 			indent--;
 			return;
+		}   */
+		String SlideType = "Unknown";
+		Object[] Slide = node.getLines().toArray();
+		int Lines = Slide.length;
+		int i = 0;
+		int title = 0;
+		int subtitle = 0;
+		int image = 0;
+		while(i<Lines){
+			String Slide1 = Slide[i].toString();
+			if (Slide1.startsWith("@setting")  ||  Slide1.startsWith("@note")){
+			}
+			else if (Slide1.startsWith("@title") ) {
+				title++;
+			}
+			else if (Slide1.startsWith("@subtitle") ) {
+				subtitle++;
+			}
+			else if (Slide1.startsWith("@image") ) {
+				image++;
+			}
+			else {
+				SlideType = "Normal";
+				SymbolTable.SlideTableAdd(SlideType, Transition1);
+				indent--;
+				return;
+			}
+			i++;
 		}
-		String SlideType = "Normal";
-		try{
+		if (title > 0 && subtitle == 0 && image == 0){
+			SlideType = "Title";
+		}
+		else if (title > 0 && subtitle > 0 && image == 0){
+			SlideType = "TitleWithSubtitle";
+		}
+		else if (image > 0){
+			SlideType = "Image";
+		}
+			
+/*		try{
 		String First =node.getLines().getFirst().toString();
 		String Last =node.getLines().getLast().toString();
 		String Firstsub = First.substring(0, 6);
@@ -1734,7 +1847,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			System.out.println("Dette er ikke en title slide");
 			System.out.println("Exception, no worries");
 			System.out.println("Da den første og/eller sidste linje højest sandsynlig er mindre end 8 chars lang");
-		}
+		}   */
 		SymbolTable.SlideTableAdd(SlideType, Transition1);
 		indent--;
 		
