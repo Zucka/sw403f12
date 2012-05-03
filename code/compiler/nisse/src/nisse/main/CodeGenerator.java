@@ -671,6 +671,10 @@ public class CodeGenerator extends DepthFirstAdapter{
 			isItemlisting = false;
 		}
 	}
+	public void outAPlaintextLines(APlaintextLines node)
+	{
+		writeToStream("<br/>");
+	}
 	public void inASettingLines (ASettingLines node)
 	{
 		if (isEnumerating == true)

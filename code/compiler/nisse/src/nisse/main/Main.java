@@ -11,7 +11,7 @@ import nisse.parser.Parser;
 
 public class Main {
 	
-	static int Debug1 = 8;
+	static int Debug1 = 0;
 	/* 1 Symbol table
 	 * 2 Slide table
 	 * 3 = 2 + 1
@@ -19,7 +19,7 @@ public class Main {
 	 * 5 = 4 + 1
 	 * 6 = 4 + 2
 	 * 7 = 4 + 2 + 1
-	 * 8 = ErrorTable
+	 * 8 =
 	 * 9 = 8 + 1
 	 * 10 = 8 + 2
 	 * 11 = 8 + 2 + 1
@@ -32,7 +32,6 @@ public class Main {
 	static boolean SymbolTableB = false;
 	static boolean SlideTableB = false;
 	static boolean NodesB = false;
-	static boolean ErrorTableB = false;
 	public static void Debugging(int Debug){
 		int DebugTest = Debug - 16;
 		if (DebugTest >= 0){
@@ -41,7 +40,6 @@ public class Main {
 		DebugTest = Debug - 8;
 		if (DebugTest >= 0){
 			Debug = Debug - 8;
-			ErrorTableB = true;
 		}
 		DebugTest = Debug - 4;
 		if (DebugTest >= 0){
@@ -93,7 +91,7 @@ public class Main {
 		watch.stop();
 		System.out.println("Compiling took "+watch.getElapsedTime()+" miliseconds");
 		System.out.flush();
-		
+
 	}
 
 	
