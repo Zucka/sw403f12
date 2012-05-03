@@ -19,7 +19,6 @@ The semantic analyser checks for errors that the lexer and the parser do not cat
 \subsection{Keyword Existence}
 In order for the settings to work, a check to see if a specific setting actually exists in that context is needed. In order to check if the setting exists, a list of settings for a specific context is set up beforehand which it can be checked against. If the setting exists in the list, the value of the setting is checked to see if it matches a valid value of that setting. If it does not exist, an error is written to the user.
 
-
 \subsection{Type Checking}
 For a specific setting there is a number of valid values, two examples could be the settings \texttt{font\_size} and \texttt{font\_weight} , which sets the size or weight of a specific text, respectively. \\
 In the case of \texttt{font\_size}, a valid input would be any integer. \\
@@ -36,7 +35,7 @@ Every setting block has to be given a scope of what it is going to affect. An ex
 \subsubsection*{Effect Level}
 When a setting block is inside a begin- and/or end block, the setting only affects that particular slide.\\
 A setting block can also be used outside a slide, in which would make that setting apply to every slide following that specific slide, at which it is defined, unless it is overridden at a later stage. These scope settings have to be checked as to see what text the setting should apply to.
-
+\\ \\
 Listing \ref{LSTSemanticSetting} is a code example of when the compiler enters a setting node. The ``Visibility'' word in this section means which font type is changed; title, text, subtitle, etc.
 
 \begin{lstlisting}[frame=single,caption=SettingBlock, label=LSTSemanticSetting, language=java]
@@ -88,14 +87,14 @@ public void inASettingblock (ASettingblock node){
 \end{lstlisting}
 
 
-Listing \ref{LSTSemanticSetting} illustrate ``setting type''check, and changes parameters according to the ``visibility'' word, which is placed just before the right curly bracket in a setting block.\\
+\noindent{Listing \ref{LSTSemanticSetting} illustrate ``setting type''check, and changes parameters according to the ``visibility'' word, which is placed just before the right curly bracket in a setting block.\\
 Line 2 fetches the setting, node \textit{Shortident}, which contains information about what setting to change and what to change it to, which is converted to a string, then the excess spaces are removed.\\
-Line 3 fetches the visibility declaration, which is in the node \textit{Char}, which is also converted to a string and the excess spaces are removed.\\
+Line 3 fetches the visibility declaration, which is in the node \textit{Char}, which is also converted to a string and the excess spaces are removed.} \\
 Line 4 finds out which class the setting block belongs to. This is necessary to determine whether the setting block is inside or outside a slide, which is the first thing to be checked in line 5. An \textit{else} construction is made for this \textit{if} sentence which is executed when the setting should be applied on every upcoming slide.\\
 Line 7 checks which keyword is going to be changed, in this case it is \textit{Font\_Color}. The parameter is then stored in a string called \textit{Value}, which takes the substring of SettingType, starting a char 15. The reason it is 15 is because a space is added after each token. So there is a space after \textit{font\_color} and a space after the colon (:) which makes the parameter start at the $15^{th}$ char.\\
 Because it is a colour, it checks in the function \textit{CheckColor}, at line 9 to 11, whether the colour is allowed to be inserted. If it is not allowed, it will not change the colour, and then skip to line 38.\\
 From line 12 to 33 it checks what the ``visibility'' keyword is. Depending on the word, it changes the parameter for that specific visibility.\\
-Line 13 enters the document ``SymbolTable'' and the array \textit{Scope}, which inserts the parameter at the current scope level, and in the cell containing the information about text font colour.\\
+Line 13 enters the document ``SymbolTable'' and the array \textit{Scope}, which inserts the parameter at the current scope level, and in the cell containing the information about text font colour.
 
 \section{Semantic Analysis for Blocks}
 This section focuses on blocks. A block consists of at least two lines, a \texttt{begin} line and an \texttt{end} line. Between those two lines, information can be stored. \\
@@ -177,20 +176,24 @@ public void outABlockBlocks (ABlockBlocks node){
 \end{lstlisting}
 
 \subsection{Transition Existence}
-In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if, and what, transition the slide has. In line 2 the function creates the \texttt{@begin} line to a string, which can be operated on. In line 3 the function creates a substring of line 2, beginning at char 9 which is where the transition should be written, if any. Line 4 sets the transition to \texttt{none}. From line 5 it checks if the transition is \texttt{slide}, in this case there is no transition explicit transition, which is why it fetches the transition variable set by a setting block, this variable is \texttt{none} by default. From line 8 to 19 it checks what kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have no transition. \\
+In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if, and what, transition the slide has. \\
+In line 2 the function creates the \texttt{@begin} line to a string, which can be operated on. \\
+In line 3 the function creates a substring of line 2, beginning at char 9 which is where the transition should be written, if any. \\
+Line 4 sets the transition to \texttt{none}. \\
+From line 5 it checks if the transition is \texttt{slide}, in this case there is no transition explicit transition, which is why it fetches the transition variable set by a setting block, this variable is \texttt{none} by default. \\
+From line 8 to 19 it checks what kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have no transition. \\
 In line 20 to 23 the function sets the transition to default, and creates an error, because it was not the correct transition which was wanted by the user.
+
 \subsection{Slide type checking}
-In listing \ref{LSTOutBlockBlocks} from line 24 to 60, we find out which type the slide it is. It starts by being \texttt{Unknown}, but it should never be that in the end. Then, in line 25 it creates an array of each object (line) in the slide. The number of lines is determined in line 26.
+In listing \ref{LSTOutBlockBlocks} from line 24 to 60, we find out which type the slide it is. It starts by being \texttt{Unknown}, but it should never be that in the end. Then, in line 25 it creates an array of each object (line) in the slide. The number of lines is determined in line 26. \\
 The number of title-, subtitle- and image lines is set in line 28 - 30. \\
 To check how many there are, by checking the number of lines, we do a loop for each of the lines, and increment the variable for the specific type. If a normal text line is encountered, it will automatic be a \texttt{normal} slide. \\
-From line 52 to 60, the function checks how many lines there are of each type, and depending on the amount, it sets the \texttt{SlideType} to the correct slide type, in order to show the slide properly.
+From line 52 to 60, the function checks how many lines there are of each type, and depending on the amount, it sets the \texttt{SlideType} to the correct slide type, in order to show the slide properly. \\
 Line 61 adds the slide properties to the slide table.
 
 \section{Semantic Analysis for Other Keywords}
 \subsection{Image}
 \texttt{Image} has to check if there exists an image on that specific url. If no image is found, accessible or in a format that is not recognized by the compiler, an error should occur.
-
-
 
 \subsection{Enumerate}
 The hash tag keyword has to keep track of the numbers, meaning that it has to increment each time a line starts with a hash tag. When a line does not start with a hash tag, the number should start from 1 again. This is also applicable where hash tags are inside other hash tags.
@@ -198,9 +201,6 @@ The hash tag keyword has to keep track of the numbers, meaning that it has to in
 %(Bliver checket i code gen)
 
 \section{Exception Handling}
-
-
-
 
 \section{Reachability and Termination Analysis}
 There is no need to check for unreachable code in the language, because there are no breakers in the language e.g. return, break, exit, etc.
@@ -217,8 +217,7 @@ NextSymbolNumber();
 }
 \end{lstlisting}
 
-Listing \ref{LSTSemanticSymbolTableAdd} shows the function called to create a symbol in the symbol table. It stores all the variables in an array which is inside a hash table. Each hash entry has a unique number in order to fetch the entry. Before the function ends the number is incremented by 1, which is the next unique hash key. pik
-
+\noindent{Listing \ref{LSTSemanticSymbolTableAdd} shows the function called to create a symbol in the symbol table. It stores all the variables in an array which is inside a hash table. Each hash entry has a unique number in order to fetch the entry. Before the function ends the number is incremented by 1, which is the next unique hash key.}
 
 \section{Slide Table}
 An additional table is created to keep track of the overall properties in a slide, meaning the transition between the slides, and which type of slide they are, e.g. a title page or a normal page.
