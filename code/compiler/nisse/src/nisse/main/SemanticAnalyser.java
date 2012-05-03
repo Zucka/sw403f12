@@ -1868,6 +1868,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			Transition1 = "rotatescale";
 		}
 		else {
+			Transition1 = SymbolTable.Transition;
 			Error.MakeError("Transition existance" , Transition);
 		}
 /*		try{
