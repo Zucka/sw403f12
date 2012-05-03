@@ -177,14 +177,13 @@ public void outABlockBlocks (ABlockBlocks node){
 \end{lstlisting}
 
 \subsection{Transition Existence}
-	Lakslakslakslakslaks
-In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if, and what, transition the slide has. In line 2 the function creates the \texttt{@begin} line to a string, which can be operated on. In line 3 it creates a substring of line 2, beginning at char 9 which is where the transition should be written, if any. Line 4 sets the transition to \texttt{none}. From line 5 it checks if the transition is \texttt{slide}, in this case there are no transition explicit transition, which is why it fetches the transition variable set by a setting block, this variable is \texttt{none} by default. From line 8 to 19 it checks what kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have none.\\
-In line 20 to 23 it sets the transition to default, and creats an error, because it could not the correct transistion which was wanted by the user.
+In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if, and what, transition the slide has. In line 2 the function creates the \texttt{@begin} line to a string, which can be operated on. In line 3 the function creates a substring of line 2, beginning at char 9 which is where the transition should be written, if any. Line 4 sets the transition to \texttt{none}. From line 5 it checks if the transition is \texttt{slide}, in this case there is no transition explicit transition, which is why it fetches the transition variable set by a setting block, this variable is \texttt{none} by default. From line 8 to 19 it checks what kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have no transition. \\
+In line 20 to 23 the function sets the transition to default, and creates an error, because it was not the correct transition which was wanted by the user.
 \subsection{Slide type checking}
-In listing \ref{LSTOutBlockBlocks} from line 24 to 60, we find out which type the slide it is. It starts by being \texttt{Unknown}, but it should never be that in the end. Then in line 25 it creats an array of each object(line) in the slide. The number of lines is determined in line 26.
-The number of title-, subtitle- and imagelines is set in 28 - 30.
-To check how many of each line of each type there are, we do a loop for each of the lines, check each line, and increment the variable for the specific type. If a normal text line is encountered, it will automatic be a \texttt{normal} slide.
-From line 52 to 60, it checks how many lines are of each type, and depending on the count, it sets the \texttt{SlideType} to the correct slide type, in order to show the slide properly.
+In listing \ref{LSTOutBlockBlocks} from line 24 to 60, we find out which type the slide it is. It starts by being \texttt{Unknown}, but it should never be that in the end. Then, in line 25 it creates an array of each object (line) in the slide. The number of lines is determined in line 26.
+The number of title-, subtitle- and image lines is set in line 28 - 30. \\
+To check how many there are, by checking the number of lines, we do a loop for each of the lines, and increment the variable for the specific type. If a normal text line is encountered, it will automatic be a \texttt{normal} slide. \\
+From line 52 to 60, the function checks how many lines there are of each type, and depending on the amount, it sets the \texttt{SlideType} to the correct slide type, in order to show the slide properly.
 Line 61 adds the slide properties to the slide table.
 
 \section{Semantic Analysis for Other Keywords}
@@ -194,9 +193,9 @@ Line 61 adds the slide properties to the slide table.
 
 
 \subsection{Enumerate}
-The hash tag keyword has to keep track of the numbers, meaning that it has to increment each time a line starts with a hash tag. And when a line does not start with a hash tag, the number should start from one again. This is also applicable where hash tags are inside hash tags.
+The hash tag keyword has to keep track of the numbers, meaning that it has to increment each time a line starts with a hash tag. When a line does not start with a hash tag, the number should start from 1 again. This is also applicable where hash tags are inside other hash tags.
 
-(Bliver checket i code gen)
+%(Bliver checket i code gen)
 
 \section{Exception Handling}
 
@@ -207,13 +206,10 @@ The hash tag keyword has to keep track of the numbers, meaning that it has to in
 There is no need to check for unreachable code in the language, because there are no breakers in the language e.g. return, break, exit, etc.
 This also means that the language always terminates normally, because there are no keywords to stop a normal termination.
 
+\section{Symbol Table}
+In order to know the properties for each token that is written by the user, a symbol is added to the symbol table, containing the necessary information for the code generator to display the token correctly.
 
-
-\section{SymbolTable}
-
-in order to know the properties for each token that is written by the user, a symbol is added to the symbol table, containing the necessary information for the code generator to display the token correctly.
-
-\begin{lstlisting}[frame=single,caption=Function: Function: SymbolTableAdd, label=LSTSemanticSymbolTableAdd]
+\begin{lstlisting}[frame=single,caption=Function: SymbolTableAdd, label=LSTSemanticSymbolTableAdd]
 public static void SymbolTableAdd(String Text, String Type, String FontSize, String FontFamily,String FontColor, String FontLineheight, String FontWeight, String Link){
 String[] Values = {Text, Type, FontSize, FontFamily, FontColor, FontLineheight, FontWeight, Link};
 SymbolTable1.put(GetCurrentSymbolNumber(), Values);
@@ -221,14 +217,14 @@ NextSymbolNumber();
 }
 \end{lstlisting}
 
-Listing \ref{LSTSemanticSymbolTableAdd} shows the function called to create a symbol in the symbol table. It stores all the variables in an array which is inside a hashtable. Each hash entry has unique number in order to fetch the entry. before the function ends the number is incremented by 1, which is the next unique hashkey.
+Listing \ref{LSTSemanticSymbolTableAdd} shows the function called to create a symbol in the symbol table. It stores all the variables in an array which is inside a hash table. Each hash entry has a unique number in order to fetch the entry. Before the function ends the number is incremented by 1, which is the next unique hash key. pik
 
 
-\section{SlideTable}
-An additional table is created to keep track of the overall properties in a slide, meaning the transition between the slides, and which type of slide it is, eg. a title page or a normal page.
+\section{Slide Table}
+An additional table is created to keep track of the overall properties in a slide, meaning the transition between the slides, and which type of slide they are, e.g. a title page or a normal page.
 The slide type is determined in listing \ref{LSTOutBlockBlocks}. In line 56 in listing \ref{LSTOutBlockBlocks}, it calls the function SlideTableAdd, which is shown in listing \ref{LSTSlideTableAdd}. Where the transition at the beginning is set to \texttt{none}, but can be modified in the function \texttt{outABlockBlocks} in listing \ref{LSTOutBlockBlocks}. The slide table looks more or like the symbol table, only with fewer elements in the array.
 
-\begin{lstlisting}[frame=single,caption=Function: Function: SlideTableAdd, label=LSTSlideTableAdd]
+\begin{lstlisting}[frame=single,caption= Function: SlideTableAdd, label=LSTSlideTableAdd]
 static String Transition = "none";
 
 public static void SlideTableAdd(String Type, String Transition){
