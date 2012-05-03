@@ -1,0 +1,124 @@
+% Hyppigt benyttede pakker
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{color}
+
+% Farver
+
+\definecolor{dkblue}{rgb}{0,0.1,0.5}
+\definecolor{dkgreen}{rgb}{0,0.4,0}
+\def\Red{\color{\ifdraft red\else black\fi}}
+\def\Green{\color{\ifdraft green\else black\fi}}
+\def\Blue{\color{\ifdraft blue\else black\fi}}
+\def\Black{\color{black}}
+\newcommand{\details}[1]{\iffull{\Blue#1}\fi}
+\definecolor{linkColor}{rgb}{0,0,0.5}
+
+% Sætninger mv.
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newtheorem{saetning}{S{\ae}tning}
+\newtheorem{proposition}{Proposition}
+\newtheorem{korollar}{Korollar}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{eksempel}{Eksempel}
+\newtheorem{problem}[theorem]{Problem}
+
+\newenvironment{bevis}{\begin{proof}[Bevis:]}{\end{proof}}
+
+% Operationel semantik
+
+\newcommand{\lag}{\langle}
+\newcommand{\rag}{\rangle}
+\newcommand{\setof}[2]{\ensuremath{\{ #1 \mid #2 \}}}
+\newcommand{\set}[1]{\ensuremath{\{ #1 \}}}
+\newcommand{\besk}[1]{\ensuremath{\lag #1 \rag}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+% Mængdenotation
+
+\newcommand{\pow}[1]{\mathcal{P}(#1)}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Nat}{{\mathbb N}}
+\newcommand{\Binary}{{\mathcal B}}
+\newcommand{\defeq}{\stackrel{\mathrm{def}}{=}}
+
+\newcommand{\dom}[1]{\mbox{dom}(#1)}
+\newcommand{\ran}[1]{\mbox{ran}(#1)}
+
+% Udsagnslogik
+
+\newcommand{\logand}{\wedge}
+\newcommand{\logor}{\vee}
+\newcommand{\True}{\mathbf{t \! t}}
+
+% Parenteser
+
+\newcommand\lb {[\![}
+\newcommand\rb{]\!]}
+\newcommand{\sem}[1]{\lb #1 \rb}
+\newcommand{\subst}[2]{\{  {}^{#1} / {}_{#1} \}}
+
+\newenvironment{tuborg}{\left\{ \begin{array}{cc} }{\end{array} \right.}
+
+% Flexible-length arrows (Copyright (C) 1995, Michael Rettelbach)
+
+\makeatletter
+\newdimen\lleng
+\newdimen\bleng
+
+\def\gummitrans#1{
+  \setbox0=\hbox{$\stackrel{\,#1}{\mbox{}}$}
+  \lleng=\wd0%
+  \advance\lleng by 0.6em
+  \;\raisebox{0ex}{$\stackrel{\,#1}{%
+    \makebox[\lleng]{%
+      \rule{0mm}{1ex}\mbox{}\leavevmode \xleaders
+      \hbox {$\m@th \mkern -2.6mu \relbar \mkern -2.6mu$}\hfill\mbox{}}}$}%
+  \hspace{-2.2ex}\rightarrow}
+
+\def\Gummitrans#1{
+  \setbox0=\hbox{$\stackrel{\,#1}{\mbox{}}$}
+  \lleng=\wd0%
+  \advance\lleng by 0.6em
+  \;\raisebox{0ex}{$\stackrel{\,#1}{%
+    \makebox[\lleng]{%
+      \mbox{}\leavevmode \xleaders
+      \hbox {$\m@th \mkern -2.6mu \Relbar \mkern -2.6mu$}\hfill\mbox{}}}$}%
+  \hspace{-2.2ex}\Rightarrow}
+
+\def\trans#1{\mathrel{\gummitrans{#1}}}
+\def\Trans#1{\mathrel{\Gummitrans{#1}}}
+
+
+% Bevisregler
+
+% Med sidebetingelse
+
+\newcommand{\condinfrule}[3]
+           {\parbox{5.5cm}{$$ {\frac{#1}{#2}}{\qquad
+            #3} \hfill  $$}}
+
+% Uden sidebetingelse
+
+\newcommand{\infrule}[2]
+           {\parbox{4.5cm}{$$ \frac{#1}{#2}\hspace{.5cm}$$}}
+
+% Regelnavn
+
+\newcommand{\runa}[1]{\mbox{\textsc{(#1})}}
+
+% Svar på spørgsmål
+
+\newenvironment{svar}{\begin{quote}\noindent\textbf{Svar:}}{\end{quote}}

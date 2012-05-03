@@ -2,6 +2,7 @@
 %pdflatex -interaction=nonstopmode %.tex|bibtex %|pdflatex -interaction=nonstopmode %.tex|pdflatex -interaction=nonstopmode %.tex
 
 \input{layout/preamble_P4_draft.tex}
+\input{layout/standard.tex}
 
 \begin{document}
 	
@@ -36,6 +37,7 @@
 	\input{text/solution/syntax.tex}
 	\input{text/solution/lexer/lexer.tex}
 	\input{text/solution/parser/parser.tex}
+	\input{text/solution/semantic/operational_semantics}
 	\input{text/solution/semantic/semantic.tex}
 	\input{text/solution/codegen/codegen.tex}
 	
