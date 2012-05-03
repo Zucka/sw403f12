@@ -131,10 +131,10 @@ public void outABlockBlocks (ABlockBlocks node){
 		else if (Transition.startsWith("rotatescale")){
 			Transition1 = "rotatescale";
 		}
-else {
-Transition1 = SymbolTable.Transition;
-Error.MakeError("Transition existance" , Transition);
-}
+		else {
+			Transition1 = SymbolTable.Transition;
+			Error.MakeError("Transition existance" , Transition);
+		}
 		String SlideType = "Unknown";
 		Object[] Slide = node.getLines().toArray();
 		int Lines = Slide.length;
@@ -178,9 +178,14 @@ Error.MakeError("Transition existance" , Transition);
 
 \subsection{Transition Existence}
 	Lakslakslakslakslaks
-In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if, and what, transition the slide has. In line 2 the function creates the \texttt{@begin} line to a string, which can be operated on. In line 3 it creates a substring of line 2, beginning at char 9 which is where the transition should be written, if any. Line 4 sets the transition to \texttt{none}. From line 5 it checks if the transition is \texttt{slide}, in this case there are no transition and the transition remains to be \texttt{none}. From line 10 to 18 it checks what kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have none.\\
+In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if, and what, transition the slide has. In line 2 the function creates the \texttt{@begin} line to a string, which can be operated on. In line 3 it creates a substring of line 2, beginning at char 9 which is where the transition should be written, if any. Line 4 sets the transition to \texttt{none}. From line 5 it checks if the transition is \texttt{slide}, in this case there are no transition explicit transition, which is why it fetches the transition variable set by a setting block, this variable is \texttt{none} by default. From line 8 to 19 it checks what kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have none.\\
+In line 20 to 23 it sets the transition to default, and creats an error, because it could not the correct transistion which was wanted by the user.
 \subsection{Slide type checking}
-In listing \ref{LSTOutBlockBlocks} from line 19 to 54, we find out which type the slide it is. It starts by being \texttt{Unknown}, but it should never be that in the end. Then in line 20 it
+In listing \ref{LSTOutBlockBlocks} from line 24 to 60, we find out which type the slide it is. It starts by being \texttt{Unknown}, but it should never be that in the end. Then in line 25 it creats an array of each object(line) in the slide. The number of lines is determined in line 26.
+The number of title-, subtitle- and imagelines is set in 28 - 30.
+To check how many of each line of each type there are, we do a loop for each of the lines, check each line, and increment the variable for the specific type. If a normal text line is encountered, it will automatic be a \texttt{normal} slide.
+From line 52 to 60, it checks how many lines are of each type, and depending on the count, it sets the \texttt{SlideType} to the correct slide type, in order to show the slide properly.
+Line 61 adds the slide properties to the slide table.
 
 \section{Semantic Analysis for Other Keywords}
 \subsection{Image}
