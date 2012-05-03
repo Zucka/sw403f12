@@ -17,13 +17,16 @@ The semantic analyser checks for errors that the lexer and the parser do not cat
 \section{Semantic Analysis for Text Formatting}
 
 \subsection{Keyword Existence}
-In order for the settings to work, a check to see if the given setting actually exists in that context is needed. In order to check if the setting exists, a list of settings for a given context is set up beforehand which it can be checked against. If the setting exists in the list the value of the setting is checked to see if it matches a valid value of that setting. If it does not exist, then an error is written to the user.
+In order for the settings to work, a check to see if a specific setting actually exists in that context is needed. In order to check if the setting exists, a list of settings for a specific context is set up beforehand which it can be checked against. If the setting exists in the list, the value of the setting is checked to see if it matches a valid value of that setting. If it does not exist, an error is written to the user.
 
 
 \subsection{Type Checking}
-For a given setting there is a number of valid values, two examples could be the settings \texttt{font\_size} and \texttt{font\_weight} , which sets the size or weight of a given text. In the case of \texttt{font\_size}, a valid input would be any integer, and in the case of \texttt{font\_weight} it would be a valid string of a weight. As with the keyword, existence of an error is written if the value of the setting is not valid.
-The type checking for integers and integers with decimals, is done by converting the value from a string to an int or float respectively.
-Typechecking for specific strings is done with \texttt{if} sentences, if they do not match any, an error occures.
+For a specific setting there is a number of valid values, two examples could be the settings \texttt{font\_size} and \texttt{font\_weight} , which sets the size or weight of a specific text, respectively. \\
+In the case of \texttt{font\_size}, a valid input would be any integer. \\
+In the case of \texttt{font\_weight}, a valid input would be a valid string of weight. \\
+As with the keyword, existence of an error is written if the value of the setting is not valid.
+The type checking for integers and integers with decimals is done by converting the value from a string to an int or float respectively.
+Type checking for a specific string is done with \texttt{if} sentences, if no specific string matches any \texttt{if} sentence, an error occurs.
      
 \subsection{Scope Checking}
 
@@ -31,10 +34,10 @@ Typechecking for specific strings is done with \texttt{if} sentences, if they do
 Every setting block has to be given a scope of what it is going to affect. An example could be \texttt{global}, which, for a given setting would set all types of text in the given effect level unless it is overridden at a later stage.
 
 \subsubsection*{Effect Level}
-When a setting block is inside a begin- and end block, the setting only affects that particular slide.
-A setting block can also be used outside a slide, in which case that setting would apply to every slide following that setting unless overridden at a later stage. These scope settings have to be checked as to see what text that setting should apply to.
+When a setting block is inside a begin- and/or end block, the setting only affects that particular slide.\\
+A setting block can also be used outside a slide, in which would make that setting apply to every slide following that specific slide, at which it is defined, unless it is overridden at a later stage. These scope settings have to be checked as to see what text the setting should apply to.
 
-Listing \ref{LSTSemanticSetting} is a code example of when the compiler enters a setting node. Visibility word in this section means which font type is changed, eg. title, text, subtitle.
+Listing \ref{LSTSemanticSetting} is a code example of when the compiler enters a setting node. The ``Visibility'' word in this section means which font type is changed; title, text, subtitle, etc.
 
 \begin{lstlisting}[frame=single,caption=SettingBlock, label=LSTSemanticSetting, language=java]
 public void inASettingblock (ASettingblock node){
@@ -85,30 +88,28 @@ public void inASettingblock (ASettingblock node){
 \end{lstlisting}
 
 
-Listing \ref{LSTSemanticSetting} illustrate setting typecheck, and changes parameters according to the visibility word, which is placed just before the right curly bracet in a setting block.\\
-Line 2 fetches the setting, node \textit{Shortident}, it contains information about what setting to change and what to change it to, which is converted to a string and then the excess spaces are removed.\\
-Line 3 fetches the visibility declaration, which is in the node \textit{Char}, which is also converted to a string a excess spaces are removed.\\
-Line 4 finds out which class the setting block belongs to. This is necessary to determin if the setting block is inside or outside a slide. Which also is the first to be checked in line 5. An \textit{else} construction is made for this \textit{if} sentence which is executed when the setting should be applied on very upcomming slide.\\
-Line 7 checks which keyword that is going to be changed, is this case it is \textit{Font\_Color}. The parameter is then stored in a string called \textit{Value}, which takes the substring of SettingType, starting a char 15. The reason it is 15 is because a space is added after each token. So there is a space after \textit{font\_color} and a space after the colon (:) which makes the parameter start at the 15'th char.\\
-Because it is a color, it checks in the function \textit{CheckColor}, at line 9 to 11, if the color is allowed to be inseted. If it is not allowed, it will not change the color, and then skip to line 38.\\
-From line 12 to 33 it check what the visibility keyword is. Depending on the word, it changes the parameter for that specific visibility.\\
-Line 13 enters the document SymbolTable and the array \textit{Scope}, which insets the parameter at the current scope level, and in the cell containing the information about text font color.\\
-
+Listing \ref{LSTSemanticSetting} illustrate ``setting type''check, and changes parameters according to the ``visibility'' word, which is placed just before the right curly bracket in a setting block.\\
+Line 2 fetches the setting, node \textit{Shortident}, which contains information about what setting to change and what to change it to, which is converted to a string, then the excess spaces are removed.\\
+Line 3 fetches the visibility declaration, which is in the node \textit{Char}, which is also converted to a string and the excess spaces are removed.\\
+Line 4 finds out which class the setting block belongs to. This is necessary to determine whether the setting block is inside or outside a slide, which is the first thing to be checked in line 5. An \textit{else} construction is made for this \textit{if} sentence which is executed when the setting should be applied on every upcoming slide.\\
+Line 7 checks which keyword is going to be changed, in this case it is \textit{Font\_Color}. The parameter is then stored in a string called \textit{Value}, which takes the substring of SettingType, starting a char 15. The reason it is 15 is because a space is added after each token. So there is a space after \textit{font\_color} and a space after the colon (:) which makes the parameter start at the $15^{th}$ char.\\
+Because it is a colour, it checks in the function \textit{CheckColor}, at line 9 to 11, whether the colour is allowed to be inserted. If it is not allowed, it will not change the colour, and then skip to line 38.\\
+From line 12 to 33 it checks what the ``visibility'' keyword is. Depending on the word, it changes the parameter for that specific visibility.\\
+Line 13 enters the document ``SymbolTable'' and the array \textit{Scope}, which inserts the parameter at the current scope level, and in the cell containing the information about text font colour.\\
 
 \section{Semantic Analysis for Blocks}
-This section focuses on blocks. A block consists of at least two lines, a \texttt{begin} line and an \texttt{end} line.
-Between those two lines, information can be stored.
+This section focuses on blocks. A block consists of at least two lines, a \texttt{begin} line and an \texttt{end} line. Between those two lines, information can be stored. \\
 The generic setup for the two lines are shown in section \ref{@begin} and \ref{@end}.
 
-    \subsection{Transition Existence}
-In order for the compiler to apply a transition on a slide, the analyser has to check if the transition that is written exists in the database of transitions. If the transition does not exist an error has to occur. If the transition does exist, then it continues without error.
+\subsection{Transition Existence}
+In order for the compiler to apply a transition on a slide, the analyser has to check whether the written transition exists in the database of transitions. If the transition does not exist an error has to occur. If the transition does exist, it continues without error.
 
 %    \subsection{Type Checking}
 %The type checking in a begin- and end line consists of checking that between the two brackets is the word \texttt{slide}. In special cases, where a transition is on a slide, the word \texttt{slide} must be between the pipe and the right bracket. The word seems redundant because no other word can be in its place at this time. But for further development, where a begin- and end line can do more than just enclose a slide, this will come in handy.
 
 \subsection{Slide type checking}
-There are diffent type of slide layouts. For instance most slide presentations starts with a title slide, with or without a subtitle. This frontpage has its' title and if subtitle, is in the middle of the slide. Instead of giving the user the explicit choice of this. The semantic analyser will check this, and create the correct type of slide according to the textinput from the user.
-
+There are different types of slide layouts. For instance most slide presentations starts with a title slide, with or without a subtitle. The front page contains a title, and in some cases a subtitle, which both is in the middle of the slide. This placement is defined per default, instead of providing the user the explicit choice of this, to make it less complicated for the user. \\
+The semantic analyser will check this, and creates the correct type of slide according to the text input from the user.
 
 \begin{lstlisting}[frame=single,caption=Function: OutBlockBlocks, label=LSTOutBlockBlocks, language=java]
 public void outABlockBlocks (ABlockBlocks node){
@@ -116,6 +117,7 @@ public void outABlockBlocks (ABlockBlocks node){
 		Transition = Transition.substring(9);
 		String Transition1 = "none";
 		if (Transition.startsWith("slide")){
+		Transition1 = SymbolTable.Transition;
 		}
 		else if (Transition.startsWith("fade")){
 			Transition1 = "fade";
@@ -129,6 +131,10 @@ public void outABlockBlocks (ABlockBlocks node){
 		else if (Transition.startsWith("rotatescale")){
 			Transition1 = "rotatescale";
 		}
+else {
+Transition1 = SymbolTable.Transition;
+Error.MakeError("Transition existance" , Transition);
+}
 		String SlideType = "Unknown";
 		Object[] Slide = node.getLines().toArray();
 		int Lines = Slide.length;
@@ -171,7 +177,8 @@ public void outABlockBlocks (ABlockBlocks node){
 \end{lstlisting}
 
 \subsection{Transition Existence}
-In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if and what transition the slide has. In line 2 it creates the \texttt{@begin} line to a string, which can be operated on. In line 3 it creates a substring of line 2 beginning at char 9 which is where the transition should be written if any. Line 4 sets the transition to \texttt{none}. From line 5 it checks if the transition is \texttt{slide}, in this case there are no transition and the transition remains to be \texttt{none}. From line 10 to 18 it checks which kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have none.\\
+	Lakslakslakslakslaks
+In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if, and what, transition the slide has. In line 2 the function creates the \texttt{@begin} line to a string, which can be operated on. In line 3 it creates a substring of line 2, beginning at char 9 which is where the transition should be written, if any. Line 4 sets the transition to \texttt{none}. From line 5 it checks if the transition is \texttt{slide}, in this case there are no transition and the transition remains to be \texttt{none}. From line 10 to 18 it checks what kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have none.\\
 \subsection{Slide type checking}
 In listing \ref{LSTOutBlockBlocks} from line 19 to 54, we find out which type the slide it is. It starts by being \texttt{Unknown}, but it should never be that in the end. Then in line 20 it
 
