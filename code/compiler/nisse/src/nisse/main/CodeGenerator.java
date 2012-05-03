@@ -34,7 +34,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 	boolean isItemlisting = false;
 	boolean isInTitle = false;
 	boolean isInSubtitle = false;
-	boolean isInDiv = false;
+	boolean isInSpan = false;
 	boolean isInUrl = false;
 	boolean isInImage = false;
 	String prevStyle = "";
@@ -242,7 +242,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		}
 		else if (Type1 == "Image")
 		{
-			Type = "imageslide";
+			Type = "dimageslide";
 		}
 		String opacity = "0";
 		String top = "100%";
@@ -262,10 +262,10 @@ public class CodeGenerator extends DepthFirstAdapter{
 			writeToStream("</a>\n");
 			isInUrl = false;
 		}
-		if (isInDiv)
+		if (isInSpan)
 		{
 			writeToStream("</span>\n");
-			isInDiv = false;
+			isInSpan = false;
 		}
 		if (isInSubtitle) 
 		{
@@ -293,6 +293,78 @@ public class CodeGenerator extends DepthFirstAdapter{
 		String style = "";
 		String output = "";
 		boolean printA = false;
+		if (!symbol[1].equals("imagetext") && isInImage)
+		{
+			if (isInSpan)
+			{
+				if (isInUrl)
+				{
+					output += "</a>\n";
+					isInUrl = false;
+				}
+				output += "</span>\n";
+				isInSpan = false;
+			}
+			if (isInTitle)
+			{
+				if (isInUrl)
+				{
+					output += "</a>\n";
+					isInUrl = false;
+				}
+				output += "</h1>\n";
+				isInTitle = false;
+			}
+			if (isInSubtitle)
+			{
+				if (isInUrl)
+				{
+					output += "</a>\n";
+					isInUrl = false;
+				}
+				output += "</h2>\n";
+				isInSubtitle = false;
+			}
+			output += "</div>";
+			isInImage = false;
+		}
+		if (symbol[1].equals("image"))
+		{
+			if (isInSpan)
+			{
+				if (isInUrl)
+				{
+					output += "</a>\n";
+					isInUrl = false;
+				}
+				output += "</span>\n";
+				isInSpan = false;
+			}
+			if (isInTitle)
+			{
+				if (isInUrl)
+				{
+					output += "</a>\n";
+					isInUrl = false;
+				}
+				output += "</h1>\n";
+				isInTitle = false;
+			}
+			if (isInSubtitle)
+			{
+				if (isInUrl)
+				{
+					output += "</a>\n";
+					isInUrl = false;
+				}
+				output += "</h2>\n";
+				isInSubtitle = false;
+			}
+			output += "<div class=\"image\">\n<img style=\"width:100%\" src=\""+symbol[7]+"\">";
+			isInImage = true;
+			symbolCounter++;
+			symbol = SymbolTable.SymbolTable1.get(symbolCounter);
+		}
 		String font_size = symbol.length > 2 ? symbol[2] : "";
 		String font_family = symbol.length > 3 ? symbol[3] : "";
 		String font_color = symbol.length > 4 ? symbol[4] : "";
@@ -344,14 +416,14 @@ public class CodeGenerator extends DepthFirstAdapter{
 		{
 			style = "style=\""+style+"\"";
 		}
-		if (style.equals(prevStyle) && (isInDiv || isInSubtitle || isInTitle))
+		if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
 		{
 			output += symbol[0];
 		}
 		else {
 			if (symbol[1] == "text")
 			{
-				if (isInDiv)
+				if (isInSpan)
 				{
 					if (isInUrl)
 					{
@@ -359,7 +431,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 						isInUrl = false;
 					}
 					output += "</span>\n";
-					isInDiv = false;
+					isInSpan = false;
 				}
 				if (isInTitle)
 				{
@@ -381,11 +453,11 @@ public class CodeGenerator extends DepthFirstAdapter{
 					output += "</h2>\n";
 					isInSubtitle = false;
 				}
-				if (!isInDiv)
+				if (!isInSpan)
 				{
 					output += "<span "+style+">";
 					
-					isInDiv = true;
+					isInSpan = true;
 				}
 				if (url != "")
 				{
@@ -399,7 +471,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 			}
 			else if (symbol[1] == "title")
 			{
-				if (isInDiv)
+				if (isInSpan)
 				{
 					if (isInUrl)
 					{
@@ -407,7 +479,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 						isInUrl = false;
 					}
 					output += "</span>\n";
-					isInDiv = false;
+					isInSpan = false;
 				}
 				if (isInSubtitle)
 				{
@@ -422,14 +494,14 @@ public class CodeGenerator extends DepthFirstAdapter{
 				if (isInTitle)
 				{
 					output += "<span "+style+">";
-					isInDiv = true;
+					isInSpan = true;
 				}
 				if (!isInTitle)
 				{
 					output += "<h1 class =\"title\"><span "+style+">";
 					
 					isInTitle = true;
-					isInDiv = true;
+					isInSpan = true;
 				}
 				if (url != "")
 				{
@@ -444,7 +516,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 			}
 			else if (symbol[1] == "subtitle")
 			{
-				if (isInDiv)
+				if (isInSpan)
 				{
 					if (isInUrl)
 					{
@@ -452,7 +524,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 						isInUrl = false;
 					}
 					output += "</span>\n";
-					isInDiv = false;
+					isInSpan = false;
 				}
 				if (isInTitle)
 				{
@@ -480,6 +552,45 @@ public class CodeGenerator extends DepthFirstAdapter{
 				}
 				output += symbol[0];
 			}
+			else if (symbol[1].equals("imagetext"))
+			{
+				if (isInSpan)
+				{
+					if (isInUrl)
+					{
+						output += "</a>\n";
+						isInUrl = false;
+					}
+					output += "</span>\n";
+					isInSpan = false;
+				}
+				if (isInTitle)
+				{
+					if (isInUrl)
+					{
+						output += "</a>\n";
+						isInUrl = false;
+					}
+					output += "</h1>\n";
+					isInTitle = false;
+				}
+				if (isInSubtitle)
+				{
+					if (isInUrl)
+					{
+						output += "</a>\n";
+						isInUrl = false;
+					}
+					output += "</h2>\n";
+					isInSubtitle = false;
+				}
+				if (!isInSpan)
+				{
+					output += "<span class=\"description\" "+style+">";
+					isInSpan = true;
+				}
+				output += symbol[0];
+			}
 		}
 		writeToStream(output);
 		symbolCounter++;
@@ -500,10 +611,10 @@ public class CodeGenerator extends DepthFirstAdapter{
 		}
 		if (isEnumerating == false)
 		{
-			if (isInDiv)
+			if (isInSpan)
 			{
 				writeToStream("</span>\n");
-				isInDiv = false;
+				isInSpan = false;
 			}
 			if (isInTitle)
 			{
@@ -528,10 +639,10 @@ public class CodeGenerator extends DepthFirstAdapter{
 		}
 		if (isItemlisting == false)
 		{
-			if (isInDiv)
+			if (isInSpan)
 			{
 				writeToStream("</span>\n");
-				isInDiv = false;
+				isInSpan = false;
 			}
 			if (isInTitle)
 			{
@@ -559,6 +670,10 @@ public class CodeGenerator extends DepthFirstAdapter{
 			writeToStream("</ul>\n");
 			isItemlisting = false;
 		}
+	}
+	public void outAPlaintextLines(APlaintextLines node)
+	{
+		writeToStream("<br/>");
 	}
 	public void inASettingLines (ASettingLines node)
 	{
@@ -595,10 +710,10 @@ public class CodeGenerator extends DepthFirstAdapter{
 	}
 	public void outAPlaintextNumerationv1 (APlaintextNumerationv1 node)
 	{
-		if (isInDiv)
+		if (isInSpan)
 		{
 			writeToStream("</span>\n");
-			isInDiv = false;
+			isInSpan = false;
 		}
 		if (isInTitle)
 		{
@@ -618,10 +733,10 @@ public class CodeGenerator extends DepthFirstAdapter{
 	}
 	public void outAPlaintextItemlistv1 (APlaintextItemlistv1 node)
 	{
-		if (isInDiv)
+		if (isInSpan)
 		{
 			writeToStream("</span>\n");
-			isInDiv = false;
+			isInSpan = false;
 		}
 		if (isInTitle)
 		{
