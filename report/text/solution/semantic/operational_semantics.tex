@@ -20,7 +20,7 @@ $[setting]$
 \[ \condinfrule{\langle Plaintext \rangle \langle Shortblock~env \rangle \ra env'} { \langle Plaintext~shortblock \rangle }{} \]
 
 \noindent{$[Shortblock]$}
-\[ \condinfrule{\langle formatkwd \rangle \langle Shortident, env \rangle \ra env' \langle Plain \rangle} { \langle formatkwd \{short~ident | Plain\}, env \rangle \ra env's}{} \]
+\[ \condinfrule{\langle formatkwd \rangle \langle Shortident, env \rangle \ra env' \langle Plain \rangle} { \langle formatkwd \{short~ident | Plain\}, env \rangle \ra env'}{} \]
 
 \noindent{$[Shortident]$}
 \[ \condinfrule{\langle env [L \mapsto V] \rangle \ra env'} { \langle kwd : V, env \rangle \ra env'}{} \]
