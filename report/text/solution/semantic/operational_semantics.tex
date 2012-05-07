@@ -1,17 +1,17 @@
 \chapter{Operational Semantics}
 
-$[setting]$
+$[slideshow]$
+\[ \langle S, env \rangle \ra show \]
+
+\noindent{$[specification]$}
+\[ \condinfrule{\langle slide, S \rangle \ra S' \langle setting, env \rangle \ra env'} { \langle slide~setting, S, env \rangle \ra S', env'}{} \]
+
+\noindent{$[setting]$}
 \[ \condinfrule{\langle Shortident, env \rangle \ra env' \langle scope \rangle} { \langle @ setting \{ shortident | scope \}, env \rangle \ra env'}{} \]
 
 \noindent{$[slide]$}
 \[ \condinfrule{\langle block, S[L \mapsto block] [next \mapsto new L] \rangle \ra S'} { \langle block, S \rangle \ra S'}{} \]
 \[ L = S(next)\]
-
-\noindent{$[slideshow]$}
-\[ \langle S, env \rangle \ra show \]
-
-\noindent{$[laks]$}
-\[ \condinfrule{\langle slide, S \rangle \ra S' \langle setting, env \rangle \ra env'} { \langle slide~setting, S, env \rangle \ra S', env'}{} \]
 
 \noindent{$[Block]$}
 \[ \condinfrule{\langle setting, env \rangle \ra env' \langle Plain \rangle \langle num \rangle \langle iList \rangle} { \langle begin~setting~Plain~num~iList~end, S \rangle \ra S'}{} \]
