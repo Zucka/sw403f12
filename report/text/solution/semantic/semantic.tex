@@ -14,6 +14,58 @@ The semantic analyser checks for errors that the lexer and the parser do not cat
 
 \noindent{These requirements are put in to categories, with more explanation to specify the function of the semantic analyser.}
 
+The semantic analyser builds 3 tables. The Symbol table, containing the symbols that is in the slide. The Slide table, containing information about a slide. And the Error table containing information about errors made by the user
+
+\section{Symbol Table}
+In order to know the properties for each token that is written by the user, a symbol is added to the symbol table, containing the necessary information for the code generator to display the token correctly.
+
+\begin{lstlisting}[frame=single,caption=Function: SymbolTableAdd, label=LSTSemanticSymbolTableAdd]
+public static void SymbolTableAdd(String Text, String Type, String FontSize, String FontFamily,String FontColor, String FontLineheight, String FontWeight, String Link){
+String[] Values = {Text, Type, FontSize, FontFamily, FontColor, FontLineheight, FontWeight, Link};
+SymbolTable1.put(GetCurrentSymbolNumber(), Values);
+NextSymbolNumber();
+}
+\end{lstlisting}
+
+\noindent{Listing \ref{LSTSemanticSymbolTableAdd} shows the function called to create a symbol in the symbol table. It stores all the variables in an array which is inside a hash table. Each hash entry has a unique number in order to fetch the entry. Before the function ends the number is incremented by 1, which is the next unique hash key.}
+
+
+
+\section{Slide Table}
+An additional table is created to keep track of the overall properties in a slide, meaning the transition between the slides, and which type of slide they are, e.g. a title page or a normal page.
+The slide type is determined in listing \ref{LSTOutBlockBlocks}. In line 56 in listing \ref{LSTOutBlockBlocks}, it calls the function SlideTableAdd, which is shown in listing \ref{LSTSlideTableAdd}. Where the transition at the beginning is set to \texttt{none}, but can be modified in the function \texttt{outABlockBlocks} in listing \ref{LSTOutBlockBlocks}. The slide table looks more or like the symbol table, only with fewer elements in the array.
+
+\begin{lstlisting}[frame=single,caption= Function: SlideTableAdd, label=LSTSlideTableAdd, language=java]
+static String Transition = "none";
+
+public static void SlideTableAdd(String Type, String Transition){
+			String[] Values = {Type, Transition};
+			SymbolTableForSlide.put(GetSlideNumber(), Values);
+			NextSlide();
+		}  
+\end{lstlisting}
+
+\section{Exception Handling}
+Errors made in the semantic analysis, are handled by not doing the command, and adding a description of the error in an Error table containing the slide number, and a description and the Value containing the error.\\
+Listing \ref{LSTMakeError} creates an object in the ErrorList array, where the first dimension states which error number it is. The second dimension in cell 0 contains the information about what slide number the error has occured. In cell 1 the type of error is inserted, and in cell 2 is the Value of the error. An example of an error is made in listing \ref{LSTErrorlist}, where the the user tried to change the font color in slide number 2 to \texttt{SomeColor}, which is not a valid color.
+
+\begin{lstlisting}[frame=single,caption= Function: MakeError, label=LSTMakeError, language=java]
+	static int Slidenr = 1;
+	static int Errors = 0;
+
+	public static void MakeError(String Type, String Value){
+		ErrorList[Errors][0] = Integer.toString(Slidenr);
+		ErrorList[Errors][1] = Type;
+		ErrorList[Errors][2] = Value;
+		Errors++;
+	}
+\end{lstlisting}
+
+\begin{lstlisting} [frame=single,caption= Errorlist, label=LSTErrorlist]
+Slidenr. :: Type of error            ::   Value
+         2  :: Font color existence :: SomeColor
+\end{lstlisting}
+
 \section{Semantic Analysis for Text Formatting}
 
 \subsection{Keyword Existence}
@@ -200,35 +252,8 @@ The hash tag keyword has to keep track of the numbers, meaning that it has to in
 
 %(Bliver checket i code gen)
 
-\section{Exception Handling}
 
 \section{Reachability and Termination Analysis}
 There is no need to check for unreachable code in the language, because there are no breakers in the language e.g. return, break, exit, etc.
 This also means that the language always terminates normally, because there are no keywords to stop a normal termination.
 
-\section{Symbol Table}
-In order to know the properties for each token that is written by the user, a symbol is added to the symbol table, containing the necessary information for the code generator to display the token correctly.
-
-\begin{lstlisting}[frame=single,caption=Function: SymbolTableAdd, label=LSTSemanticSymbolTableAdd]
-public static void SymbolTableAdd(String Text, String Type, String FontSize, String FontFamily,String FontColor, String FontLineheight, String FontWeight, String Link){
-String[] Values = {Text, Type, FontSize, FontFamily, FontColor, FontLineheight, FontWeight, Link};
-SymbolTable1.put(GetCurrentSymbolNumber(), Values);
-NextSymbolNumber();
-}
-\end{lstlisting}
-
-\noindent{Listing \ref{LSTSemanticSymbolTableAdd} shows the function called to create a symbol in the symbol table. It stores all the variables in an array which is inside a hash table. Each hash entry has a unique number in order to fetch the entry. Before the function ends the number is incremented by 1, which is the next unique hash key.}
-
-\section{Slide Table}
-An additional table is created to keep track of the overall properties in a slide, meaning the transition between the slides, and which type of slide they are, e.g. a title page or a normal page.
-The slide type is determined in listing \ref{LSTOutBlockBlocks}. In line 56 in listing \ref{LSTOutBlockBlocks}, it calls the function SlideTableAdd, which is shown in listing \ref{LSTSlideTableAdd}. Where the transition at the beginning is set to \texttt{none}, but can be modified in the function \texttt{outABlockBlocks} in listing \ref{LSTOutBlockBlocks}. The slide table looks more or like the symbol table, only with fewer elements in the array.
-
-\begin{lstlisting}[frame=single,caption= Function: SlideTableAdd, label=LSTSlideTableAdd]
-static String Transition = "none";
-
-public static void SlideTableAdd(String Type, String Transition){
-			String[] Values = {Type, Transition};
-			SymbolTableForSlide.put(GetSlideNumber(), Values);
-			NextSlide();
-		}  
-\end{lstlisting}
