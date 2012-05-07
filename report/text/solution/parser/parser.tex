@@ -31,12 +31,9 @@ ShortIdentv1    = char | digit | Float | colon | fslash | dot ;
 Kwd             = atsign char | url ;
 CharAll         = colon | digit | scolon | percent | fslash | bslash | exclamation | dot | comma | char | space ;
 Float           = digit dot digit ; 
-eol             = \n|\r\n ;
-char            = ? [a-ÂA-≈_\.,]+ ? ;
-digit           = ? [0-9]+ ? ;
-dot             = '.' ;
-commav1         = ',' ;
-eolv1           = \n | \r\n ;
+eol             = eolv1 , {eolv1} ;
+dot             = dotv1 , {dotv1};
+comma           = commav1,{commav1} ;
 \end{lstlisting}
 Listing \ref{lst:ebnf} shows the CFG for NISSE in Extended Backus Naur Form, henceforth EBNF. It should be read as follow:
 \begin{center}
@@ -88,4 +85,4 @@ Figure \ref{fig:Parsetree} shows how the CFG would parse the tree, with the inpu
 \section{Conclusion}
 The CFG is concluded to be LL(1) according to section \ref{Parserstrategy}, the CFG is not ambiguous either, as per the definition of LL(1) (\cite{CaC} Chapter 5.1).
 
-The grammar for the language is LL(1) according to the tool called ``kfG Edit'', which was introduced in a lecture, which uses a special syntax that can be seen in appendix \ref{AkfG}. The syntax in the kfG is transferred to an EBNF which is used to generate the parser.
+The grammar for the language is LL(1) according to the tool called ``kfG Edit'', which was introduced in a lecture. It uses a special syntax that can be seen in appendix \ref{AkfG}. The syntax in the kfG is transferred to an EBNF which is used to generate the parser.
