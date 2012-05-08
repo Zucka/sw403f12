@@ -44,7 +44,6 @@ public void inASettingblock (ASettingblock node){
 	String Visability = node.getChar().toString().trim();
 	String Test = node.parent().parent().getClass().toString();
 	if (Test.equals("class nisse.node.ABlockBlocks")){
-		//	System.out.println("Dette er en lokal variabel");
 		if (SettingType.startsWith("@ font_color")){
 			String Value = SettingType.substring(15);
 			Boolean CheckColor1;
@@ -73,12 +72,12 @@ public void inASettingblock (ASettingblock node){
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
 				}
     	  else {
-    	    System.out.println("Visability word not recognized");
-    	  }
-    	}
-    	else {
-					System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small letters");
-			}
+						Error.MakeError("Visiblity existance" , Value);
+			    	  }
+				}
+				else {
+					Error.MakeError("Font color existance" , Value);
+				}
 		}
 		else if (SettingType.startsWith("@ font_family")){	
 			String Value = SettingType.substring(16);
