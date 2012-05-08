@@ -118,44 +118,56 @@ public class TokenIndex extends AnalysisAdapter
     }
 
     @Override
-    public void caseTEol(@SuppressWarnings("unused") TEol node)
+    public void caseTUnderscore(@SuppressWarnings("unused") TUnderscore node)
     {
         this.index = 18;
     }
 
     @Override
-    public void caseTChar(@SuppressWarnings("unused") TChar node)
+    public void caseTHyphen(@SuppressWarnings("unused") THyphen node)
     {
         this.index = 19;
     }
 
     @Override
-    public void caseTDigit(@SuppressWarnings("unused") TDigit node)
+    public void caseTEol(@SuppressWarnings("unused") TEol node)
     {
         this.index = 20;
     }
 
     @Override
-    public void caseTFloat(@SuppressWarnings("unused") TFloat node)
+    public void caseTChar(@SuppressWarnings("unused") TChar node)
     {
         this.index = 21;
     }
 
     @Override
-    public void caseTDot(@SuppressWarnings("unused") TDot node)
+    public void caseTDigit(@SuppressWarnings("unused") TDigit node)
     {
         this.index = 22;
     }
 
     @Override
-    public void caseTComma(@SuppressWarnings("unused") TComma node)
+    public void caseTFloat(@SuppressWarnings("unused") TFloat node)
     {
         this.index = 23;
     }
 
     @Override
-    public void caseEOF(@SuppressWarnings("unused") EOF node)
+    public void caseTDot(@SuppressWarnings("unused") TDot node)
     {
         this.index = 24;
+    }
+
+    @Override
+    public void caseTComma(@SuppressWarnings("unused") TComma node)
+    {
+        this.index = 25;
+    }
+
+    @Override
+    public void caseEOF(@SuppressWarnings("unused") EOF node)
+    {
+        this.index = 26;
     }
 }

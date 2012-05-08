@@ -279,7 +279,8 @@ public class CodeGenerator extends DepthFirstAdapter{
 		}
 		if (isInImage)
 		{
-			
+			writeToStream("</div>\n");
+			isInImage = false;
 		}
 		writeToStream("</div></div></div>\n");
 	}
@@ -463,7 +464,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 				{
 					if (prevUrl != url || !isInUrl)
 					{
-						output += "<a href=\""+url+"\">";
+						output += "<a href=\""+url+"\" target=\"_top\">";
 						isInUrl = true;
 					}
 				}
@@ -507,7 +508,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 				{
 					if (prevUrl != url || !isInUrl)
 					{
-						output += "<a href=\""+url+"\">";
+						output += "<a href=\""+url+"\" target=\"_top\">";
 						printA = true;
 						isInUrl = true;
 					}
@@ -545,7 +546,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 				{
 					if (prevUrl != url || !isInUrl)
 					{
-						output += "<a href=\""+url+"\">";
+						output += "<a href=\""+url+"\" target=\"_top\">";
 						printA = true;
 						isInUrl = true;
 					}
@@ -583,6 +584,15 @@ public class CodeGenerator extends DepthFirstAdapter{
 					}
 					output += "</h2>\n";
 					isInSubtitle = false;
+				}
+				if (url != "")
+				{
+					if (prevUrl != url || !isInUrl)
+					{
+						output += "<a href=\""+url+"\" target=\"_top\">";
+						printA = true;
+						isInUrl = true;
+					}
 				}
 				if (!isInSpan)
 				{

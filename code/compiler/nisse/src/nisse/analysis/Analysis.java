@@ -42,10 +42,13 @@ public interface Analysis extends Switch
     void caseAColonShortidentv1(AColonShortidentv1 node);
     void caseAFslashShortidentv1(AFslashShortidentv1 node);
     void caseADotShortidentv1(ADotShortidentv1 node);
+    void caseAUnderscoreShortidentv1(AUnderscoreShortidentv1 node);
+    void caseAHyphenShortidentv1(AHyphenShortidentv1 node);
     void caseAAtKwd(AAtKwd node);
     void caseAUrlKwd(AUrlKwd node);
     void caseAColonCharall(AColonCharall node);
     void caseADigitCharall(ADigitCharall node);
+    void caseAFloatCharall(AFloatCharall node);
     void caseASemicolonCharall(ASemicolonCharall node);
     void caseAPercentCharall(APercentCharall node);
     void caseAForwardslashCharall(AForwardslashCharall node);
@@ -55,6 +58,8 @@ public interface Analysis extends Switch
     void caseACommaCharall(ACommaCharall node);
     void caseACharCharall(ACharCharall node);
     void caseASpaceCharall(ASpaceCharall node);
+    void caseAUnderscoreCharall(AUnderscoreCharall node);
+    void caseAHyphenCharall(AHyphenCharall node);
 
     void caseTFormatKwd(TFormatKwd node);
     void caseTUrl(TUrl node);
@@ -74,6 +79,8 @@ public interface Analysis extends Switch
     void caseTNlist(TNlist node);
     void caseTPercent(TPercent node);
     void caseTExclamation(TExclamation node);
+    void caseTUnderscore(TUnderscore node);
+    void caseTHyphen(THyphen node);
     void caseTEol(TEol node);
     void caseTChar(TChar node);
     void caseTDigit(TDigit node);

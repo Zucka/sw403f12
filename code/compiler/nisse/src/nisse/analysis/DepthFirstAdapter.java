@@ -884,6 +884,48 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outADotShortidentv1(node);
     }
 
+    public void inAUnderscoreShortidentv1(AUnderscoreShortidentv1 node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAUnderscoreShortidentv1(AUnderscoreShortidentv1 node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAUnderscoreShortidentv1(AUnderscoreShortidentv1 node)
+    {
+        inAUnderscoreShortidentv1(node);
+        if(node.getUnderscore() != null)
+        {
+            node.getUnderscore().apply(this);
+        }
+        outAUnderscoreShortidentv1(node);
+    }
+
+    public void inAHyphenShortidentv1(AHyphenShortidentv1 node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAHyphenShortidentv1(AHyphenShortidentv1 node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAHyphenShortidentv1(AHyphenShortidentv1 node)
+    {
+        inAHyphenShortidentv1(node);
+        if(node.getHyphen() != null)
+        {
+            node.getHyphen().apply(this);
+        }
+        outAHyphenShortidentv1(node);
+    }
+
     public void inAAtKwd(AAtKwd node)
     {
         defaultIn(node);
@@ -970,6 +1012,27 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getDigit().apply(this);
         }
         outADigitCharall(node);
+    }
+
+    public void inAFloatCharall(AFloatCharall node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAFloatCharall(AFloatCharall node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAFloatCharall(AFloatCharall node)
+    {
+        inAFloatCharall(node);
+        if(node.getFloat() != null)
+        {
+            node.getFloat().apply(this);
+        }
+        outAFloatCharall(node);
     }
 
     public void inASemicolonCharall(ASemicolonCharall node)
@@ -1159,5 +1222,47 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getSpace().apply(this);
         }
         outASpaceCharall(node);
+    }
+
+    public void inAUnderscoreCharall(AUnderscoreCharall node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAUnderscoreCharall(AUnderscoreCharall node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAUnderscoreCharall(AUnderscoreCharall node)
+    {
+        inAUnderscoreCharall(node);
+        if(node.getUnderscore() != null)
+        {
+            node.getUnderscore().apply(this);
+        }
+        outAUnderscoreCharall(node);
+    }
+
+    public void inAHyphenCharall(AHyphenCharall node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAHyphenCharall(AHyphenCharall node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAHyphenCharall(AHyphenCharall node)
+    {
+        inAHyphenCharall(node);
+        if(node.getHyphen() != null)
+        {
+            node.getHyphen().apply(this);
+        }
+        outAHyphenCharall(node);
     }
 }

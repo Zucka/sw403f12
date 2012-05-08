@@ -219,6 +219,16 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseAUnderscoreShortidentv1(AUnderscoreShortidentv1 node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAHyphenShortidentv1(AHyphenShortidentv1 node)
+    {
+        defaultCase(node);
+    }
+
     public void caseAAtKwd(AAtKwd node)
     {
         defaultCase(node);
@@ -235,6 +245,11 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseADigitCharall(ADigitCharall node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAFloatCharall(AFloatCharall node)
     {
         defaultCase(node);
     }
@@ -280,6 +295,16 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseASpaceCharall(ASpaceCharall node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAUnderscoreCharall(AUnderscoreCharall node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAHyphenCharall(AHyphenCharall node)
     {
         defaultCase(node);
     }
@@ -370,6 +395,16 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseTExclamation(TExclamation node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTUnderscore(TUnderscore node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTHyphen(THyphen node)
     {
         defaultCase(node);
     }

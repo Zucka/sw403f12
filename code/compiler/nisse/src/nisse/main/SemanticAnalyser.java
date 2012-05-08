@@ -129,21 +129,24 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	
 	public SemanticAnalyser()
 	{
+		int sdgf = SymbolTable.NewImageFontSize;
 		
 	}
 	public void defaultIn(Node node)
 	{
-		System.out.println(node.getClass().getName());
-		System.out.println(node.toString());
-		System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
-		Error.MakeError("UNCAPTURED ALTERNATIVE" , node.toString());
+		if (Main.NodesB == true ){
+			System.out.println(node.getClass().getName());
+			System.out.println(node.toString());
+			System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
+		}
 	}
 	public void defaultOut(Node node)
 	{
-		System.out.println(node.getClass().getName());
-		System.out.println(node.toString());
-		System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
-		Error.MakeError("UNCAPTURED ALTERNATIVE" , node.toString());
+		if (Main.NodesB == true ){
+			System.out.println(node.getClass().getName());
+			System.out.println(node.toString());
+			System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
+		}
 	}
 	public void printIndents()
 	{
@@ -273,13 +276,11 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
 					}
 					else {
-						Error.MakeError("Visiblity existance" , Value);
-			    	    //System.out.println("Visability word not recognized");
+			    	    System.out.println("Visability word not recognized");
 			    	  }
 				}
 				else {
-					Error.MakeError("Font color existance" , Value);
-					//System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
+					System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
 				}
 			}
 			else if (SettingType.startsWith("@ font_family")){	
@@ -314,10 +315,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily] = Value;
 				}
-				else {
-					Error.MakeError("Visiblity existance" , Value);
-		    	    //System.out.println("Visability word not recognized");
-		    	  }
 			}
 			else if (SettingType.startsWith("@ font_weight")){	
 				String Value = SettingType.substring(16);
@@ -351,10 +348,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = Value;
 				}
-				else {
-					Error.MakeError("Visiblity existance" , Value);
-		    	    //System.out.println("Visability word not recognized");
-		    	  }
 				
 			}
 			
@@ -364,8 +357,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				try{
 				int val = Integer.parseInt(Value);
 				} catch(Exception a){
-					Error.MakeError("Convert to int" , Value);
-					//System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
+					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 				}
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
@@ -395,10 +387,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize] = Value;
 				}
-				else {
-					Error.MakeError("Visiblity existance" , Value);
-		    	    //System.out.println("Visability word not recognized");
-		    	  }
 				
 			}
 			else if (SettingType.startsWith("@ font_lineheight")){
@@ -408,8 +396,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				double val = Double.parseDouble(Value);
 				}
 				catch(Exception a){
-					Error.MakeError("Convert to double" , Value);
-					//System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					System.out.println("FEJL, lineheight kan ikke konverteres til en double");
 				}
 				
 				if (Visability.equals("global")){
@@ -440,10 +427,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight] = Value;
 				}
-				else {
-					Error.MakeError("Visiblity existance" , Value);
-		    	    //System.out.println("Visability word not recognized");
-		    	  }
 				
 			}
 		}
@@ -486,14 +469,9 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 						//		System.out.println("Dette er url Visability");
 						SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontColor] = Value;
 					}
-					else {
-						Error.MakeError("Visiblity existance" , Value);
-			    	    //System.out.println("Visability word not recognized");
-			    	  }
 				}
 				else {
-					Error.MakeError("Color existance" , Value);
-					//System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
+					System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
 				}
 
 
@@ -530,10 +508,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontFamily] = Value;
 				}
-				else {
-					Error.MakeError("Visiblity existance" , Value);
-		    	    //System.out.println("Visability word not recognized");
-		    	  }
 				
 			}
 			else if (SettingType.startsWith("@ font_weight")){	
@@ -569,10 +543,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontWeight] = Value;
 				}
-				else {
-					Error.MakeError("Visiblity existance" , Value);
-		    	    //System.out.println("Visability word not recognized");
-		    	  }
 				
 			}
 			
@@ -583,8 +553,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				int val = Integer.parseInt(Value);
 		//		NewTextFontSize = val;
 				} catch(Exception a){
-					Error.MakeError("Convert to int" , Value);
-					//System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
+					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 				}
 				
 				if (Visability.equals("global")){
@@ -612,13 +581,9 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize] = Value;
 				}
 				else if (Visability.equals("url")){
-					//System.out.println("Dette er url Visability");
+					System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontSize] = Value;
 				}
-				else {
-					Error.MakeError("Visiblity existance" , Value);
-		    	    //System.out.println("Visability word not recognized");
-		    	  }
 				
 			}
 			else if (SettingType.startsWith("@ font_lineheight")){
@@ -628,8 +593,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				double val = Double.parseDouble(Value);
 				}
 				catch(Exception a){
-					Error.MakeError("Convert to double" , Value);
-					//System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					System.out.println("FEJL, lineheight kan ikke konverteres til en double");
 				}
 				
 				if (Visability.equals("global")){
@@ -660,10 +624,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontLineheight] = Value;
 				}
-				else {
-					Error.MakeError("Visiblity existance" , Value);
-		    	    //System.out.println("Visability word not recognized");
-		    	  }
 			}
 		}
 		if (Main.NodesB == true ){
@@ -674,7 +634,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void inABeginblock (ABeginblock node)
 	{
-		Error.Slidenr++;
 		SymbolTable.OpenScope();
 		if (Main.NodesB == true ){
 		printIndents();
@@ -933,9 +892,8 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 																				if (Check == 1){
 																				}
 																				else { */
-																Error.MakeError("Text Type not found!" , Text);
-																//System.out.println("Text type could not be found");
-																//System.out.println("Text " + Text);
+																System.out.println("Text type could not be found");
+																System.out.println("Text " + Text);
 																/*}
 																			}
 																		}
@@ -1505,8 +1463,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			
 		}
 		else{
-			Error.MakeError("Format keyword not found" , FormatKwd);
-			//System.out.println("Format Keyword:" + FormatKwd + " ikke fundet");
+			System.out.println("Format Keyword:" + FormatKwd + " ikke fundet");
 		}
 		
 		if (Main.NodesB == true ){
@@ -1560,8 +1517,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				SymbolTable.Transition = Value;
 			}
 			else {
-				Error.MakeError("Transition in @setting not found" , Value);
-				//System.out.println("Transition:" + Value + " in @setting not found");
+				System.out.println("Transition:" + Value + " in @setting not found");
 			}
 			
 		}
@@ -1593,8 +1549,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			try{
 				int val = Integer.parseInt(Value);
 			} catch(Exception a){
-				Error.MakeError("Font size convert to int" , Value);
-				//System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
+				System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 			}
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
@@ -1617,8 +1572,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				double val = Double.parseDouble(Value);
 				}
 				catch(Exception a){
-					Error.MakeError("lineheight convert to double" , Value);
-					//System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					System.out.println("FEJL, lineheight kan ikke konverteres til en double");
 				}
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight] = Value;
@@ -1635,7 +1589,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			SymbolTable.SymbolTableAdd("", "image", "", "", "", "", "", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
 		}
 		} catch (Exception a){
-			Error.MakeError("No settingtype changes in @apply" , Value + " and " + IfSetting);
 			//System.out.println("Ingen Settingtype ændringer i @apply");
 		}
 		
@@ -1834,10 +1787,10 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	public void outASettingblock (ASettingblock node)
 	{
 		String Scope = node.getChar().toString().trim();
-		if (Scope.equals("global") || Scope.equals("text") || Scope.equals("title") || Scope.equals("image") || Scope.equals("url") ){
+		if (Scope.equals("global") || Scope.equals("text") || Scope.equals("title") || Scope.equals("image")){
 		}
 		else{
-			Error.MakeError("eksistance", Scope);
+			System.out.println("FEJL, Keyworded " + Scope + " existere ikke");
 		}
 		indent--;
 	}
@@ -1866,10 +1819,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		}
 		else if (Transition.startsWith("rotatescale")){
 			Transition1 = "rotatescale";
-		}
-		else {
-			Transition1 = SymbolTable.Transition;
-			Error.MakeError("Transition existance" , Transition);
 		}
 /*		try{
 		String First =node.getLines().getFirst().toString();
@@ -1916,9 +1865,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		}
 		else if (image > 0){
 			SlideType = "Image";
-		}
-		else {
-			Error.MakeError("Could not determin Slide type!" , "OutaBlockBlocks");
 		}
 			
 /*		try{
@@ -2268,9 +2214,6 @@ public int CheckType1(AShortident node){
 		}
 		if (Main.SlideTableB == true ){
 			SymbolTable.PrintSlideTable();
-		}
-		if (Main.ErrorTableB == true){
-			Error.PrintErrors();
 		}
 	
 		indent--;
