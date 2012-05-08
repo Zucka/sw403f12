@@ -3,6 +3,9 @@
 
 \input{layout/preamble_P4_draft.tex}
 \input{layout/standard.tex} %Hüttles standard-fil, anvendes den operationelle semantik
+\newenvironment{boenumerate}
+  {\begin{enumerate}\renewcommand\labelenumi{\textbf\theenumi}}
+  {\end{enumerate}}
 
 \begin{document}
 	
