@@ -52,11 +52,15 @@ The \texttt{Text} in the expression refers to any text the user would want in th
 The \texttt{Apply} expression only changes the font for the specific text which is in the expression, whereas \texttt{@apply} only changes the font for the text inside the expression.
 
 \subsection{@image}
-The \texttt{@image} expression imports an image from the Internet, the expression looks like this:
+%The \texttt{@image} expression imports an image from the Internet, the expression looks like this:
+The \texttt{@image} expression imports an image from the internet as well as from the user's local machine. \\
+When importing from the internet the URL has to be provided, whereas when importing a locally stored image the file path that specific image has to be provided, as can be seen in the example below:
 \begin{lstlisting}[frame=single]
 @image{@url: URL | Text }
 \end{lstlisting}
-\texttt{``@url''} has to be there to indicate the start of an URL. \texttt{``URL''} indicates an URL string. \texttt{Text} refers to the text which is under the image, also called the image description.
+%\texttt{``@url''} has to be there to indicate the start of an URL. \texttt{``URL''} indicates an URL string. \texttt{Text} refers to the text which is under the image, also called the image description.
+\texttt{``@url''} is the keyword indicating that a URL will be inserted, whereas \texttt{``URL''} is the actual URL address that has been inserted. \\
+The only thing that the user have to be aware of, is that the image have to be placed in the same context, or directory that the compiler if it is to function properly
 
 \subsection{Star (*)}
 The \texttt{*} expression starts a list of bullet points, where the text after the star will be the text after the bullet.
