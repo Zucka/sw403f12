@@ -7,14 +7,14 @@ import nisse.analysis.*;
 @SuppressWarnings("nls")
 public final class TSpace extends Token
 {
-    public TSpace()
+    public TSpace(String text)
     {
-        super.setText(" ");
+        setText(text);
     }
 
-    public TSpace(int line, int pos)
+    public TSpace(String text, int line, int pos)
     {
-        super.setText(" ");
+        setText(text);
         setLine(line);
         setPos(pos);
     }
@@ -22,17 +22,11 @@ public final class TSpace extends Token
     @Override
     public Object clone()
     {
-      return new TSpace(getLine(), getPos());
+      return new TSpace(getText(), getLine(), getPos());
     }
 
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTSpace(this);
-    }
-
-    @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
-        throw new RuntimeException("Cannot change TSpace text.");
     }
 }
