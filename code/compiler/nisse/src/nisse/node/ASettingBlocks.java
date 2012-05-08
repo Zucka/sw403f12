@@ -2,11 +2,13 @@
 
 package nisse.node;
 
+import java.util.*;
 import nisse.analysis.*;
 
 @SuppressWarnings("nls")
 public final class ASettingBlocks extends PBlocks
 {
+    private final LinkedList<TSpace> _space_ = new LinkedList<TSpace>();
     private PSettingblock _settingblock_;
 
     public ASettingBlocks()
@@ -15,9 +17,12 @@ public final class ASettingBlocks extends PBlocks
     }
 
     public ASettingBlocks(
+        @SuppressWarnings("hiding") List<TSpace> _space_,
         @SuppressWarnings("hiding") PSettingblock _settingblock_)
     {
         // Constructor
+        setSpace(_space_);
+
         setSettingblock(_settingblock_);
 
     }
@@ -26,12 +31,33 @@ public final class ASettingBlocks extends PBlocks
     public Object clone()
     {
         return new ASettingBlocks(
+            cloneList(this._space_),
             cloneNode(this._settingblock_));
     }
 
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASettingBlocks(this);
+    }
+
+    public LinkedList<TSpace> getSpace()
+    {
+        return this._space_;
+    }
+
+    public void setSpace(List<TSpace> list)
+    {
+        this._space_.clear();
+        this._space_.addAll(list);
+        for(TSpace e : list)
+        {
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+        }
     }
 
     public PSettingblock getSettingblock()
@@ -63,6 +89,7 @@ public final class ASettingBlocks extends PBlocks
     public String toString()
     {
         return ""
+            + toString(this._space_)
             + toString(this._settingblock_);
     }
 
@@ -70,6 +97,11 @@ public final class ASettingBlocks extends PBlocks
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._space_.remove(child))
+        {
+            return;
+        }
+
         if(this._settingblock_ == child)
         {
             this._settingblock_ = null;
@@ -83,6 +115,24 @@ public final class ASettingBlocks extends PBlocks
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        for(ListIterator<TSpace> i = this._space_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((TSpace) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
+        }
+
         if(this._settingblock_ == oldChild)
         {
             setSettingblock((PSettingblock) newChild);

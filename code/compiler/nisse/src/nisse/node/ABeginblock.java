@@ -11,6 +11,7 @@ public final class ABeginblock extends PBeginblock
     private TBeginkwd _beginkwd_;
     private final LinkedList<TSpace> _space_ = new LinkedList<TSpace>();
     private PBeblock _beblock_;
+    private final LinkedList<TSpace> _second_ = new LinkedList<TSpace>();
     private TEol _eol_;
 
     public ABeginblock()
@@ -22,6 +23,7 @@ public final class ABeginblock extends PBeginblock
         @SuppressWarnings("hiding") TBeginkwd _beginkwd_,
         @SuppressWarnings("hiding") List<TSpace> _space_,
         @SuppressWarnings("hiding") PBeblock _beblock_,
+        @SuppressWarnings("hiding") List<TSpace> _second_,
         @SuppressWarnings("hiding") TEol _eol_)
     {
         // Constructor
@@ -30,6 +32,8 @@ public final class ABeginblock extends PBeginblock
         setSpace(_space_);
 
         setBeblock(_beblock_);
+
+        setSecond(_second_);
 
         setEol(_eol_);
 
@@ -42,6 +46,7 @@ public final class ABeginblock extends PBeginblock
             cloneNode(this._beginkwd_),
             cloneList(this._space_),
             cloneNode(this._beblock_),
+            cloneList(this._second_),
             cloneNode(this._eol_));
     }
 
@@ -120,6 +125,26 @@ public final class ABeginblock extends PBeginblock
         this._beblock_ = node;
     }
 
+    public LinkedList<TSpace> getSecond()
+    {
+        return this._second_;
+    }
+
+    public void setSecond(List<TSpace> list)
+    {
+        this._second_.clear();
+        this._second_.addAll(list);
+        for(TSpace e : list)
+        {
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+        }
+    }
+
     public TEol getEol()
     {
         return this._eol_;
@@ -152,6 +177,7 @@ public final class ABeginblock extends PBeginblock
             + toString(this._beginkwd_)
             + toString(this._space_)
             + toString(this._beblock_)
+            + toString(this._second_)
             + toString(this._eol_);
     }
 
@@ -173,6 +199,11 @@ public final class ABeginblock extends PBeginblock
         if(this._beblock_ == child)
         {
             this._beblock_ = null;
+            return;
+        }
+
+        if(this._second_.remove(child))
+        {
             return;
         }
 
@@ -217,6 +248,24 @@ public final class ABeginblock extends PBeginblock
         {
             setBeblock((PBeblock) newChild);
             return;
+        }
+
+        for(ListIterator<TSpace> i = this._second_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((TSpace) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         if(this._eol_ == oldChild)

@@ -106,6 +106,13 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseASettingBlocks(ASettingBlocks node)
     {
         inASettingBlocks(node);
+        {
+            List<TSpace> copy = new ArrayList<TSpace>(node.getSpace());
+            for(TSpace e : copy)
+            {
+                e.apply(this);
+            }
+        }
         if(node.getSettingblock() != null)
         {
             node.getSettingblock().apply(this);
@@ -372,6 +379,13 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getBeblock().apply(this);
         }
+        {
+            List<TSpace> copy = new ArrayList<TSpace>(node.getSecond());
+            for(TSpace e : copy)
+            {
+                e.apply(this);
+            }
+        }
         if(node.getEol() != null)
         {
             node.getEol().apply(this);
@@ -407,6 +421,13 @@ public class DepthFirstAdapter extends AnalysisAdapter
         if(node.getBeblock() != null)
         {
             node.getBeblock().apply(this);
+        }
+        {
+            List<TSpace> copy = new ArrayList<TSpace>(node.getSecond());
+            for(TSpace e : copy)
+            {
+                e.apply(this);
+            }
         }
         if(node.getEol() != null)
         {

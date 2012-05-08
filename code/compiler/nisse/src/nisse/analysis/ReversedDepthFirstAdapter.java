@@ -112,6 +112,14 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getSettingblock().apply(this);
         }
+        {
+            List<TSpace> copy = new ArrayList<TSpace>(node.getSpace());
+            Collections.reverse(copy);
+            for(TSpace e : copy)
+            {
+                e.apply(this);
+            }
+        }
         outASettingBlocks(node);
     }
 
@@ -363,6 +371,14 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getEol().apply(this);
         }
+        {
+            List<TSpace> copy = new ArrayList<TSpace>(node.getSecond());
+            Collections.reverse(copy);
+            for(TSpace e : copy)
+            {
+                e.apply(this);
+            }
+        }
         if(node.getBeblock() != null)
         {
             node.getBeblock().apply(this);
@@ -399,6 +415,14 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         if(node.getEol() != null)
         {
             node.getEol().apply(this);
+        }
+        {
+            List<TSpace> copy = new ArrayList<TSpace>(node.getSecond());
+            Collections.reverse(copy);
+            for(TSpace e : copy)
+            {
+                e.apply(this);
+            }
         }
         if(node.getBeblock() != null)
         {
