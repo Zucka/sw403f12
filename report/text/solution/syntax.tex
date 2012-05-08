@@ -9,7 +9,7 @@ This is a list of reserved words in the language, where the words with the @-pre
 \begin{lstlisting}[frame=single]
 slide, fade, @begin, @end, 
 title, global, text, image, url,  
-\#, *, 
+#, *, 
 @font_type, @font_color, @font_size, @font_weight, @u, @i, @b, 
 @apply, @setting, @image, @url
 \end{lstlisting}
@@ -53,7 +53,7 @@ The \texttt{Apply} expression only changes the font for the specific text which 
 
 \subsection{@image}
 %The \texttt{@image} expression imports an image from the Internet, the expression looks like this:
-The \texttt{@image} expression imports an image from the internet as well as from the user's local machine. \\
+The \texttt{@image} expression imports an image from the internet as well as from the user's local machine, although it is discouraged to provide absolute paths for images, because this would only make the user's computer able to compile. Instead it is encouraged that the user specify the name of the image, and that he instead is placing it in the same folder as the project are in. This is only the case if there are more contributors to the slideshow.\\
 When importing from the internet the URL has to be provided, whereas when importing a locally stored image the file path that specific image has to be provided, as can be seen in the example below:
 \begin{lstlisting}[frame=single]
 @image{@url: URL | Text }
@@ -62,14 +62,16 @@ When importing from the internet the URL has to be provided, whereas when import
 \texttt{``@url''} is the keyword indicating that a URL will be inserted, whereas \texttt{``URL''} is the actual URL address that has been inserted. \\
 The only thing that the user have to be aware of, is that the image have to be placed in the same context, or directory that the compiler if it is to function properly
 
-\subsection{Star (*)}
+\subsection{Bullet points (*)}
 The \texttt{*} expression starts a list of bullet points, where the text after the star will be the text after the bullet.
-A star has to be set on each line that is going to be a bullet.
+A star has to be set on each line that is going to be a bullet. \\
+Bullet points must never have spaces before the *, which makes the compiler think it is plain text. According to our rules, the user must not have the plain text before numerations.
 
-\subsection{Hash tag (\#)}
-The \texttt{\#} expression starts a numeration list starting from one, and for each line the hash tag is used, the number is incremented. If the line after a hash tag line is not a hash tag line, the numeration list is ended and thus a new hash tag line would have its numeration starting with one.
+\subsection{Numeration (\#)}
+The \texttt{\#} expression starts a numeration list starting from one, and for each line the hash tag is used, the number is incremented. If the line after a hash tag line is not a hash tag line, the numeration list is ended and thus a new hash tag line would have its numeration starting with one. \\
+Bullet points must never have spaces before the \#, which makes the compiler think it is plain text. According to our rules, the user must not have the plain text before numerations.
 
-\subsection{@u, @i, @b}
+\subsection{Font weights}
 These expressions are similar. \\
 \texttt{@u} creates underlined text. \\
 \texttt{@i} creates italic text. \\
@@ -254,11 +256,20 @@ Where a \# symbolises a number that is incrementing. Using two \# creates a sub 
 \section{Images}
 Importing pictures from the internet and only from the internet can be done using the following code example:
 
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}[frame=single] %Internet
 Input: @image{@url: http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg  | Aalborg University logo}
 
 %Output:\\
 (An image from the webpage \url{http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg} is shown with the image description of the Aalborg University logo)%
-\end{lstlisting}
+\end{lstlisting} %Internet
+
+Importing pictures from the user's local machine can be done using the following code example:
+
+\begin{lstlisting}[frame=single] %Local image
+Input: @image{@url: C:\\Users\\Benjamin\\Pictures\\Megan_fox_nude.jpg  | Aalborg University logo}
+
+%Output:\\
+(An image from the webpage \url{http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg} is shown with the image description of the Aalborg University logo)%
+\end{lstlisting} %Local image
 
 Where the url to the image is placed before the pipe and after the keyword ``@url:''. The text after the pipe is the image text.
