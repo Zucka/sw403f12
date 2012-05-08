@@ -210,7 +210,7 @@ The semantic analyser builds 3 tables. The Symbol table, containing the symbols 
 \subsection{Symbol Table}
 In order to know the properties for each token that is written by the user, a symbol is added to the symbol table, containing the necessary information for the code generator to display the token correctly.
 
-\begin{lstlisting}[frame=single,caption=Function: SymbolTableAdd, label=LSTSemanticSymbolTableAdd]
+\begin{lstlisting}[frame=single,caption=Function: SymbolTableAdd, label=LSTSemanticSymbolTableAdd, language = java]
 public static void SymbolTableAdd(String Text, String Type, String FontSize, String FontFamily,String FontColor, String FontLineheight, String FontWeight, String Link){
 String[] Values = {Text, Type, FontSize, FontFamily, FontColor, FontLineheight, FontWeight, Link};
 SymbolTable1.put(GetCurrentSymbolNumber(), Values);
@@ -236,7 +236,7 @@ public static void SlideTableAdd(String Type, String Transition){
 
 \subsection{Exception Handling}
 Errors made in the semantic analysis, are handled by not doing the command, and adding a description of the error in an Error table containing the slide number, and a description and the Value containing the error.\\
-Listing \ref{LSTMakeError} creates an object in the ErrorList array, where the first dimension states which error number it is. The second dimension in cell 0 contains the information about what slide number the error has occured. In cell 1 the type of error is inserted, and in cell 2 is the Value of the error. An example of an error is made in listing \ref{LSTErrorlist}, where the the user tried to change the font color in slide number 2 to \texttt{SomeColor}, which is not a valid color.
+Listing \ref{LSTMakeError} creates an object in the ErrorList array, where the first dimension states which error number it is. The second dimension in cell 0 contains the information about what slide number the error has occured. In cell 1 the type of error is inserted, and in cell 2 is the Value of the error. An example of errors are made in table \ref{TLBErrorlist}, where the the user tries to change the font color in slide number 2 to \texttt{SomeColor}, and the font color in slide 3 to \texttt{bluue}, which is not a valid color. 
 
 \begin{lstlisting}[frame=single,caption= Function: MakeError, label=LSTMakeError, language=java]
 	static int Slidenr = 1;
@@ -250,7 +250,17 @@ Listing \ref{LSTMakeError} creates an object in the ErrorList array, where the f
 	}
 \end{lstlisting}
 
-\begin{lstlisting} [frame=single,caption= Errorlist, label=LSTErrorlist]
-Slidenr. :: Type of error            ::   Value
-         2  :: Font color existence :: SomeColor
-\end{lstlisting}
+\begin{table}
+	\centering
+		\begin{tabular}{| r| c | r |}
+		
+		\hline
+Slidenr & Type of error & Value \\
+\hline
+2 & Font color existence & SomeColor \\
+3 & Font color existence & bluue \\
+\hline
+		\end{tabular}
+		\caption{An example of a Errorlist, with 2 errors}
+		\label{TLBErrorlist}
+\end{table}
