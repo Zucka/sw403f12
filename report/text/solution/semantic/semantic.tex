@@ -62,6 +62,7 @@ public void inASettingblock (ASettingblock node){
 	String Visability = node.getChar().toString().trim();
 	String Test = node.parent().parent().getClass().toString();
 	if (Test.equals("class nisse.node.ABlockBlocks")){
+	
 		if (SettingType.startsWith("@ font_color")){
 			String Value = SettingType.substring(15);
 			Boolean CheckColor1;
@@ -75,7 +76,7 @@ public void inASettingblock (ASettingblock node){
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
 				}
 				else if (Visability.equals("text")){
-					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
+					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
 				}
 				else if (Visability.equals("image")){
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
@@ -105,7 +106,7 @@ public void inASettingblock (ASettingblock node){
 
 
 \noindent{Listing \ref{LSTSemanticSetting} illustrate ``setting type''check, and changes parameters according to the ``visibility'' word, which is placed just before the right curly bracket in a setting block.\\
-Line 2 fetches the setting, node \textit{Shortident}, which contains information about what setting to change and what to change it to, which is converted to a string, then the excess spaces are removed.\\
+Line 2 fetches the setting, node \textit{Shortident}, which contains information about what setting to change and what to change it to, which is converted to a string, then the excess spaces are removed. Spaces are added by the \texttt{toString} methode, to seperate tokens from each other.\\
 Line 3 fetches the visibility declaration, which is in the node \textit{Char}, which is also converted to a string and the excess spaces are removed.} \\
 Line 4 finds out which class the setting block belongs to. This is necessary to determine whether the setting block is inside or outside a slide, which is the first thing to be checked in line 5. An \textit{else} construction is made for this \textit{if} sentence which is executed when the setting should be applied on every upcoming slide.\\
 Line 7 checks which keyword is going to be changed, in this case it is \textit{Font\_Color}. The parameter is then stored in a string called \textit{Value}, which takes the substring of SettingType, starting a char 15. The reason it is 15 is because a space is added after each token. So there is a space after \textit{font\_color} and a space after the colon (:) which makes the parameter start at the $15^{th}$ char.\\
@@ -158,7 +159,7 @@ public void outABlockBlocks (ABlockBlocks node){
 		int title = 0;
 		int subtitle = 0;
 		int image = 0;
-		while(i<Lines){
+		for (i=0; i<Lines; i++){
 			String Slide1 = Slide[i].toString();
 			if (Slide1.startsWith("@setting")  ||  Slide1.startsWith("@note")){
 			}
@@ -177,7 +178,7 @@ public void outABlockBlocks (ABlockBlocks node){
 				indent--;
 				return;
 			}
-			i++;
+			
 		}
 		if (title > 0 && subtitle == 0 && image == 0){
 			SlideType = "Title";
@@ -218,12 +219,12 @@ The hash tag keyword has to keep track of the numbers, meaning that it has to in
 %(Bliver checket i code gen)
 
 
-\section{Reachability and Termination Analysis}
-There is no need to check for unreachable code in the language, because there are no breakers in the language e.g. return, break, exit, etc.
-This also means that the language always terminates normally, because there are no keywords to stop a normal termination.\\
-\\ \\
+%\section{Reachability and Termination Analysis}
+%There is no need to check for unreachable code in the language, because there are no breakers in the language e.g. return, break, exit, etc.
+%This also means that the language always terminates normally, because there are no keywords to stop a normal termination.\\
+%\\ \\
 \section{Generated Tables}
-The semantic analyser builds 3 tables. The Symbol table, containing the symbols that is in the slide. The Slide table, containing information about a slide. And the Error table containing information about errors made by the user
+The semantic analyser builds 3 tables. The Symbol table, containing the symbols that are in the slide. The Slide table, containing information about a slide. And the Error table containing information about errors made by the user
 
 \subsection{Symbol Table}
 In order to know the properties for each token that is written by the user, a symbol is added to the symbol table, containing the necessary information for the code generator to display the token correctly.
@@ -240,7 +241,7 @@ NextSymbolNumber();
 
 \subsection{Slide Table}
 An additional table is created to keep track of the overall properties in a slide, meaning the transition between the slides, and which type of slide they are, e.g. a title page or a normal page.
-The slide type is determined in listing \ref{LSTOutBlockBlocks}. In line 56 in listing \ref{LSTOutBlockBlocks}, it calls the function SlideTableAdd, which is shown in listing \ref{LSTSlideTableAdd}. Where the transition at the beginning is set to \texttt{none}, but can be modified in the function \texttt{outABlockBlocks} in listing \ref{LSTOutBlockBlocks}. The slide table looks more or like the symbol table, only with fewer elements in the array.
+The slide type is determined in listing \ref{LSTOutBlockBlocks}. In line 56 in listing \ref{LSTOutBlockBlocks}, it calls the function SlideTableAdd, which is shown in listing \ref{LSTSlideTableAdd}. Where the transition at the beginning is set to \texttt{none}, but can be modified in the function \texttt{outABlockBlocks} in listing \ref{LSTOutBlockBlocks}. The slide table looks more or less like the symbol table, only with fewer elements in the array.
 
 \begin{lstlisting}[frame=single,caption= Function: SlideTableAdd, label=LSTSlideTableAdd, language=java]
 static String Transition = "none";
@@ -253,7 +254,7 @@ public static void SlideTableAdd(String Type, String Transition){
 \end{lstlisting}
 
 \subsection{Exception Handling}
-Errors made in the semantic analysis, are handled by not doing the command, and adding a description of the error in an Error table containing the slide number, and a description and the Value containing the error.\\
+Errors found in the semantic analysis, for instance typing "bluue" instead of "blue" in a \texttt{font\_color} command, or writing letters in a \texttt{font\_size} command, results in the command being ignored and a description of the error is added in an Error table containing the slide number, a description of the error and the \texttt{Value} containing the error, in this case the description would be "font color existence" and \texttt{Value} would be "bluue".\\
 Listing \ref{LSTMakeError} creates an object in the ErrorList array, where the first dimension states which error number it is. The second dimension in cell 0 contains the information about what slide number the error has occured. In cell 1 the type of error is inserted, and in cell 2 is the Value of the error. An example of errors are made in table \ref{TLBErrorlist}, where the the user tries to change the font color in slide number 2 to \texttt{SomeColor}, and the font color in slide 3 to \texttt{bluue}, which is not a valid color. 
 
 \begin{lstlisting}[frame=single,caption= Function: MakeError, label=LSTMakeError, language=java]
