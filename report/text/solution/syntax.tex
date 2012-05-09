@@ -255,21 +255,22 @@ Where a \# symbolises a number that is incrementing. Using two \# creates a sub 
 
 \section{Images}
 Importing pictures from the internet and only from the internet can be done using the following code example:
-
-\begin{lstlisting}[frame=single] %Internet
+% Internet
+\begin{lstlisting}[frame=single]
 Input: @image{@url: http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg  | Aalborg University logo}
 
 %Output:\\
 (An image from the webpage \url{http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg} is shown with the image description of the Aalborg University logo)%
-\end{lstlisting} %Internet
-
+\end{lstlisting}
+%Internet
 Importing pictures from the user's local machine can be done using the following code example:
-
-\begin{lstlisting}[frame=single] %Local image
-Input: @image{@url: C:\\Users\\Benjamin\\Pictures\\Megan_fox_nude.jpg  | Aalborg University logo}
+%Local image
+\begin{lstlisting}[frame=single]
+Input: @image{@url: C:\Users\Benjamin\Pictures\aau_logo.jpg  | Aalborg University logo}
 
 %Output:\\
-(An image from the webpage \url{http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg} is shown with the image description of the Aalborg University logo)%
-\end{lstlisting} %Local image
+(An image stored on the user's local machine is shown with the image description of the Aalborg University logo)%
+\end{lstlisting}
+%Local image
 
 Where the url to the image is placed before the pipe and after the keyword ``@url:''. The text after the pipe is the image text.
