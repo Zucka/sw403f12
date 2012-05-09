@@ -240,7 +240,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		//System.out.println(Test);
 		//ved lokal setting ændring
 		if (Test.equals("class nisse.node.ABlockBlocks")){
-			//System.out.println("Dette er en lokal variabel");
+			System.out.println("Dette er en lokal variabel");
 			if (SettingType.startsWith("@ font_color")){
 				String Value = SettingType.substring(15);
 				Boolean CheckColor1;
@@ -1490,10 +1490,8 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				
 		int i = 0;
 		String Value = "";
-		while (i<Length1){
-			
+		for(i=0; i<Length1; i++){
 			Value = Value + Value1[i].toString().trim();
-			i++;
 		}    
 		//String Value = node.getShortidentv1().toString().trim();
 	//	int Length = Value.length() - 1;
@@ -1836,7 +1834,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		int title = 0;
 		int subtitle = 0;
 		int image = 0;
-		while(i<Lines){
+		for (i=0; i<Lines; i++){
 			String Slide1 = Slide[i].toString();
 			if (Slide1.startsWith("@setting")  ||  Slide1.startsWith("@note")){
 			}
@@ -1855,7 +1853,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				indent--;
 				return;
 			}
-			i++;
+			
 		}
 		if (title > 0 && subtitle == 0 && image == 0){
 			SlideType = "Title";
