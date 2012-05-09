@@ -17,6 +17,7 @@ import nisse.node.ABeblockv1;
 import nisse.node.ABeginblock;
 import nisse.node.ABlockBlocks;
 import nisse.node.ACharCharall;
+import nisse.node.ACharKwdv1;
 import nisse.node.ACharShortidentv1;
 import nisse.node.ACharallPlainsv1;
 import nisse.node.AColonCharall;
@@ -52,6 +53,7 @@ import nisse.node.AShortblockPlainsv1;
 import nisse.node.AShortident;
 import nisse.node.AShortidents;
 import nisse.node.ASpaceCharall;
+import nisse.node.AUnderscoreKwdv1;
 import nisse.node.AUrlKwd;
 import nisse.node.Node;
 import nisse.node.PPlainsv1;
@@ -73,7 +75,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			System.out.println(node.toString());
 			System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
 		}
-		Error.MakeError("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER", "defaultin" + node.getClass().getName());
+		Error.MakeError("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER", "defaultin " + node.getClass().getName());
 	}
 	public void defaultOut(Node node)
 	{
@@ -82,7 +84,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			System.out.println(node.toString());
 			System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
 		}
-		Error.MakeError("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER", "defaultout" + node.getClass().getName());
+		Error.MakeError("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER", "defaultout " + node.getClass().getName());
 	}
 	public void printIndents()
 	{
@@ -1237,6 +1239,26 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		if (Main.NodesB == true ){ printIndents();
 		System.out.println("ASettingBlocks");
 		} indent++;
+	}
+	public void inACharKwdv1 (ACharKwdv1 node)
+	{
+		if (Main.NodesB == true ){ printIndents();
+		System.out.println("ACharKwdv1");
+		} indent++;
+	}
+	public void inAUnderscoreKwdv1 (AUnderscoreKwdv1 node)
+	{
+		if (Main.NodesB == true ){ printIndents();
+		System.out.println("AUnderscoreKwdv1");
+		} indent++;
+	}
+	public void outAUnderscoreKwdv1 (AUnderscoreKwdv1 node)
+	{
+		indent--;
+	}
+	public void outACharKwdv1 (ACharKwdv1 node)
+	{
+		indent--;
 	}
 	public void outANisse (ANisse node)
 	{
