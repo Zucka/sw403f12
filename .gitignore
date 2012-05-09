@@ -8,3 +8,4 @@ draft.pdf
 *.synctex.gz
 *.class
 code/compiler/nisse/bin/nisse
+output.html
