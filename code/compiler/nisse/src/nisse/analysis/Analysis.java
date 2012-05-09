@@ -46,6 +46,8 @@ public interface Analysis extends Switch
     void caseAHyphenShortidentv1(AHyphenShortidentv1 node);
     void caseAAtKwd(AAtKwd node);
     void caseAUrlKwd(AUrlKwd node);
+    void caseACharKwdv1(ACharKwdv1 node);
+    void caseAUnderscoreKwdv1(AUnderscoreKwdv1 node);
     void caseAColonCharall(AColonCharall node);
     void caseADigitCharall(ADigitCharall node);
     void caseAFloatCharall(AFloatCharall node);

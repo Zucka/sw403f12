@@ -239,6 +239,16 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseACharKwdv1(ACharKwdv1 node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAUnderscoreKwdv1(AUnderscoreKwdv1 node)
+    {
+        defaultCase(node);
+    }
+
     public void caseAColonCharall(AColonCharall node)
     {
         defaultCase(node);

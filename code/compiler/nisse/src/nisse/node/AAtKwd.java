@@ -2,13 +2,14 @@
 
 package nisse.node;
 
+import java.util.*;
 import nisse.analysis.*;
 
 @SuppressWarnings("nls")
 public final class AAtKwd extends PKwd
 {
     private TAtsign _atsign_;
-    private TChar _char_;
+    private final LinkedList<PKwdv1> _kwdv1_ = new LinkedList<PKwdv1>();
 
     public AAtKwd()
     {
@@ -17,12 +18,12 @@ public final class AAtKwd extends PKwd
 
     public AAtKwd(
         @SuppressWarnings("hiding") TAtsign _atsign_,
-        @SuppressWarnings("hiding") TChar _char_)
+        @SuppressWarnings("hiding") List<PKwdv1> _kwdv1_)
     {
         // Constructor
         setAtsign(_atsign_);
 
-        setChar(_char_);
+        setKwdv1(_kwdv1_);
 
     }
 
@@ -31,7 +32,7 @@ public final class AAtKwd extends PKwd
     {
         return new AAtKwd(
             cloneNode(this._atsign_),
-            cloneNode(this._char_));
+            cloneList(this._kwdv1_));
     }
 
     public void apply(Switch sw)
@@ -64,29 +65,24 @@ public final class AAtKwd extends PKwd
         this._atsign_ = node;
     }
 
-    public TChar getChar()
+    public LinkedList<PKwdv1> getKwdv1()
     {
-        return this._char_;
+        return this._kwdv1_;
     }
 
-    public void setChar(TChar node)
+    public void setKwdv1(List<PKwdv1> list)
     {
-        if(this._char_ != null)
+        this._kwdv1_.clear();
+        this._kwdv1_.addAll(list);
+        for(PKwdv1 e : list)
         {
-            this._char_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
         }
-
-        this._char_ = node;
     }
 
     @Override
@@ -94,7 +90,7 @@ public final class AAtKwd extends PKwd
     {
         return ""
             + toString(this._atsign_)
-            + toString(this._char_);
+            + toString(this._kwdv1_);
     }
 
     @Override
@@ -107,9 +103,8 @@ public final class AAtKwd extends PKwd
             return;
         }
 
-        if(this._char_ == child)
+        if(this._kwdv1_.remove(child))
         {
-            this._char_ = null;
             return;
         }
 
@@ -126,10 +121,22 @@ public final class AAtKwd extends PKwd
             return;
         }
 
-        if(this._char_ == oldChild)
+        for(ListIterator<PKwdv1> i = this._kwdv1_.listIterator(); i.hasNext();)
         {
-            setChar((TChar) newChild);
-            return;
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PKwdv1) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

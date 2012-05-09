@@ -965,9 +965,12 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getAtsign().apply(this);
         }
-        if(node.getChar() != null)
         {
-            node.getChar().apply(this);
+            List<PKwdv1> copy = new ArrayList<PKwdv1>(node.getKwdv1());
+            for(PKwdv1 e : copy)
+            {
+                e.apply(this);
+            }
         }
         outAAtKwd(node);
     }
@@ -991,6 +994,48 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getUrl().apply(this);
         }
         outAUrlKwd(node);
+    }
+
+    public void inACharKwdv1(ACharKwdv1 node)
+    {
+        defaultIn(node);
+    }
+
+    public void outACharKwdv1(ACharKwdv1 node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseACharKwdv1(ACharKwdv1 node)
+    {
+        inACharKwdv1(node);
+        if(node.getChar() != null)
+        {
+            node.getChar().apply(this);
+        }
+        outACharKwdv1(node);
+    }
+
+    public void inAUnderscoreKwdv1(AUnderscoreKwdv1 node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAUnderscoreKwdv1(AUnderscoreKwdv1 node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAUnderscoreKwdv1(AUnderscoreKwdv1 node)
+    {
+        inAUnderscoreKwdv1(node);
+        if(node.getUnderscore() != null)
+        {
+            node.getUnderscore().apply(this);
+        }
+        outAUnderscoreKwdv1(node);
     }
 
     public void inAColonCharall(AColonCharall node)
