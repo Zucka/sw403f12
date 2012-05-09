@@ -68,6 +68,7 @@ public class Main {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		// /Users/JS/Documents/GIT/test1.txt 
 		
 		PushbackReader in = new PushbackReader(input, 1024);
 		Lexer lexer = new Lexer(in);
