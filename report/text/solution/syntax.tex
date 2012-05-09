@@ -96,11 +96,11 @@ each time to make bold text.
 The expression \texttt{Hyperlink} makes it possible for the user to include URLs, either; as hyperlinks, that redirects the user to the specific URL, or image, to make it possible for the user to use an image from a specific URL.
 
 \begin{lstlisting}[frame=single]
-	@apply{@url http://www.somelink.com/ | This URL}
+	@apply{@url: http://www.somelink.com/ | This URL}
 \end{lstlisting}
 
 \begin{lstlisting}[frame=single]
-	@image{@url http://media.desura.com/images/members/1/288/287053/black-1.2.jpg | Description text}
+	@image{@url: http://media.desura.com/images/members/1/288/287053/black-1.2.jpg | Description text}
 \end{lstlisting}
 
 
@@ -147,7 +147,7 @@ The expression \texttt{font\_weight} refers to the term font weight, which is th
 \subsection{Global}
 The \texttt{global} expression makes it possible to apply font weights globally, from the place in the slide where it is applied or in the beginning of the slideshow. Such weights could be font colour, font type, links, etc.). Furthermore, \texttt{global} overwrites normal text, titles, subtitles, image descriptions and URL’s.
 \begin{lstlisting}[frame=single]
-	@setting {font_color: green | global}
+	@setting{font_color: green | global}
 \end{lstlisting}
 
 
@@ -371,7 +371,7 @@ Importing pictures from the internet and only from the internet can be done usin
 Input: @image{@url: http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg  | Aalborg University logo}
 
 %Output:\\
-(An image from the webpage \url{http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg} is shown with the image description of the Aalborg University logo)%
+(An image from the webpage \url{http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg} is shown with the image description of ''Aalborg University logo'')%
 \end{lstlisting}
 %Internet
 Importing pictures from the user's local machine can be done using the following code example:
@@ -380,7 +380,7 @@ Importing pictures from the user's local machine can be done using the following
 Input: @image{@url: C:\Users\Benjamin\Pictures\aau_logo.jpg  | Aalborg University logo}
 
 %Output:\\
-(An image stored on the user's local machine is shown with the image description of the Aalborg University logo)%
+(An image stored on the user's local machine is shown with the image description of''Aalborg University logo'')%
 \end{lstlisting}
 %Local image
 
