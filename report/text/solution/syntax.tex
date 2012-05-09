@@ -8,9 +8,9 @@ This is a list of reserved words in the language, where the words with the @-pre
 
 \begin{lstlisting}[frame=single]
 slide, fade, swipe, scale, rotatescale, @begin, @end, 
-title, global, text, image, url,  
+title, subtitle, global, text, image, url,  
 #, *, 
-@font_type, @font_color, @font_size, @font_weight, @u, @i, @b, 
+@font_family, @font_color, @font_size, @font_weight, @u, @i, @b, 
 @apply, @setting, @image, @url
 \end{lstlisting}
 
@@ -37,7 +37,7 @@ This keyword sets a new setting for a specific type, or globally.
 @setting{FontChanges:Value | Type}
 \end{lstlisting}
 Where \texttt{FontChanges} is what kind of font setting that is changed. 
-\texttt{FontChanges} could be font size, font type and so on, written in the language as \texttt{@font\_size} and \texttt{@font\_type} respectively. \\
+\texttt{FontChanges} could be font size, font family and so on, written in the language as \texttt{@font\_size} and \texttt{@font\_family} respectively. \\
 \texttt{Value}, is the value that it is set to. \\
 \texttt{Type} is referring to which font class it will change, e.g. title, text or the keyword. \\ %\texttt{global} in this matter means that all font classes are changed.
 \texttt{Global} in this matter means that all font classes are changed.
@@ -112,11 +112,11 @@ The \texttt{transition} expression is the transitions between slides. A transiti
 \end{lstlisting}
 
 
-\subsection{Font\_type}
-The expression \texttt{font\_type} sets the font type such as Arial, Verdana, etc., from the beginning of the slideshow or at a specific slide, so that the font type can be applied locally or globally. The language supports all the font types as the CSS (Cascade Style Sheets) does.
+\subsection{Font\_family}
+The expression \texttt{font\_family} sets the font family such as Arial, Verdana, etc., from the beginning of the slideshow or at a specific slide, so that the font family can be applied locally or globally. The language supports all the font families as the CSS (Cascade Style Sheets) does.
 
 \begin{lstlisting}[frame=single]
-	@apply{@font_type: Verdana | this text is in Verdana font type}
+	@apply{@font_family: Verdana | this text is in Verdana font family}
 \end{lstlisting}
 
 
@@ -145,14 +145,14 @@ The expression \texttt{font\_weight} refers to the term font weight, which is th
 
 
 \subsection{Global}
-The \texttt{global} expression makes it possible to apply font weights globally, from the place in the slide where it is applied or in the beginning of the slideshow. Such weights could be font colour, font type, links, etc.). Furthermore, \texttt{global} overwrites normal text, titles, subtitles, image descriptions and URL’s.
+The \texttt{global} expression makes it possible to apply font weights globally, from the place in the slide where it is applied or in the beginning of the slideshow. Such weights could be font colour, font family, links, etc.). Furthermore, \texttt{global} overwrites normal text, titles, subtitles, image descriptions and URL’s.
 \begin{lstlisting}[frame=single]
 	@setting{font_color: green | global}
 \end{lstlisting}
 
 
 \subsection{Title}
-The expression \texttt{title} makes a title for the slide. The title can be formatted as all other text, with the different font weights, pipe, etc. The user can use the default settings for the title, regarding font type, font colour, font size, or define them himself, either at the beginning of the slideshow or at some arbitrary slide.
+The expression \texttt{title} makes a title for the slide. The title can be formatted as all other text, with the different font weights, pipe, etc. The user can use the default settings for the title, regarding font family, font colour, font size, or define them himself, either at the beginning of the slideshow or at some arbitrary slide.
 
 \begin{lstlisting}[frame=single]
 	@setting{font_size: 30 | title}
@@ -160,7 +160,7 @@ The expression \texttt{title} makes a title for the slide. The title can be form
 
 
 \subsection{Subtitle}
-The expression \texttt{subtitle} makes a subtitle for the slide, which means that it will be placed beneath the title, per default with a smaller font size. The subtitle can be formatted as all other text, with the different font weights, pipe, etc. The user can use the default settings for the subtitle, regarding font type, font colour, font size, or define them himself, either at the beginning of the slideshow or at some arbitrary slide.
+The expression \texttt{subtitle} makes a subtitle for the slide, which means that it will be placed beneath the title, per default with a smaller font size. The subtitle can be formatted as all other text, with the different font weights, pipe, etc. The user can use the default settings for the subtitle, regarding font family, font colour, font size, or define them himself, either at the beginning of the slideshow or at some arbitrary slide.
 
 \begin{lstlisting}[frame=single]
 	@setting{font_size: 26 | subtitle}
@@ -266,7 +266,7 @@ Input: @apply{@font_weight:bold @font_color:brown | Welcome to @u{bold} text}
 \end{lstlisting}
 
 
-Finally, The \texttt{global} expression makes it possible to apply font weights globally. The weights could be font colour, font type, links, etc.). Furthermore, \texttt{global} overwrites normal text, titles, subtitles, image descriptions and URL's. \\
+Finally, The \texttt{global} expression makes it possible to apply font weights globally. The weights could be font colour, font family, links, etc.). Furthermore, \texttt{global} overwrites normal text, titles, subtitles, image descriptions and URL's. \\
 An example of the use of \texttt{global} can be seen beneath, in this case operating with operating with  \texttt{font\_weight} and \texttt{subtitle}:
 
 \begin{lstlisting}[frame=single]
@@ -298,7 +298,7 @@ The following is a larger example to demonstrate what is just used: \\
 Input:
 @begin{fade|slide}
     @title{@b{Welcome to this course}}
-    @setting{@font_type: Arial | text}
+    @setting{@font_family: Arial | text}
     This course will contain information about how you @u{underline} things, and how you do other    
     @i{weight stuff} on sentences.
     @apply{@font_weight:bold | Like this.}
