@@ -241,8 +241,8 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		//ved lokal setting ændring
 		if (Test.equals("class nisse.node.ABlockBlocks")){
 			System.out.println("Dette er en lokal variabel");
-			if (SettingType.startsWith("@ font_color")){
-				String Value = SettingType.substring(15);
+			if (SettingType.startsWith("@ font _ color")){
+				String Value = SettingType.substring(17);
 				Boolean CheckColor1;
 				CheckColor1 = CheckColor(Value);
 				if (CheckColor1 == true){
@@ -276,15 +276,17 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 						SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
 					}
 					else {
-			    	    System.out.println("Visability word not recognized");
+						Error.MakeError("Visiblity existance" , Value);
+			    	    //System.out.println("Visability word not recognized");
 			    	  }
 				}
 				else {
-					System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
+					Error.MakeError("Font color existance" , Value);
+					//System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
 				}
 			}
-			else if (SettingType.startsWith("@ font_family")){	
-				String Value = SettingType.substring(16);
+			else if (SettingType.startsWith("@ font _ family")){	
+				String Value = SettingType.substring(18);
 			//	System.out.println("Font color value = " + Value);
 				
 				if (Visability.equals("global")){
@@ -315,9 +317,13 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily] = Value;
 				}
+				else {
+					Error.MakeError("Visiblity existance" , Value);
+		    	    //System.out.println("Visability word not recognized");
+		    	  }
 			}
-			else if (SettingType.startsWith("@ font_weight")){	
-				String Value = SettingType.substring(16);
+			else if (SettingType.startsWith("@ font _ weight")){	
+				String Value = SettingType.substring(18);
 				Value = Value.substring(0, 1);
 				//System.out.println("Font color value = " + Value);
 				if (Visability.equals("global")){
@@ -348,16 +354,20 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = Value;
 				}
-				
+				else {
+					Error.MakeError("Visiblity existance" , Value);
+		    	    //System.out.println("Visability word not recognized");
+		    	  }
 			}
 			
-			else if (SettingType.startsWith("@ font_size")){
-				String Value = SettingType.substring(14);
+			else if (SettingType.startsWith("@ font _ size")){
+				String Value = SettingType.substring(16);
 			//	System.out.println("Font size value = " + Value);
 				try{
 				int val = Integer.parseInt(Value);
 				} catch(Exception a){
-					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
+					Error.MakeError("Convert to int" , Value);
+					//System.out.println("FEJL, font _ size "+ Value + " kan ikke konverteres til en int");
 				}
 				if (Visability.equals("global")){
 			//		System.out.println("Dette er global Visability");
@@ -387,16 +397,20 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize] = Value;
 				}
-				
+				else {
+					Error.MakeError("Visiblity existance" , Value);
+		    	    //System.out.println("Visability word not recognized");
+		    	  }
 			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				String Value = SettingType.substring(20);
+			else if (SettingType.startsWith("@ font _ lineheight")){
+				String Value = SettingType.substring(22);
 			//	System.out.println("Font lineheight value = " + Value);
 				try{
 				double val = Double.parseDouble(Value);
 				}
 				catch(Exception a){
-					System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					Error.MakeError("Convert to double" , Value);
+					//System.out.println("FEJL, lineheight kan ikke konverteres til en double");
 				}
 				
 				if (Visability.equals("global")){
@@ -427,14 +441,18 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight] = Value;
 				}
+				else {
+					Error.MakeError("Visiblity existance" , Value);
+		    	    //System.out.println("Visability word not recognized");
+		    	  }
 				
 			}
 		}
 		//VED GLOBAL SETTING ÆNDRING
 		else {
 			//	System.out.println("Dette er global Setting");
-			if (SettingType.startsWith("@ font_color")){
-				String Value = SettingType.substring(15);
+			if (SettingType.startsWith("@ font _ color")){
+				String Value = SettingType.substring(17);
 				//	System.out.println("Font color value = " + Value);
 				Boolean CheckColor1;
 				CheckColor1 = CheckColor(Value);
@@ -469,15 +487,20 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 						//		System.out.println("Dette er url Visability");
 						SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontColor] = Value;
 					}
+					else {
+						Error.MakeError("Visiblity existance" , Value);
+						//System.out.println("Visability word not recognized");
+					}
 				}
 				else {
-					System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
+					Error.MakeError("Font color existance" , Value);
+					//System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
 				}
 
 
 			}
-			else if (SettingType.startsWith("@ font_family")){	
-				String Value = SettingType.substring(16);
+			else if (SettingType.startsWith("@ font _ family")){	
+				String Value = SettingType.substring(18);
 			//	System.out.println("Font color value = " + Value);
 				
 				if (Visability.equals("global")){
@@ -508,10 +531,14 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontFamily] = Value;
 				}
+				else {
+					Error.MakeError("Visiblity existance" , Value);
+		    	    //System.out.println("Visability word not recognized");
+		    	  }
 				
 			}
-			else if (SettingType.startsWith("@ font_weight")){	
-				String Value = SettingType.substring(16);
+			else if (SettingType.startsWith("@ font _ weight")){	
+				String Value = SettingType.substring(18);
 			//	System.out.println("Font color value = " + Value);
 				Value = Value.substring(0, 1);
 				//System.out.println("Font weight value = " + Value);
@@ -543,17 +570,22 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontWeight] = Value;
 				}
+				else {
+					Error.MakeError("Visiblity existance" , Value);
+		    	    //System.out.println("Visability word not recognized");
+		    	  }
 				
 			}
 			
-			else if (SettingType.startsWith("@ font_size")){
-				String Value = SettingType.substring(14);
+			else if (SettingType.startsWith("@ font _ size")){
+				String Value = SettingType.substring(16);
 			//	System.out.println("Font size value = " + Value);
 				try{
 				int val = Integer.parseInt(Value);
 		//		NewTextFontSize = val;
 				} catch(Exception a){
-					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
+					Error.MakeError("Convert to int" , Value);
+					//System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 				}
 				
 				if (Visability.equals("global")){
@@ -584,16 +616,21 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 					System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontSize] = Value;
 				}
+				else {
+					Error.MakeError("Visiblity existance" , Value);
+		    	    //System.out.println("Visability word not recognized");
+		    	  }
 				
 			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				String Value = SettingType.substring(20);
+			else if (SettingType.startsWith("@ font _ lineheight")){
+				String Value = SettingType.substring(22);
 			//	System.out.println("Font lineheight value = " + Value);
 				try{
 				double val = Double.parseDouble(Value);
 				}
 				catch(Exception a){
-					System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					Error.MakeError("Convert to double" , Value);
+					//System.out.println("FEJL, lineheight kan ikke konverteres til en double");
 				}
 				
 				if (Visability.equals("global")){
@@ -624,6 +661,10 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			//		System.out.println("Dette er url Visability");
 					SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontLineheight] = Value;
 				}
+				else {
+					Error.MakeError("Visiblity existance" , Value);
+		    	    //System.out.println("Visability word not recognized");
+		    	  }
 			}
 		}
 		if (Main.NodesB == true ){
@@ -675,54 +716,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void inAPlains (APlains node)
 	{
-		
-	/*	int Type = CheckType(node);
-		String Parent = node.parent().toString();
-		System.out.println(Parent);
-		LinkedList<PPlainsv1> Test = node.getPlainsv1();
-		Object[] a = Test.toArray();
-		int j = Test.size();
-		int i = 0;
-		while (i<j){
-			
-			String Plain = a[i].toString();
-			int kj = Plain.length();
-			Plain = Plain.substring(0, kj - 1);
-			//System.out.println(Plain);
-			
-			if (Plain.startsWith("@i")){
-				InsetWeight("italic", Type);
-			}
-			else if (Plain.startsWith("@u")){
-				InsetWeight("underlined", Type);
-			}
-			else if (Plain.startsWith("@b")){
-				InsetWeight("bold", Type);
-			}
-			
-			
-			if (Plain.startsWith("@setting") || Plain.startsWith("@title") ){
-				
-			}
-			else if (Type == 1){
-				SymbolTable.SymbolTableAdd(Plain, "title", NewTitleFontSize, NewTitleFontFamily, NewTitleFontColor, NewTitleFontLineheight, NewTitleFontWeight);
-			}
-			else if (Type == 2){
-				SymbolTable.SymbolTableAdd(Plain, "subtitle", NewSubtitleFontSize, NewSubtitleFontFamily, NewSubtitleFontColor, NewSubtitleFontLineheight, NewSubtitleFontWeight);
-			}
-			else if (Type == 3){
-				SymbolTable.SymbolTableAdd(Plain, "image", NewImageFontSize, NewImageFontFamily, NewImageFontColor, NewImageFontLineheight, NewImageFontWeight);
-			}
-			//else if (Parent.startsWith("@note")){
-				
-			//} 
-			else {
-				SymbolTable.SymbolTableAdd(Plain, "text", NewTextFontSize, NewTextFontFamily, NewTextFontColor, NewTextFontLineheight, NewTextFontWeight);
-				
-			} 
-
-			i++;
-		} */
 		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("APlains");
@@ -913,115 +906,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				}
 			}
 		}
-				/*
 				
-				String ParentParentParent = node.parent().parent().parent().toString();
-				String ParentParentParentParentParent = node.parent().parent().parent().parent().parent().toString();
-				if (ParentParentParent.startsWith("@begin") || ParentParentParentParentParent.startsWith("@begin") ){
-					SymbolTable.SymbolTableAdd(Text, "text", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight]);
-				}
-				else if (ParentParentParentParentParent.startsWith("@title")){
-					SymbolTable.SymbolTableAdd(Text, "title", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]);
-				}
-				else if (ParentParentParentParentParent.startsWith("@subtitle")){
-					SymbolTable.SymbolTableAdd(Text, "subtitle", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight]);
-				}
-				else if (ParentParentParentParentParent.startsWith("@image")){
-					SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight]);
-				}
-				else if (ParentParentParentParentParent.startsWith("@apply { @url") || ParentParentParent.startsWith("@apply { @url")){
-					SymbolTable.SymbolTableAdd(Text, "url", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
-				}
-				else {
-					String ParentParentParentParentParentParent = node.parent().parent().parent().parent().parent().parent().toString();
-					System.out.println("CharAll ParentParentParentParentParentParent = " +ParentParentParentParentParentParent);
-					if (ParentParentParentParentParentParent.startsWith("@begin")){
-						SymbolTable.SymbolTableAdd(Text, "text", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight]);
-					}
-					else if (ParentParentParentParentParentParent.startsWith("@title")){
-						SymbolTable.SymbolTableAdd(Text, "title", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]);
-					}
-					else if (ParentParentParentParentParentParent.startsWith("@subtitle")){
-						SymbolTable.SymbolTableAdd(Text, "subtitle", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight]);
-					}
-					else if (ParentParentParentParentParentParent.startsWith("@image")){
-						SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight]);
-					}
-					else if (ParentParentParentParentParentParent.startsWith("@apply { @url")){
-						SymbolTable.SymbolTableAdd(Text, "url", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
-					}
-					else{
-						String ParentParentParentParentParentParentParentParent = node.parent().parent().parent().parent().parent().parent().parent().parent().toString();
-						//System.out.println("CharAll ParentParentParentParentParentParentParentParent = " +ParentParentParentParentParentParentParentParent);
-						
-						if (ParentParentParentParentParentParentParentParent.startsWith("@begin")){
-							SymbolTable.SymbolTableAdd(Text, "text", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight]);
-						}
-						else if (ParentParentParentParentParentParentParentParent.startsWith("@title")){
-							SymbolTable.SymbolTableAdd(Text, "title", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]);
-						}
-						else if (ParentParentParentParentParentParentParentParent.startsWith("@subtitle")){
-							SymbolTable.SymbolTableAdd(Text, "subtitle", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight]);
-						}
-						else if (ParentParentParentParentParentParentParentParent.startsWith("@image")){
-							SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight]);
-						}
-						else if (ParentParentParentParentParentParentParentParent.startsWith("@apply { @url")){
-							SymbolTable.SymbolTableAdd(Text, "url", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
-						}
-						else {
-							String ParentParentParentParentParentParentParentParentParent = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-							//System.out.println("CharAll ParentParentParentParentParentParentParentParentParent = " + ParentParentParentParentParentParentParentParentParent);
-							if (ParentParentParentParentParentParentParentParentParent.startsWith("@begin")){
-								SymbolTable.SymbolTableAdd(Text, "text", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight]);
-							}
-							else if (ParentParentParentParentParentParentParentParentParent.startsWith("@title")){
-								SymbolTable.SymbolTableAdd(Text, "title", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]);
-							}
-							else if (ParentParentParentParentParentParentParentParentParent.startsWith("@subtitle")){
-								SymbolTable.SymbolTableAdd(Text, "subtitle", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight]);
-							}
-							else if (ParentParentParentParentParentParentParentParentParent.startsWith("@image")){
-								SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight]);
-							}
-							else if (ParentParentParentParentParentParentParentParentParent.startsWith("@apply { @url")){
-								SymbolTable.SymbolTableAdd(Text, "url", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
-							}
-							else {
-								String ParentParentParentParentParentParentParentParentParentParentParentParent = node.parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().toString();
-								//System.out.println("CharAll ParentParentParentParentParentParentParentParentParentParentParentParent = " + ParentParentParentParentParentParentParentParentParentParentParentParent);
-								if (ParentParentParentParentParentParentParentParentParentParentParentParent.startsWith("@begin")){
-									SymbolTable.SymbolTableAdd(Text, "text", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight]);
-									
-								}
-								else if (ParentParentParentParentParentParentParentParentParentParentParentParent.startsWith("@title")){
-									SymbolTable.SymbolTableAdd(Text, "title", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]);
-									
-								}
-								else if (ParentParentParentParentParentParentParentParentParentParentParentParent.startsWith("@subtitle")){
-									SymbolTable.SymbolTableAdd(Text, "subtitle", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight]);
-									
-								}
-								else if (ParentParentParentParentParentParentParentParentParentParentParentParent.startsWith("@image")){
-									SymbolTable.SymbolTableAdd(Text, "image", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight]);
-									
-								}
-								else if (ParentParentParentParentParentParentParentParentParentParentParentParent.startsWith("@apply { @url")){
-									SymbolTable.SymbolTableAdd(Text, "url", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
-								}
-								else {
-								
-									System.out.println("Text type could not be found");
-									System.out.println("Text " + Text);
-								}
-							}
-						}
-						
-					}
-					
-				}
-				
-			} */
 
 			
 		  
@@ -1057,69 +942,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			// bliver bearbejdet af Setting
 		}
 		else if (FormatKwd.startsWith("@apply")){
-/*			try{
-			String SettingType = node.getShortidents().toString();
-			if (SettingType.startsWith("@ font_family")){
-				Value = TakeValue(SettingType, 16);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily] = Value;
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				Value = TakeValue(SettingType, 15);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				Value = TakeValue(SettingType, 14);
-				try{
-					int val = Integer.parseInt(Value);
-				} catch(Exception a){
-					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
-				}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize] = Value;
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				Value = TakeValue(SettingType, 16);
-				Value = Value.substring(0, 1);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] + " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] + " " + Value;
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				Value = TakeValue(SettingType, 20);
-				try{
-					double val = Double.parseDouble(Value);
-					}
-					catch(Exception a){
-						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
-					}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight] = Value;
-			}
-			else if (SettingType.startsWith("@url")){
-				Value = TakeValue(SettingType, 7);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink] = Value;
-			//	System.out.println(Value);
-			}
-			} catch (Exception a){
-				//System.out.println("Ingen Settingtype ændringer i @apply");
-			}
-			  									*/
+
 		} 
 		else if (FormatKwd.startsWith("@i ")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "i";
@@ -1127,68 +950,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + "i";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] + " " + "i";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] + " " + "i";
-/*			try{
-			String SettingType = node.getShortidents().toString();
-			if (SettingType.startsWith("@ font_family")){
-				Value = TakeValue(SettingType, 16);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily] = Value;
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				Value = TakeValue(SettingType, 15);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				Value = TakeValue(SettingType, 14);
-				try{
-					int val = Integer.parseInt(Value);
-				} catch(Exception a){
-					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
-				}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize] = Value;
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				Value = TakeValue(SettingType, 16);
-				Value = Value.substring(0, 1);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] + " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] + " " + Value;
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				Value = TakeValue(SettingType, 20);
-				try{
-					double val = Double.parseDouble(Value);
-					}
-					catch(Exception a){
-						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
-					}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight] = Value;
-			}
-			else if (SettingType.startsWith("@url")){
-				Value = TakeValue(SettingType, 7);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink] = Value;
-			//	System.out.println(Value);
-			}
-			}catch(Exception a){
-				//System.out.println("Ingen Settingtype ændringer i @i");
-			}           */
+
 		}
 		else if (FormatKwd.startsWith("@u ")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "u";
@@ -1197,74 +959,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] + " " + "u";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] + " " + "u";
 
-/*			try{
-				String SettingType = node.getShortidents().toString();
-			if (SettingType.startsWith("@ font_family")){
-				Value = TakeValue(SettingType, 16);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily] = Value;
 
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				Value = TakeValue(SettingType, 15);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
-
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				Value = TakeValue(SettingType, 14);
-				try{
-					int val = Integer.parseInt(Value);
-				} catch(Exception a){
-					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
-				}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize] = Value;
-
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				Value = TakeValue(SettingType, 16);
-				Value = Value.substring(0, 1);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] + " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] + " " + Value;
-
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				Value = TakeValue(SettingType, 20);
-				try{
-					double val = Double.parseDouble(Value);
-					}
-					catch(Exception a){
-						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
-					}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight] = Value;
-
-			}
-			else if (SettingType.startsWith("@url")){
-				Value = TakeValue(SettingType, 7);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink] = Value;
-			//	System.out.println(Value);
-			}
-			
-		} catch (Exception a){
-			//System.out.println("Ingen Settingtype ændringer i @u");
-		}						*/
 		}
 		else if (FormatKwd.startsWith("@b ")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + "b";
@@ -1273,191 +968,16 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] + " " + "b";
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] + " " + "b";
 
-/*			try{
-				String SettingType = node.getShortidents().toString();
-			if (SettingType.startsWith("@ font_family")){
-				Value = TakeValue(SettingType, 16);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily] = Value;
 
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				Value = TakeValue(SettingType, 15);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
-
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				Value = TakeValue(SettingType, 14);
-				try{
-					int val = Integer.parseInt(Value);
-				} catch(Exception a){
-					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
-				}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize] = Value;
-
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				Value = TakeValue(SettingType, 16);
-				Value = Value.substring(0, 1);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontWeight] + " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight]+ " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] + " " + Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] + " " + Value;
-
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				Value = TakeValue(SettingType, 20);
-				try{
-					double val = Double.parseDouble(Value);
-					}
-					catch(Exception a){
-						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
-					}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight] = Value;
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight] = Value;
-
-			}
-			else if (SettingType.startsWith("@url")){
-				Value = TakeValue(SettingType, 17);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink] = Value;
-			//	System.out.println(Value);
-			}
-			} catch (Exception a){
-				//System.out.println("Ingen Settingtype ændringer i @b");
-			}					*/
 		}
 		else if (FormatKwd.startsWith("@image")){
-			/*try{
-				String SettingType = node.getShortidents().toString();
-			if (SettingType.startsWith("@ font_family")){
-				Value = TakeValue(SettingType, 16);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily] = Value;
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				Value = TakeValue(SettingType, 15);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				Value = TakeValue(SettingType, 14);
-				try{
-					int val = Integer.parseInt(Value);
-				} catch(Exception a){
-					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
-				}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize] = Value;
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				Value = TakeValue(SettingType, 16);
-				Value = Value.substring(0, 1);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] + " " + Value;
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				Value = TakeValue(SettingType, 20);
-				try{
-					double val = Double.parseDouble(Value);
-					}
-					catch(Exception a){
-						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
-					}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontLineheight] = Value;
-			}
-			} catch (Exception a){
-				//System.out.println("Ingen Settingtype ændringer i @image");
-			}				*/
+			
 		}
 		else if (FormatKwd.startsWith("@title")){
-/*			try{
-				String SettingType = node.getShortidents().toString();
-			if (SettingType.startsWith("@ font_family")){
-				Value = TakeValue(SettingType, 16);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily] = Value;
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				Value = TakeValue(SettingType, 15);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				Value = TakeValue(SettingType, 14);
-				try{
-					int val = Integer.parseInt(Value);
-				} catch(Exception a){
-					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
-				}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				Value = TakeValue(SettingType, 16);
-				Value = Value.substring(0, 1);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontWeight] + " " + Value;
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				Value = TakeValue(SettingType, 20);
-				try{
-					double val = Double.parseDouble(Value);
-					}
-					catch(Exception a){
-						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
-					}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight] = Value;
-			}
-			} catch (Exception a){
-				//System.out.println("Ingen Settingtype ændringer i @title");
-			}				*/
+
 		}
 		else if (FormatKwd.startsWith("@subtitle")){
-/*			try{
-				String SettingType = node.getShortidents().toString();
-			if (SettingType.startsWith("@ font_family")){
-				Value = TakeValue(SettingType, 16);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily] = Value;
-			}
-			else if (SettingType.startsWith("@ font_color")){
-				Value = TakeValue(SettingType, 15);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
-			}
-			else if (SettingType.startsWith("@ font_size")){
-				Value = TakeValue(SettingType, 14);
-				
-				try{
-					int val = Integer.parseInt(Value);
-				} catch(Exception a){
-					System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
-				}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontSize] = Value;
-			}
-			else if (SettingType.startsWith("@ font_weight")){
-				Value = TakeValue(SettingType, 16);
-				Value = Value.substring(0, 1);
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontWeight] + " " + Value;
-			}
-			else if (SettingType.startsWith("@ font_lineheight")){
-				Value = TakeValue(SettingType, 20);
-				try{
-					double val = Double.parseDouble(Value);
-					}
-					catch(Exception a){
-						System.out.println("FEJL, lineheight kan ikke konverteres til en double");
-					}
-				SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontLineheight] = Value;
-			}
-			} catch (Exception a){
-				//System.out.println("Ingen Settingtype ændringer i @subtitle");
-			} 				*/
+
 		}
 		else if (FormatKwd.startsWith("@note")){
 			
@@ -1522,14 +1042,14 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		else if (IfSetting.startsWith("@setting")){
 			
 		}
-		else if (SettingType.startsWith("@ font_family")){
+		else if (SettingType.startsWith("@ font _ family")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontFamily] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontFamily] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontFamily] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontFamily] = Value;
 		}
-		else if (SettingType.startsWith("@ font_color")){
+		else if (SettingType.startsWith("@ font _ color")){
 			Boolean CheckColor1;
 			CheckColor1 = CheckColor(Value);
 			if (CheckColor1 == true){
@@ -1543,11 +1063,12 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				System.out.println("Font color:" + Value + "could not be found, try a different one, or write only with small ");
 			}
 		}
-		else if (SettingType.startsWith("@ font_size")){
+		else if (SettingType.startsWith("@ font _ size")){
 			try{
 				int val = Integer.parseInt(Value);
 			} catch(Exception a){
-				System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
+				Error.MakeError("Convert to int" , Value);
+				//System.out.println("FEJL, font_size "+ Value + " kan ikke konverteres til en int");
 			}
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontSize] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontSize] = Value;
@@ -1555,7 +1076,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontSize] = Value;
 		}
-		else if (SettingType.startsWith("@ font_weight")){
+		else if (SettingType.startsWith("@ font _ weight")){
 			//Value = SettingType.substring(16);
 			Value = Value.substring(0, 1);
 			//System.out.println("Font weight value1 = " + Value);
@@ -1565,12 +1086,13 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight] + " " + Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] = SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontWeight] + " " + Value;
 		}
-		else if (SettingType.startsWith("@ font_lineheight")){
+		else if (SettingType.startsWith("@ font _ lineheight")){
 			try{
 				double val = Double.parseDouble(Value);
 				}
 				catch(Exception a){
-					System.out.println("FEJL, lineheight kan ikke konverteres til en double");
+					Error.MakeError("Convert to double" , Value);
+					//System.out.println("FEJL, lineheight kan ikke konverteres til en double");
 				}
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontLineheight] = Value;
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontLineheight] = Value;
@@ -1785,10 +1307,11 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	public void outASettingblock (ASettingblock node)
 	{
 		String Scope = node.getChar().toString().trim();
-		if (Scope.equals("global") || Scope.equals("text") || Scope.equals("title") || Scope.equals("image")){
+		if (Scope.equals("global") || Scope.equals("text") || Scope.equals("title") || Scope.equals("image") || Scope.equals("subtitle") || Scope.equals("url")){
 		}
 		else{
-			System.out.println("FEJL, Keyworded " + Scope + " existere ikke");
+			Error.MakeError("Scope doesn't exist" , Scope);
+			//System.out.println("FEJL, Keyworded " + Scope + " existere ikke");
 		}
 		indent--;
 	}
