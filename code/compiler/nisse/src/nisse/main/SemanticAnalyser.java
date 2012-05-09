@@ -73,7 +73,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			System.out.println(node.toString());
 			System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
 		}
-		Error.MakeError("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER", "defaultin");
+		Error.MakeError("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER", "defaultin" + node.getClass().getName());
 	}
 	public void defaultOut(Node node)
 	{
@@ -82,7 +82,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			System.out.println(node.toString());
 			System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
 		}
-		Error.MakeError("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER", "defaultout");
+		Error.MakeError("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER", "defaultout" + node.getClass().getName());
 	}
 	public void printIndents()
 	{
@@ -920,7 +920,8 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			
 		}
 		else{
-			System.out.println("Format Keyword:" + FormatKwd + " ikke fundet");
+			Error.MakeError("FormatKeyword not found", FormatKwd);
+			//System.out.println("Format Keyword:" + FormatKwd + " ikke fundet");
 		}
 		
 		if (Main.NodesB == true ){
@@ -944,7 +945,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		int Length1 = node.getShortidentv1().size();
 		Object[] Value1 = node.getShortidentv1().toArray();
 		
-				
 		int i = 0;
 		String Value = "";
 		for(i=0; i<Length1; i++){
@@ -953,7 +953,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		//String Value = node.getShortidentv1().toString().trim();
 	//	int Length = Value.length() - 1;
 	//	Value = Value.substring(1, Length).trim();
-	//	System.out.println(Value);
+		//System.out.println(Value);
 		try{
 		if (IfSetting.startsWith("@setting { @ transition")){
 			if (Value.startsWith("slide")){
@@ -972,7 +972,8 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				SymbolTable.Transition = Value;
 			}
 			else {
-				System.out.println("Transition:" + Value + " in @setting not found");
+				Error.MakeError("Transition in @setting not found", Value);
+				//System.out.println("Transition:" + Value + " in @setting not found");
 			}
 			
 		}
