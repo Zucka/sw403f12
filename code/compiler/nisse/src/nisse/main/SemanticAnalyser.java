@@ -612,6 +612,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	public void inABeginblock (ABeginblock node)
 	{
 		SymbolTable.OpenScope();
+		Error.Slidenr++;
 		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("ABeginblock");
