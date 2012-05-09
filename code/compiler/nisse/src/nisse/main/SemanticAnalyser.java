@@ -176,7 +176,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		//System.out.println(Test);
 		//ved lokal setting ændring
 		if (Test.equals("class nisse.node.ABlockBlocks")){
-			System.out.println("Dette er en lokal variabel");
+			//System.out.println("Dette er en lokal variabel");
 			if (SettingType.startsWith("@ font _ color")){
 				String Value = SettingType.substring(17);
 				Boolean CheckColor1;
@@ -1540,6 +1540,9 @@ public int CheckType1(AShortident node){
 		}
 		if (Main.SlideTableB == true ){
 			SymbolTable.PrintSlideTable();
+		}
+		if (Main.ErrorTableB == true ){
+			Error.PrintErrors();
 		}
 	
 		indent--;
