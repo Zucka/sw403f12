@@ -1,18 +1,36 @@
 \chapter{Semantic Analyser}
 
-The semantic analyser checks for errors that the lexer and the parser do not catch. The semantic analyser for the language has the following requirements to be able to generate the expected slide.
+The semantic analyser checks for errors that the lexer and the parser do not catch, which only leaves runtime errors remaining. The semantic analyser for the language has the following requirements to be able to generate the expected slide.
 
 \section{Requirements}
+An example of the requirement is in the listing below it, and the important word is highlighed as bold.
 \begin{itemize}
-	\item Check that the user defined keyword exists in the language.
-	\item Check that the setting in the setting block exists.
+	\item Check that the setting in the setting block is valid.
+		\begin{lstlisting}[frame=single, language=java]
+	@setting{%\textbf{@font\_color}%:blue | text}
+	\end{lstlisting}
 	\item Check that it is a valid input after the colon in a setting block.
+		\begin{lstlisting}[frame=single, language=java]
+	@setting{@font_color:%\textbf{blue}% | text}
+	\end{lstlisting}
 	\item Check that it is a valid scope on the right side of the pipe in a setting block.
-	\item Check that the transition exists in a begin block.
+	\begin{lstlisting}[frame=single, language=java]
+	@setting{@font_color:blue | %\textbf{text}%}
+	\end{lstlisting}
+	\item Check that the transition used exists in the database.
+		\begin{lstlisting}[frame=single, language=java]
+	@begin{%\textbf{fade}% | slide}
+	\end{lstlisting}
 	\item Check which number to put in to the enumeration.
+	\begin{lstlisting}[frame=single]
+	%\begin{boenumerate}
+\item - Line 1
+\item - Line 2
+\end{boenumerate}%
+	\end{lstlisting}
 \end{itemize}
 
-\noindent{These requirements are put in to categories, with more explanation to specify the function of the semantic analyser.}
+\noindent{These requirements are put into categories, with more explanation to specify the function of the semantic analyser.}
 
 \section{Semantic Analysis for Text Formatting}
 
@@ -20,12 +38,12 @@ The semantic analyser checks for errors that the lexer and the parser do not cat
 In order for the settings to work, a check to see if a specific setting actually exists in that context is needed. In order to check if the setting exists, a list of settings for a specific context is set up beforehand which it can be checked against. If the setting exists in the list, the value of the setting is checked to see if it matches a valid value of that setting. If it does not exist, an error is written to the user.
 
 \subsection{Type Checking}
-For a specific setting there is a number of valid values, two examples could be the settings \texttt{font\_size} and \texttt{font\_weight} , which sets the size or weight of a specific text, respectively. \\
+For a specific setting there is a number of valid values, two examples could be the settings \texttt{font\_size} and \texttt{font\_weight}, which sets the size or weight of a specific text, respectively. \\
 In the case of \texttt{font\_size}, a valid input would be any integer. \\
-In the case of \texttt{font\_weight}, a valid input would be a valid string of weight. \\
+In the case of \texttt{font\_weight}, a valid input would be \texttt{bold, itallic} or \texttt{underlined}. \\
 As with the keyword, existence of an error is written if the value of the setting is not valid.
-The type checking for integers and integers with decimals is done by converting the value from a string to an int or float respectively.
-Type checking for a specific string is done with \texttt{if} sentences, if no specific string matches any \texttt{if} sentence, an error occurs.
+The type checking for integers and floats is done by converting the value from a string to an int or float respectively.
+Existence checking for a specific string is done with \texttt{if} sentences, if no specific string matches any \texttt{if} sentence, an error occurs.
      
 \subsection{Scope Checking}
 
@@ -253,7 +271,6 @@ Listing \ref{LSTMakeError} creates an object in the ErrorList array, where the f
 \begin{table}
 	\centering
 		\begin{tabular}{| r| c | r |}
-		
 		\hline
 Slidenr & Type of error & Value \\
 \hline
