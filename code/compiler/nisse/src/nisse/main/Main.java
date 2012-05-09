@@ -11,7 +11,7 @@ import nisse.parser.Parser;
 
 public class Main {
 	
-	static int Debug1 = 0;
+	static int Debug1 = 8;
 	/* 1 Symbol table
 	 * 2 Slide table
 	 * 3 = 2 + 1
@@ -66,7 +66,7 @@ public class Main {
 		watch.start();
 		Reader input = null;
 		try {
-			input = new FileReader("c:/fisk/test.txt");
+			input = new FileReader("/Users/JS/Documents/GIT/test1.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
