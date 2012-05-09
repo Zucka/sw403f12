@@ -80,14 +80,92 @@ The full expression looks like this:
 \begin{lstlisting}[frame=single]
 @b{ Text }
 \end{lstlisting}
+
 Where \texttt{Text} is the text that is shown in the slide, with the proper change of font weight, in this case to bold. In this case a pipe is not needed because there is nothing to put there. 
 It is possible to make font changes, using \texttt{@u / @i / @b}, like:
- \begin{lstlisting}[frame=single]
+
+\begin{lstlisting}[frame=single]
 @b{ FontChanges:Value | Text }
 \end{lstlisting}
+
 Which looks familiar to the \texttt{@apply} expression, and the functionality is basically the same, even though the text is set as any of the font weights \texttt{@u / @i / @b} to begin with. The \texttt{@u / @i / @b} makes it much faster to make a weight on a text instead of writing: @apply{ @font\_weight:bold | Text } \\
 each time to make bold text.
 
+
+\subsection{Hyperlink}
+The expression \texttt{Hyperlink} makes it possible for the user to include URLs, either; as hyperlinks, that redirects the user to the specific URL, or image, to make it possible for the user to use an image from a specific URL.
+
+\begin{lstlisting}[frame=single]
+	@apply{@url http://www.somelink.com/ | This URL}
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single]
+	@image{@url http://media.desura.com/images/members/1/288/287053/black-1.2.jpg | Description text}
+\end{lstlisting}
+
+
+\subsection{Transition}
+The \texttt{transition} expression is the transitions between slides. A transition can be from the actual slide to the subsequent or from the actual slide to the previous one, which can be expressed as a transition can go the left or to the right from the actual slide.
+
+\begin{lstlisting}[frame=single]
+	@begin{fade | slide}
+\end{lstlisting}
+
+
+\subsection{Font\_type}
+The expression \texttt{font\_type} sets the font type such as Arial, Verdana, etc., from the beginning of the slideshow or at a specific slide, so that the font type can be applied locally or globally. The language supports all the font types as the CSS (Cascade Style Sheets) does.
+
+\begin{lstlisting}[frame=single]
+	@apply{@font_type: Verdana | this text is in Verdana font type}
+\end{lstlisting}
+
+
+\subsection{Font\_color}
+The expression \texttt{font\_color} sets the font colour from the beginning of the slideshow or at a specific slide, so that the colour can be applied locally or globally. The language supports all the font colours as the CSS does.
+
+\begin{lstlisting}[frame=single]
+	@apply{@font_color: Blue| %{\color{blue}this text is in blue colour}}
+\end{lstlisting}
+
+
+\subsection{Font\_size}
+The expression \texttt{font\_size} sets the font size from the beginning of the slideshow or at a specific slide, so that the size can be applied locally or globally. The language supports all the font sizes as the CSS does. The font size is defined in pixels.
+
+\begin{lstlisting}[frame=single]
+	@apply{@font_size: 70 | %{\Large{this text is in size 70}}}
+\end{lstlisting}
+
+
+\subsection{Font\_weight}
+The expression \texttt{font\_weight} refers to the term font weight, which is the various settings that can be defined for the font, bold and italic.
+
+\begin{lstlisting}[frame=single]
+	@apply{@font_weight: italic| %\textit{this text is in italic}}
+\end{lstlisting}
+
+
+\subsection{Global}
+The \texttt{global} expression makes it possible to apply font weights globally, from the place in the slide where it is applied or in the beginning of the slideshow. Such weights could be font colour, font type, links, etc.). Furthermore, \texttt{global} overwrites normal text, titles, subtitles, image descriptions and URL’s.
+\begin{lstlisting}[frame=single]
+	@setting {font_color: green | global}
+\end{lstlisting}
+
+
+\subsection{Title}
+The expression \texttt{title} makes a title for the slide. The title can be formatted as all other text, with the different font weights, pipe, etc. The user can use the default settings for the title, regarding font type, font colour, font size, or define them himself, either at the beginning of the slideshow or at some arbitrary slide.
+
+\begin{lstlisting}[frame=single]
+	@setting{font_size: 30 | title}
+\end{lstlisting}
+
+
+\subsection{Subtitle}
+The expression \texttt{subtitle} makes a subtitle for the slide, which means that it will be placed beneath the title, per default with a smaller font size. The subtitle can be formatted as all other text, with the different font weights, pipe, etc. The user can use the default settings for the subtitle, regarding font type, font colour, font size, or define them himself, either at the beginning of the slideshow or at some arbitrary slide.
+
+\begin{lstlisting}[frame=single]
+	@setting{font_size: 26 | subtitle}
+\end{lstlisting}
+%----------------------------------------------------------------------------------------------------------------------------------------&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&-----------------------------------------------------------------------------------------------------------------------------------------&
 \section{Examples}
 The following example is some of the basic elements in the language:
 \begin{lstlisting}[frame=single]
@@ -100,7 +178,7 @@ Input:
 \end{lstlisting}
 
 Which states that a slide begins, with a transition ``fade'', and that the slide contains the text ``Hello World'' \\
-The examples in the rest of this section is all written between \texttt{@begin}\{slide\} and a \texttt{@end}\{slide\} to save space.
+The examples in the rest of this section are all written between \texttt{@begin}\{slide\} and a \texttt{@end}\{slide\} to conserve space.
 \\ \\
 After an @, a keyword always begins, making it easy for the compiler to recognize a keyword.
 Another keyword is \texttt{setting}, in this example the setting is set for the type ``title'' to a font size of 40. \\
@@ -112,7 +190,7 @@ Input: @setting{@font_size:40|title}
 %Output: (title font size set to 40)%
 \end{lstlisting}
 
-A way to use the title type can be as show in the following example: \\
+A way to use the title type can be as shown in the following example: \\
 
 \begin{lstlisting}[frame=single]
 Input: @title{Hello and welcome}
@@ -120,11 +198,21 @@ Input: @title{Hello and welcome}
 %Output: Hello and welcome (in the title format)%
 \end{lstlisting}
 
-Because there are no additional settings to be set on this sentence, no pipe has to occur. Between the left curly and the potential pipe, settings can be applied to that specific sentence, like: \\
+Because there are no additional settings to be set on this sentence, no pipe has to occur. \\
+Besides the \texttt{title} type, there is the \texttt{subtitle} type, makes a subtitle for the slide, which means that it will be placed beneath the title, per default with a smaller font size. 
+
+\begin{lstlisting}[frame=single]
+Input: @apply{@font_color:orange | funky!}
+
+%Output:
+{\color{Orange}~Funky!}
+%
+\end{lstlisting}
+
+Between the left curly and the potential pipe, settings can be applied to that specific sentence, like: \\
 
 \begin{lstlisting}[frame=single]
 Input: @title{@font_size:70 |Hello and welcome}
-
 
 %Output: Hello and welcome (in title format with size 70)%
 \end{lstlisting}
@@ -142,7 +230,6 @@ The weight of the text can be set in two ways, the first looks like the way we j
 
 \begin{lstlisting}[frame=single]
 Input: @apply{@font_weight:bold @font_size:25 | Welcome to bold text}
-
 
 %Output: \textbf{Welcome to bold text} (with font size 25)}%
 \end{lstlisting}
@@ -167,10 +254,34 @@ Combining them, would look like this:\\
 \begin{lstlisting}[frame=single]
 Input: @apply{@font_weight:bold | Welcome to @u{bold} text}
 
-
 %Output: \textbf{Welcome to \underline{bold} text}%
 \end{lstlisting}
-Which gives the same result as the last one. (e.g. ref)
+Which gives the same result as the last one. (e.g. ref).
+\\ \\
+Furthermore, it is also possible to define a specific font colour for some specific text, as can be seen as below:
+\begin{lstlisting}[frame=single]
+Input: @apply{@font_weight:bold @font_color:brown | Welcome to @u{bold} text}
+
+%Output: {\color{Brown}\textbf{Welcome to \underline{bold} text}}%
+\end{lstlisting}
+
+
+Finally, The \texttt{global} expression makes it possible to apply font weights globally. The weights could be font colour, font type, links, etc.). Furthermore, \texttt{global} overwrites normal text, titles, subtitles, image descriptions and URL's. \\
+An example of the use of \texttt{global} can be seen beneath, in this case operating with operating with  \texttt{font\_weight} and \texttt{subtitle}:
+
+\begin{lstlisting}[frame=single]
+Input:
+@begin{slide}
+   @setting{@font_weight:bold | global}
+   @title{Hello World}
+   Everything is bold!
+@end{slide}
+
+%Output:
+\\ \\
+\textbf{{\Large{Hello World}}
+\\ \\ Everything is bold!}%
+\end{lstlisting}
 
 \subsection*{To summarize}
 \texttt{@begin} To start a slide. \\
@@ -201,7 +312,7 @@ Input:
 \end{lstlisting}
 
 Settings do not have to be set at all, if they are not set, the standard settings will be used.
-
+%----------------------------------------------------------------------------------------------------------------------------------------&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&-----------------------------------------------------------------------------------------------------------------------------------------&
 \section{Lists}
 There are two types of lists; consisting of either bullets or numerations.
 A bullet list is made by writing the following: \\
@@ -273,4 +384,4 @@ Input: @image{@url: C:\Users\Benjamin\Pictures\aau_logo.jpg  | Aalborg Universit
 \end{lstlisting}
 %Local image
 
-Where the url to the image is placed before the pipe and after the keyword ``@url:''. The text after the pipe is the image text.
+Where the URL, or file path, to the image is placed before the pipe and after the keyword ``@url:''. The text after the pipe is the image text.
