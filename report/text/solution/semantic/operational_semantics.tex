@@ -1,4 +1,5 @@
 \chapter{Operational Semantics}
+In this chapter some of the operational semantics of NISSE will be shown. In order to be able to read the operational semantics a few things should be known. \texttt{S} denotes slides and is an environment consisting of variables(slides) pointing to a location with the \texttt{body} of the slide. Also included in the environment is the keyword \texttt{next} which points to the next empty variable, and the function \texttt{new} which gets the next variable after its parameter. \texttt{env} denotes an enviroment for settings, which also consists of variables pointing to locations containing the value of that setting. \texttt{env} does not need the \texttt{next} keyword and the \texttt{new} function because all of the settings is predefined and the only thing changed is the settings value.
 
 $[slideshow]$
 \[ \langle S, env \rangle \ra show \]
@@ -7,21 +8,21 @@ $[slideshow]$
 \[ \condinfrule{\langle slide, S \rangle \ra S' \langle setting, env \rangle \ra env'} { \langle slide~setting, S, env \rangle \ra S', env'}{} \]
 
 \noindent{$[setting]$}
-\[ \condinfrule{\langle Shortident, env \rangle \ra env' \langle scope \rangle} { \langle @ setting \{ shortident | scope \}, env \rangle \ra env'}{} \]
+\[ \condinfrule{\langles shortident, env \rangle \ra env' \langle scope \rangle} { \langle @ setting \{ shortident | scope \}, env \rangle \ra env'}{} \]
 
 \noindent{$[slide]$}
 \[ \condinfrule{\langle block, S[L \mapsto block] [next \mapsto new L] \rangle \ra S'} { \langle block, S \rangle \ra S'}{} \]
 \[ L = S(next)\]
 
-\noindent{$[Block]$}
+\noindent{$[block]$}
 \[ \condinfrule{\langle setting, env \rangle \ra env' \langle Plain \rangle \langle num \rangle \langle iList \rangle} { \langle begin~setting~Plain~num~iList~end, S \rangle \ra S'}{} \]
 
-\noindent{$[Plain]$}
-\[ \condinfrule{\langle Plaintext \rangle \langle Shortblock~env \rangle \ra env'} { \langle Plaintext~shortblock \rangle }{} \]
+\noindent{$[plain]$}
+\[ \condinfrule{\langle plaintext \rangle \langle shortblock~env \rangle \ra env'} { \langle plaintext~shortblock \rangle }{} \]
 
-\noindent{$[Shortblock]$}
-\[ \condinfrule{\langle formatkwd \rangle \langle Shortident, env \rangle \ra env' \langle Plain \rangle} { \langle formatkwd \{short~ident | Plain\}, env \rangle \ra env'}{} \]
+\noindent{$[shortblock]$}
+\[ \condinfrule{\langle formatkwd \rangle \langle shortident, env \rangle \ra env' \langle plain \rangle} { \langle formatkwd \{short~ident | plain\}, env \rangle \ra env'}{} \]
 
-\noindent{$[Shortident]$}
+\noindent{$[shortident]$}
 \[ \condinfrule{\langle env [L \mapsto V] \rangle \ra env'} { \langle kwd : V, env \rangle \ra env'}{} \]
 \[ L = env(kwd)\]
