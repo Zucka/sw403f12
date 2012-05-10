@@ -165,629 +165,631 @@ public class Parser
 
             switch(this.action[0])
             {
-                case SHIFT:
-		    {
-		        ArrayList list = new ArrayList();
-		        list.add(this.lexer.next());
-                        push(this.action[1], list, false);
-                    }
-		    break;
-                case REDUCE:
-                    switch(this.action[1])
-                    {
-                    case 0: /* reduce AAnisse1Nisse */
-		    {
-			ArrayList list = new0();
-			push(goTo(0), list, false);
-		    }
-		    break;
-                    case 1: /* reduce AAnisse2Nisse */
-		    {
-			ArrayList list = new1();
-			push(goTo(0), list, false);
-		    }
-		    break;
-                    case 2: /* reduce AAblockblocks1Blocks */
-		    {
-			ArrayList list = new2();
-			push(goTo(1), list, false);
-		    }
-		    break;
-                    case 3: /* reduce AAblockblocks2Blocks */
-		    {
-			ArrayList list = new3();
-			push(goTo(1), list, false);
-		    }
-		    break;
-                    case 4: /* reduce AAsettingblocks1Blocks */
-		    {
-			ArrayList list = new4();
-			push(goTo(1), list, false);
-		    }
-		    break;
-                    case 5: /* reduce AAsettingblocks2Blocks */
-		    {
-			ArrayList list = new5();
-			push(goTo(1), list, false);
-		    }
-		    break;
-                    case 6: /* reduce ASettingLines */
-		    {
-			ArrayList list = new6();
-			push(goTo(2), list, false);
-		    }
-		    break;
-                    case 7: /* reduce ANumerationLines */
-		    {
-			ArrayList list = new7();
-			push(goTo(2), list, false);
-		    }
-		    break;
-                    case 8: /* reduce AItemlistLines */
-		    {
-			ArrayList list = new8();
-			push(goTo(2), list, false);
-		    }
-		    break;
-                    case 9: /* reduce APlaintextLines */
-		    {
-			ArrayList list = new9();
-			push(goTo(2), list, false);
-		    }
-		    break;
-                    case 10: /* reduce ANumeration */
-		    {
-			ArrayList list = new10();
-			push(goTo(3), list, false);
-		    }
-		    break;
-                    case 11: /* reduce APlaintextNumerationv1 */
-		    {
-			ArrayList list = new11();
-			push(goTo(4), list, false);
-		    }
-		    break;
-                    case 12: /* reduce ANumerationNumerationv1 */
-		    {
-			ArrayList list = new12();
-			push(goTo(4), list, false);
-		    }
-		    break;
-                    case 13: /* reduce AItemlist */
-		    {
-			ArrayList list = new13();
-			push(goTo(5), list, false);
-		    }
-		    break;
-                    case 14: /* reduce APlaintextItemlistv1 */
-		    {
-			ArrayList list = new14();
-			push(goTo(6), list, false);
-		    }
-		    break;
-                    case 15: /* reduce AItemlistItemlistv1 */
-		    {
-			ArrayList list = new15();
-			push(goTo(6), list, false);
-		    }
-		    break;
-                    case 16: /* reduce AAbeginblock1Beginblock */
-		    {
-			ArrayList list = new16();
-			push(goTo(7), list, false);
-		    }
-		    break;
-                    case 17: /* reduce AAbeginblock2Beginblock */
-		    {
-			ArrayList list = new17();
-			push(goTo(7), list, false);
-		    }
-		    break;
-                    case 18: /* reduce AAbeginblock3Beginblock */
-		    {
-			ArrayList list = new18();
-			push(goTo(7), list, false);
-		    }
-		    break;
-                    case 19: /* reduce AAbeginblock4Beginblock */
-		    {
-			ArrayList list = new19();
-			push(goTo(7), list, false);
-		    }
-		    break;
-                    case 20: /* reduce AAendblock1Endblock */
-		    {
-			ArrayList list = new20();
-			push(goTo(8), list, false);
-		    }
-		    break;
-                    case 21: /* reduce AAendblock2Endblock */
-		    {
-			ArrayList list = new21();
-			push(goTo(8), list, false);
-		    }
-		    break;
-                    case 22: /* reduce AAendblock3Endblock */
-		    {
-			ArrayList list = new22();
-			push(goTo(8), list, false);
-		    }
-		    break;
-                    case 23: /* reduce AAendblock4Endblock */
-		    {
-			ArrayList list = new23();
-			push(goTo(8), list, false);
-		    }
-		    break;
-                    case 24: /* reduce AAbeblock1Beblock */
-		    {
-			ArrayList list = new24();
-			push(goTo(9), list, false);
-		    }
-		    break;
-                    case 25: /* reduce AAbeblock2Beblock */
-		    {
-			ArrayList list = new25();
-			push(goTo(9), list, false);
-		    }
-		    break;
-                    case 26: /* reduce AAbeblock3Beblock */
-		    {
-			ArrayList list = new26();
-			push(goTo(9), list, false);
-		    }
-		    break;
-                    case 27: /* reduce AAbeblock4Beblock */
-		    {
-			ArrayList list = new27();
-			push(goTo(9), list, false);
-		    }
-		    break;
-                    case 28: /* reduce AAbeblock5Beblock */
-		    {
-			ArrayList list = new28();
-			push(goTo(9), list, false);
-		    }
-		    break;
-                    case 29: /* reduce AAbeblock6Beblock */
-		    {
-			ArrayList list = new29();
-			push(goTo(9), list, false);
-		    }
-		    break;
-                    case 30: /* reduce AAbeblock7Beblock */
-		    {
-			ArrayList list = new30();
-			push(goTo(9), list, false);
-		    }
-		    break;
-                    case 31: /* reduce AAbeblock8Beblock */
-		    {
-			ArrayList list = new31();
-			push(goTo(9), list, false);
-		    }
-		    break;
-                    case 32: /* reduce AAbeblockv11Beblockv1 */
-		    {
-			ArrayList list = new32();
-			push(goTo(10), list, false);
-		    }
-		    break;
-                    case 33: /* reduce AAbeblockv12Beblockv1 */
-		    {
-			ArrayList list = new33();
-			push(goTo(10), list, false);
-		    }
-		    break;
-                    case 34: /* reduce AAbeblockv13Beblockv1 */
-		    {
-			ArrayList list = new34();
-			push(goTo(10), list, false);
-		    }
-		    break;
-                    case 35: /* reduce AAbeblockv14Beblockv1 */
-		    {
-			ArrayList list = new35();
-			push(goTo(10), list, false);
-		    }
-		    break;
-                    case 36: /* reduce AAsettingblock1Settingblock */
-		    {
-			ArrayList list = new36();
-			push(goTo(11), list, false);
-		    }
-		    break;
-                    case 37: /* reduce AAsettingblock2Settingblock */
-		    {
-			ArrayList list = new37();
-			push(goTo(11), list, false);
-		    }
-		    break;
-                    case 38: /* reduce AAsettingblock3Settingblock */
-		    {
-			ArrayList list = new38();
-			push(goTo(11), list, false);
-		    }
-		    break;
-                    case 39: /* reduce AAsettingblock4Settingblock */
-		    {
-			ArrayList list = new39();
-			push(goTo(11), list, false);
-		    }
-		    break;
-                    case 40: /* reduce AAsettingblock5Settingblock */
-		    {
-			ArrayList list = new40();
-			push(goTo(11), list, false);
-		    }
-		    break;
-                    case 41: /* reduce AAsettingblock6Settingblock */
-		    {
-			ArrayList list = new41();
-			push(goTo(11), list, false);
-		    }
-		    break;
-                    case 42: /* reduce AAsettingblock7Settingblock */
-		    {
-			ArrayList list = new42();
-			push(goTo(11), list, false);
-		    }
-		    break;
-                    case 43: /* reduce AAsettingblock8Settingblock */
-		    {
-			ArrayList list = new43();
-			push(goTo(11), list, false);
-		    }
-		    break;
-                    case 44: /* reduce APlains */
-		    {
-			ArrayList list = new44();
-			push(goTo(12), list, false);
-		    }
-		    break;
-                    case 45: /* reduce AShortblockPlainsv1 */
-		    {
-			ArrayList list = new45();
-			push(goTo(13), list, false);
-		    }
-		    break;
-                    case 46: /* reduce ACharallPlainsv1 */
-		    {
-			ArrayList list = new46();
-			push(goTo(13), list, false);
-		    }
-		    break;
-                    case 47: /* reduce AAshortblock1Shortblock */
-		    {
-			ArrayList list = new47();
-			push(goTo(14), list, false);
-		    }
-		    break;
-                    case 48: /* reduce AAshortblock2Shortblock */
-		    {
-			ArrayList list = new48();
-			push(goTo(14), list, false);
-		    }
-		    break;
-                    case 49: /* reduce AAshortblock3Shortblock */
-		    {
-			ArrayList list = new49();
-			push(goTo(14), list, false);
-		    }
-		    break;
-                    case 50: /* reduce AAshortblock4Shortblock */
-		    {
-			ArrayList list = new50();
-			push(goTo(14), list, false);
-		    }
-		    break;
-                    case 51: /* reduce AShortidents */
-		    {
-			ArrayList list = new51();
-			push(goTo(15), list, false);
-		    }
-		    break;
-                    case 52: /* reduce AAshortident1Shortident */
-		    {
-			ArrayList list = new52();
-			push(goTo(16), list, false);
-		    }
-		    break;
-                    case 53: /* reduce AAshortident2Shortident */
-		    {
-			ArrayList list = new53();
-			push(goTo(16), list, false);
-		    }
-		    break;
-                    case 54: /* reduce AAshortident3Shortident */
-		    {
-			ArrayList list = new54();
-			push(goTo(16), list, false);
-		    }
-		    break;
-                    case 55: /* reduce AAshortident4Shortident */
-		    {
-			ArrayList list = new55();
-			push(goTo(16), list, false);
-		    }
-		    break;
-                    case 56: /* reduce AAshortident5Shortident */
-		    {
-			ArrayList list = new56();
-			push(goTo(16), list, false);
-		    }
-		    break;
-                    case 57: /* reduce AAshortident6Shortident */
-		    {
-			ArrayList list = new57();
-			push(goTo(16), list, false);
-		    }
-		    break;
-                    case 58: /* reduce AAshortident7Shortident */
-		    {
-			ArrayList list = new58();
-			push(goTo(16), list, false);
-		    }
-		    break;
-                    case 59: /* reduce AAshortident8Shortident */
-		    {
-			ArrayList list = new59();
-			push(goTo(16), list, false);
-		    }
-		    break;
-                    case 60: /* reduce ACharShortidentv1 */
-		    {
-			ArrayList list = new60();
-			push(goTo(17), list, false);
-		    }
-		    break;
-                    case 61: /* reduce ADigitShortidentv1 */
-		    {
-			ArrayList list = new61();
-			push(goTo(17), list, false);
-		    }
-		    break;
-                    case 62: /* reduce AFloatShortidentv1 */
-		    {
-			ArrayList list = new62();
-			push(goTo(17), list, false);
-		    }
-		    break;
-                    case 63: /* reduce AColonShortidentv1 */
-		    {
-			ArrayList list = new63();
-			push(goTo(17), list, false);
-		    }
-		    break;
-                    case 64: /* reduce AFslashShortidentv1 */
-		    {
-			ArrayList list = new64();
-			push(goTo(17), list, false);
-		    }
-		    break;
-                    case 65: /* reduce ADotShortidentv1 */
-		    {
-			ArrayList list = new65();
-			push(goTo(17), list, false);
-		    }
-		    break;
-                    case 66: /* reduce AUnderscoreShortidentv1 */
-		    {
-			ArrayList list = new66();
-			push(goTo(17), list, false);
-		    }
-		    break;
-                    case 67: /* reduce AHyphenShortidentv1 */
-		    {
-			ArrayList list = new67();
-			push(goTo(17), list, false);
-		    }
-		    break;
-                    case 68: /* reduce AAtKwd */
-		    {
-			ArrayList list = new68();
-			push(goTo(18), list, false);
-		    }
-		    break;
-                    case 69: /* reduce AUrlKwd */
-		    {
-			ArrayList list = new69();
-			push(goTo(18), list, false);
-		    }
-		    break;
-                    case 70: /* reduce ACharKwdv1 */
-		    {
-			ArrayList list = new70();
-			push(goTo(19), list, false);
-		    }
-		    break;
-                    case 71: /* reduce AUnderscoreKwdv1 */
-		    {
-			ArrayList list = new71();
-			push(goTo(19), list, false);
-		    }
-		    break;
-                    case 72: /* reduce AColonCharall */
-		    {
-			ArrayList list = new72();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 73: /* reduce ADigitCharall */
-		    {
-			ArrayList list = new73();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 74: /* reduce AFloatCharall */
-		    {
-			ArrayList list = new74();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 75: /* reduce ASemicolonCharall */
-		    {
-			ArrayList list = new75();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 76: /* reduce APercentCharall */
-		    {
-			ArrayList list = new76();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 77: /* reduce AForwardslashCharall */
-		    {
-			ArrayList list = new77();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 78: /* reduce ABackslashCharall */
-		    {
-			ArrayList list = new78();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 79: /* reduce AExclamationCharall */
-		    {
-			ArrayList list = new79();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 80: /* reduce ADotCharall */
-		    {
-			ArrayList list = new80();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 81: /* reduce ACommaCharall */
-		    {
-			ArrayList list = new81();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 82: /* reduce ACharCharall */
-		    {
-			ArrayList list = new82();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 83: /* reduce ASpaceCharall */
-		    {
-			ArrayList list = new83();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 84: /* reduce AUnderscoreCharall */
-		    {
-			ArrayList list = new84();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 85: /* reduce AHyphenCharall */
-		    {
-			ArrayList list = new85();
-			push(goTo(20), list, false);
-		    }
-		    break;
-                    case 86: /* reduce ATerminal$Blocks */
-		    {
-			ArrayList list = new86();
-			push(goTo(21), list, true);
-		    }
-		    break;
-                    case 87: /* reduce ANonTerminal$Blocks */
-		    {
-			ArrayList list = new87();
-			push(goTo(21), list, true);
-		    }
-		    break;
-                    case 88: /* reduce ATerminal$Lines */
-		    {
-			ArrayList list = new88();
-			push(goTo(22), list, true);
-		    }
-		    break;
-                    case 89: /* reduce ANonTerminal$Lines */
-		    {
-			ArrayList list = new89();
-			push(goTo(22), list, true);
-		    }
-		    break;
-                    case 90: /* reduce ATerminal$Space */
-		    {
-			ArrayList list = new90();
-			push(goTo(23), list, true);
-		    }
-		    break;
-                    case 91: /* reduce ANonTerminal$Space */
-		    {
-			ArrayList list = new91();
-			push(goTo(23), list, true);
-		    }
-		    break;
-                    case 92: /* reduce ATerminal$Plainsv1 */
-		    {
-			ArrayList list = new92();
-			push(goTo(24), list, true);
-		    }
-		    break;
-                    case 93: /* reduce ANonTerminal$Plainsv1 */
-		    {
-			ArrayList list = new93();
-			push(goTo(24), list, true);
-		    }
-		    break;
-                    case 94: /* reduce ATerminal$Shortident */
-		    {
-			ArrayList list = new94();
-			push(goTo(25), list, true);
-		    }
-		    break;
-                    case 95: /* reduce ANonTerminal$Shortident */
-		    {
-			ArrayList list = new95();
-			push(goTo(25), list, true);
-		    }
-		    break;
-                    case 96: /* reduce ATerminal$Shortidentv1 */
-		    {
-			ArrayList list = new96();
-			push(goTo(26), list, true);
-		    }
-		    break;
-                    case 97: /* reduce ANonTerminal$Shortidentv1 */
-		    {
-			ArrayList list = new97();
-			push(goTo(26), list, true);
-		    }
-		    break;
-                    case 98: /* reduce ATerminal$Kwdv1 */
-		    {
-			ArrayList list = new98();
-			push(goTo(27), list, true);
-		    }
-		    break;
-                    case 99: /* reduce ANonTerminal$Kwdv1 */
-		    {
-			ArrayList list = new99();
-			push(goTo(27), list, true);
-		    }
-		    break;
-                    }
-                    break;
-                case ACCEPT:
-                    {
-                        EOF node2 = (EOF) this.lexer.next();
-                        PNisse node1 = (PNisse) pop().get(0);
-                        Start node = new Start(node1, node2);
-                        return node;
-                    }
-                case ERROR:
-                    throw new ParserException(this.last_token,
-                        "[" + this.last_line + "," + this.last_pos + "] " +
-                        Parser.errorMessages[Parser.errors[this.action[1]]]);
+            case SHIFT:
+            {
+            	ArrayList list = new ArrayList();
+            	list.add(this.lexer.next());
+            	push(this.action[1], list, false);
+            }
+            break;
+            case REDUCE:
+            	switch(this.action[1])
+            	{
+            	case 0: /* reduce AAnisse1Nisse */
+            	{
+            		ArrayList list = new0();
+            		push(goTo(0), list, false);
+            	}
+            	break;
+            	case 1: /* reduce AAnisse2Nisse */
+            	{
+            		ArrayList list = new1();
+            		push(goTo(0), list, false);
+            	}
+            	break;
+            	case 2: /* reduce AAblockblocks1Blocks */
+            	{
+            		ArrayList list = new2();
+            		push(goTo(1), list, false);
+            	}
+            	break;
+            	case 3: /* reduce AAblockblocks2Blocks */
+            	{
+            		ArrayList list = new3();
+            		push(goTo(1), list, false);
+            	}
+            	break;
+            	case 4: /* reduce AAsettingblocks1Blocks */
+            	{
+            		ArrayList list = new4();
+            		push(goTo(1), list, false);
+            	}
+            	break;
+            	case 5: /* reduce AAsettingblocks2Blocks */
+            	{
+            		ArrayList list = new5();
+            		push(goTo(1), list, false);
+            	}
+            	break;
+            	case 6: /* reduce ASettingLines */
+            	{
+            		ArrayList list = new6();
+            		push(goTo(2), list, false);
+            	}
+            	break;
+            	case 7: /* reduce ANumerationLines */
+            	{
+            		ArrayList list = new7();
+            		push(goTo(2), list, false);
+            	}
+            	break;
+            	case 8: /* reduce AItemlistLines */
+            	{
+            		ArrayList list = new8();
+            		push(goTo(2), list, false);
+            	}
+            	break;
+            	case 9: /* reduce APlaintextLines */
+            	{
+            		ArrayList list = new9();
+            		push(goTo(2), list, false);
+            	}
+            	break;
+            	case 10: /* reduce ANumeration */
+            	{
+            		ArrayList list = new10();
+            		push(goTo(3), list, false);
+            	}
+            	break;
+            	case 11: /* reduce APlaintextNumerationv1 */
+            	{
+            		ArrayList list = new11();
+            		push(goTo(4), list, false);
+            	}
+            	break;
+            	case 12: /* reduce ANumerationNumerationv1 */
+            	{
+            		ArrayList list = new12();
+            		push(goTo(4), list, false);
+            	}
+            	break;
+            	case 13: /* reduce AItemlist */
+            	{
+            		ArrayList list = new13();
+            		push(goTo(5), list, false);
+            	}
+            	break;
+            	case 14: /* reduce APlaintextItemlistv1 */
+            	{
+            		ArrayList list = new14();
+            		push(goTo(6), list, false);
+            	}
+            	break;
+            	case 15: /* reduce AItemlistItemlistv1 */
+            	{
+            		ArrayList list = new15();
+            		push(goTo(6), list, false);
+            	}
+            	break;
+            	case 16: /* reduce AAbeginblock1Beginblock */
+            	{
+            		ArrayList list = new16();
+            		push(goTo(7), list, false);
+            	}
+            	break;
+            	case 17: /* reduce AAbeginblock2Beginblock */
+            	{
+            		ArrayList list = new17();
+            		push(goTo(7), list, false);
+            	}
+            	break;
+            	case 18: /* reduce AAbeginblock3Beginblock */
+            	{
+            		ArrayList list = new18();
+            		push(goTo(7), list, false);
+            	}
+            	break;
+            	case 19: /* reduce AAbeginblock4Beginblock */
+            	{
+            		ArrayList list = new19();
+            		push(goTo(7), list, false);
+            	}
+            	break;
+            	case 20: /* reduce AAendblock1Endblock */
+            	{
+            		ArrayList list = new20();
+            		push(goTo(8), list, false);
+            	}
+            	break;
+            	case 21: /* reduce AAendblock2Endblock */
+            	{
+            		ArrayList list = new21();
+            		push(goTo(8), list, false);
+            	}
+            	break;
+            	case 22: /* reduce AAendblock3Endblock */
+            	{
+            		ArrayList list = new22();
+            		push(goTo(8), list, false);
+            	}
+            	break;
+            	case 23: /* reduce AAendblock4Endblock */
+            	{
+            		ArrayList list = new23();
+            		push(goTo(8), list, false);
+            	}
+            	break;
+            	case 24: /* reduce AAbeblock1Beblock */
+            	{
+            		ArrayList list = new24();
+            		push(goTo(9), list, false);
+            	}
+            	break;
+            	case 25: /* reduce AAbeblock2Beblock */
+            	{
+            		ArrayList list = new25();
+            		push(goTo(9), list, false);
+            	}
+            	break;
+            	case 26: /* reduce AAbeblock3Beblock */
+            	{
+            		ArrayList list = new26();
+            		push(goTo(9), list, false);
+            	}
+            	break;
+            	case 27: /* reduce AAbeblock4Beblock */
+            	{
+            		ArrayList list = new27();
+            		push(goTo(9), list, false);
+            	}
+            	break;
+            	case 28: /* reduce AAbeblock5Beblock */
+            	{
+            		ArrayList list = new28();
+            		push(goTo(9), list, false);
+            	}
+            	break;
+            	case 29: /* reduce AAbeblock6Beblock */
+            	{
+            		ArrayList list = new29();
+            		push(goTo(9), list, false);
+            	}
+            	break;
+            	case 30: /* reduce AAbeblock7Beblock */
+            	{
+            		ArrayList list = new30();
+            		push(goTo(9), list, false);
+            	}
+            	break;
+            	case 31: /* reduce AAbeblock8Beblock */
+            	{
+            		ArrayList list = new31();
+            		push(goTo(9), list, false);
+            	}
+            	break;
+            	case 32: /* reduce AAbeblockv11Beblockv1 */
+            	{
+            		ArrayList list = new32();
+            		push(goTo(10), list, false);
+            	}
+            	break;
+            	case 33: /* reduce AAbeblockv12Beblockv1 */
+            	{
+            		ArrayList list = new33();
+            		push(goTo(10), list, false);
+            	}
+            	break;
+            	case 34: /* reduce AAbeblockv13Beblockv1 */
+            	{
+            		ArrayList list = new34();
+            		push(goTo(10), list, false);
+            	}
+            	break;
+            	case 35: /* reduce AAbeblockv14Beblockv1 */
+            	{
+            		ArrayList list = new35();
+            		push(goTo(10), list, false);
+            	}
+            	break;
+            	case 36: /* reduce AAsettingblock1Settingblock */
+            	{
+            		ArrayList list = new36();
+            		push(goTo(11), list, false);
+            	}
+            	break;
+            	case 37: /* reduce AAsettingblock2Settingblock */
+            	{
+            		ArrayList list = new37();
+            		push(goTo(11), list, false);
+            	}
+            	break;
+            	case 38: /* reduce AAsettingblock3Settingblock */
+            	{
+            		ArrayList list = new38();
+            		push(goTo(11), list, false);
+            	}
+            	break;
+            	case 39: /* reduce AAsettingblock4Settingblock */
+            	{
+            		ArrayList list = new39();
+            		push(goTo(11), list, false);
+            	}
+            	break;
+            	case 40: /* reduce AAsettingblock5Settingblock */
+            	{
+            		ArrayList list = new40();
+            		push(goTo(11), list, false);
+            	}
+            	break;
+            	case 41: /* reduce AAsettingblock6Settingblock */
+            	{
+            		ArrayList list = new41();
+            		push(goTo(11), list, false);
+            	}
+            	break;
+            	case 42: /* reduce AAsettingblock7Settingblock */
+            	{
+            		ArrayList list = new42();
+            		push(goTo(11), list, false);
+            	}
+            	break;
+            	case 43: /* reduce AAsettingblock8Settingblock */
+            	{
+            		ArrayList list = new43();
+            		push(goTo(11), list, false);
+            	}
+            	break;
+            	case 44: /* reduce APlains */
+            	{
+            		ArrayList list = new44();
+            		push(goTo(12), list, false);
+            	}
+            	break;
+            	case 45: /* reduce AShortblockPlainsv1 */
+            	{
+            		ArrayList list = new45();
+            		push(goTo(13), list, false);
+            	}
+            	break;
+            	case 46: /* reduce ACharallPlainsv1 */
+            	{
+            		ArrayList list = new46();
+            		push(goTo(13), list, false);
+            	}
+            	break;
+            	case 47: /* reduce AAshortblock1Shortblock */
+            	{
+            		ArrayList list = new47();
+            		push(goTo(14), list, false);
+            	}
+            	break;
+            	case 48: /* reduce AAshortblock2Shortblock */
+            	{
+            		ArrayList list = new48();
+            		push(goTo(14), list, false);
+            	}
+            	break;
+            	case 49: /* reduce AAshortblock3Shortblock */
+            	{
+            		ArrayList list = new49();
+            		push(goTo(14), list, false);
+            	}
+            	break;
+            	case 50: /* reduce AAshortblock4Shortblock */
+            	{
+            		ArrayList list = new50();
+            		push(goTo(14), list, false);
+            	}
+            	break;
+            	case 51: /* reduce AShortidents */
+            	{
+            		ArrayList list = new51();
+            		push(goTo(15), list, false);
+            	}
+            	break;
+            	case 52: /* reduce AAshortident1Shortident */
+            	{
+            		ArrayList list = new52();
+            		push(goTo(16), list, false);
+            	}
+            	break;
+            	case 53: /* reduce AAshortident2Shortident */
+            	{
+            		ArrayList list = new53();
+            		push(goTo(16), list, false);
+            	}
+            	break;
+            	case 54: /* reduce AAshortident3Shortident */
+            	{
+            		ArrayList list = new54();
+            		push(goTo(16), list, false);
+            	}
+            	break;
+            	case 55: /* reduce AAshortident4Shortident */
+            	{
+            		ArrayList list = new55();
+            		push(goTo(16), list, false);
+            	}
+            	break;
+            	case 56: /* reduce AAshortident5Shortident */
+            	{
+            		ArrayList list = new56();
+            		push(goTo(16), list, false);
+            	}
+            	break;
+            	case 57: /* reduce AAshortident6Shortident */
+            	{
+            		ArrayList list = new57();
+            		push(goTo(16), list, false);
+            	}
+            	break;
+            	case 58: /* reduce AAshortident7Shortident */
+            	{
+            		ArrayList list = new58();
+            		push(goTo(16), list, false);
+            	}
+            	break;
+            	case 59: /* reduce AAshortident8Shortident */
+            	{
+            		ArrayList list = new59();
+            		push(goTo(16), list, false);
+            	}
+            	break;
+            	case 60: /* reduce ACharShortidentv1 */
+            	{
+            		ArrayList list = new60();
+            		push(goTo(17), list, false);
+            	}
+            	break;
+            	case 61: /* reduce ADigitShortidentv1 */
+            	{
+            		ArrayList list = new61();
+            		push(goTo(17), list, false);
+            	}
+            	break;
+            	case 62: /* reduce AFloatShortidentv1 */
+            	{
+            		ArrayList list = new62();
+            		push(goTo(17), list, false);
+            	}
+            	break;
+            	case 63: /* reduce AColonShortidentv1 */
+            	{
+            		ArrayList list = new63();
+            		push(goTo(17), list, false);
+            	}
+            	break;
+            	case 64: /* reduce AFslashShortidentv1 */
+            	{
+            		ArrayList list = new64();
+            		push(goTo(17), list, false);
+            	}
+            	break;
+            	case 65: /* reduce ADotShortidentv1 */
+            	{
+            		ArrayList list = new65();
+            		push(goTo(17), list, false);
+            	}
+            	break;
+            	case 66: /* reduce AUnderscoreShortidentv1 */
+            	{
+            		ArrayList list = new66();
+            		push(goTo(17), list, false);
+            	}
+            	break;
+            	case 67: /* reduce AHyphenShortidentv1 */
+            	{
+            		ArrayList list = new67();
+            		push(goTo(17), list, false);
+            	}
+            	break;
+            	case 68: /* reduce AAtKwd */
+            	{
+            		ArrayList list = new68();
+            		push(goTo(18), list, false);
+            	}
+            	break;
+            	case 69: /* reduce AUrlKwd */
+            	{
+            		ArrayList list = new69();
+            		push(goTo(18), list, false);
+            	}
+            	break;
+            	case 70: /* reduce ACharKwdv1 */
+            	{
+            		ArrayList list = new70();
+            		push(goTo(19), list, false);
+            	}
+            	break;
+            	case 71: /* reduce AUnderscoreKwdv1 */
+            	{
+            		ArrayList list = new71();
+            		push(goTo(19), list, false);
+            	}
+            	break;
+            	case 72: /* reduce AColonCharall */
+            	{
+            		ArrayList list = new72();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 73: /* reduce ADigitCharall */
+            	{
+            		ArrayList list = new73();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 74: /* reduce AFloatCharall */
+            	{
+            		ArrayList list = new74();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 75: /* reduce ASemicolonCharall */
+            	{
+            		ArrayList list = new75();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 76: /* reduce APercentCharall */
+            	{
+            		ArrayList list = new76();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 77: /* reduce AForwardslashCharall */
+            	{
+            		ArrayList list = new77();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 78: /* reduce ABackslashCharall */
+            	{
+            		ArrayList list = new78();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 79: /* reduce AExclamationCharall */
+            	{
+            		ArrayList list = new79();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 80: /* reduce ADotCharall */
+            	{
+            		ArrayList list = new80();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 81: /* reduce ACommaCharall */
+            	{
+            		ArrayList list = new81();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 82: /* reduce ACharCharall */
+            	{
+            		ArrayList list = new82();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 83: /* reduce ASpaceCharall */
+            	{
+            		ArrayList list = new83();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 84: /* reduce AUnderscoreCharall */
+            	{
+            		ArrayList list = new84();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 85: /* reduce AHyphenCharall */
+            	{
+            		ArrayList list = new85();
+            		push(goTo(20), list, false);
+            	}
+            	break;
+            	case 86: /* reduce ATerminal$Blocks */
+            	{
+            		ArrayList list = new86();
+            		push(goTo(21), list, true);
+            	}
+            	break;
+            	case 87: /* reduce ANonTerminal$Blocks */
+            	{
+            		ArrayList list = new87();
+            		push(goTo(21), list, true);
+            	}
+            	break;
+            	case 88: /* reduce ATerminal$Lines */
+            	{
+            		ArrayList list = new88();
+            		push(goTo(22), list, true);
+            	}
+            	break;
+            	case 89: /* reduce ANonTerminal$Lines */
+            	{
+            		ArrayList list = new89();
+            		push(goTo(22), list, true);
+            	}
+            	break;
+            	case 90: /* reduce ATerminal$Space */
+            	{
+            		ArrayList list = new90();
+            		push(goTo(23), list, true);
+            	}
+            	break;
+            	case 91: /* reduce ANonTerminal$Space */
+            	{
+            		ArrayList list = new91();
+            		push(goTo(23), list, true);
+            	}
+            	break;
+            	case 92: /* reduce ATerminal$Plainsv1 */
+            	{
+            		ArrayList list = new92();
+            		push(goTo(24), list, true);
+            	}
+            	break;
+            	case 93: /* reduce ANonTerminal$Plainsv1 */
+            	{
+            		ArrayList list = new93();
+            		push(goTo(24), list, true);
+            	}
+            	break;
+            	case 94: /* reduce ATerminal$Shortident */
+            	{
+            		ArrayList list = new94();
+            		push(goTo(25), list, true);
+            	}
+            	break;
+            	case 95: /* reduce ANonTerminal$Shortident */
+            	{
+            		ArrayList list = new95();
+            		push(goTo(25), list, true);
+            	}
+            	break;
+            	case 96: /* reduce ATerminal$Shortidentv1 */
+            	{
+            		ArrayList list = new96();
+            		push(goTo(26), list, true);
+            	}
+            	break;
+            	case 97: /* reduce ANonTerminal$Shortidentv1 */
+            	{
+            		ArrayList list = new97();
+            		push(goTo(26), list, true);
+            	}
+            	break;
+            	case 98: /* reduce ATerminal$Kwdv1 */
+            	{
+            		ArrayList list = new98();
+            		push(goTo(27), list, true);
+            	}
+            	break;
+            	case 99: /* reduce ANonTerminal$Kwdv1 */
+            	{
+            		ArrayList list = new99();
+            		push(goTo(27), list, true);
+            	}
+            	break;
+            	}
+            	break;
+            case ACCEPT:
+            {
+            	EOF node2 = (EOF) this.lexer.next();
+            	PNisse node1 = (PNisse) pop().get(0);
+            	Start node = new Start(node1, node2);
+            	return node;
+            }
+            case ERROR:
+//            	System.out.println("[" + this.last_line + "," + this.last_pos + "] " +
+//            			Parser.errorMessages[Parser.errors[this.action[1]]]);
+            	                    throw new ParserException(this.last_token,
+            	                        "[" + this.last_line + "," + this.last_pos + "] " +
+            	                        Parser.errorMessages[Parser.errors[this.action[1]]]);
             }
         }
     }
