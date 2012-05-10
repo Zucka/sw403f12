@@ -4289,7 +4289,7 @@ public class Parser
 			"expecting: format kwd, space, '@setting', '@end', '/', '\', ':', ';', '*', '#', '%', '!', '_', '-', char, digit, float, dot, comma",
 			"expecting: space, '@setting'",
 			"expecting: '@url', '@'",
-			"expecting: space, char",
+			"expecting: Character",
 			"expecting: space, eol",
 			"expecting: format kwd, space, '}', '/', '\', ':', ';', '%', '!', '_', '-', eol, char, digit, float, dot, comma",
 			"expecting: format kwd, space, '/', '\', ':', ';', '*', '%', '!', '_', '-', char, digit, float, dot, comma",
