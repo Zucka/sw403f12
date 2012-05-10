@@ -787,6 +787,7 @@ public class Parser
             case ERROR:
 //            	System.out.println("[" + this.last_line + "," + this.last_pos + "] " +
 //            			Parser.errorMessages[Parser.errors[this.action[1]]]);
+            	System.out.println(Parser.errors[this.action[1]]);
             	                    throw new ParserException(this.last_token,
             	                        "[" + this.last_line + "," + this.last_pos + "] " +
             	                        Parser.errorMessages[Parser.errors[this.action[1]]]);
@@ -4279,37 +4280,37 @@ public class Parser
 			{{-1, 107}, {106, 130}, {108, 134}, {133, 151}, },
 			{{-1, 72}, },
         };*/
-    private static String[] errorMessages;
-/*      {
-			"expecting: space, '@setting', '@begin', EOF",
-			"expecting: '@url', space, '@setting', '@', '{', '}', '|', '/', ':', '_', '-', eol, char, digit, float, dot",
-			"expecting: '{'",
-			"expecting: space, '{'",
-			"expecting: EOF",
-			"expecting: format kwd, space, '@setting', '@end', '/', '\', ':', ';', '*', '#', '%', '!', '_', '-', char, digit, float, dot, comma",
-			"expecting: space, '@setting'",
-			"expecting: '@url', '@'",
-			"expecting: Character",
-			"expecting: space, eol",
-			"expecting: format kwd, space, '}', '/', '\', ':', ';', '%', '!', '_', '-', eol, char, digit, float, dot, comma",
-			"expecting: format kwd, space, '/', '\', ':', ';', '*', '%', '!', '_', '-', char, digit, float, dot, comma",
-			"expecting: format kwd, space, '/', '\', ':', ';', '#', '%', '!', '_', '-', char, digit, float, dot, comma",
-			"expecting: eol",
-			"expecting: space, ':'",
-			"expecting: '_', char",
-			"expecting: '|'",
-			"expecting: space, '}', '|'",
-			"expecting: format kwd, '@url', space, '@', '/', '\', ':', ';', '%', '!', '_', '-', char, digit, float, dot, comma",
-			"expecting: space, ':', '_', char",
-			"expecting: space, '/', ':', '_', '-', char, digit, float, dot",
-			"expecting: '}'",
-			"expecting: format kwd, space, '/', '\', ':', ';', '%', '!', '_', '-', char, digit, float, dot, comma",
-			"expecting: '@url', '@', '|'",
-			"expecting: space, '}'",
-			"expecting: '@url', space, '@', '|', '/', ':', '_', '-', char, digit, float, dot",
-			"expecting: '@url', space, '@', '|'",
-			"expecting: format kwd, space, '@setting', '@begin', '@end', '/', '\', ':', ';', '*', '#', '%', '!', '_', '-', char, digit, float, dot, comma, EOF",
-        };*/
+    private static String[] errorMessages =
+      {
+/*0*/			"expecting: space, '@setting', '@begin', EOF",
+/*1*/			"expecting: '@url', space, '@setting', '@', '{', '}', '|', '/', ':', '_', '-', End of line, char, digit, float, dot",
+/*2*/			"expecting: '{'",
+/*3*/			"expecting: space, '{'",
+/*4 ok*/			"Invalid first line; must be: empty, @setting or @begin",
+/*5*/			"expecting: format kwd, space, '@setting', '@end', '/', '\', ':', ';', '*', '#', '%', '!', '_', '-', char, digit, float, dot, comma",
+/*6*/			"expecting: space, '@setting'",
+/*7*/			"expecting: '@url', '@'",
+/*8 ok*/			"expecting: Character; Did you forget slide name or transitiontype ?",
+/*9*/			"expecting: space, End of line",
+/*10*/			"expecting: format kwd, space, '}', '/', '\', ':', ';', '%', '!', '_', '-', End of line, char, digit, float, dot, comma",
+/*11*/			"expecting: format kwd, space, '/', '\', ':', ';', '*', '%', '!', '_', '-', char, digit, float, dot, comma",
+/*12*/			"expecting: format kwd, space, '/', '\', ':', ';', '#', '%', '!', '_', '-', char, digit, float, dot, comma",
+/*13*/			"expecting: End of line",
+/*14*/			"expecting: space, ':'",
+/*15*/			"expecting: '_', char",
+/*16*/			"expecting: '|'",
+/*17*/			"expecting: space, '}', '|'",
+/*18*/			"expecting: format kwd, '@url', space, '@', '/', '\', ':', ';', '%', '!', '_', '-', char, digit, float, dot, comma",
+/*19*/			"expecting: space, ':', '_', char",
+/*20*/			"expecting: space, '/', ':', '_', '-', char, digit, float, dot",
+/*21*/			"expecting: '}'",
+/*22*/			"expecting: format kwd, space, '/', '\', ':', ';', '%', '!', '_', '-', char, digit, float, dot, comma",
+/*23*/			"expecting: '@url', '@', '|'",
+/*24*/			"expecting: space, '}'",
+/*25*/			"expecting: '@url', space, '@', '|', '/', ':', '_', '-', char, digit, float, dot",
+/*26*/			"expecting: '@url', space, '@', '|'",
+/*27*/			"expecting: format kwd, space, '@setting', '@begin', '@end', '/', '\', ':', ';', '*', '#', '%', '!', '_', '-', char, digit, float, dot, comma, EOF",
+        };
     private static int[] errors;
 /*      {
 			0, 1, 2, 3, 4, 0, 5, 0, 0, 6, 7, 8, 9, 3, 3, 10, 3, 10, 10, 10, 10, 11, 12, 10, 10, 10, 10, 10, 10, 10, 10, 10, 5, 5, 5, 0, 5, 13, 10, 10, 10, 5, 10, 0, 1, 0, 14, 15, 16, 14, 17, 8, 5, 9, 9, 18, 3, 9, 3, 5, 5, 13, 5, 5, 13, 5, 5, 0, 10, 19, 19, 19, 19, 8, 20, 14, 9, 8, 21, 17, 17, 5, 5, 9, 21, 22, 23, 23, 18, 0, 9, 9, 5, 5, 19, 24, 8, 25, 25, 25, 25, 25, 25, 25, 25, 25, 20, 25, 20, 24, 8, 9, 9, 21, 9, 21, 17, 5, 10, 21, 22, 23, 21, 22, 0, 0, 9, 9, 24, 24, 25, 25, 26, 20, 25, 24, 24, 9, 9, 9, 21, 10, 10, 21, 0, 27, 9, 9, 9, 24, 26, 25, 26, 24, 9, 10, 27, 27, 9, 27, 9, 9, 26, 27, 27, 27, 9, 27, 
@@ -4357,7 +4358,7 @@ public class Parser
 
             // read errorMessages
             length = s.readInt();
-            errorMessages = new String[length];
+//            errorMessages = new String[length];
             for(int i = 0; i < errorMessages.length; i++)
             {
                 length = s.readInt();
@@ -4367,7 +4368,7 @@ public class Parser
                 {
                 buffer.append(s.readChar());
                 }
-                errorMessages[i] = buffer.toString();
+//                errorMessages[i] = buffer.toString();
             }
 
             // read errors

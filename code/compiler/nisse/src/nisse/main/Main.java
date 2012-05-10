@@ -90,17 +90,17 @@ public class Main {
 		{
 		case 1:
 		{
-			System.out.println("Critical Error in Lexer, will stop comiling");
+			System.out.println("Critical Error in Lexer, will stop compiling");
 			System.exit(0);
 		}
 		case 2:
 		{
-			System.out.println("Critical Error in Parser, will stop comiling");
+			System.out.println("Critical Error in Parser, will stop compiling");
 			System.exit(0);
 		}
 		case 10:
 		{
-			System.out.println("Critical Error in IO, will stop comiling");
+			System.out.println("Critical Error in IO, will stop compiling");
 			System.exit(0);
 		}
 		break;

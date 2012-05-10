@@ -9,3 +9,4 @@ draft.pdf
 *.class
 code/compiler/nisse/bin/nisse
 output.html
+minimum.sablecc
