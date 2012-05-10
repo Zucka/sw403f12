@@ -11,7 +11,8 @@ import nisse.parser.Parser;
 
 public class Main {
 	
-	static int Debug1 = 8;
+	static int Error = 0;
+	static int Debug1 = 0;
 	/* 1 Symbol table
 	 * 2 Slide table
 	 * 3 = 2 + 1
@@ -66,7 +67,7 @@ public class Main {
 		watch.start();
 		Reader input = null;
 		try {
-			input = new FileReader("/Users/JS/Documents/GIT/test1.txt");
+			input = new FileReader("/Users/JS/Documents/GIT/t2.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -81,8 +82,30 @@ public class Main {
 		//compiler.testLexer();
 		
 		//PARSER
+
 		Start start = compiler.testParser();
 		System.out.println("Lexing and Parsing took "+watch.getElapsedTime()+" miliseconds");
+		
+		switch(Error)
+		{
+		case 1:
+		{
+			System.out.println("Critical Error in Lexer, will stop comiling");
+			System.exit(0);
+		}
+		case 2:
+		{
+			System.out.println("Critical Error in Parser, will stop comiling");
+			System.exit(0);
+		}
+		case 10:
+		{
+			System.out.println("Critical Error in IO, will stop comiling");
+			System.exit(0);
+		}
+		break;
+		}
+		
 		
 		SymbolTable.CreateScopeTable();
 		//SEMANTIC ANALYSER (YOU NEED THE START NODE FROM THE PARSER HERE)
