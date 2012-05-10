@@ -1,2 +1,17 @@
 \chapter{Further Development}
-something something ... 
+The product can easily be improved. The improvements are split up into 2 categories, ''Need to have'' which are things that needs to be done, before the compiler should be used by other than the developers. The other categorie is ''Nice to have'' which contains the elements that is not necessary, on the release of the compiler, but would be the first to focus on after the release.
+
+\section{Need to have}
+\begin{itemize}
+	\item Make error messages more describing both in the lexer, parser and semantic analyser.
+	\item Systematic test of the language, to make sure there are no exception that isn't caught.
+\end{itemize}
+
+\section{Nice to have}
+\begin{itemize}
+	\item Make region of slides. Meaning that a userdefined number of slides is in a region name or number. This region name or number, can be used when changing settings, to target only that region.
+	\item To make the language more programmer like. It should have a ''main'' function, which calls the slides. Giving the opportunity to name the slides, and a easier way switch order of the slides, and gives the opportunity to call the same slide more then once.
+	\item Speakers note should also be implemented at some point.
+	\item The compiler should be able to complete the lexer even with error, and if there are error then terminate when the lexer is done, and then print all the error. The same goes for the parser.
+\end{itemize}
+
