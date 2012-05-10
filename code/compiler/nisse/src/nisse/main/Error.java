@@ -2,7 +2,7 @@ package nisse.main;
 
 public class Error {
 
-	static String[][] ErrorList = new String[100][3];
+	static String[][] ErrorList = new String[1000][3];
 	static int Slidenr = 0;
 	static int Errors = 0;
 	

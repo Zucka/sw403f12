@@ -17,6 +17,7 @@ import nisse.node.ABeblockv1;
 import nisse.node.ABeginblock;
 import nisse.node.ABlockBlocks;
 import nisse.node.ACharCharall;
+import nisse.node.ACharKwdv1;
 import nisse.node.ACharShortidentv1;
 import nisse.node.ACharallPlainsv1;
 import nisse.node.AColonCharall;
@@ -52,6 +53,7 @@ import nisse.node.AShortblockPlainsv1;
 import nisse.node.AShortident;
 import nisse.node.AShortidents;
 import nisse.node.ASpaceCharall;
+import nisse.node.AUnderscoreKwdv1;
 import nisse.node.AUrlKwd;
 import nisse.node.Node;
 import nisse.node.PPlainsv1;
@@ -62,74 +64,8 @@ import nisse.node.TChar;
 public class SemanticAnalyser extends DepthFirstAdapter {
 	private int indent = 0;
 	
-	//Image Settings
-/*	int ImageFontSize = 15;
-	String ImageFontFamily = "arial";
-	String ImageFontColor  = "black";
-	double ImageFontLineheight  = 1.5;
-	String ImageFontWeight = null;
-	//Title Settings
-	int TitleFontSize = 36;
-	String TitleFontFamily = "arial";
-	String TitleFontColor  = "black";
-	double TitleFontLineheight  = 1.5;
-	String TitleFontWeight = null;
-	//Subtitle Settings
-	int SubtitleFontSize = 20;
-	String SubtitleFontFamily = "arial";
-	String SubtitleFontColor  = "black";
-	double SubtitleFontLineheight  = 1.5;
-	String SubtitleFontWeight = null;
-	//Text Settings
-	int TextFontSize = 16;
-	String TextFontFamily = "arial";
-	String TextFontColor  = "black";
-	double TextFontLineheight  = 1.5;
-	String TextFontWeight = null;
-	//Url Settings
-	int UrlFontSize = 16;
-	String UrlFontFamily = "arial";
-	String UrlFontColor  = "black";
-	double UrlFontLineheight  = 1.5;
-	String UrlFontWeight = null;
-	
-	
-	
-	//Image Settings Lokal
-	int NewImageFontSize = ImageFontSize;
-	String NewImageFontFamily = ImageFontFamily;
-	String NewImageFontColor  = ImageFontColor;
-	double NewImageFontLineheight  = ImageFontLineheight;
-	String NewImageFontWeight = ImageFontWeight;
-	//Title Settings Lokal
-	int NewTitleFontSize = TitleFontSize;
-	String NewTitleFontFamily = TitleFontFamily;
-	String NewTitleFontColor  = TitleFontColor;
-	double NewTitleFontLineheight  = TitleFontLineheight;
-	String NewTitleFontWeight = TitleFontWeight;
-	//Subtitle Settings Lokal
-	int NewSubtitleFontSize = SubtitleFontSize;
-	String NewSubtitleFontFamily = SubtitleFontFamily;
-	String NewSubtitleFontColor  = SubtitleFontColor;
-	double NewSubtitleFontLineheight  = SubtitleFontLineheight;
-	String NewSubtitleFontWeight = SubtitleFontWeight;
-	//Text Settings Lokal
-	int NewTextFontSize = TextFontSize;
-	String NewTextFontFamily = TextFontFamily;
-	String NewTextFontColor  = TextFontColor;
-	double NewTextFontLineheight  = TextFontLineheight;
-	String NewTextFontWeight = TextFontWeight;
-	//URL Settings Lokal
-	int NewUrlFontSize = UrlFontSize;
-	String NewUrlFontFamily = UrlFontFamily;
-	String NewUrlFontColor  = UrlFontColor;
-	double NewUrlFontLineheight  = UrlFontLineheight;
-	String NewUrlFontWeight = UrlFontWeight;    */
-	
-	
 	public SemanticAnalyser()
 	{
-		int sdgf = SymbolTable.NewImageFontSize;
 		
 	}
 	public void defaultIn(Node node)
@@ -139,6 +75,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			System.out.println(node.toString());
 			System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
 		}
+		Error.MakeError("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER", "defaultin " + node.getClass().getName());
 	}
 	public void defaultOut(Node node)
 	{
@@ -147,6 +84,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			System.out.println(node.toString());
 			System.out.println("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER");
 		}
+		Error.MakeError("UNCAPTURED ALTERNATIVE IN SEMANTIC ANALYSER", "defaultout " + node.getClass().getName());
 	}
 	public void printIndents()
 	{
@@ -240,7 +178,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		//System.out.println(Test);
 		//ved lokal setting ændring
 		if (Test.equals("class nisse.node.ABlockBlocks")){
-			System.out.println("Dette er en lokal variabel");
+			//System.out.println("Dette er en lokal variabel");
 			if (SettingType.startsWith("@ font _ color")){
 				String Value = SettingType.substring(17);
 				Boolean CheckColor1;
@@ -676,6 +614,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	public void inABeginblock (ABeginblock node)
 	{
 		SymbolTable.OpenScope();
+		Error.Slidenr++;
 		if (Main.NodesB == true ){
 		printIndents();
 		System.out.println("ABeginblock");
@@ -983,7 +922,8 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			
 		}
 		else{
-			System.out.println("Format Keyword:" + FormatKwd + " ikke fundet");
+			Error.MakeError("FormatKeyword not found", FormatKwd);
+			//System.out.println("Format Keyword:" + FormatKwd + " ikke fundet");
 		}
 		
 		if (Main.NodesB == true ){
@@ -1007,7 +947,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		int Length1 = node.getShortidentv1().size();
 		Object[] Value1 = node.getShortidentv1().toArray();
 		
-				
 		int i = 0;
 		String Value = "";
 		for(i=0; i<Length1; i++){
@@ -1016,7 +955,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		//String Value = node.getShortidentv1().toString().trim();
 	//	int Length = Value.length() - 1;
 	//	Value = Value.substring(1, Length).trim();
-	//	System.out.println(Value);
+		//System.out.println(Value);
 		try{
 		if (IfSetting.startsWith("@setting { @ transition")){
 			if (Value.startsWith("slide")){
@@ -1035,7 +974,8 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 				SymbolTable.Transition = Value;
 			}
 			else {
-				System.out.println("Transition:" + Value + " in @setting not found");
+				Error.MakeError("Transition in @setting not found", Value);
+				//System.out.println("Transition:" + Value + " in @setting not found");
 			}
 			
 		}
@@ -1300,6 +1240,26 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		System.out.println("ASettingBlocks");
 		} indent++;
 	}
+	public void inACharKwdv1 (ACharKwdv1 node)
+	{
+		if (Main.NodesB == true ){ printIndents();
+		System.out.println("ACharKwdv1");
+		} indent++;
+	}
+	public void inAUnderscoreKwdv1 (AUnderscoreKwdv1 node)
+	{
+		if (Main.NodesB == true ){ printIndents();
+		System.out.println("AUnderscoreKwdv1");
+		} indent++;
+	}
+	public void outAUnderscoreKwdv1 (AUnderscoreKwdv1 node)
+	{
+		indent--;
+	}
+	public void outACharKwdv1 (ACharKwdv1 node)
+	{
+		indent--;
+	}
 	public void outANisse (ANisse node)
 	{
 		indent--;
@@ -1388,39 +1348,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			SlideType = "Image";
 		}
 			
-/*		try{
-		String First =node.getLines().getFirst().toString();
-		String Last =node.getLines().getLast().toString();
-		String Firstsub = First.substring(0, 6);
-		String Lastsub = Last.substring(0, 9);
-		
-		if (Firstsub.equals("@title")){
-		//	System.out.println("Det findes en titel");
-			if (Lastsub.equals("@subtitle")){
-				//System.out.println("Dette er en titel side med undertitel");
-				SlideType = "TitleWithSubtitle";
-			}
-			else if (Last.equals(First)){
-				//System.out.println("Dette er en titel side uden undertitel");
-				SlideType = "Title";
-			}
-			else {
-		//		System.out.println("Dette er ikke en titel side");
-			}
-		}
-		else if(Firstsub.equals("@image") && First.equals(Last)){
-			//System.out.println("Dette er et slide kun bestående af et billede.");
-			SlideType = "Image";
-		}
-		else{
-		//	System.out.println("Der findes ingen titel");
-		}
-		}
-		catch(Exception a){
-			System.out.println("Dette er ikke en title slide");
-			System.out.println("Exception, no worries");
-			System.out.println("Da den første og/eller sidste linje højest sandsynlig er mindre end 8 chars lang");
-		}   */
+
 		SymbolTable.SlideTableAdd(SlideType, Transition1);
 		indent--;
 		
@@ -1441,24 +1369,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outABeblock (ABeblock node)
 	{
-/*		String Parent = node.parent().toString();
-		String Char = node.getChar().toString().trim();
-		if (Parent.compareTo("@begin") > 5){	   // ved en begin block		
-			if (Char.equals("slide")){      // i tilfælde af at der ikke er nogen transition
-			}
-			else if (Char.equals("fade")) {    // Transition
-			}
-			else{
-				System.out.println("Fejl, Transition findes ikke. Eller slide er ikke skrevet i begin");
-			}
-		}
-		else if (Parent.compareTo("@end") > 4){    // ved en end block
-			if (Char.equals("slide")){
-			}
-			else{
-				System.out.println("Fejl, der skal stå slide imellem de 2 curly brackets i end");
-			}
-		} */
+
 		indent--;
 	}
 	public void outABeblockv1 (ABeblockv1 node)
@@ -1467,43 +1378,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	public void outAPlains (APlains node)
 	{
-	/*	String Parent = node.parent().toString();
-		System.out.println(Parent);
-		LinkedList<PPlainsv1> Test = node.getPlainsv1();
-		Object[] a = Test.toArray();
-		int j = Test.size();
-		int i = 0;
-		while (i<j){
-			
-			String Plain = a[i].toString();
-			int kj = Plain.length();
-			Plain = Plain.substring(0, kj - 1);
-			//System.out.println(Plain);
-			if (Plain.startsWith("@")){
-			//	System.out.println("Dette er en shortblock");
-			}
-			else if (Parent.startsWith("@title")){
-				SymbolTable.SymbolTableAdd(Plain, "title", NewTextFontSize, NewTextFontFamily, NewTextFontColor, NewTextFontLineheight, NewTextFontWeight);
-			}
-			else if (Parent.startsWith("@subtitle")){
-				SymbolTable.SymbolTableAdd(Plain, "subtitle", NewTextFontSize, NewTextFontFamily, NewTextFontColor, NewTextFontLineheight, NewTextFontWeight);
-			}
-			else if (Parent.startsWith("@image")){
-				SymbolTable.SymbolTableAdd(Plain, "image", NewTextFontSize, NewTextFontFamily, NewTextFontColor, NewTextFontLineheight, NewTextFontWeight);
-			}
-			//else if (Parent.startsWith("@note")){
-				
-			//} 
-			else {
-				SymbolTable.SymbolTableAdd(Plain, "text", NewTextFontSize, NewTextFontFamily, NewTextFontColor, NewTextFontLineheight, NewTextFontWeight);
-				
-			} 
-
-			i++;
-		}  */
-		
-	//	System.out.println("Linked list: " + Test);
-	//	System.out.println("Linked list er størrelsen: " + i);
+	
 		indent--;
 	}
 	public void outAShortblockPlainsv1 (AShortblockPlainsv1 node)
@@ -1584,27 +1459,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	}
 	
 	
-/*	public void InsetWeight(String Weight, int Type){
-		
-		if(Type == 1){
-			NewTitleFontWeight =  NewTitleFontWeight + Weight;
-		}
-		else if(Type == 2){
-			NewSubtitleFontWeight =  NewSubtitleFontWeight + Weight;
-		}
-		else if(Type == 3){
-			NewImageFontWeight =  NewImageFontWeight + Weight;
-		}
-		else if(Type == 4){
-		//	NewImageFontWeight =  NewImageFontWeight + Weight;
-		}
-		else{
-			System.out.println("InsetWeight function error, Type = "+ Type + " Weight = " + Weight );
-		}
-		System.out.println("Type = "+ Type + " Weight = " + Weight);
-		
-	} */
-	
 public int CheckType1(AShortident node){
 		
 		String Parent = node.parent().toString();
@@ -1666,20 +1520,7 @@ public int CheckType1(AShortident node){
 	
 	public void outAShortident (AShortident node)
 	{
-	/*	StringBuilder builder = new StringBuilder();
-		for (PShortidentv1 p : node.getShortidentv1())
-		{
-			builder.append(p.toString());
-		}
-		String Value = builder.toString().trim();
-		String Kwd1 = node.getKwd().toString().trim();
-		
-		String FormatKwd = node.parent().parent().toString();
-		System.out.println(FormatKwd + " ÆANBWFAEFNÆÆAEF");  */
-		
-		
-		
-		
+	 		
 		indent--;
 	}
 	public void outACharShortidentv1 (ACharShortidentv1 node)
@@ -1714,18 +1555,6 @@ public int CheckType1(AShortident node){
 	{
 		indent--;
 	}
-/*	public void printDebugMenu(){
-		System.out.println("##############################################");
-		System.out.println("Debugging menu");
-		System.out.println("Write the number in Main.Debug array, to apply the output");
-		System.out.println(" ______________________");
-		System.out.println("| Nr = Descripsion     |");
-		System.out.println("| ---------------------|");
-		System.out.println("|  1 = Symbol tabel    |");
-		System.out.println("|  2 = Slide tabel     |");
-		System.out.println("|  3 = nodes           |");		
-		System.out.println("|______________________|");
-	}  */
 	
 	public void outStart (Start node)
 	{
@@ -1735,6 +1564,9 @@ public int CheckType1(AShortident node){
 		}
 		if (Main.SlideTableB == true ){
 			SymbolTable.PrintSlideTable();
+		}
+		if (Main.ErrorTableB == true ){
+			Error.PrintErrors();
 		}
 	
 		indent--;

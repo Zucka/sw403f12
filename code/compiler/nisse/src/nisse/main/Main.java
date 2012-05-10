@@ -11,6 +11,7 @@ import nisse.parser.Parser;
 
 public class Main {
 	
+	static int Error = 0;
 	static int Debug1 = 0;
 	/* 1 Symbol table
 	 * 2 Slide table
@@ -19,7 +20,7 @@ public class Main {
 	 * 5 = 4 + 1
 	 * 6 = 4 + 2
 	 * 7 = 4 + 2 + 1
-	 * 8 =
+	 * 8 = ErrorTable
 	 * 9 = 8 + 1
 	 * 10 = 8 + 2
 	 * 11 = 8 + 2 + 1
@@ -32,6 +33,7 @@ public class Main {
 	static boolean SymbolTableB = false;
 	static boolean SlideTableB = false;
 	static boolean NodesB = false;
+	static boolean ErrorTableB = false;
 	public static void Debugging(int Debug){
 		int DebugTest = Debug - 16;
 		if (DebugTest >= 0){
@@ -40,6 +42,7 @@ public class Main {
 		DebugTest = Debug - 8;
 		if (DebugTest >= 0){
 			Debug = Debug - 8;
+			ErrorTableB = true;
 		}
 		DebugTest = Debug - 4;
 		if (DebugTest >= 0){
@@ -64,10 +67,11 @@ public class Main {
 		watch.start();
 		Reader input = null;
 		try {
-			input = new FileReader("c:/fisk/test.txt");
+			input = new FileReader("/Users/JS/Documents/GIT/t2.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		// /Users/JS/Documents/GIT/test1.txt 
 		
 		PushbackReader in = new PushbackReader(input, 1024);
 		Lexer lexer = new Lexer(in);
@@ -78,8 +82,30 @@ public class Main {
 		//compiler.testLexer();
 		
 		//PARSER
+
 		Start start = compiler.testParser();
 		System.out.println("Lexing and Parsing took "+watch.getElapsedTime()+" miliseconds");
+		
+		switch(Error)
+		{
+		case 1:
+		{
+			System.out.println("Critical Error in Lexer, will stop comiling");
+			System.exit(0);
+		}
+		case 2:
+		{
+			System.out.println("Critical Error in Parser, will stop comiling");
+			System.exit(0);
+		}
+		case 10:
+		{
+			System.out.println("Critical Error in IO, will stop comiling");
+			System.exit(0);
+		}
+		break;
+		}
+		
 		
 		SymbolTable.CreateScopeTable();
 		//SEMANTIC ANALYSER (YOU NEED THE START NODE FROM THE PARSER HERE)

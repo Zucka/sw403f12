@@ -282,3 +282,36 @@ Slidenr & Type of error & Value \\
 		\caption{An example of a Errorlist, with 2 errors}
 		\label{TLBErrorlist}
 \end{table}
+
+\section{Debugging}
+To make the debugging of the semantic analyser more comforable, a "system" is made to only print out what the programmer wants to know.
+The debugging contains one variable that is changed depending on what output that is wanted. Called \texttt{Debug1}, the result of what the value is, is ilustrated in table \ref{tab:Debugging}.
+\begin{table}
+\centering
+\begin{tabular}{| r | l |}
+  \hline 
+Value & Debugging Output \\  
+ \hline 
+1 & Symbol table \\ 
+2 & Slide table \\ 
+3 & 2 + 1 \\ 
+4 & Nodes \\ 
+5 & 4 + 1 \\ 
+6 & 4 + 2 \\ 
+7 & 4 + 2 + 1 \\ 
+8 & ErrorTable \\ 
+9 & 8 + 1 \\ 
+10 & 8 + 2 \\ 
+11 & 8 + 2 + 1 \\ 
+12 & 8 + 4 \\ 
+13 & 8 + 4 + 1 \\ 
+14 & 8 + 4 + 2 \\ 
+15 & 8 + 4 + 2 + 1 \\                     
+  \hline  
+\end{tabular}
+\caption{Debugging table}
+\label{tab:Debugging}
+\end{table}
+
+The way it is implemented is by first trying to subtract 8 from the debug number. If that is posible and it doesn't get below 0, subtract 8 from the debug number and sets a boolean to true, meaning that is prints the Error Table.
+Then it does the same with 4, 2, and 1, and if it is prosible and it doesn't get below 0, it sets a boolean to true for Nodes, Slide Table and Symbol Table, respectively. Table \ref{tab:Debugging} is a guide to get a fast view of what to inset as the debug value to get wanted output debug.

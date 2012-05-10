@@ -45,24 +45,36 @@ public class Compiler {
 		Start start = null;
 		try {
 			start = parser.parse();
-		} catch (ParserException e) {
-			e.printStackTrace();
-		} catch (LexerException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} 
+		catch (ParserException e) {
+			System.out.println(e.toString());
+			Main.Error = 2;
+		} 
+		catch (LexerException e) {
+			System.out.println(e.toString());
+			Main.Error = 1;
+		} 
+		catch (IOException e) {
+			System.out.println(e.toString());
+			Main.Error = 10;
 		}
 		return start;
 	}
 	public void testSemanticAnalyser(Start start)
 	{
 		SemanticAnalyser analyser = new SemanticAnalyser();
+		try {
 		start.apply(analyser);
+		}
+		catch (Exception e){};
 	}
 	public void testCodeGenerator(Start start)
 	{
 		CodeGenerator generator = new CodeGenerator();
+		try {
 		start.apply(generator);
+		}
+		catch (Exception e){};
 	}
 	public int index(Switchable token)
 	{
