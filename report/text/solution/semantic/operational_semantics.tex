@@ -1,28 +1,38 @@
 \chapter{Operational Semantics}
-In this chapter some of the operational semantics of NISSE will be shown. In order to be able to read the operational semantics a few things should be known. \texttt{S} denotes slides and is an environment consisting of variables(slides) pointing to a location with the \texttt{body} of the slide. Also included in the environment is the keyword \texttt{next} which points to the next empty variable, and the function \texttt{new} which gets the next variable after its parameter. \texttt{env} denotes an enviroment for settings, which also consists of variables pointing to locations containing the value of that setting. \texttt{env} does not need the \texttt{next} keyword and the \texttt{new} function because all of the settings is predefined and the only thing changed is the settings value.
-
-$[slideshow]$
+In this chapter some of the operational semantics of NISSE will be shown. In order to be able to read the operational semantics a few things should be known. \\
+\texttt{S} denotes slides and is an environment consisting of variables(slides) pointing to a location with the \texttt{body} of the slide. \\
+Also included in the environment is the keyword \texttt{next} which points to the next empty variable, and the function \texttt{new} which gets the next variable after its parameter. \\
+\texttt{env} denotes an environment for settings, which also consists of variables pointing to locations containing the value of that setting. \texttt{env} does not need the \texttt{next} keyword and the \texttt{new} function because all of the settings is predefined and the only thing changed is the settings value.\\ \\
+\noindent{$[slideshow]$}
 \[ \langle S, env \rangle \ra show \]
+The above line describes how the whole slideshow are made, which are with elements in S that has the variables in the environment.
 
 \noindent{$[specification]$}
-\[ \condinfrule{\langle slide, S \rangle \ra S' \langle setting, env \rangle \ra env'} { \langle slide~setting, S, env \rangle \ra S', env'}{} \]
+\[ \condinfrule{\langle slide, S \rangle \ra S'       \langle setting, env \rangle \ra env'} { \langle slide~setting, S, env \rangle \ra S', env'}{} \]
+The semantic above, describes when the command slide is executed in S, changes S. And when a setting is executed in variable environment, the environment is changed
 
 \noindent{$[setting]$}
 \[ \condinfrule{\langle shortident, env \rangle \ra env' \langle scope \rangle} { \langle @ setting \{ shortident | scope \}, env \rangle \ra env'}{} \]
+This semantic describes inside a setting, how the element inside a setting block changes in the variable environment in the given scope.
 
 \noindent{$[slide]$}
 \[ \condinfrule{\langle block, S[L \mapsto block] [next \mapsto new L] \rangle \ra S'} { \langle block, S \rangle \ra S'}{} \]
 \[ L = S(next)\]
+This semantic describes when a block is executed in S. This inserts the slide inside S, and move the pointer to the next location where a slide can be inserted.
 
 \noindent{$[block]$}
 \[ \condinfrule{\langle setting, env \rangle \ra env' \langle Plain \rangle \langle num \rangle \langle iList \rangle} { \langle begin~setting~Plain~num~iList~end, S \rangle \ra S'}{} \]
 
+
 \noindent{$[plain]$}
 \[ \condinfrule{\langle plaintext \rangle \langle shortblock~env \rangle \ra env'} { \langle plaintext~shortblock \rangle }{} \]
+This semantic illustrate how plaintext is evaluated, according to the shortblock with the environment \texttt{env} \textbf{Mulig fejl i denne}
 
 \noindent{$[shortblock]$}
 \[ \condinfrule{\langle formatkwd \rangle \langle shortident, env \rangle \ra env' \langle plain \rangle} { \langle formatkwd \{short~ident | plain\}, env \rangle \ra env'}{} \]
+This semantic changes the environment according to the formatkwd and shortident, for the given plaintext.
 
 \noindent{$[shortident]$}
 \[ \condinfrule{\langle env [L \mapsto V] \rangle \ra env'} { \langle kwd : V, env \rangle \ra env'}{} \]
 \[ L = env(kwd)\]
+This semantic changes the environment according to the keyword and the variable V.
