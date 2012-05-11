@@ -32,6 +32,8 @@ import nisse.node.AExclamationCharall;
 import nisse.node.AFloatShortidentv1;
 import nisse.node.AForwardslashCharall;
 import nisse.node.AFslashShortidentv1;
+import nisse.node.AHyphenCharall;
+import nisse.node.AHyphenShortidentv1;
 import nisse.node.AItemlist;
 import nisse.node.AItemlistItemlistv1;
 import nisse.node.AItemlistLines;
@@ -53,7 +55,9 @@ import nisse.node.AShortblockPlainsv1;
 import nisse.node.AShortident;
 import nisse.node.AShortidents;
 import nisse.node.ASpaceCharall;
+import nisse.node.AUnderscoreCharall;
 import nisse.node.AUnderscoreKwdv1;
+import nisse.node.AUnderscoreShortidentv1;
 import nisse.node.AUrlKwd;
 import nisse.node.Node;
 import nisse.node.PPlainsv1;
@@ -1272,6 +1276,30 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		System.out.println("ACharKwdv1");
 		} indent++;
 	}
+	public void inAHyphenCharall (AHyphenCharall node)
+	{
+		if (Main.NodesB == true ){ printIndents();
+		System.out.println("AHyphenCharall");
+		} indent++;
+	}
+	public void inAUnderscoreShortidentv1 (AUnderscoreShortidentv1 node)
+	{
+		if (Main.NodesB == true ){ printIndents();
+		System.out.println("AUnderscoreKwdv1");
+		} indent++;
+	}
+	public void inAUnderscoreCharall (AUnderscoreCharall node)
+	{
+		if (Main.NodesB == true ){ printIndents();
+		System.out.println("AUnderscoreKwdv1");
+		} indent++;
+	}
+	public void inAHyphenShortidentv1  (AHyphenShortidentv1 node)
+	{
+		if (Main.NodesB == true ){ printIndents();
+		System.out.println("AUnderscoreKwdv1");
+		} indent++;
+	}
 	public void inAUnderscoreKwdv1 (AUnderscoreKwdv1 node)
 	{
 		if (Main.NodesB == true ){ printIndents();
@@ -1290,6 +1318,23 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 	{
 		indent--;
 	}
+	public void outAHyphenShortidentv1 (AHyphenShortidentv1 node)
+	{
+		indent--;
+	}
+	public void outAUnderscoreCharall (AUnderscoreCharall node)
+	{
+		indent--;
+	}
+	public void outAHyphenCharall (AHyphenCharall node)
+	{
+		indent--;
+	}
+	public void outAUnderscoreShortidentv1 (AUnderscoreShortidentv1 node)
+	{
+		indent--;
+	}
+
 	public void outASettingblock (ASettingblock node)
 	{
 		String Scope = node.getChar().toString().trim();
