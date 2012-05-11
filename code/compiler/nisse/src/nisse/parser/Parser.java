@@ -787,7 +787,7 @@ public class Parser
             case ERROR:
 //            	System.out.println("[" + this.last_line + "," + this.last_pos + "] " +
 //            			Parser.errorMessages[Parser.errors[this.action[1]]]);
-            	System.out.println(Parser.errors[this.action[1]]);
+//            	System.out.println(Parser.errors[this.action[1]]);
             	                    throw new ParserException(this.last_token,
             	                        "[" + this.last_line + "," + this.last_pos + "] " +
             	                        Parser.errorMessages[Parser.errors[this.action[1]]]);
@@ -4282,34 +4282,34 @@ public class Parser
         };*/
     private static String[] errorMessages =
       {
-/*0*/			"expecting: space, '@setting', '@begin', EOF",
-/*1*/			"expecting: '@url', space, '@setting', '@', '{', '}', '|', '/', ':', '_', '-', End of line, char, digit, float, dot",
-/*2*/			"expecting: '{'",
-/*3*/			"expecting: space, '{'",
-/*4 ok*/			"Invalid first line; must be: empty, @setting or @begin",
-/*5*/			"expecting: format kwd, space, '@setting', '@end', '/', '\', ':', ';', '*', '#', '%', '!', '_', '-', char, digit, float, dot, comma",
-/*6*/			"expecting: space, '@setting'",
-/*7*/			"expecting: '@url', '@'",
-/*8 ok*/			"expecting: Character; Did you forget slide name or transitiontype ?",
-/*9*/			"expecting: space, End of line",
-/*10*/			"expecting: format kwd, space, '}', '/', '\', ':', ';', '%', '!', '_', '-', End of line, char, digit, float, dot, comma",
-/*11*/			"expecting: format kwd, space, '/', '\', ':', ';', '*', '%', '!', '_', '-', char, digit, float, dot, comma",
-/*12*/			"expecting: format kwd, space, '/', '\', ':', ';', '#', '%', '!', '_', '-', char, digit, float, dot, comma",
-/*13*/			"expecting: End of line",
-/*14*/			"expecting: space, ':'",
-/*15*/			"expecting: '_', char",
-/*16*/			"expecting: '|'",
-/*17*/			"expecting: space, '}', '|'",
-/*18*/			"expecting: format kwd, '@url', space, '@', '/', '\', ':', ';', '%', '!', '_', '-', char, digit, float, dot, comma",
-/*19*/			"expecting: space, ':', '_', char",
-/*20*/			"expecting: space, '/', ':', '_', '-', char, digit, float, dot",
-/*21*/			"expecting: '}'",
-/*22*/			"expecting: format kwd, space, '/', '\', ':', ';', '%', '!', '_', '-', char, digit, float, dot, comma",
-/*23*/			"expecting: '@url', '@', '|'",
-/*24*/			"expecting: space, '}'",
-/*25*/			"expecting: '@url', space, '@', '|', '/', ':', '_', '-', char, digit, float, dot",
-/*26*/			"expecting: '@url', space, '@', '|'",
-/*27*/			"expecting: format kwd, space, '@setting', '@begin', '@end', '/', '\', ':', ';', '*', '#', '%', '!', '_', '-', char, digit, float, dot, comma, EOF",
+/*0 ok*/			"Error 0: File empty",
+/*1*/			"Error 1: expecting: '@url', space, '@setting', '@', '{', '}', '|', '/', ':', '_', '-', End of line, char, digit, float, dot",
+/*2*/			"Error 2: expecting: {",
+/*3*/			"Error 3: Invalid Format keyword",
+/*4 ok*/			"Error 4: Invalid first line; must be: empty, @setting or @begin",
+/*5*/			"Error 5: expecting: format kwd, space, '@setting', '@end', '/', '\', ':', ';', '*', '#', '%', '!', '_', '-', char, digit, float, dot, comma",
+/*6*/			"Error 6: expecting: @setting",
+/*7*/			"Error 7: expecting: '@url', '@'",
+/*8 ok*/			"Error 8: expecting: Character; Did you forget slide name or transitiontype ?",
+/*9*/			"Error 9: expecting: End of line",
+/*10*/			"Error 10: expecting: format kwd, space, '}', '/', '\', ':', ';', '%', '!', '_', '-', End of line, char, digit, float, dot, comma",
+/*11*/			"Error 11: expecting: format kwd, space, '/', '\', ':', ';', '*', '%', '!', '_', '-', char, digit, float, dot, comma",
+/*12*/			"Error 12: expecting: format kwd, space, '/', '\', ':', ';', '#', '%', '!', '_', '-', char, digit, float, dot, comma",
+/*13*/			"Error 13: expecting: End of line",
+/*14*/			"Error 14: expecting: :",
+/*15*/			"Error 15: expecting: '_', char",
+/*16*/			"Error 16: expecting: |",
+/*17 ok*/			"Error 17: Invalid character expecting: } or |",
+/*18*/			"Error 18: expecting: format kwd, '@url', space, '@', '/', '\', ':', ';', '%', '!', '_', '-', char, digit, float, dot, comma",
+/*19*/			"Error 19: expecting: space, ':', '_', char",
+/*20*/			"Error 20: expecting: space, '/', ':', '_', '-', char, digit, float, dot",
+/*21*/			"Error 21: expecting: '}'",
+/*22*/			"Error 22: expecting: format kwd, space, '/', '\', ':', ';', '%', '!', '_', '-', char, digit, float, dot, comma",
+/*23*/			"Error 23: expecting: '@url', '@', '|'",
+/*24*/			"Error 24: expecting: space, '}'",
+/*25*/			"Error 25: expecting: '@url', space, '@', '|', '/', ':', '_', '-', char, digit, float, dot",
+/*26*/			"Error 26: expecting: '@url', space, '@', '|'",
+/*27*/			"Error 27: expecting: format kwd, space, '@setting', '@begin', '@end', '/', '\', ':', ';', '*', '#', '%', '!', '_', '-', char, digit, float, dot, comma, EOF",
         };
     private static int[] errors;
 /*      {
