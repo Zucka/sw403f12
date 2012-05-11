@@ -1341,13 +1341,55 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		if (title > 0 && subtitle == 0 && image == 0){
 			SlideType = "Title";
 		}
+				
+		else if (title == 0 && subtitle > 0 && image == 0){
+			SlideType = "Subtitle";
+		}
+		else if (title == 1 && subtitle == 0 && image == 1){
+			SlideType = "TitleImage";
+		}
+		else if (title == 1 && subtitle == 1 && image == 1){
+			SlideType = "TitleSubtitleImage";
+		}
+		else if (title == 0 && subtitle == 1 && image == 1){
+			SlideType = "TitleImage";
+		}
+		else if (title == 1 && subtitle == 0 && image == 2){
+			SlideType = "TitleDImage";
+		}
+		else if (title == 1 && subtitle == 1 && image == 2){
+			SlideType = "TitleSubtitleDImage";
+		}
+		else if (title == 0 && subtitle == 1 && image == 2){
+			SlideType = "SubtitleDImage";
+		}
+		else if (title == 1 && subtitle == 0 && image == 3){
+			SlideType = "TitleTImage";
+		}
+		else if (title == 1 && subtitle == 1 && image == 3){
+			SlideType = "TitleSubtitleTImage";
+		}
+		else if (title == 0 && subtitle == 1 && image == 3){
+			SlideType = "SubtitleTImage";
+		}
+		else if (title == 1 && subtitle == 0 && image == 4){
+			SlideType = "TitleQImage";
+		}
+		else if (title == 1 && subtitle == 1 && image == 4){
+			SlideType = "TitleSubtitleQImage";
+		}
+		else if (title == 0 && subtitle == 1 && image == 4){
+			SlideType = "SubtitleQImage";
+		}
 		else if (title > 0 && subtitle > 0 && image == 0){
-			SlideType = "TitleWithSubtitle";
+			SlideType = "XTitleXSubtitle";
 		}
 		else if (image > 0){
 			SlideType = "Image";
 		}
-			
+		else if (title > 0 && subtitle > 0 && image > 0){
+			SlideType = "Lots";
+		}
 
 		SymbolTable.SlideTableAdd(SlideType, Transition1);
 		indent--;
