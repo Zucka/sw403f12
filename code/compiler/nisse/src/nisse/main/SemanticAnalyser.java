@@ -402,6 +402,9 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		    	  }
 				
 			}
+			else {
+				Error.MakeError("KWD not found", SettingType);
+			}
 		}
 		//VED GLOBAL SETTING ÆNDRING
 		else {
@@ -620,6 +623,9 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 					Error.MakeError("Visiblity existance" , Value);
 		    	    //System.out.println("Visability word not recognized");
 		    	  }
+			}
+			else {
+				Error.MakeError("KWD not found", SettingType);
 			}
 		}
 		if (Main.NodesB == true ){
@@ -1060,6 +1066,9 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		else if (SettingType.startsWith("@url")){
 			SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink] = Value;
 		//	System.out.println(Value);
+		}
+		else {
+			Error.MakeError("KWD not found", SettingType);
 		}
 		
 		if (IfSetting.startsWith("@image") && SettingType.startsWith("@url")){
