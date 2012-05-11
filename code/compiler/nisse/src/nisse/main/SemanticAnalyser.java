@@ -682,7 +682,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 			return 1;
 		} 
 		else if (Parent.startsWith("@apply { @url") && Parentx3.startsWith("@subtitle")){
-			SymbolTable.SymbolTableAdd(Text, "title", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
+			SymbolTable.SymbolTableAdd(Text, "subtitle", SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontSize], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontFamily], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontLineheight], SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontWeight],SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlHyperlink]);
 	
 			return 1;
 		} 
