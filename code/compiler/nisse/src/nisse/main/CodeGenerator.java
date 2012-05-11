@@ -236,7 +236,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		}
 		String Type1 = SlideData[SlideType];
 		String Type = "";
-		if (Type1 == "Title" || Type1 == "TitleWithSubtitle")
+		if (Type1 == "Title" || Type1 == "XTitleXSubtitle")
 		{
 			Type = "titleslide";
 		}
