@@ -1384,8 +1384,17 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		else if (title > 0 && subtitle > 0 && image == 0){
 			SlideType = "XTitleXSubtitle";
 		}
-		else if (image > 0){
+		else if (title == 0 && subtitle == 0 && image == 1){
 			SlideType = "Image";
+		}
+		else if (title == 0 && subtitle == 0 && image == 2){
+			SlideType = "DImage";
+		}
+		else if (title == 0 && subtitle == 0 && image == 3){
+			SlideType = "TImage";
+		}
+		else if (title == 0 && subtitle == 0 && image == 4){
+			SlideType = "QImage";
 		}
 		else if (title > 0 && subtitle > 0 && image > 0){
 			SlideType = "Lots";
