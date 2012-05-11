@@ -12,7 +12,7 @@ import nisse.parser.Parser;
 public class Main {
 	
 	static int Error = 0;
-	static int Debug1 = 3;
+	static int Debug1 = 0;
 	/* 1 Symbol table
 	 * 2 Slide table
 	 * 3 = 2 + 1
@@ -60,18 +60,31 @@ public class Main {
 			SymbolTableB = true;
 		}
 	}
-	
 	public static void main(String[] args) {
 		Debugging(Debug1);
 		StopWatch watch = new StopWatch();
 		watch.start();
 		Reader input = null;
-		try {
-			input = new FileReader("/Users/JS/Documents/GIT/t2.txt");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+
+		if(args.length > 0)
+		{	
+			System.out.println(args);
+			try {
+				input = new FileReader(args[0]);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			try {
+				input = new FileReader("/Users/JS/Documents/GIT/t2.txt");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 		// /Users/JS/Documents/GIT/test1.txt 
+		
+		System.out.println(System.getProperty("java.classpath"));
 		
 		PushbackReader in = new PushbackReader(input, 1024);
 		Lexer lexer = new Lexer(in);
