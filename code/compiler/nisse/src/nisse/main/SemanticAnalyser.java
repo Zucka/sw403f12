@@ -1341,7 +1341,6 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		if (title > 0 && subtitle == 0 && image == 0){
 			SlideType = "Title";
 		}
-				
 		else if (title == 0 && subtitle > 0 && image == 0){
 			SlideType = "Subtitle";
 		}
