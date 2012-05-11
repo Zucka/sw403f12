@@ -12,7 +12,7 @@ import nisse.parser.Parser;
 public class Main {
 	
 	static int Error = 0;
-	static int Debug1 = 0;
+	static int Debug1 = 3;
 	/* 1 Symbol table
 	 * 2 Slide table
 	 * 3 = 2 + 1
@@ -84,10 +84,14 @@ public class Main {
 		//PARSER
 
 		Start start = compiler.testParser();
-		System.out.println("Lexing and Parsing took "+watch.getElapsedTime()+" miliseconds");
 		
 		switch(Error)
 		{
+		case 0:
+		{
+			System.out.println("Lexing and Parsing took "+watch.getElapsedTime()+" miliseconds");
+			break;
+		}
 		case 1:
 		{
 			System.out.println("Critical Error in Lexer, will stop compiling");

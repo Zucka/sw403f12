@@ -4291,7 +4291,7 @@ public class Parser
 /*6*/			"Error 6: expecting: @setting",
 /*7*/			"Error 7: expecting: '@url', '@'",
 /*8 ok*/			"Error 8: expecting: Character; Did you forget slide name or transitiontype ?",
-/*9*/			"Error 9: expecting: End of line",
+/*9*/			"Error 9: expecting: End of line; input files must end with an empty line.",
 /*10*/			"Error 10: expecting: format kwd, space, '}', '/', '\', ':', ';', '%', '!', '_', '-', End of line, char, digit, float, dot, comma",
 /*11*/			"Error 11: expecting: format kwd, space, '/', '\', ':', ';', '*', '%', '!', '_', '-', char, digit, float, dot, comma",
 /*12*/			"Error 12: expecting: format kwd, space, '/', '\', ':', ';', '#', '%', '!', '_', '-', char, digit, float, dot, comma",
