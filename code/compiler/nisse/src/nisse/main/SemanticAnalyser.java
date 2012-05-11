@@ -169,7 +169,7 @@ public class SemanticAnalyser extends DepthFirstAdapter {
 		if (Value.startsWith("bold")){
 			return "b";
 		}
-		else if (Value.startsWith("itallic")){
+		else if (Value.startsWith("italic")){
 			return "i";
 		}
 		else if (Value.startsWith("underlined")){
