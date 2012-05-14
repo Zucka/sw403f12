@@ -1,14 +1,12 @@
 \section*{Introduction}
-Constructing a compiler is split into four categories; lexer, parser, semantic analyser and code generator, as shown in \ref{fig:Compilerconstruction}.
+Constructing a compiler is split into four categories; lexer, parser, semantic analyser and code generator, as shown in figure \ref{fig:Compilerconstruction}.
 The user inputs some code, for the program he would like to have compiled, which is first met by the lexer. The lexer's job is to make a token for each of the characters that is provided in the code. If a character is not recognized, this stage will fail. \\
 
-%The token list is then given to the parser, which is building a parse tree, also called an abstract syntax tree (AST), constructed from a context-free grammar. 
+\noindent{The parser asks the lexer for a token, which is then handled by the parser. This is being repeated until there are no tokens left. The parser's main function is to check the syntax of the source code, to check whether it contains any invalid sign of formatting. The parser is doing this by creating a parse tree, which it uses to check that all tokens are given in the right order. If the parser is able to create more than one AST (Abstract Syntax tree), the code could behave differently each time it is compiled. There are also a number of ways for a parser to build an AST, which was discussed in section \ref{Parserstrategy}. If the parser fails to build an AST, this stage will fail.} \\
 
-The parser asks the lexer for a token, which is then handled by the parser. This is being repeated until there are no tokens left. The parser's main function is to check the syntax of the source code, to check whether the source code contains any invalid sign of formatting. The parser is doing this by creating a parse tree, which it uses to check that all tokens are given in the right order. If the parser is able to create more than one AST, the code could behave differently each time it is compiled. There are also a number of ways for a parser to build an AST, which will be discussed later. If the parser fails to build an AST, this stage will fail. \\
+\noindent{The AST is then given to the semantic analyser...Something Something}
 
-The abstract syntax tree is then given to the semantic analyser...Something Something
-
-The last phase of the compiler is the code generator. The code generator's main function is to translate the source code into the code that is chosen by the developers.
+\noindent {The last phase of the compiler is the code generator. The code generator's main function is to translate the source code into the code that is chosen by the developers.}
 
 
 \begin{figure}[! h]
@@ -17,3 +15,6 @@ The last phase of the compiler is the code generator. The code generator's main 
 		 \caption{Compiler construction}
 	\label{fig:Compilerconstruction}
 \end{figure}
+
+
+
