@@ -18,11 +18,11 @@ title, subtitle, global, text, image, url,
 
 \subsection{@begin}
 \label{@begin}
-The expression \texttt{@begin} determines when a slide begins. This has a \texttt{transition} parameter separated by a pipe character, as seen in the example:
+The expression \texttt{@begin} determines when a slide begins. This has a \texttt{transition} parameter separated by a pipe character, after the pipe is the name of the slide, but the name of the slide has no effect at the moment. An example of @begin:
 \begin{lstlisting}[frame=single]
 @begin{transition|slide}
 \end{lstlisting}
-Where \texttt{transition} is the form of transition to the slide. 
+Where \texttt{transition} is the form of transition to the slide. Transitions will be explained in section \ref{sec:transition}
 
 \subsection{@end}
 \label{@end}
@@ -39,40 +39,40 @@ This keyword sets a new setting for a specific type, or globally.
 Where \texttt{FontChanges} is what kind of font setting that is changed. 
 \texttt{FontChanges} could be font size, font family and so on, written in the language as \texttt{@font\_size} and \texttt{@font\_family} respectively. \\
 \texttt{Value}, is the value that it is set to. \\
-\texttt{Type} is referring to which font class it will change, e.g. title, text or the keyword. \\ %\texttt{global} in this matter means that all font classes are changed.
-\texttt{Global} in this matter means that all font classes are changed.
+\texttt{Type} is referring to which font class it will change, e.g. title, text or the keyword \texttt{global} in this matter means that all font classes are changed.
 
 \subsection{@apply}
 The expression \texttt{apply} changes the font for some specific text.
 \begin{lstlisting}[frame=single]
 @apply{FontChanges:Value | Text}
 \end{lstlisting}
-Where \texttt{FontChanges} is what kind of font setting that is changed, and \texttt{Value}, is the value that it is set to. The difference between this and the \texttt{setting} expression is the characters after the pipe and the general meaning of the two expressions. \\
+Where \texttt{FontChanges} is what kind of font setting that is changed, and \texttt{Value} is the value that it is set to. The difference between this and the \texttt{setting} expression is the characters after the pipe and the general meaning of the two expressions. \\
 The \texttt{Text} in the expression refers to any text the user would want in this expression. \\
-The \texttt{Apply} expression only changes the font for the specific text which is in the expression, whereas \texttt{@apply} only changes the font for the text inside the expression.
+The \texttt{@apply} expression only changes the font for the specific text which is in the expression.
 
 \subsection{@image}
 %The \texttt{@image} expression imports an image from the Internet, the expression looks like this:
-The \texttt{@image} expression imports an image from the internet as well as from the user's local machine, although it is discouraged to provide absolute paths for images, because this would only make the user's computer able to compile. Instead it is encouraged that the user specify the name of the image, and that he instead is placing it in the same folder as the project are in. This is only the case if there are more contributors to the slideshow.\\
+The \texttt{@image} expression imports an image from the internet as well as from the user's local machine, although it is discouraged to provide absolute paths for images, because this would only make the user's computer able to show the image. Instead, it is encouraged that the user specify the name of the image, and that he instead is placing it in the same folder as the project. This is only the case if there are more contributors to the slideshow.\\
 When importing from the internet the URL has to be provided, whereas when importing a locally stored image the file path that specific image has to be provided, as can be seen in the example below:
 \begin{lstlisting}[frame=single]
 @image{@url: URL | Text }
 \end{lstlisting}
 %\texttt{``@url''} has to be there to indicate the start of an URL. \texttt{``URL''} indicates an URL string. \texttt{Text} refers to the text which is under the image, also called the image description.
 \texttt{``@url''} is the keyword indicating that a URL will be inserted, whereas \texttt{``URL''} is the actual URL address that has been inserted. \\
-The only thing that the user have to be aware of, is that the image have to be placed in the same context, or directory that the compiler if it is to function properly
+The only thing that the user have to be aware of, is that the image have to be placed in the same context, or directory the compiler if it is to function properly
 
 \subsection{Bullet points (*)}
 The \texttt{*} expression starts a list of bullet points, where the text after the star will be the text after the bullet.
-A star has to be set on each line that is going to be a bullet. \\
-Bullet points must never have spaces before the *, which makes the compiler think it is plain text. According to our rules, the user must not have the plain text before numerations.
+A star has to be set on each line that is going to be a bullet. Multilevel bullet points can be made using two \texttt{*}. The maximum multilevel that can be made is five. \\
+Bullet points must never have spaces before the *, which makes the compiler think it is plain text. According to our rules, the user must not have plain text before numerations.
 
 \subsection{Numeration (\#)}
-The \texttt{\#} expression starts a numeration list starting from one, and for each line the hash tag is used, the number is incremented. If the line after a hash tag line is not a hash tag line, the numeration list is ended and thus a new hash tag line would have its numeration starting with one. \\
-Bullet points must never have spaces before the \#, which makes the compiler think it is plain text. According to our rules, the user must not have the plain text before numerations.
+The \texttt{\#} expression starts a numeration list starting from one, and for each line the hash tag is used, the number is incremented. Multilevel numerations can be made using two or more \texttt{#}. The maximum multilevel that can be made is five. If the line after a hash tag line is not a hash tag line, the numeration list is ended and thus a new hash tag line would have its numeration starting from one. \\
+Bullet points must never have spaces before the \#, which makes the compiler think it is plain text. According to our rules, the user must not have plain text before numerations.
 
 \subsection{Font weights}
-These expressions are similar. \\
+These expressions are similar to each other, in that they are all formatting text, as seen below \\
+
 \texttt{@u} creates underlined text. \\
 \texttt{@i} creates italic text. \\
 \texttt{@b} creates bold text. \\
@@ -81,39 +81,33 @@ The full expression looks like this:
 @b{ Text }
 \end{lstlisting}
 
-Where \texttt{Text} is the text that is shown in the slide, with the proper change of font weight, in this case to bold. In this case a pipe is not needed because there is nothing to put there. 
-It is possible to make font changes, using \texttt{@u / @i / @b}, like:
+\noindent{Where \texttt{Text} is the text that is shown in the slide, with the proper change of font weight, in this case to bold. In this case a pipe is not needed because there is nothing to put there. 
+It is possible to make font changes, using \texttt{@u / @i / @b}, like:}
 
 \begin{lstlisting}[frame=single]
 @b{ FontChanges:Value | Text }
 \end{lstlisting}
 
-Which looks familiar to the \texttt{@apply} expression, and the functionality is basically the same, even though the text is set as any of the font weights \texttt{@u / @i / @b} to begin with. The \texttt{@u / @i / @b} makes it much faster to make a weight on a text instead of writing: @apply{ @font\_weight:bold | Text } \\
-each time to make bold text.
+\noindent{Which looks familiar to the \texttt{@apply} expression, and the functionality is basically the same, even though the text is set as any of the font weights \texttt{@u / @i / @b} to begin with. The \texttt{@u / @i / @b} makes it much faster to make a weight on a text instead of writing: @apply\{ @font\_weight:bold | Text \} each time to make bold text.}
 
 
-\subsection{Hyperlink}
-The expression \texttt{Hyperlink} makes it possible for the user to include URLs, either; as hyperlinks, that redirects the user to the specific URL, or image, to make it possible for the user to use an image from a specific URL.
+\subsection{Hyperlinks}
+The expression \texttt{@url} along with \texttt{@apply} makes it possible for the user to include URLs, as hyperlinks, that redirects the user to the specific URL.
 
 \begin{lstlisting}[frame=single]
 	@apply{@url: http://www.somelink.com/ | This URL}
-\end{lstlisting}
-
-\begin{lstlisting}[frame=single]
-	@image{@url: http://media.desura.com/images/members/1/288/287053/black-1.2.jpg | Description text}
-\end{lstlisting}
-
+\end{lstlisting}	
 
 \subsection{Transition}
-The \texttt{transition} expression is the transitions between slides. A transition can be from the actual slide to the subsequent or from the actual slide to the previous one, which can be expressed as a transition can go the left or to the right from the actual slide.
+\label{transition}
+The \texttt{transition} expression is the transitions between slides. A transition is defined as the transition to use when moving away from the current slide. Currently there are four kind of transitions implemented; fade, swipe, scale and rotatescale.
 
 \begin{lstlisting}[frame=single]
 	@begin{fade | slide}
 \end{lstlisting}
 
-
 \subsection{Font\_family}
-The expression \texttt{font\_family} sets the font family such as Arial, Verdana, etc., from the beginning of the slideshow or at a specific slide, so that the font family can be applied locally or globally. The language supports all the font families as the CSS (Cascade Style Sheets) does.
+The expression \texttt{font\_family} sets the font family such as Arial, Verdana, etc., from the beginning of the slideshow or at a specific slide, so that the font family can be applied locally or globally. The language supports all the same font families as CSS (Cascading Style Sheets) does.
 
 \begin{lstlisting}[frame=single]
 	@apply{@font_family: Verdana | this text is in Verdana font family}
@@ -121,7 +115,7 @@ The expression \texttt{font\_family} sets the font family such as Arial, Verdana
 
 
 \subsection{Font\_color}
-The expression \texttt{font\_color} sets the font colour from the beginning of the slideshow or at a specific slide, so that the colour can be applied locally or globally. The language supports all the font colours as the CSS does.
+The expression \texttt{font\_color} sets the font colour from the beginning of the slideshow or at a specific slide, so that the colour can be applied locally or globally. The language supports all the same font colours as CSS does.
 
 \begin{lstlisting}[frame=single]
 	@apply{@font_color: Blue| %{\color{blue}this text is in blue colour}%}
@@ -137,32 +131,31 @@ The expression \texttt{font\_size} sets the font size from the beginning of the 
 
 
 \subsection{Font\_weight}
-The expression \texttt{font\_weight} refers to the term font weight, which is the various settings that can be defined for the font, bold and italic.
+The expression \texttt{font\_weight} refers to the term \texttt{font weight}, which is the various settings that can be defined for the font, bold italic and underline.
 
 \begin{lstlisting}[frame=single]
 	@apply{@font_weight: italic| %\textit{this text is in italic}%}
 \end{lstlisting}
 
 \subsection{Global}
-The \texttt{global} expression makes it possible to apply font weights globally, from the place in the slide where it is applied or in the beginning of the slideshow. Such weights could be font colour, font family, links, etc.). Furthermore, \texttt{global} overwrites normal text, titles, subtitles, image descriptions and URL’s.
+The \texttt{global} expression makes it possible to apply settings globally, which overwrites the settings of normal text, titles, subtitles, image descriptions and URLs. Globals work from the place in the slide where it is applied or in the beginning of the slideshow. 
 \begin{lstlisting}[frame=single]
 	@setting{font_color: green | global}
 \end{lstlisting}
 
 
 \subsection{Title}
-The expression \texttt{title} makes a title for the slide. The title can be formatted as all other text, with the different font weights, pipe, etc. The user can use the default settings for the title, regarding font family, font colour, font size, or define them himself, either at the beginning of the slideshow or at some arbitrary slide.
-
+The expression \texttt{@title} makes a title for the slide. The title can be formatted as all other text, with the different font weights, font sizes, etc. The user can use the default settings for the title, regarding font family, font colour, font size, or define them himself inside the @title expression.
 \begin{lstlisting}[frame=single]
-	@setting{font_size: 30 | title}
+	@title{font_size: 30 | This is a title}
 \end{lstlisting}
 
 
 \subsection{Subtitle}
-The expression \texttt{subtitle} makes a subtitle for the slide, which means that it will be placed beneath the title, per default with a smaller font size. The subtitle can be formatted as all other text, with the different font weights, pipe, etc. The user can use the default settings for the subtitle, regarding font family, font colour, font size, or define them himself, either at the beginning of the slideshow or at some arbitrary slide.
+The expression \texttt{@subtitle} makes a subtitle for the slide, which means that it will be placed beneath the title, per default with a smaller font size than title. The subtitle can be formatted as all other text, with the different font weights, font sizes, etc. The user can use the default settings for the subtitle, regarding font family, font colour, font size, or define them himself inside the @subtitle expression.
 
 \begin{lstlisting}[frame=single]
-	@setting{font_size: 26 | subtitle}
+	@subtitle{font_size: 26 | This is a subtitle}
 \end{lstlisting}
 
 
@@ -183,11 +176,11 @@ Input:
     Hello World
 @end{slide}
 
-%Output:Hello World%
+%Output: Hello World%
 \end{lstlisting}
 
-Which states that a slide begins, with a transition ``fade'', and that the slide contains the text ``Hello World'' \\
-The examples in the rest of this section are all written between \texttt{@begin}\{slide\} and a \texttt{@end}\{slide\} to conserve space.
+\noindent{Which states that a slide begins, with a transition ``fade'', and that the slide contains the text ``Hello World''. \\
+The examples in the rest of this section are all written between \texttt{@begin}\{slide\} and a \texttt{@end}\{slide\} to conserve space.}
 \\ \\
 After an @, a keyword always begins, making it easy for the compiler to recognize a keyword.
 Another keyword is \texttt{setting}, in this example the setting is set for the type ``title'' to a font size of 40. \\
@@ -199,7 +192,7 @@ Input: @setting{@font_size:40|title}
 %Output: (title font size set to 40)%
 \end{lstlisting}
 
-A way to use the title type can be as shown in the following example: \\
+\noindent{A way to use the title type can be as shown in the following example:} \\
 
 \begin{lstlisting}[frame=single]
 Input: @title{Hello and welcome}
@@ -207,43 +200,43 @@ Input: @title{Hello and welcome}
 %Output: Hello and welcome (in the title format)%
 \end{lstlisting}
 
-Because there are no additional settings to be set on this sentence, no pipe has to occur. \\
-Besides the \texttt{title} type, there is the \texttt{subtitle} type, makes a subtitle for the slide, which means that it will be placed beneath the title, per default with a smaller font size. 
+\noindent{Because there are no additional settings to be set on this sentence, no pipe has to occur. \\
+Besides the \texttt{title} type, there is the \texttt{subtitle} type, which makes a subtitle for the slide, which means that it will be placed beneath the title, per default with a smaller font size.}
 
 \begin{lstlisting}[frame=single]
-Input: @apply{@font_color:orange | funky!}
+Input: @apply{@font_color:orange | funky}
 
 %Output:
-{\color{Orange}~funky!}
+{\color{Orange}~funky}
 %
 \end{lstlisting}
 
-Between the left curly and the potential pipe, settings can be applied to that specific sentence, like: \\
+\noindent{Between the left curly and the potential pipe, settings can be applied to that specific sentence, like:} \\
 
 \begin{lstlisting}[frame=single]
 Input: @title{@font_size:70 |Hello and welcome}
 
-%Output: Hello and welcome (in title format with size 70)%
+%Output: \Large{Hello and welcome} (in title format with size 70)%
 \end{lstlisting}
-Which sets only this line of type ``title'' to font size 70, instead of 40 which was initialized above.
+Which sets only this line of type ``title'' to font size 70, instead of 40, which was initialized above.
 This can also be applied to normal sentences like:\\
 
 \begin{lstlisting}[frame=single]
 Input: @apply{@font_size:25 | Welcome to this slide}
 
-%Output: Welcome to this slide (with font size 25)%
+%Output: \large{Welcome to this slide} (with font size 25)%
 \end{lstlisting}
-You have to use the keyword ``apply'', to change the format of regular text. More than one format change can be applied per sentence; each format change does not necessarily need to be separated by one or more spaces. The order of format changes is irrelevant to the compiler. Here the font size is set to 25, and the text is ``Welcome to this slide''.
+You have to use the keyword ``apply'', to change the format of regular text. More than one format change can be applied per sentence; each format change does not necessarily need to be separated by one or more spaces. The order of format changes is irrelevant to the compiler. Here the font size is set to 25, and the text is set to bold and the text is ``Welcome to this slide''.
 
-The weight of the text can be set in two ways, the first looks like the way we just changed the font size: \\
+\noindent{The weight of the text can be set in two ways, the first looks like the way we just changed the font size:} \\
 
 \begin{lstlisting}[frame=single]
 Input: @apply{@font_weight:bold @font_size:25 | Welcome to bold text}
 
-%Output: \textbf{Welcome to bold text} (with font size 25)}%
+%Output: \textbf{\large{Welcome to bold text}} (with font size 25)}%
 \end{lstlisting}
 
-A quicker way to set bold text is as follows: \\
+\noindent{A quicker way to set bold text is as follows:} \\
 
 \begin{lstlisting}[frame=single]
 Input: @b{Welcome to bold text}
@@ -252,20 +245,20 @@ Input: @b{Welcome to bold text}
 \end{lstlisting}
 Furthermore, we now want to underline a single word in that sentence: \\
 
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}[frame=single, label=lst:Fast-NonFast]
 Input: @b{Welcome to @u{bold} text}
 
 %Output: \textbf{Welcome to \underline{bold} text}%
 \end{lstlisting}
-Which make the whole text bold and underlines the word ``bold''.\\
-Combining them, would look like this:\\
+Which make the whole text bold and underlined the word ``bold''.\\
+Combining the fast and the not so fast way, would look like this:\\
 
 \begin{lstlisting}[frame=single]
 Input: @apply{@font_weight:bold | Welcome to @u{bold} text}
 
 %Output: \textbf{Welcome to \underline{bold} text}%
 \end{lstlisting}
-Which gives the same result as the last one. (e.g. ref).
+Which gives the same result as output in listing \ref{lst:Fast-NonFast}.
 \\ \\
 Furthermore, it is also possible to define a specific font colour for some specific text, as can be seen as below:
 \begin{lstlisting}[frame=single]
@@ -275,8 +268,8 @@ Input: @apply{@font_weight:bold @font_color:brown | Welcome to @u{bold} text}
 \end{lstlisting}
 
 
-Finally, The \texttt{global} expression makes it possible to apply font weights globally. The weights could be font colour, font family, links, etc.). Furthermore, \texttt{global} overwrites normal text, titles, subtitles, image descriptions and URL's. \\
-An example of the use of \texttt{global} can be seen beneath, in this case operating with operating with  \texttt{font\_weight} and \texttt{subtitle}:
+\noindent{The \texttt{global} expression makes it possible to apply font weights globally. The weights could be font colour, font family, links, etc.). Furthermore, \texttt{global} overwrites normal text, titles, subtitles, image descriptions and URLs. \\
+An example of the use of \texttt{global} can be seen beneath, in this case operating with \texttt{font\_weight} and \texttt{subtitle}:}
 
 \begin{lstlisting}[frame=single]
 Input:
@@ -301,7 +294,7 @@ Input:
 \texttt{@apply}Changes a parameter for one specific line. \\
 \texttt{@setting} Changes a parameter for the slide or all upcoming slides.\\
 
-The following is a larger example to demonstrate what is just used: \\
+\noindent{The following is a larger example to demonstrate what is just used:} \\
 
 \begin{lstlisting}[frame=single]
 Input:
@@ -320,9 +313,9 @@ Input:
 %\textbf{Like this.}  (with font type Arial)%
 \end{lstlisting}
 
-Settings do not have to be set at all, if they are not set, the standard settings will be used.
+\noindent{Settings do not have to be set at all, if they are not set, the default settings will be used.}
 
-\section{Lists}
+\subsection{Lists}
 There are two types of lists; consisting of either bullets or numerations.
 A bullet list is made by writing the following: \\
 
@@ -347,9 +340,9 @@ List of things to buy\\
 \end{itemize}%
 \end{lstlisting}
 
-Where a star symbolises a bullet, two bullets symbolises a bullet inside a bullet.
+\noindent{Where a star symbolises a bullet, two bullets symbolises a bullet inside a bullet.
 Numeration is made by the following: \\
-Between the \texttt{\#} and the \texttt{*} the text that is related to the sign, does not necessarily need to be separated by a space, the text can also contain spaces and numbers if needed.\\
+Between the \texttt{\#} and the \texttt{*} the text that is related to the sign, does not necessarily need to be separated by a space, the text can also contain spaces and numbers if needed.} \\
 
 \begin{lstlisting}[frame=single]
 Input:
@@ -371,10 +364,10 @@ Agenda
 \end{enumerate}%
 \end{lstlisting}
 
-Where a \# symbolises a number that is incrementing. Using two \# creates a sub numeration starting from one.
+\noindent{Where a \# symbolises a number that is incrementing. Using two \# creates a sub numeration starting from one.}
 
-\section{Images}
-Importing pictures from the internet and only from the internet can be done using the following code example:
+\subsection{Images}
+Importing images from the internet and only from the internet can be done using the following code example:
 % Internet
 \begin{lstlisting}[frame=single]
 Input: @image{@url: http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg  | Aalborg University logo}
@@ -389,8 +382,8 @@ Importing pictures from the user's local machine can be done using the following
 Input: @image{@url: C:\Users\Benjamin\Pictures\aau_logo.jpg  | Aalborg University logo}
 
 %Output:\\
-(An image stored on the user's local machine is shown with the image description of''Aalborg University logo'')%
+(An image stored on the user's local machine is shown with the image description of ''Aalborg University logo'')%
 \end{lstlisting}
 %Local image
 
-Where the URL, or file path, to the image is placed before the pipe and after the keyword ``@url:''. The text after the pipe is the image text.
+\noindent{Where the URL, or file path, to the image is placed before the pipe and after the keyword ``@url''. The text after the pipe is the image text.}
