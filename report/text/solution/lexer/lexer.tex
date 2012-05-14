@@ -16,11 +16,13 @@ In order to create the syntax in chapter \ref{SSyntax}, tokens have to be identi
 The tokens for the language are as follows:
 
 \begin{lstlisting}[frame=single, caption={Token List of NISSE in EBNF.}]
-char            = ? [a-ÂA-≈_\.,]+ ? ;
+char            = ? [a-ÂA-≈]+ ? ;
 digit           = ? [0-9]+ ? ;
+underscore = '_' ;
+hyphen = '-' ;
 dotv1           = '.' ;
 commav1         = ',' ;
-space           = ' ' ;
+space           = ' ' | '	';
 atsign          = '@' ;
 lcurly          = '{' ;
 rcurly          = '}' ;
@@ -33,7 +35,7 @@ blist           = '*' ;
 nlist           = '#' ;
 percent         = '%\%%';
 exclamation     = '!' ;
-eolv1           = \n | \r\n ;
+eolv1           = \r | \n | \r\n ;
 format_kwd      = '@u' | '@b' | '@i' | '@apply' | '@image' | '@title' | '@subtitle' | '@note' ;
 setting_kwd     = '@setting' ;
 begin_kwd       = '@begin' ;
@@ -45,6 +47,6 @@ url             = '@url' ;
 \\ \\
 The reason each special keyword has its own token and not a general production, is to easily see the difference between the special tokens and the normal ones, without the need to check that a given token in the syntax analyser is the right token.
 \\ \\
-\texttt{``Char''} is used whenever characters needs to be used in the code. Char is also used for plain text, which requires it to have the symbols' underscore, backlash, comma and period. \\
+\texttt{``Char''} is used whenever characters needs to be used in the code. Char is used both for plain text and identifiers. \\
 \texttt{``Digit''} is used whenever numbers need to be used in the code. \\
 When numbers or characters are expected, then one such has to occur at least once.

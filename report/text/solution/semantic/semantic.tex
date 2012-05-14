@@ -3,7 +3,7 @@
 The semantic analyser checks for errors that the lexer and the parser do not catch, which only leaves runtime errors remaining. The semantic analyser for the language has the following requirements to be able to generate the expected slide.
 
 \section{Requirements}
-An example of the requirement is in the listing below it, and the important word is highlighed as bold.
+An example of the requirements is in the listing below it, and the important word is highlighed as bold.
 \begin{itemize}
 	\item Check that the setting in the setting block is valid.
 		\begin{lstlisting}[frame=single, language=java]
@@ -21,13 +21,6 @@ An example of the requirement is in the listing below it, and the important word
 		\begin{lstlisting}[frame=single, language=java]
 	@begin{%\textbf{fade}% | slide}
 	\end{lstlisting}
-	\item Check which number to put in to the enumeration.
-	\begin{lstlisting}[frame=single]
-	%\begin{boenumerate}
-\item - Line 1
-\item - Line 2
-\end{boenumerate}%
-	\end{lstlisting}
 \end{itemize}
 
 \noindent{These requirements are put into categories, with more explanation to specify the function of the semantic analyser.}
@@ -40,9 +33,9 @@ In order for the settings to work, a check to see if a specific setting actually
 \subsection{Type Checking}
 For a specific setting there is a number of valid values, two examples could be the settings \texttt{font\_size} and \texttt{font\_weight}, which sets the size or weight of a specific text, respectively. \\
 In the case of \texttt{font\_size}, a valid input would be any integer. \\
-In the case of \texttt{font\_weight}, a valid input would be \texttt{bold, itallic} or \texttt{underlined}. \\
-As with the keyword, existence of an error is written if the value of the setting is not valid.
-The type checking for integers and floats is done by converting the value from a string to an int or float respectively.
+In the case of \texttt{font\_weight}, a valid input would be \texttt{bold, italic} or \texttt{underline}. \\
+As with the keyword existence of an error is written if the value of the setting is not valid.
+The type checking for integers and floats is done by converting the value from a string to an int, or float, respectively.
 Existence checking for a specific string is done with \texttt{if} sentences, if no specific string matches any \texttt{if} sentence, an error occurs.
      
 \subsection{Scope Checking}
@@ -52,7 +45,7 @@ Every setting block has to be given a scope of what it is going to affect. An ex
 
 \subsubsection*{Effect Level}
 When a setting block is inside a begin- and/or end block, the setting only affects that particular slide.\\
-A setting block can also be used outside a slide, in which would make that setting apply to every slide following that specific slide, at which it is defined, unless it is overridden at a later stage. These scope settings have to be checked as to see what text the setting should apply to.
+A setting block can also be used outside a slide, which would make that setting apply to every slide following that specific slide, at which it is defined, unless it is overridden at a later stage. These scope settings have to be checked as to see what text the setting should apply to.
 \\ \\
 Listing \ref{LSTSemanticSetting} is a code example of when the compiler enters a setting node. The ``Visibility'' word in this section means which font type is changed; title, text, subtitle, etc.
 
@@ -109,7 +102,7 @@ public void inASettingblock (ASettingblock node){
 Line 2 fetches the setting, node \textit{Shortident}, which contains information about what setting to change and what to change it to, which is converted to a string, then the excess spaces are removed. Spaces are added by the \texttt{toString} methode, to seperate tokens from each other.\\
 Line 3 fetches the visibility declaration, which is in the node \textit{Char}, which is also converted to a string and the excess spaces are removed.} \\
 Line 4 finds out which class the setting block belongs to. This is necessary to determine whether the setting block is inside or outside a slide, which is the first thing to be checked in line 5. An \textit{else} construction is made for this \textit{if} sentence which is executed when the setting should be applied on every upcoming slide.\\
-Line 7 checks which keyword is going to be changed, in this case it is \textit{Font\_Color}. The parameter is then stored in a string called \textit{Value}, which takes the substring of SettingType, starting a char 15. The reason it is 15 is because a space is added after each token. So there is a space after \textit{font\_color} and a space after the colon (:) which makes the parameter start at the $15^{th}$ char.\\
+Line 7 checks which keyword is going to be changed, in this case it is \textit{Font\_Color}. The parameter is then stored in a string called \textit{Value}, which takes the substring of SettingType, starting at character 15. The reason it is 15 is because a space is added after each token. So there is a space after \textit{font\_color} and a space after the colon (:) which makes the parameter start at the $15^{th}$ character.\\
 Because it is a colour, it checks in the function \textit{CheckColor}, at line 9 to 11, whether the colour is allowed to be inserted. If it is not allowed, it will not change the colour, and then skip to line 38.\\
 From line 12 to 33 it checks what the ``visibility'' keyword is. Depending on the word, it changes the parameter for that specific visibility.\\
 Line 13 enters the document ``SymbolTable'' and the array \textit{Scope}, which inserts the parameter at the current scope level, and in the cell containing the information about text font colour.
@@ -125,7 +118,7 @@ In order for the compiler to apply a transition on a slide, the analyser has to 
 %The type checking in a begin- and end line consists of checking that between the two brackets is the word \texttt{slide}. In special cases, where a transition is on a slide, the word \texttt{slide} must be between the pipe and the right bracket. The word seems redundant because no other word can be in its place at this time. But for further development, where a begin- and end line can do more than just enclose a slide, this will come in handy.
 
 \subsection{Slide type checking}
-There are different types of slide layouts. For instance most slide presentations starts with a title slide, with or without a subtitle. The front page contains a title, and in some cases a subtitle, which both is in the middle of the slide. This placement is defined per default, instead of providing the user the explicit choice of this, to make it less complicated for the user. \\
+There are different types of slide layouts. For instance, most slide presentations starts with a title slide, with or without a subtitle. The front page contains a title, and in some cases a subtitle, which both is in the middle of the slide. This placement is defined per default, instead of providing the user the explicit choice of this, to make it less complicated for the user. \\
 The semantic analyser will check this, and creates the correct type of slide according to the text input from the user.
 
 \begin{lstlisting}[frame=single,caption=Function: OutBlockBlocks, label=LSTOutBlockBlocks, language=java]
@@ -248,23 +241,23 @@ In listing \ref{LSTOutBlockBlocks} from line 2 to 18 the function finds out if, 
 In line 2 the function creates the \texttt{@begin} line to a string, which can be operated on. \\
 In line 3 the function creates a substring of line 2, beginning at char 9 which is where the transition should be written, if any. \\
 Line 4 sets the transition to \texttt{none}. \\
-From line 5 it checks if the transition is \texttt{slide}, in this case there is no transition explicit transition, which is why it fetches the transition variable set by a setting block, this variable is \texttt{none} by default. \\
+From line 5 it checks if the transition is \texttt{slide}, in this case there is no explicit transition, which is why it fetches the transition variable set by a setting block, this variable is \texttt{none} by default. \\
 From line 8 to 19 it checks what kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have no transition. \\
 In line 20 to 23 the function sets the transition to default, and creates an error, because it was not the correct transition which was wanted by the user.
 
-\subsection{Slide type checking}
+\subsection{Slide layout}
 In listing \ref{LSTOutBlockBlocks} from line 24 to 60, we find out which type the slide it is. It starts by being \texttt{Unknown}, but it should never be that in the end. Then, in line 25 it creates an array of each object (line) in the slide. The number of lines is determined in line 26. \\
 The number of title-, subtitle- and image lines is set in line 28 - 30. \\
-To check how many there are, by checking the number of lines, we do a loop for each of the lines, and increment the variable for the specific type. If a normal text line is encountered, it will automatic be a \texttt{normal} slide. \\
+To check how many there are, by checking the number of lines, we do a loop for each of the lines, and increment the variable for the specific type. If a normal text line is encountered, it will automatically be a \texttt{normal} slide. \\
 From line 52 to 60, the function checks how many lines there are of each type, and depending on the amount, it sets the \texttt{SlideType} to the correct slide type, in order to show the slide properly. \\
 Line 61 adds the slide properties to the slide table.
 
-\section{Semantic Analysis for Other Keywords}
-\subsection{Image}
-\texttt{Image} has to check if there exists an image on that specific url. If no image is found, accessible or in a format that is not recognized by the compiler, an error should occur.
+%\section{Semantic Analysis for Other Keywords}
+%\subsection{Image}
+%\texttt{Image} has to check if there exists an image on that specific URL. If no image is found, accessible or in a format that is not recognized by the compiler, an error should occur.
 
-\subsection{Enumerate}
-The hash tag keyword has to keep track of the numbers, meaning that it has to increment each time a line starts with a hash tag. When a line does not start with a hash tag, the number should start from 1 again. This is also applicable where hash tags are inside other hash tags.
+%\subsection{Enumerate}
+%The hash tag keyword has to keep track of the numbers, meaning that it has to increment each time a line starts with a hash tag. When a line does not start with a hash tag, the number should start from 1 again. This is also applicable where hash tags are inside other hash tags.
 
 %(Bliver checket i code gen)
 
@@ -274,7 +267,10 @@ The hash tag keyword has to keep track of the numbers, meaning that it has to in
 %This also means that the language always terminates normally, because there are no keywords to stop a normal termination.\\
 %\\ \\
 \section{Generated Tables}
-The semantic analyser builds 3 tables. The Symbol table, containing the symbols that are in the slide. The Slide table, containing information about a slide. And the Error table containing information about errors made by the user
+The semantic analyser builds three tables: \\
+The symbol table, containing the symbols that are in the slide. \\
+The slide table, containing information about a slide, and \\
+The error table containing information about errors made by the user
 
 \subsection{Symbol Table}
 In order to know the properties for each token that is written by the user, a symbol is added to the symbol table, containing the necessary information for the code generator to display the token correctly.
@@ -287,7 +283,7 @@ NextSymbolNumber();
 }
 \end{lstlisting}
 
-\noindent{Listing \ref{LSTSemanticSymbolTableAdd} shows the function called to create a symbol in the symbol table. It stores all the variables in an array which is inside a hash table. Each hash entry has a unique number in order to fetch the entry. Before the function ends the number is incremented by 1, which is the next unique hash key.}
+\noindent{Listing \ref{LSTSemanticSymbolTableAdd} shows the function called to create a symbol in the symbol table. It stores all the variables in an array which is inside a hash table. Each hash entry has a unique number in order to fetch the entry. Before the function ends the number is incremented by one, which is the next unique hash key.}
 
 \subsection{Slide Table}
 An additional table is created to keep track of the overall properties in a slide, meaning the transition between the slides, and which type of slide they are, e.g. a title page or a normal page.
@@ -304,8 +300,8 @@ public static void SlideTableAdd(String Type, String Transition){
 \end{lstlisting}
 
 \subsection{Exception Handling}
-Errors found in the semantic analysis, for instance typing "bluue" instead of "blue" in a \texttt{font\_color} command, or writing letters in a \texttt{font\_size} command, results in the command being ignored and a description of the error is added in an Error table containing the slide number, a description of the error and the \texttt{Value} containing the error, in this case the description would be "font color existence" and \texttt{Value} would be "bluue".\\
-Listing \ref{LSTMakeError} creates an object in the ErrorList array, where the first dimension states which error number it is. The second dimension in cell 0 contains the information about what slide number the error has occured. In cell 1 the type of error is inserted, and in cell 2 is the Value of the error. An example of errors are made in table \ref{TLBErrorlist}, where the the user tries to change the font color in slide number 2 to \texttt{SomeColor}, and the font color in slide 3 to \texttt{bluue}, which is not a valid color. 
+Errors found in the semantic analysis, for instance typing "bluue" instead of "blue" in a \texttt{font\_color} command, or writing letters in a \texttt{font\_size} command, results in the command being ignored and a description of the error is added in an error table containing the slide number, a description of the error and the \texttt{Value} containing the error, in this case the description would be "font color existence" and \texttt{Value} would be "bluue".\\
+Listing \ref{LSTMakeError} creates an object in the ErrorList array, where the first dimension states which error number it is. The second dimension in cell 0 contains the information about what slide number the error has occured. In cell 1 the type of error is inserted, and in cell 2 is the Value of the error. An example of errors are made in table \ref{TLBErrorlist}, where the the user tries to change the font colour in slide number 2 to \texttt{SomeColor}, and the font color in slide 3 to \texttt{bluue}, which is not a valid color. 
 
 \begin{lstlisting}[frame=single,caption= Function: MakeError, label=LSTMakeError, language=java]
 	static int Slidenr = 1;
@@ -323,7 +319,7 @@ Listing \ref{LSTMakeError} creates an object in the ErrorList array, where the f
 	\centering
 		\begin{tabular}{| r| c | r |}
 		\hline
-Slidenr & Type of error & Value \\
+Slide number & Type of error & Value \\
 \hline
 2 & Font color existence & SomeColor \\
 3 & Font color existence & bluue \\
@@ -334,7 +330,7 @@ Slidenr & Type of error & Value \\
 \end{table}
 
 \section{Debugging}
-To make the debugging of the semantic analyser more comforable, a "system" is made to only print out what the programmer wants to know.
+To make the debugging of the semantic analyser more comfortable, a "system" is made to only print out what the programmer wants to know.
 The debugging contains one variable that is changed depending on what output that is wanted. Called \texttt{Debug1}, the result of what the value is, is ilustrated in table \ref{tab:Debugging}.
 \begin{table}
 \centering
@@ -363,5 +359,5 @@ Value & Debugging Output \\
 \label{tab:Debugging}
 \end{table}
 
-The way it is implemented is by first trying to subtract 8 from the debug number. If that is posible and it doesn't get below 0, subtract 8 from the debug number and sets a boolean to true, meaning that is prints the Error Table.
-Then it does the same with 4, 2, and 1, and if it is prosible and it doesn't get below 0, it sets a boolean to true for Nodes, Slide Table and Symbol Table, respectively. Table \ref{tab:Debugging} is a guide to get a fast view of what to inset as the debug value to get wanted output debug.
+\noindent{The way it is implemented is by first trying to subtract 8 from the debug number. If that is possible and it does not get below 0, subtract 8 from the debug number and sets a boolean to true, meaning that is prints the Error Table.
+Then it does the same with 4, 2, and 1, and if it is possible and it does not get below 0, it sets a boolean to true for Nodes, Slide Table and Symbol Table, respectively. Table \ref{tab:Debugging} is a guide to get an overview of what to inset as the debug value to get the wanted output debug.}

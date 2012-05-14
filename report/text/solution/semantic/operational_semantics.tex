@@ -22,11 +22,12 @@ This semantic describes the inside of a setting, how the element inside a settin
 This semantic describes when a block is executed in \texttt{S}. This inserts the slide inside \texttt{S}, and moves the pointer to the next location where a slide can be inserted.
 \\ \\
 \noindent{$[block]$}
-\[ \condinfrule{\langle setting, env \rangle \ra env' \langle Plain \rangle \langle num \rangle \langle iList \rangle} { \langle begin~setting~Plain~num~iList~end, S \rangle \ra S'}{} \]
+\[ \condinfrule{\langle setting, env \rangle \ra env' \langle plain,~S \rangle \ra S’ \langle num \rangle \langle ilist \rangle} { \langle begin~setting~plain~num~ilist~end, S \rangle \ra S'}{} \]
+This semantic shows how commands inside a block (slide) is executed, resulting in a change in a slide.
 \\ \\
 \noindent{$[plain]$}
-\[ \condinfrule{\langle plaintext \rangle \langle shortblock~env \rangle \ra env'} { \langle plaintext~shortblock \rangle }{} \]
-This semantic illustrates how plain text is evaluated, according to the shortblock with the environment \texttt{env} {\color{red}\textbf{Mulig fejl i denne!}}
+\[ \condinfrule{\langle plaintext,~S \rangle \ra S’ \langle shortblock,~env \rangle \ra env'} { \langle plaintext~shortblock,~S \rangle \ra S’ }{} \]
+This semantic illustrates how plain text is evaluated, possibly followed by a shortblock with the environment \texttt{env}.
 \\ \\
 \noindent{$[shortblock]$}
 \[ \condinfrule{\langle formatkwd \rangle \langle shortident, env \rangle \ra env' \langle plain \rangle} { \langle formatkwd \{short~ident | plain\}, env \rangle \ra env'}{} \]
