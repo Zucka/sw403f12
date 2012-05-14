@@ -12,7 +12,7 @@ import nisse.parser.Parser;
 public class Main {
 	
 	static int Error = 0;
-	static int Debug1 = 0;
+	static int Debug1 = 3;
 	/* 1 Symbol table
 	 * 2 Slide table
 	 * 3 = 2 + 1

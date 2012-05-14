@@ -10,3 +10,31 @@ font_weight:DOTS
 height: NUMBER_OF_PIXELSpx
 width: NUMBER_OF_PIXELSpx
 scale: n.n%
+
+[SLIDE_TYPES]
+Title
+Subtitle
+TitleImage
+TitleSubtitleImage
+SubtitleImage
+TitleDImage
+TitleSubtitleDImage
+SubtitleDImage
+TitleTImage
+TitleSubtitleTImage
+SubtitleTImage
+TitleQImage
+TitleSubtitleQImage
+SubtitleQImage
+XTitleXSubtitle
+Image
+DImage
+TImage
+QImage
+Lots
+
+[TRANSITION_TYPES]
+fade
+swipe
+scale
+rotatescale
