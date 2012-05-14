@@ -12,7 +12,7 @@ import nisse.parser.Parser;
 public class Main {
 	
 	static int Error = 0;
-	static int Debug1 = 3;
+	static int Debug1 = 2;
 	/* 1 Symbol table
 	 * 2 Slide table
 	 * 3 = 2 + 1
@@ -77,7 +77,7 @@ public class Main {
 		}
 		else {
 			try {
-				input = new FileReader("/Users/JS/Documents/GIT/t2.txt");
+				input = new FileReader("/Users/JS/Documents/GIT/t3.txt");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}

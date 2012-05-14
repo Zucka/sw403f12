@@ -236,13 +236,83 @@ public class CodeGenerator extends DepthFirstAdapter{
 		}
 		String Type1 = SlideData[SlideType];
 		String Type = "";
-		if (Type1 == "Title" || Type1 == "XTitleXSubtitle")
+		if (Type1 == "Title" || Type1 == "XTitleXSubtitle" || Type1 == "Subtitle")
 		{
 			Type = "titleslide";
 		}
+		
+		else if (Type1 == "TitleImage")
+		{
+			Type = "titleimgageslide";
+		}
+		else if (Type1 == "TitleSubtitleImage")
+		{
+			Type = "titleimgageslide";
+		}
+		else if (Type1 == "SubtitleImage")
+		{
+			Type = "titleimgageslide";
+		}
+		
+		else if (Type1 == "TitleDImage")
+		{
+			Type = "titledimgageslide";
+		}
+		else if (Type1 == "TitleSubtitleDImage")
+		{
+			Type = "titledimgageslide";
+		}
+		else if (Type1 == "SubtitleDImage")
+		{
+			Type = "titledimgageslide";
+		}
+		
+		else if (Type1 == "TitleTImage")
+		{
+			Type = "titletimgageslide";
+		}
+		else if (Type1 == "TitleSubtitleTImage")
+		{
+			Type = "titletimgageslide";
+		}
+		else if (Type1 == "SubtitleTImage")
+		{
+			Type = "titletimgageslide";
+		}
+		
+		else if (Type1 == "TitleQImage")
+		{
+			Type = "titleqimgageslide";
+		}
+		else if (Type1 == "TitleSubtitleQImage")
+		{
+			Type = "titleqimgageslide";
+		}
+		else if (Type1 == "SubtitleQImage")
+		{
+			Type = "titleqimgageslide";
+		}
+		
 		else if (Type1 == "Image")
 		{
+			Type = "imageslide";
+		}
+		else if (Type1 == "DImage")
+		{
 			Type = "dimageslide";
+		}
+		else if (Type1 == "TImage")
+		{
+			Type = "timageslide";
+		}
+		else if (Type1 == "QImage")
+		{
+			Type = "qimageslide";
+		}
+		
+		else if (Type1 == "Lots")
+		{
+			Type = "lotsslide";
 		}
 		String opacity = "0";
 		String top = "100%";

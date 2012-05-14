@@ -12,26 +12,32 @@ width: NUMBER_OF_PIXELSpx
 scale: n.n%
 
 [SLIDE_TYPES]
-Title
-Subtitle
-TitleImage
-TitleSubtitleImage
-SubtitleImage
-TitleDImage
-TitleSubtitleDImage
-SubtitleDImage
-TitleTImage
-TitleSubtitleTImage
-SubtitleTImage
-TitleQImage
-TitleSubtitleQImage
-SubtitleQImage
-XTitleXSubtitle
-Image
-DImage
-TImage
-QImage
-Lots
+Title 				-> titleslide
+Subtitle 			-> titleslide
+XTitleXSubtitle  	-> titleslide
+
+TitleImage 			-> titleimgageslide
+TitleSubtitleImage 	-> titleimgageslide
+SubtitleImage 		-> titleimgageslide
+
+TitleDImage 		-> titledimgageslide
+TitleSubtitleDImage	-> titledimgageslide
+SubtitleDImage 		-> titledimgageslide
+
+TitleTImage 		-> titletimgageslide
+TitleSubtitleTImage	-> titletimgageslide
+SubtitleTImage 		-> titletimgageslide
+
+TitleQImage 		-> titleqimgageslide
+TitleSubtitleQImage	-> titleqimgageslide
+SubtitleQImage 		-> titleqimgageslide
+
+Image 				-> imageslide
+DImage 				-> dimageslide
+TImage 				-> timageslide
+QImage 				-> qimageslide
+
+Lots 				-> lotsslide
 
 [TRANSITION_TYPES]
 fade

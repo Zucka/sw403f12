@@ -4,160 +4,244 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="viewport" content="width=device-width; user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-		<title>A presentation</title>
-		<!-- css framework -->
-		<style type="text/css">
-			body,div{
-				margin:0px;
-				padding:0px;
+<title>A presentation</title>
+<!-- css framework -->
+<style type="text/css">
+body,div{
+	margin:0px;
+	padding:0px;
+}
+h1,h2,h3,h4 {
+	margin:0px;
+	padding:0px;
+}
+ul,ol {
+	margin:0px 0px 0px 0px;
+}
+body {
+	font-family:serif;
+	background:#efefef;
+	overflow:hidden;
+}
+h1 { font-size:200%; margin-bottom:1%}
+h2 { font-size:130%; margin-bottom:1%; color:#666; }
+
+
+
+
+#wrapper {
+	position: absolute;
+	left:0%;
+	top:0%;
+	height:100%;
+	width:100%;
+	font-size:4em;
+}
+#axis {
+	position:absolute;
+	left:00%;
+	top:0%;
+	height:100%;
+	width:100%;
+}
+
+.slide_wrapper {
+	position: absolute;
+	height:100%;
+	width:100%;
+}
+
+
+.slide {
+	position: absolute;
+	height:90%;
+	width:90%;
+	top:5%;
+	left:4.5%;
+	background:#fefefe;
+	padding:2%;
+	border:1px solid #666;
+	margin-top:-5px;
+	margin-left:-5px;
+	vertical-align: middle;
+	display: table;
+}
+
+	.slide > .blankslide {
+		visibility: hidden;
+	}
+
+	.slide > .titleslide {
+		text-align:center;
+		display: table-cell; 
+		vertical-align: middle;
+	}
+
+	.slide > .titleimgageslide{
+		text-align:center;
+		display: table-cell; 
+		vertical-align: middle;
+	}
+
+		.titleimgageslide > .image {
+			float:none;
+			margin:2%;
+			width:92%;
+		}
+
+	.slide > .titledimgageslide{
+		text-align:center;
+		display: table-cell; 
+		vertical-align: middle;
+	}
+
+		.titledimgageslide > .image {
+			float:left;
+			margin:2%;
+			width:46%;
+		}
+		
+	.slide > .titletimgageslide{
+		text-align:center;
+		display: table-cell; 
+		vertical-align: middle;
+	}
+
+		.titletimgageslide > .image {
+			float:left;
+			margin:1%;
+			width:31.33%;
+		}
+		
+	.slide > .titleqimgageslide{
+		text-align:center;
+		display: table-cell; 
+		vertical-align: middle;
+	}
+
+		.titleqimgageslide > .image {
+			float:left;
+			margin:0.5%;
+			width:24%;
+		}
+
+	.slide > .imageslide {
+		text-align:center;
+		display: table-cell; 
+		vertical-align: middle;
+	}
+
+		.imageslide > .image {
+			float:none;
+			margin:2%;
+			height: 736px; 
+			width: 1048px;
+		}
+
+	.slide > .dimageslide {
+		text-align:center;
+		display: table-cell; 
+		vertical-align: middle;
+	}
+
+		.dimageslide > .image {
+			float:left;
+			margin:2%;
+			width:46%;
+		}
+
+	.slide > .timageslide{
+		text-align:center;
+		display: table-cell; 
+		vertical-align: middle;
+	}
+
+		.timageslide > .image {
+			float:left;
+			margin:2%;
+			width:29%;
+		}
+
+	.slide > .qimageslide{
+		text-align:center;
+		display: table-cell; 
+		vertical-align: middle;
+	}
+
+		.qimageslide > .image {
+			float: left;
+			margin:2%;
+			width:46%;
+		}
+
+	.slide > .lotsslide{
+		text-align:center;
+		display: table-cell; 
+		vertical-align: middle;
+	}
+
+
+
+.image {
+	vertical-align: middle;
+	position:relative;
+	text-align:center;
+	margin:2%;
+	float:left;
+	width:46%;
+}
+
+.fimage {
+	vertical-align: middle;
+	position:relative;
+	text-align:center;
+	margin:2%;
+	float:none;
+}
+
+	.image > .description {
+		text-align:center;
+		font-size:75%;
+		color:#777;
+		top:100%;
+	}
+
+
+</style>
+
+<!-- jQuery -->
+<script src="jquery.js"></script>
+
+<!-- jQuery Swipe -->
+<script src="jquery.touchswipe_im.js"></script>
+
+<!-- JavaScript library -->
+<script type="text/javascript">
+$(function(){
+
+	$(document).ready(function() {
+		update_dimensions();
+		if (window.location.hash.substring(1) != "")
+		{
+			if ($("#slide"+(window.location.hash.substring(1)-1)).length)
+			{
+				go_to_slide(window.location.hash.substring(1)-1);
 			}
-			h1,h2,h3,h4 {
-				margin:0px;
-				padding:0px;
-			}
-			ul,ol {
-				margin:0px 0px 0px 0px;
-			}
-			body {
-				font-family:serif;
-				background:#efefef;
-				overflow:hidden;
-			}
-			h1 { font-size:200%; margin-bottom:1%}
-			h2 { font-size:130%; margin-bottom:1%; color:#666; }
+		}
+	});
 
+	var slide_pointer = 0;
+	var slide_pointer_previous = 0;
 
+	function update_dimensions() {
+		var h = $(window).height();
+		var w = $(window).width();
+		var new_height, new_width;
+		req = $("#wrapper").attr("data-ratio").split("/").map(function(i){return parseInt(i);});
+		ratio = req[0] / req[1];
+		actual = w / h;
 
-
-			#wrapper {
-				position: absolute;
-				left:0%;
-				top:0%;
-				height:100%;
-				width:100%;
-				font-size:4em;
-			}
-			#axis {
-				position:absolute;
-				left:00%;
-				top:0%;
-				height:100%;
-				width:100%;
-			}
-
-			.slide_wrapper {
-				position: absolute;
-				height:100%;
-				width:100%;
-			}
-
-
-			.slide {
-				position: absolute;
-				height:90%;
-				width:90%;
-				top:5%;
-				left:4.5%;
-				background:#fefefe;
-				padding:2%;
-				border:1px solid #666;
-				margin-top:-5px;
-				margin-left:-5px;
-				vertical-align: middle;
-				display: table;
-			}
-
-			.slide > .titleslide {
-				text-align:center;
-				display: table-cell; 
-				vertical-align: middle;
-			}
-
-			.slide > .blank {
-
-
-			}
-
-			.slide > .imageslide {
-				text-align:center;
-				display: table-cell; 
-				vertical-align: middle;
-			}
-
-			.imageslide > .image {
-				float:none;
-				margin:2%;
-				width:92%;
-			}
-
-			.slide > .dimageslide {
-				text-align:center;
-				display: table-cell; 
-				vertical-align: middle;
-			}
-
-			.imageslide > .title {
-				text-align:center;
-			}
-
-			.image {
-				vertical-align: middle;
-				position:relative;
-				text-align:center;
-				margin:2%;
-				float:left;
-				width:46%;
-			}
-
-			.fimage {
-				vertical-align: middle;
-				position:relative;
-				text-align:center;
-				margin:2%;
-				float:none;
-			}
-
-			.image > .description {
-				text-align:center;
-				font-size:75%;
-				color:#777;
-				top:100%;
-			}
-		</style>
-
-		<!-- jQuery -->
-		<script src="jquery.js"></script>
-
-		<!-- jQuery Swipe -->
-		<script src="jquery.touchswipe_im.js"></script>
-
-		<!-- JavaScript library -->
-		<script type="text/javascript">
-			$(function(){
-
-				$(document).ready(function() {
-					update_dimensions();
-					if (window.location.hash.substring(1) != "")
-					{
-						if ($("#slide"+(window.location.hash.substring(1)-1)).length)
-						{
-							go_to_slide(window.location.hash.substring(1)-1);
-						}
-					}
-				});
-
-				var slide_pointer = 0;
-				var slide_pointer_previous = 0;
-
-				function update_dimensions() {
-					var h = $(window).height();
-					var w = $(window).width();
-					var new_height, new_width;
-					req = $("#wrapper").attr("data-ratio").split("/").map(function(i){return parseInt(i);});
-					ratio = req[0] / req[1];
-					actual = w / h;
-
-					if(actual > ratio) {
+		if(actual > ratio) {
 						//change width, height is okay
 						new_height = parseInt(h);
 						new_width = parseInt(h * ratio);
@@ -189,17 +273,17 @@
 						$(selector).css('opacity','0');
 						$(selector).css('top','0%');
 						$(selector).css('-webkit-transform','scale(1)');
- 						$(selector).css('-moz-transform','scale(1)'); 
-  						$(selector).css('-o-transform','scale(1)'); 
-  						$(selector).css('-ms-transform','scale(1)'); 
+						$(selector).css('-moz-transform','scale(1)'); 
+						$(selector).css('-o-transform','scale(1)'); 
+						$(selector).css('-ms-transform','scale(1)'); 
 						$(selectorprevious).stop().animate({
 							"border-spacing" : "100","opacity":0},
 							{step: function(now,fx) {
 								var scale = (100-now)/100;
 								$(this).css('-webkit-transform','rotate('+now*3.6+'deg) scale('+scale+')');
-	     						$(this).css('-moz-transform','rotate('+now*3.6+'deg) scale('+scale+')'); 
-	      						$(this).css('-o-transform','rotate('+now*3.6+'deg) scale('+scale+')'); 
-	      						$(this).css('-ms-transform','rotate('+now*3.6+'deg) scale('+scale+')'); 
+								$(this).css('-moz-transform','rotate('+now*3.6+'deg) scale('+scale+')'); 
+								$(this).css('-o-transform','rotate('+now*3.6+'deg) scale('+scale+')'); 
+								$(this).css('-ms-transform','rotate('+now*3.6+'deg) scale('+scale+')'); 
 							},duration:700, complete: function() {
 								$(selectorprevious).css('top','100%');
 								$(selectorprevious).css('-webkit-transform','rotate(0deg) scale(1)');
@@ -208,7 +292,7 @@
 								$(selectorprevious).css('-ms-transform','rotate(0deg) scale(1)');
 								$(selectorprevious).css('border-spacing','0');
 							}}
-						,'linear');
+							,'linear');
 						$(selector).stop().fadeTo(700,1);
 					}
 				}
@@ -222,17 +306,17 @@
 						$(selector).css('opacity','0');
 						$(selector).css('top','0%');
 						$(selector).css('-webkit-transform','scale(1)');
- 						$(selector).css('-moz-transform','scale(1)'); 
-  						$(selector).css('-o-transform','scale(1)'); 
-  						$(selector).css('-ms-transform','scale(1)'); 
+						$(selector).css('-moz-transform','scale(1)'); 
+						$(selector).css('-o-transform','scale(1)'); 
+						$(selector).css('-ms-transform','scale(1)'); 
 						$(selectorprevious).stop().animate({
 							"border-spacing" : "100","opacity":0},
 							{step: function(now,fx) {
 								var scale = (100-now)/100;
 								$(this).css('-webkit-transform','scale('+scale+')');
-	     						$(this).css('-moz-transform','scale('+scale+')'); 
-	      						$(this).css('-o-transform','scale('+scale+')'); 
-	      						$(this).css('-ms-transform','scale('+scale+')'); 
+								$(this).css('-moz-transform','scale('+scale+')'); 
+								$(this).css('-o-transform','scale('+scale+')'); 
+								$(this).css('-ms-transform','scale('+scale+')'); 
 							},duration:700, complete: function() {
 								$(selectorprevious).css('top','100%');
 								$(selectorprevious).css('-webkit-transform','scale(1)');
@@ -241,7 +325,7 @@
 								$(selectorprevious).css('-ms-transform','scale(1)');
 								$(selectorprevious).css('border-spacing','0');
 							}}
-						,'linear');
+							,'linear');
 						$(selector).stop().fadeTo(700,1);
 					}
 				}
@@ -265,9 +349,9 @@
 						$(selector).css('top','0%');
 						$(selector).css('opacity','1');
 						$(selector).css('-webkit-transform','scale(1)');
- 						$(selector).css('-moz-transform','scale(1)'); 
-  						$(selector).css('-o-transform','scale(1)'); 
-  						$(selector).css('-ms-transform','scale(1)'); 
+						$(selector).css('-moz-transform','scale(1)'); 
+						$(selector).css('-o-transform','scale(1)'); 
+						$(selector).css('-ms-transform','scale(1)'); 
 						$(selectorprevious).stop().fadeTo(200,0);
 						$(selector).stop().fadeTo(700,1);
 
@@ -294,15 +378,15 @@
 						$(selector).css('opacity','0');
 						$(selector).css('top','0%');
 						$(selector).css('-webkit-transform','scale(1)');
- 						$(selector).css('-moz-transform','scale(1)'); 
-  						$(selector).css('-o-transform','scale(1)'); 
-  						$(selector).css('-ms-transform','scale(1)'); 
+						$(selector).css('-moz-transform','scale(1)'); 
+						$(selector).css('-o-transform','scale(1)'); 
+						$(selector).css('-ms-transform','scale(1)'); 
 						$(selectorprevious).stop().fadeTo(300,0,function()
-							{
-								$(selector).stop().fadeTo(300,1, function() {
-									$(selectorprevious).css('top','100%');
-								});
+						{
+							$(selector).stop().fadeTo(300,1, function() {
+								$(selectorprevious).css('top','100%');
 							});
+						});
 					}
 				}
 
@@ -341,9 +425,9 @@
 				}
 				
 				$(function()
-					{
-						$('#wrapper').swipe(swipeOptions);
-					}
+				{
+					$('#wrapper').swipe(swipeOptions);
+				}
 				);
 
 				function swipe (event,direction)
@@ -391,4 +475,4 @@
 					update_dimensions();
 				});
 			});
-		</script>
+</script>
