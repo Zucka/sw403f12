@@ -91,6 +91,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		/*
 		writeToStream("\n<style type=\"text/css\">\n");
 		writeToStream(".description {\n");
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor]+";\n");
@@ -120,7 +121,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontLineheight]+";\n");
-		writeToStream("font-size:133.33334%;");/*+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize]))+";\n");*/
+		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize]))+";\n");
 		String weight1 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontWeight];
 		String[] weights1 = weight1.split("\\s");
 		weight1 = "";
@@ -168,7 +169,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontLineheight]+";\n");
-		writeToStream("font-size:133.33334%;");/*+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize]))+";\n");*/
+		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize]))+";\n");
 		String weight3 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontWeight];
 		String[] weights3 = weight3.split("\\s");
 		weight3 = "";
@@ -212,7 +213,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		}
 		writeToStream("}\n");
 		writeToStream("</style>");
-		
+		*/
 		writeToStream("</head>\n <body style=\"font-size: 58.5%; \">\n <div id=\"wrapper\" data-ratio=\"4/3\">\n <div id=\"axis\" style=\"margin-left: 336px; \">\n");
 	}
 	public void outStart(Start node)
@@ -497,7 +498,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 			{
 				style = "style=\""+style+"\"";
 			}
-			if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
+			if (style.equals(prevStyle) && isInSpan && !isInTitle && !isInSubtitle)
 			{
 				output += symbol[0];
 			}
@@ -532,6 +533,8 @@ public class CodeGenerator extends DepthFirstAdapter{
 					output += "</h2>\n";
 					isInSubtitle = false;
 				}
+				
+				
 				if (!isInSpan)
 				{
 					output += "<span "+style+">";
