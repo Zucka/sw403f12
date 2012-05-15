@@ -52,7 +52,7 @@ Listing \ref{LSTSemanticSetting} is a code example of when the compiler enters a
 \begin{lstlisting}[frame=single,caption=SettingBlock, label=LSTSemanticSetting, language=java]
 public void inASettingblock (ASettingblock node){
 	String SettingType = node.getShortident().toString().trim();
-	String Visability = node.getChar().toString().trim();
+	String Visibility = node.getChar().toString().trim();
 	String Test = node.parent().parent().getClass().toString();
 	if (Test.equals("class nisse.node.ABlockBlocks")){
 	
@@ -61,30 +61,30 @@ public void inASettingblock (ASettingblock node){
 			Boolean CheckColor1;
 			CheckColor1 = CheckColor(Value);
 			if (CheckColor1 == true){
-				if (Visability.equals("global")){
+				if (Visibility.equals("global")){
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;					
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
 				}
-				else if (Visability.equals("text")){
+				else if (Visibility.equals("text")){
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTextFontColor] = Value;
 				}
-				else if (Visability.equals("image")){
+				else if (Visibility.equals("image")){
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewImageFontColor] = Value;
 				}
-				else if (Visability.equals("title")){
+				else if (Visibility.equals("title")){
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewTitleFontColor] = Value;
 				}
-				else if (Visability.equals("subtitle")){
+				else if (Visibility.equals("subtitle")){
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewSubtitleFontColor] = Value;
 				}
-				else if (Visability.equals("url")){
+				else if (Visibility.equals("url")){
 					SymbolTable.Scope[SymbolTable.ScopeLevel][SymbolTable.NewUrlFontColor] = Value;
 				}
     	  else {
-						Error.MakeError("Visiblity existance" , Value);
+						Error.MakeError("Visibility existance" , Value);
 			    	  }
 				}
 				else {
@@ -330,7 +330,7 @@ Slide number & Type of error & Value \\
 \end{table}
 
 \section{Debugging}
-To make the debugging of the semantic analyser more comfortable, a "system" is made to only print out what the programmer wants to know.
+To make the debugging of the semantic analyser more comfortable, a ``system'' is made to only print out what the programmer wants to know.
 The debugging contains one variable that is changed depending on what output that is wanted. Called \texttt{Debug1}, the result of what the value is, is ilustrated in table \ref{tab:Debugging}.
 \begin{table}
 \centering
