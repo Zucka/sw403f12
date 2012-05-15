@@ -433,7 +433,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 			}
 			String[] SlideData = SymbolTable.SymbolTableForSlide.get(slideCounter);
 			String imgStyle = "";
-			if (!SlideData[1].equals("Image"))
+			if (!SlideData[0].equals("Image"))
 			{
 				imgStyle = "width:100%;";
 			}

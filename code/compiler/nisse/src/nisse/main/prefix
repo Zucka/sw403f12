@@ -135,6 +135,7 @@ h2 { font-size:130%; margin-bottom:1%; color:#666; }
 			float:none;
 			margin:2%;
 			height: 100%; 
+			width: 100%;
 		}
 
 	.slide > .dimageslide {
