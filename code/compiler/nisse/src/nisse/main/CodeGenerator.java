@@ -120,7 +120,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontLineheight]+";\n");
-		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize]))+";\n");
+		writeToStream("font-size:133.33334%;");/*+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize]))+";\n");*/
 		String weight1 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontWeight];
 		String[] weights1 = weight1.split("\\s");
 		weight1 = "";
@@ -168,7 +168,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontLineheight]+";\n");
-		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize]))+";\n");
+		writeToStream("font-size:133.33334%;");/*+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize]))+";\n");*/
 		String weight3 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontWeight];
 		String[] weights3 = weight3.split("\\s");
 		weight3 = "";
