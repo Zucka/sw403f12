@@ -19,25 +19,25 @@ public class SymbolTable {
 	static String TitleFontLineheight  = "1.5";
 	static String TitleFontWeight = "";
 	//Subtitle Settings
-	static String SubtitleFontSize = "24";
+	static String SubtitleFontSize = "20";
 	static String SubtitleFontFamily = "arial";
-	static String SubtitleFontColor  = "gray";
+	static String SubtitleFontColor  = "black";
 	static String SubtitleFontLineheight  = "1.5";
 	static String SubtitleFontWeight = "";
 	//Text Settings
-	static String TextFontSize = "18";
+	static String TextFontSize = "16";
 	static String TextFontFamily = "arial";
 	static String TextFontColor  = "black";
 	static String TextFontLineheight  = "1.5";
 	static String TextFontWeight = "";
 	//Image Settings
-	static String ImageFontSize = "16";
+	static String ImageFontSize = "15";
 	static String ImageFontFamily = "arial";
 	static String ImageFontColor  = "black";
 	static String ImageFontLineheight  = "1.5";
 	static String ImageFontWeight = "";
 	//Url Settings
-	static String UrlFontSize = "18";
+	static String UrlFontSize = "16";
 	static String UrlFontFamily = "arial";
 	static String UrlFontColor  = "blue";
 	static String UrlFontLineheight  = "1.5";

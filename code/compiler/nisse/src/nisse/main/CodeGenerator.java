@@ -39,8 +39,6 @@ public class CodeGenerator extends DepthFirstAdapter{
 	boolean isInImage = false;
 	String prevStyle = "";
 	String prevUrl = "";
-	int prevNumerationLevel = 0;
-	int currentNumerationLevel = 0;
 	
 	public CodeGenerator()
 	{
@@ -92,11 +90,11 @@ public class CodeGenerator extends DepthFirstAdapter{
 			e.printStackTrace();
 		}
 		writeToStream("\n<style type=\"text/css\">\n");
-		writeToStream(".description {\n");
+		writeToStream("img {\n");
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontLineheight]+";\n");
-		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontSize]))+";\n");
+		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontSize]+";\n");
 		String weight = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontWeight];
 		String[] weights = weight.split("\\s");
 		weight = "";
@@ -120,7 +118,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontLineheight]+";\n");
-		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize]))+";\n");
+		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize]+";\n");
 		String weight1 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontWeight];
 		String[] weights1 = weight1.split("\\s");
 		weight1 = "";
@@ -144,7 +142,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontLineheight]+";\n");
-		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize]))+";\n");
+		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize]+";\n");
 		String weight2 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight];
 		String[] weights2 = weight2.split("\\s");
 		weight2 = "";
@@ -168,7 +166,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontLineheight]+";\n");
-		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize]))+";\n");
+		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize]+";\n");
 		String weight3 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontWeight];
 		String[] weights3 = weight3.split("\\s");
 		weight3 = "";
@@ -192,7 +190,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontLineheight]+";\n");
-		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontSize]))+";\n");
+		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontSize]+";\n");
 		String weight4 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontWeight];
 		String[] weights4 = weight4.split("\\s");
 		weight4 = "";
@@ -435,16 +433,16 @@ public class CodeGenerator extends DepthFirstAdapter{
 			}
 			String[] SlideData = SymbolTable.SymbolTableForSlide.get(slideCounter);
 			String imgStyle = "";
-			if (!SlideData[0].equals("Image"))
+			if (!SlideData[1].equals("Image"))
 			{
 				imgStyle = "width:100%;";
 			}
-			output += "<div class=\"image\">\n<img style=\""+imgStyle+"\" src=\""+symbol[7]+"\"></br>";
+			output += "<div class=\"image\">\n<img style=\""+imgStyle+"\" src=\""+symbol[7]+"\">";
 			isInImage = true;
 			symbolCounter++;
 			symbol = SymbolTable.SymbolTable1.get(symbolCounter);
 		}
-		String font_size = symbol.length > 2 ? fontSizeToPercent(Integer.parseInt(symbol[2])) : "";
+		String font_size = symbol.length > 2 ? symbol[2] : "";
 		String font_family = symbol.length > 3 ? symbol[3] : "";
 		String font_color = symbol.length > 4 ? symbol[4] : "";
 		String font_lineheight = symbol.length > 5 ? symbol[5] : "";
@@ -455,53 +453,53 @@ public class CodeGenerator extends DepthFirstAdapter{
 			output += "</a>";
 			isInUrl = false;
 		}
-		if (symbol[1] == "text")
+		if (font_size != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize])
 		{
-			if (font_size != fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize])))
-			{
-				style += "font-size:"+font_size+"; ";
-			}
-			if (font_family != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontFamily])
-			{
-				style += "font-family:"+font_family+"; ";
-			}
-			if (font_color != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor])
-			{
-				style += "color:"+font_color+"; ";
-			}
-			if (font_lineheight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontLineheight])
-			{
-				style += "line-height:"+font_lineheight+"; ";
-			}
-			if (font_weight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight])
-			{
-				String[] weights = font_weight.split("\\s");
-				
-				for (String string : weights) {
-					if (string.contains("b"))
-					{
-						
-						style += "font-weight:bold; ";
-					}
-					else if (string.contains("i"))
-					{
-						style += "font-style:italic; ";
-					}
-					else if (string.contains("u"))
-					{
-						style += "text-decoration:underline; ";
-					}
+			style += "font-size:"+font_size+"; ";
+		}
+		if (font_family != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontFamily])
+		{
+			style += "font-family:"+font_family+"; ";
+		}
+		if (font_color != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor])
+		{
+			style += "color:"+font_color+"; ";
+		}
+		if (font_lineheight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontLineheight])
+		{
+			style += "line-height:"+font_lineheight+"; ";
+		}
+		if (font_weight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight])
+		{
+			String[] weights = font_weight.split("\\s");
+			
+			for (String string : weights) {
+				if (string.contains("b"))
+				{
+					
+					style += "font-weight:bold; ";
+				}
+				else if (string.contains("i"))
+				{
+					style += "font-style:italic; ";
+				}
+				else if (string.contains("u"))
+				{
+					style += "text-decoration:underline; ";
 				}
 			}
-			if (style != "")
+		}
+		if (style != "")
+		{
+			style = "style=\""+style+"\"";
+		}
+		if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
+		{
+			output += symbol[0];
+		}
+		else {
+			if (symbol[1] == "text")
 			{
-				style = "style=\""+style+"\"";
-			}
-			if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
-			{
-				output += symbol[0];
-			}
-			else {
 				if (isInSpan)
 				{
 					if (isInUrl)
@@ -548,54 +546,8 @@ public class CodeGenerator extends DepthFirstAdapter{
 				}
 				output += symbol[0];
 			}
-		}
-		else if (symbol[1] == "title")
-		{
-			if (font_size != fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize])))
+			else if (symbol[1] == "title")
 			{
-				style += "font-size:"+font_size+"; ";
-			}
-			if (font_family != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontFamily])
-			{
-				style += "font-family:"+font_family+"; ";
-			}
-			if (font_color != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontColor])
-			{
-				style += "color:"+font_color+"; ";
-			}
-			if (font_lineheight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontLineheight])
-			{
-				style += "line-height:"+font_lineheight+"; ";
-			}
-			if (font_weight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontWeight])
-			{
-				String[] weights = font_weight.split("\\s");
-				
-				for (String string : weights) {
-					if (string.contains("b"))
-					{
-						
-						style += "font-weight:bold; ";
-					}
-					else if (string.contains("i"))
-					{
-						style += "font-style:italic; ";
-					}
-					else if (string.contains("u"))
-					{
-						style += "text-decoration:underline; ";
-					}
-				}
-			}
-			if (style != "")
-			{
-				style = "style=\""+style+"\"";
-			}
-			if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
-			{
-				output += symbol[0];
-			}
-			else {
 				if (isInSpan)
 				{
 					if (isInUrl)
@@ -639,55 +591,8 @@ public class CodeGenerator extends DepthFirstAdapter{
 				}
 				output += symbol[0];
 			}
-			
-		}
-		else if (symbol[1] == "subtitle")
-		{
-			if (font_size != fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize])))
+			else if (symbol[1] == "subtitle")
 			{
-				style += "font-size:"+font_size+"; ";
-			}
-			if (font_family != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontFamily])
-			{
-				style += "font-family:"+font_family+"; ";
-			}
-			if (font_color != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontColor])
-			{
-				style += "color:"+font_color+"; ";
-			}
-			if (font_lineheight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontLineheight])
-			{
-				style += "line-height:"+font_lineheight+"; ";
-			}
-			if (font_weight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontWeight])
-			{
-				String[] weights = font_weight.split("\\s");
-				
-				for (String string : weights) {
-					if (string.contains("b"))
-					{
-						
-						style += "font-weight:bold; ";
-					}
-					else if (string.contains("i"))
-					{
-						style += "font-style:italic; ";
-					}
-					else if (string.contains("u"))
-					{
-						style += "text-decoration:underline; ";
-					}
-				}
-			}
-			if (style != "")
-			{
-				style = "style=\""+style+"\"";
-			}
-			if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
-			{
-				output += symbol[0];
-			}
-			else {
 				if (isInSpan)
 				{
 					if (isInUrl)
@@ -710,9 +615,8 @@ public class CodeGenerator extends DepthFirstAdapter{
 				}
 				if (!isInSubtitle)
 				{
-					output += "<h2 class=\"subtitle\"><span "+style+">";
+					output += "<h2 class=\"subtitle\" "+style+">";
 					isInSubtitle = true;
-					isInSpan = true;
 				}
 				if (url != "")
 				{
@@ -725,55 +629,8 @@ public class CodeGenerator extends DepthFirstAdapter{
 				}
 				output += symbol[0];
 			}
-			
-		}
-		else if (symbol[1].equals("imagetext"))
-		{
-			if (font_size != fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontSize])))
+			else if (symbol[1].equals("imagetext"))
 			{
-				style += "font-size:"+font_size+"; ";
-			}
-			if (font_family != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontFamily])
-			{
-				style += "font-family:"+font_family+"; ";
-			}
-			if (font_color != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor])
-			{
-				style += "color:"+font_color+"; ";
-			}
-			if (font_lineheight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontLineheight])
-			{
-				style += "line-height:"+font_lineheight+"; ";
-			}
-			if (font_weight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontWeight])
-			{
-				String[] weights = font_weight.split("\\s");
-				
-				for (String string : weights) {
-					if (string.contains("b"))
-					{
-						
-						style += "font-weight:bold; ";
-					}
-					else if (string.contains("i"))
-					{
-						style += "font-style:italic; ";
-					}
-					else if (string.contains("u"))
-					{
-						style += "text-decoration:underline; ";
-					}
-				}
-			}
-			if (style != "")
-			{
-				style = "style=\""+style+"\"";
-			}
-			if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
-			{
-				output += symbol[0];
-			}
-			else {
 				if (isInSpan)
 				{
 					if (isInUrl)
@@ -820,17 +677,12 @@ public class CodeGenerator extends DepthFirstAdapter{
 				}
 				output += symbol[0];
 			}
-			
 		}
 		writeToStream(output);
 		symbolCounter++;
 		prevStyle = style;
 		prevUrl = url;
 		//Write the plain text
-	}
-	public String fontSizeToPercent(int size)
-	{
-		return (float)size/18f*100f+"%";
 	}
 	public void inAShortblock(AShortblock node)
 	{
@@ -863,11 +715,6 @@ public class CodeGenerator extends DepthFirstAdapter{
 			writeToStream("<ol>\n");
 		}
 		isEnumerating = true;
-		currentNumerationLevel = 1;
-	}
-	public void outANumerationLines(ANumerationLines node)
-	{
-		prevNumerationLevel = currentNumerationLevel;
 	}
 	public void inAItemlistLines (AItemlistLines node)
 	{
@@ -929,12 +776,11 @@ public class CodeGenerator extends DepthFirstAdapter{
 	}
 	public void inANumerationNumerationv1 (ANumerationNumerationv1 node)
 	{
-		//writeToStream("<ol>\n");
-		currentNumerationLevel++;
+		writeToStream("<ol>\n");
 	}
 	public void outANumerationNumerationv1 (ANumerationNumerationv1 node)
 	{
-		//writeToStream("</ol>\n");
+		writeToStream("</ol>\n");
 	}
 	public void inAItemlistItemlistv1 (AItemlistItemlistv1 node)
 	{
@@ -946,23 +792,6 @@ public class CodeGenerator extends DepthFirstAdapter{
 	}
 	public void inAPlaintextNumerationv1 (APlaintextNumerationv1 node)
 	{
-		if (currentNumerationLevel < prevNumerationLevel)
-		{
-			for (int i = 0; i < prevNumerationLevel-currentNumerationLevel; i++)
-			{
-				writeToStream("</ol>\n");
-			}
-		}
-		if (currentNumerationLevel > prevNumerationLevel)
-		{
-			if (currentNumerationLevel != 1)
-			{
-				for (int i = 0; i < currentNumerationLevel-prevNumerationLevel; i++)
-				{
-					writeToStream("<ol>\n");
-				}
-			}
-		}
 		writeToStream("<li>\n");
 	}
 	public void outAPlaintextNumerationv1 (APlaintextNumerationv1 node)
