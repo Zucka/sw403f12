@@ -618,9 +618,8 @@ public class CodeGenerator extends DepthFirstAdapter{
 				}
 				if (!isInSubtitle)
 				{
-					output += "<h2 class=\"subtitle\"><span "+style+">";
+					output += "<h2 class=\"subtitle\" "+style+">";
 					isInSubtitle = true;
-					isInSpan = true;
 				}
 				if (url != "")
 				{
