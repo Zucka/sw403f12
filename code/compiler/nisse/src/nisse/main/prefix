@@ -14,6 +14,7 @@ body,div{
 h1,h2,h3,h4 {
 	margin:0px;
 	padding:0px;
+	margin-bottom:1%;
 }
 ul,ol {
 	margin:0px 0px 0px 0px;
@@ -23,11 +24,6 @@ body {
 	background:#efefef;
 	overflow:hidden;
 }
-h1 { font-size:200%; margin-bottom:1%}
-h2 { font-size:130%; margin-bottom:1%; color:#666; }
-
-
-
 
 #wrapper {
 	position: absolute;
@@ -50,7 +46,6 @@ h2 { font-size:130%; margin-bottom:1%; color:#666; }
 	height:100%;
 	width:100%;
 }
-
 
 .slide {
 	position: absolute;
