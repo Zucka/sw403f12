@@ -1,0 +1,31 @@
+\section{Font Type}
+\label{AppendixFontType}
+The following sections contains descriptions about the font types that can be changed in NISSE.
+
+\subsection{Font\_family}
+The expression \texttt{font\_family} sets the font family such as Arial, Verdana, etc., from the beginning of the slideshow or at a specific slide, so that the font family can be applied locally or globally. The language supports all the same font families as CSS (Cascading Style Sheets) does.
+
+\begin{lstlisting}[frame=single]
+	@apply{@font_family: Verdana | this text is in Verdana font family}
+\end{lstlisting}
+
+\subsection{Font\_color}
+The expression \texttt{font\_color} sets the font colour from the beginning of the slideshow or at a specific slide, so that the colour can be applied locally or globally. The language supports all the same font colours as CSS does.
+
+\begin{lstlisting}[frame=single]
+	@apply{@font_color: Blue| %{\color{blue}this text is in blue colour}%}
+\end{lstlisting}
+
+\subsection{Font\_size}
+The expression \texttt{font\_size} sets the font size from the beginning of the slideshow or at a specific slide, so that the size can be applied locally or globally. The language supports all the font sizes as the CSS does. The font size is defined in pixels.
+
+\begin{lstlisting}[frame=single]
+	@apply{@font_size: 70 | %{\Large{this text is in size 70}}%}
+\end{lstlisting}
+
+\subsection{Font\_weight}
+The expression \texttt{font\_weight} refers to the term \texttt{font weight}, which is the various settings that can be defined for the font, bold italic and underline.
+
+\begin{lstlisting}[frame=single]
+	@apply{@font_weight: italic| %\textit{this text is in italic}%}
+\end{lstlisting}
