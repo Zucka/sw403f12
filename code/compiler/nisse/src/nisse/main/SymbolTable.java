@@ -19,7 +19,7 @@ public class SymbolTable {
 	static String TitleFontLineheight  = "1.5";
 	static String TitleFontWeight = "";
 	//Subtitle Settings
-	static String SubtitleFontSize = "24";
+	static String SubtitleFontSize = "22";
 	static String SubtitleFontFamily = "arial";
 	static String SubtitleFontColor  = "gray";
 	static String SubtitleFontLineheight  = "1.5";

@@ -116,7 +116,7 @@ body {
 
 		.titleqimgageslide > .image {
 			float:left;
-			margin:0.7233%;
+			margin:0.5%;
 			width:24%;
 		}
 
@@ -178,17 +178,8 @@ body {
 .image {
 	vertical-align: middle;
 	position:relative;
-	text-align:center;
 	margin:2%;
 	float:left;
-}
-
-.fimage {
-	vertical-align: middle;
-	position:relative;
-	text-align:center;
-	margin:2%;
-	float:none;
 }
 
 	.image > .description {
@@ -198,7 +189,36 @@ body {
 		top:100%;
 	}
 
-
+.description {
+color:teal;
+font-family:arial;
+line-height:1.5;
+font-size:111.111115%;
+}
+.subtitle {
+color:gray;
+font-family:arial;
+line-height:1.5;
+font-size:133.33334%;
+}
+body {
+color:black;
+font-family:arial;
+line-height:1.5;
+font-size:100.0%;
+}
+.title {
+color:black;
+font-family:arial;
+line-height:1.5;
+font-size:100.0%;
+}
+a {
+color:blue;
+font-family:arial;
+line-height:1.5;
+font-size:100.0%;
+}
 </style>
 
 <!-- jQuery -->
@@ -254,6 +274,15 @@ $(function(){
 					$("#axis").css({
 						"margin-left": (w/2)-(new_width/2) ,
 					});
+
+					$(".imageslide > .image > img").css({
+						"height":(new_height*0.705)
+					});
+
+					$(".qimageslide > .image > img").css({
+						"height":(new_height*0.35)
+					});
+
 				}
 
 				function go_to_slide_rotate_scale(nr) {
