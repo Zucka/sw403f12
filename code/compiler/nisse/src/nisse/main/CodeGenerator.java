@@ -92,7 +92,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 			e.printStackTrace();
 		}
 		writeToStream("\n<style type=\"text/css\">\n");
-		writeToStream("img {\n");
+		writeToStream(".description {\n");
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontLineheight]+";\n");
@@ -455,54 +455,53 @@ public class CodeGenerator extends DepthFirstAdapter{
 			output += "</a>";
 			isInUrl = false;
 		}
-		if (font_size != fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize])))
+		if (symbol[1] == "text")
 		{
-			style += "font-size:"+font_size+"; ";
-		}
-		if (font_family != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontFamily])
-		{
-			style += "font-family:"+font_family+"; ";
-		}
-		if (font_color != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor])
-		{
-			style += "color:"+font_color+"; ";
-		}
-		if (font_lineheight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontLineheight])
-		{
-			style += "line-height:"+font_lineheight+"; ";
-		}
-		if (font_weight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight])
-		{
-			String[] weights = font_weight.split("\\s");
-			
-			for (String string : weights) {
-				if (string.contains("b"))
-				{
-					
-					style += "font-weight:bold; ";
-				}
-				else if (string.contains("i"))
-				{
-					style += "font-style:italic; ";
-				}
-				else if (string.contains("u"))
-				{
-					style += "text-decoration:underline; ";
+			if (font_size != fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize])))
+			{
+				style += "font-size:"+font_size+"; ";
+			}
+			if (font_family != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontFamily])
+			{
+				style += "font-family:"+font_family+"; ";
+			}
+			if (font_color != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor])
+			{
+				style += "color:"+font_color+"; ";
+			}
+			if (font_lineheight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontLineheight])
+			{
+				style += "line-height:"+font_lineheight+"; ";
+			}
+			if (font_weight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight])
+			{
+				String[] weights = font_weight.split("\\s");
+				
+				for (String string : weights) {
+					if (string.contains("b"))
+					{
+						
+						style += "font-weight:bold; ";
+					}
+					else if (string.contains("i"))
+					{
+						style += "font-style:italic; ";
+					}
+					else if (string.contains("u"))
+					{
+						style += "text-decoration:underline; ";
+					}
 				}
 			}
-		}
-		if (style != "")
-		{
-			style = "style=\""+style+"\"";
-		}
-		if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
-		{
-			output += symbol[0];
-		}
-		else {
-			if (symbol[1] == "text")
+			if (style != "")
 			{
-				
+				style = "style=\""+style+"\"";
+			}
+			if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
+			{
+				output += symbol[0];
+			}
+			else {
 				if (isInSpan)
 				{
 					if (isInUrl)
@@ -549,8 +548,54 @@ public class CodeGenerator extends DepthFirstAdapter{
 				}
 				output += symbol[0];
 			}
-			else if (symbol[1] == "title")
+		}
+		else if (symbol[1] == "title")
+		{
+			if (font_size != fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize])))
 			{
+				style += "font-size:"+font_size+"; ";
+			}
+			if (font_family != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontFamily])
+			{
+				style += "font-family:"+font_family+"; ";
+			}
+			if (font_color != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontColor])
+			{
+				style += "color:"+font_color+"; ";
+			}
+			if (font_lineheight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontLineheight])
+			{
+				style += "line-height:"+font_lineheight+"; ";
+			}
+			if (font_weight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontWeight])
+			{
+				String[] weights = font_weight.split("\\s");
+				
+				for (String string : weights) {
+					if (string.contains("b"))
+					{
+						
+						style += "font-weight:bold; ";
+					}
+					else if (string.contains("i"))
+					{
+						style += "font-style:italic; ";
+					}
+					else if (string.contains("u"))
+					{
+						style += "text-decoration:underline; ";
+					}
+				}
+			}
+			if (style != "")
+			{
+				style = "style=\""+style+"\"";
+			}
+			if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
+			{
+				output += symbol[0];
+			}
+			else {
 				if (isInSpan)
 				{
 					if (isInUrl)
@@ -594,8 +639,55 @@ public class CodeGenerator extends DepthFirstAdapter{
 				}
 				output += symbol[0];
 			}
-			else if (symbol[1] == "subtitle")
+			
+		}
+		else if (symbol[1] == "subtitle")
+		{
+			if (font_size != fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize])))
 			{
+				style += "font-size:"+font_size+"; ";
+			}
+			if (font_family != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontFamily])
+			{
+				style += "font-family:"+font_family+"; ";
+			}
+			if (font_color != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontColor])
+			{
+				style += "color:"+font_color+"; ";
+			}
+			if (font_lineheight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontLineheight])
+			{
+				style += "line-height:"+font_lineheight+"; ";
+			}
+			if (font_weight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontWeight])
+			{
+				String[] weights = font_weight.split("\\s");
+				
+				for (String string : weights) {
+					if (string.contains("b"))
+					{
+						
+						style += "font-weight:bold; ";
+					}
+					else if (string.contains("i"))
+					{
+						style += "font-style:italic; ";
+					}
+					else if (string.contains("u"))
+					{
+						style += "text-decoration:underline; ";
+					}
+				}
+			}
+			if (style != "")
+			{
+				style = "style=\""+style+"\"";
+			}
+			if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
+			{
+				output += symbol[0];
+			}
+			else {
 				if (isInSpan)
 				{
 					if (isInUrl)
@@ -633,8 +725,55 @@ public class CodeGenerator extends DepthFirstAdapter{
 				}
 				output += symbol[0];
 			}
-			else if (symbol[1].equals("imagetext"))
+			
+		}
+		else if (symbol[1].equals("imagetext"))
+		{
+			if (font_size != fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontSize])))
 			{
+				style += "font-size:"+font_size+"; ";
+			}
+			if (font_family != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontFamily])
+			{
+				style += "font-family:"+font_family+"; ";
+			}
+			if (font_color != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor])
+			{
+				style += "color:"+font_color+"; ";
+			}
+			if (font_lineheight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontLineheight])
+			{
+				style += "line-height:"+font_lineheight+"; ";
+			}
+			if (font_weight != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontWeight])
+			{
+				String[] weights = font_weight.split("\\s");
+				
+				for (String string : weights) {
+					if (string.contains("b"))
+					{
+						
+						style += "font-weight:bold; ";
+					}
+					else if (string.contains("i"))
+					{
+						style += "font-style:italic; ";
+					}
+					else if (string.contains("u"))
+					{
+						style += "text-decoration:underline; ";
+					}
+				}
+			}
+			if (style != "")
+			{
+				style = "style=\""+style+"\"";
+			}
+			if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
+			{
+				output += symbol[0];
+			}
+			else {
 				if (isInSpan)
 				{
 					if (isInUrl)
@@ -681,6 +820,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 				}
 				output += symbol[0];
 			}
+			
 		}
 		writeToStream(output);
 		symbolCounter++;
