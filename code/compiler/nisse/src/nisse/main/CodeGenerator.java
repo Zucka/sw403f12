@@ -39,6 +39,8 @@ public class CodeGenerator extends DepthFirstAdapter{
 	boolean isInImage = false;
 	String prevStyle = "";
 	String prevUrl = "";
+	int prevNumerationLevel = 0;
+	int currentNumerationLevel = 0;
 	
 	public CodeGenerator()
 	{
@@ -94,7 +96,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontLineheight]+";\n");
-		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontSize]+";\n");
+		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontSize]))+";\n");
 		String weight = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewImageFontWeight];
 		String[] weights = weight.split("\\s");
 		weight = "";
@@ -118,7 +120,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontLineheight]+";\n");
-		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize]+";\n");
+		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontSize]))+";\n");
 		String weight1 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewSubtitleFontWeight];
 		String[] weights1 = weight1.split("\\s");
 		weight1 = "";
@@ -142,7 +144,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontLineheight]+";\n");
-		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize]+";\n");
+		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize]))+";\n");
 		String weight2 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontWeight];
 		String[] weights2 = weight2.split("\\s");
 		weight2 = "";
@@ -166,7 +168,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontLineheight]+";\n");
-		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize]+";\n");
+		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontSize]))+";\n");
 		String weight3 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTitleFontWeight];
 		String[] weights3 = weight3.split("\\s");
 		weight3 = "";
@@ -190,7 +192,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("color:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontColor]+";\n");
 		writeToStream("font-family:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontFamily]+";\n");
 		writeToStream("line-height:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontLineheight]+";\n");
-		writeToStream("font-size:"+SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontSize]+";\n");
+		writeToStream("font-size:"+fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontSize]))+";\n");
 		String weight4 = SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewUrlFontWeight];
 		String[] weights4 = weight4.split("\\s");
 		weight4 = "";
@@ -437,12 +439,12 @@ public class CodeGenerator extends DepthFirstAdapter{
 			{
 				imgStyle = "width:100%;";
 			}
-			output += "<div class=\"image\">\n<img style=\""+imgStyle+"\" src=\""+symbol[7]+"\">";
+			output += "<div class=\"image\">\n<img style=\""+imgStyle+"\" src=\""+symbol[7]+"\"></br>";
 			isInImage = true;
 			symbolCounter++;
 			symbol = SymbolTable.SymbolTable1.get(symbolCounter);
 		}
-		String font_size = symbol.length > 2 ? symbol[2] : "";
+		String font_size = symbol.length > 2 ? fontSizeToPercent(Integer.parseInt(symbol[2])) : "";
 		String font_family = symbol.length > 3 ? symbol[3] : "";
 		String font_color = symbol.length > 4 ? symbol[4] : "";
 		String font_lineheight = symbol.length > 5 ? symbol[5] : "";
@@ -453,7 +455,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 			output += "</a>";
 			isInUrl = false;
 		}
-		if (font_size != SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize])
+		if (font_size != fontSizeToPercent(Integer.parseInt(SymbolTable.Scope[SymbolTable.OuterMostScope][SymbolTable.NewTextFontSize])))
 		{
 			style += "font-size:"+font_size+"; ";
 		}
@@ -500,6 +502,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		else {
 			if (symbol[1] == "text")
 			{
+				
 				if (isInSpan)
 				{
 					if (isInUrl)
@@ -684,6 +687,10 @@ public class CodeGenerator extends DepthFirstAdapter{
 		prevUrl = url;
 		//Write the plain text
 	}
+	public String fontSizeToPercent(int size)
+	{
+		return (float)size/18f*100f+"%";
+	}
 	public void inAShortblock(AShortblock node)
 	{
 		//Write the text with the given "settings"
@@ -715,6 +722,11 @@ public class CodeGenerator extends DepthFirstAdapter{
 			writeToStream("<ol>\n");
 		}
 		isEnumerating = true;
+		currentNumerationLevel = 1;
+	}
+	public void outANumerationLines(ANumerationLines node)
+	{
+		prevNumerationLevel = currentNumerationLevel;
 	}
 	public void inAItemlistLines (AItemlistLines node)
 	{
@@ -776,11 +788,12 @@ public class CodeGenerator extends DepthFirstAdapter{
 	}
 	public void inANumerationNumerationv1 (ANumerationNumerationv1 node)
 	{
-		writeToStream("<ol>\n");
+		//writeToStream("<ol>\n");
+		currentNumerationLevel++;
 	}
 	public void outANumerationNumerationv1 (ANumerationNumerationv1 node)
 	{
-		writeToStream("</ol>\n");
+		//writeToStream("</ol>\n");
 	}
 	public void inAItemlistItemlistv1 (AItemlistItemlistv1 node)
 	{
@@ -792,6 +805,23 @@ public class CodeGenerator extends DepthFirstAdapter{
 	}
 	public void inAPlaintextNumerationv1 (APlaintextNumerationv1 node)
 	{
+		if (currentNumerationLevel < prevNumerationLevel)
+		{
+			for (int i = 0; i < prevNumerationLevel-currentNumerationLevel; i++)
+			{
+				writeToStream("</ol>\n");
+			}
+		}
+		if (currentNumerationLevel > prevNumerationLevel)
+		{
+			if (currentNumerationLevel != 1)
+			{
+				for (int i = 0; i < currentNumerationLevel-prevNumerationLevel; i++)
+				{
+					writeToStream("<ol>\n");
+				}
+			}
+		}
 		writeToStream("<li>\n");
 	}
 	public void outAPlaintextNumerationv1 (APlaintextNumerationv1 node)

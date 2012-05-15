@@ -77,7 +77,7 @@ public class Main {
 		}
 		else {
 			try {
-				input = new FileReader("/Users/JS/Documents/GIT/t3.txt");
+				input = new FileReader("c:/fisk/test.txt");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
