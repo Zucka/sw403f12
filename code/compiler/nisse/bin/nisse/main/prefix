@@ -128,8 +128,7 @@ body {
 
 		.imageslide > .image {
 			float:none;
-			margin:2%;
-			height: 100%; 
+			width:96% ;
 		}
 
 	.slide > .dimageslide {
@@ -182,7 +181,6 @@ body {
 	text-align:center;
 	margin:2%;
 	float:left;
-	width:46%;
 }
 
 .fimage {
