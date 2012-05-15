@@ -117,7 +117,7 @@ In order for the compiler to apply a transition on a slide, the analyser has to 
 %    \subsection{Type Checking}
 %The type checking in a begin- and end line consists of checking that between the two brackets is the word \texttt{slide}. In special cases, where a transition is on a slide, the word \texttt{slide} must be between the pipe and the right bracket. The word seems redundant because no other word can be in its place at this time. But for further development, where a begin- and end line can do more than just enclose a slide, this will come in handy.
 
-\subsection{Slide Type Checking}
+\subsection{Slide type checking}
 There are different types of slide layouts. For instance, most slide presentations starts with a title slide, with or without a subtitle. The front page contains a title, and in some cases a subtitle, which both is in the middle of the slide. This placement is defined per default, instead of providing the user the explicit choice of this, to make it less complicated for the user. \\
 The semantic analyser will check this, and creates the correct type of slide according to the text input from the user.
 
@@ -245,7 +245,7 @@ From line 5 it checks if the transition is \texttt{slide}, in this case there is
 From line 8 to 19 it checks what kind of transition it is, and sets it to the found transition, if the transition is not found, the slide will have no transition. \\
 In line 20 to 23 the function sets the transition to default, and creates an error, because it was not the correct transition which was wanted by the user.
 
-\subsection{Slide Layout}
+\subsection{Slide layout}
 In listing \ref{LSTOutBlockBlocks} from line 24 to 60, we find out which type the slide it is. It starts by being \texttt{Unknown}, but it should never be that in the end. Then, in line 25 it creates an array of each object (line) in the slide. The number of lines is determined in line 26. \\
 The number of title-, subtitle- and image lines is set in line 28 - 30. \\
 To check how many there are, by checking the number of lines, we do a loop for each of the lines, and increment the variable for the specific type. If a normal text line is encountered, it will automatically be a \texttt{normal} slide. \\

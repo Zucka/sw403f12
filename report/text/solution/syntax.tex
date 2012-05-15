@@ -3,18 +3,8 @@
 
 The requirements for the language is defined in the section ``Language design'' \ref{LanguageRequirements}. Keywords are in the language to give structure and flexibility. These have different outcomes, although some are similar. Some of the keywords are used for the structuring of slides in a slideshow, others are used for text formatting or image placement. To give a higher level of readability, keywords must have meaningful names according to their use and effect. Secondly, it has to be defined in which order these are allowed, and what they mean in that particular order.
 
-\section{Keywords}
-This is a list of reserved words in the language, where the words with the @-prefix may not be used otherwise, because the @-prefix should state that an event is about to happen.
-
-\begin{lstlisting}[frame=single]
-slide, fade, swipe, scale, rotatescale, @begin, @end, 
-title, subtitle, global, text, image, url,  
-#, *, 
-@font_family, @font_color, @font_size, @font_weight, @u, @i, @b, 
-@apply, @setting, @image, @url
-\end{lstlisting}
-
 \section{Expressions}
+Expressions are the words with the @-prefix and may not be used otherwise, because the @-prefix should state that an event is about to happen.
 
 \subsection{@begin}
 \label{@begin}
@@ -31,44 +21,111 @@ The expression \texttt{@end} is used to determine the end of a slide, writing th
 @end{slide}
 \end{lstlisting}
 
+The following example is some of the basic elements in the language:
+\begin{lstlisting}[frame=single]
+Input:
+@begin{slide}
+    Hello World
+@end{slide}
+
+%Output: Hello World%
+\end{lstlisting}
+
+\noindent{Which states that a slide begins, and that the slide contains the text ``Hello World''. \\
+\subsection{Transition}
+\label{sec:transition}
+Each slide can contain a transition, these transitions are set as keywords.
+\begin{lstlisting}[frame=single, caption=Transition keywords]
+fade, swipe, scale, rotatescale
+\end{lstlisting}
+
+The transition is inserted before the pipe in an @begin expression. The pipe is inserted only when a transition is wanted, as shown in listing \ref{SyntaxTransition}.
+\begin{lstlisting}[frame=single, caption=Hello World with transition, label=SyntaxTransition]
+Input:
+@begin{fade|slide}
+    Hello World
+@end{slide}
+
+%Output: Hello World%
+\end{lstlisting}
+
 \subsection{@setting}
-This keyword sets a new setting for a specific type, or globally.
+This expression sets a new setting for a specific type, or globally.
 \begin{lstlisting}[frame=single]
 @setting{FontChanges:Value | Type}
 \end{lstlisting}
-Where \texttt{FontChanges} is what kind of font setting that is changed. 
-\texttt{FontChanges} could be font size, font family and so on, written in the language as \texttt{@font\_size} and \texttt{@font\_family} respectively. \\
+
+Where \texttt{FontChanges} is what kind of font setting that is changed, which can be the expressions in listing \ref{SyntaxSettingFontType}. A more detailed description of these expressions can be read in appendix \ref{AppendixFontType}.
+
+\begin{lstlisting}[frame=single, caption=Font type expressions, label=SyntaxSettingFontType]
+@font_family, @font_color, @font_size, @font_weight,
+\end{lstlisting}
+
 \texttt{Value}, is the value that it is set to. \\
-\texttt{Type} is referring to which font class it will change, e.g. title, text or the keyword \texttt{global} in this matter means that all font classes are changed.
+
+\texttt{Type} is referring to which font class it will change, these font classes are set as keywords and is shown in listing \ref{SyntaxFontClass}
+\begin{lstlisting}[frame=single, caption=Font class, label=SyntaxFontClass]
+title, subtitle, global, text, image, url
+\end{lstlisting}
+
+\subsubsection*{Global}
+The \texttt{global} keyword makes it possible to apply settings globally, which overwrites the settings of normal text, titles, subtitles, image descriptions and URLs. Globals work from the place in the slide where it is applied or from the place outside a slide.\\
+\\ \\
+An example with the use of @setting is shown in listing \ref{lst:SyntaxSetting}
+
+\begin{lstlisting}[frame=single, caption=Hello World with setting, label=lst:SyntaxSetting]
+Input:
+@begin{fade|slide}
+    @setting{font_color:blue|text}
+    Hello World
+@end{slide}
+
+%Output: {\color{blue}Hello World}%
+\end{lstlisting}
 
 \subsection{@apply}
 The expression \texttt{apply} changes the font for some specific text.
 \begin{lstlisting}[frame=single]
 @apply{FontChanges:Value | Text}
 \end{lstlisting}
-Where \texttt{FontChanges} is what kind of font setting that is changed, and \texttt{Value} is the value that it is set to. The difference between this and the \texttt{setting} expression is the characters after the pipe and the general meaning of the two expressions. \\
-The \texttt{Text} in the expression refers to any text the user would want in this expression. \\
+Where \texttt{FontChanges} is what kind of font type that will be changed, shown in listing \ref{SyntaxSettingFontType}
+
+\texttt{Value} is the value that it is set to. 
+\texttt{Text} refers to the text which is inserted in the slides with the font changes that is made on the other side of the pipe.
 The \texttt{@apply} expression only changes the font for the specific text which is in the expression.
+An example with the use of @apply is shown in listing \ref{lst:SyntaxApply}
 
-\subsection{@image}
-%The \texttt{@image} expression imports an image from the Internet, the expression looks like this:
-The \texttt{@image} expression imports an image from the Internet as well as from the user's local machine, although it is discouraged to provide absolute paths for images, because this would only make the user's computer able to show the image. Instead, it is encouraged that the user specify the name of the image, and that he instead is placing it in the same folder as the project. This is only the case if there are more contributors to the slideshow.\\
-When importing from the Internet the URL has to be provided, whereas when importing a locally stored image the file path that specific image has to be provided, as can be seen in the example below:
-\begin{lstlisting}[frame=single]
-@image{@url: URL | Text }
+\begin{lstlisting}[frame=single, caption=Hello World with apply, label=lst:SyntaxApply]
+@begin{fade|slide}
+    @setting{font_color:blue|text}
+    Hello World
+    @apply{@font_size:70| Amazing world}
+    Hello you
+@end{slide}
+
+%Output: {\color{blue}Hello World}%
+%{\Large{\color{blue}Amazing world}}%
+%{\color{blue}Hello you}%
 \end{lstlisting}
-%\texttt{``@url''} has to be there to indicate the start of an URL. \texttt{``URL''} indicates an URL string. \texttt{Text} refers to the text which is under the image, also called the image description.
-\texttt{``@url''} is the keyword indicating that a URL will be inserted, whereas \texttt{``URL''} is the actual URL address that has been inserted. \\
-The only thing that the user have to be aware of, is that the image have to be placed in the same context, or directory the compiler if it is to function properly
 
-\subsection{Bullet points (*)}
-The \texttt{*} expression starts a list of bullet points, where the text after the star will be the text after the bullet.
-A star has to be set on each line that is going to be a bullet. Multilevel bullet points can be made using two \texttt{*}. The maximum multilevel that can be made is five. \\
-Bullet points must never have spaces before the *, which makes the compiler think it is plain text. According to our rules, the user must not have plain text before numerations.
+\subsection{Hyperlinks}
+The expression \texttt{@url} along with \texttt{@apply} makes it possible for the user to include URLs, as hyperlinks, that redirects the user to the specific URL.
+An example of the use of url links is shown in listing \ref{lst:SyntaxURL}
 
-\subsection{Numeration (\#)}
-The \texttt{\#} expression starts a numeration list starting from one, and for each line the hash tag is used, the number is incremented. Multilevel numerations can be made using two or more \texttt{\#}. The maximum multilevel that can be made is five. If the line after a hash tag line is not a hash tag line, the numeration list is ended and thus a new hash tag line would have its numeration starting from one. \\
-Bullet points must never have spaces before the \#, which makes the compiler think it is plain text. According to our rules, the user must not have plain text before numerations.
+\begin{lstlisting}[frame=single, caption=Hello World with an URL, label=lst:SyntaxURL]
+@begin{fade|slide}
+    @setting{font_color:blue|text}
+    Hello World
+    @apply{@font_size:70| Amazing world}
+    Hello you
+    @apply{@url: http://www.somelink.com/ | This URL}
+@end{slide}
+
+%Output: {\color{blue}Hello World}%
+%{\Large{\color{blue}Amazing world}}%
+%{\color{blue}Hello you}%
+%{\color{cyan}This URL}%
+\end{lstlisting}
 
 \subsection{Font weights}
 These expressions are similar to each other, in that they are all formatting text, as seen below \\
@@ -89,244 +146,131 @@ It is possible to make font changes, using \texttt{@u / @i / @b}, like:}
 \end{lstlisting}
 
 \noindent{Which looks familiar to the \texttt{@apply} expression, and the functionality is basically the same, even though the text is set as any of the font weights \texttt{@u / @i / @b} to begin with. The \texttt{@u / @i / @b} makes it much faster to make a weight on a text instead of writing: @apply\{ @font\_weight:bold | Text \} each time to make bold text.}
+The use of weight expressions is shown in listing \ref{lst:SyntaxBUI}
+\begin{lstlisting}[frame=single, caption=Hello World with font weight, label=lst:SyntaxBUI]
+@begin{fade|slide}
+    @setting{font_color:blue|text}
+    Hello World
+    @apply{@font_size:70| Amazing world}
+    Hello you
+    @apply{@url: http://www.somelink.com/ | This URL}
+    @b{@font_color:red | This text is red and bold}
+@end{slide}
 
-
-\subsection{Hyperlinks}
-The expression \texttt{@url} along with \texttt{@apply} makes it possible for the user to include URLs, as hyperlinks, that redirects the user to the specific URL.
-
-\begin{lstlisting}[frame=single]
-	@apply{@url: http://www.somelink.com/ | This URL}
-\end{lstlisting}	
-
-\subsection{Transition}
-\label{transition}
-The \texttt{transition} expression is the transitions between slides. A transition is defined as the transition to use when moving away from the current slide. Currently there are four kind of transitions implemented; fade, swipe, scale and rotatescale.
-
-\begin{lstlisting}[frame=single]
-	@begin{fade | slide}
+%Output: {\color{blue}Hello World}%
+%{\Large{\color{blue}Amazing world}}%
+%{\color{blue}Hello you}%
+%{\color{cyan}This URL}%
+%{\color{red} \textbf{This text is red and bold}}%
 \end{lstlisting}
-
-\subsection{Font\_family}
-The expression \texttt{font\_family} sets the font family such as Arial, Verdana, etc., from the beginning of the slideshow or at a specific slide, so that the font family can be applied locally or globally. The language supports all the same font families as CSS (Cascading Style Sheets) does.
-
-\begin{lstlisting}[frame=single]
-	@apply{@font_family: Verdana | this text is in Verdana font family}
-\end{lstlisting}
-
-
-\subsection{Font\_color}
-The expression \texttt{font\_color} sets the font colour from the beginning of the slideshow or at a specific slide, so that the colour can be applied locally or globally. The language supports all the same font colours as CSS does.
-
-\begin{lstlisting}[frame=single]
-	@apply{@font_color: Blue| %{\color{blue}this text is in blue colour}%}
-\end{lstlisting}
-
-
-\subsection{Font\_size}
-The expression \texttt{font\_size} sets the font size from the beginning of the slideshow or at a specific slide, so that the size can be applied locally or globally. The language supports all the font sizes as the CSS does. The font size is defined in pixels.
-
-\begin{lstlisting}[frame=single]
-	@apply{@font_size: 70 | %{\Large{this text is in size 70}}%}
-\end{lstlisting}
-
-
-\subsection{Font\_weight}
-The expression \texttt{font\_weight} refers to the term \texttt{font weight}, which is the various settings that can be defined for the font, bold italic and underline.
-
-\begin{lstlisting}[frame=single]
-	@apply{@font_weight: italic| %\textit{this text is in italic}%}
-\end{lstlisting}
-
-\subsection{Global}
-The \texttt{global} expression makes it possible to apply settings globally, which overwrites the settings of normal text, titles, subtitles, image descriptions and URLs. Globals work from the place in the slide where it is applied or in the beginning of the slideshow. 
-\begin{lstlisting}[frame=single]
-	@setting{font_color: green | global}
-\end{lstlisting}
-
 
 \subsection{Title}
 The expression \texttt{@title} makes a title for the slide. The title can be formatted as all other text, with the different font weights, font sizes, etc. The user can use the default settings for the title, regarding font family, font colour, font size, or define them himself inside the @title expression.
-\begin{lstlisting}[frame=single]
-	@title{font_size: 30 | This is a title}
+An example of the use of @title is shown in listing \ref{lst:SyntaxTitle}
+
+\begin{lstlisting}[frame=single, caption=Hello World with title, label=lst:SyntaxTitle]
+@begin{fade|slide}
+    @setting{font_color:blue|text}
+    Hello World
+    @apply{@font_size:70| Amazing world}
+    Hello you
+    @apply{@url: http://www.somelink.com/ | This URL}
+    @b{@font_color:red | This text is red and bold}
+    @title{@font_weight:underlined| This is an underlined title}
+@end{slide}
+
+%Output: {\color{blue}Hello World}%
+%{\Large{\color{blue}Amazing world}}%
+%{\color{blue}Hello you}%
+%{\color{cyan}This URL}%
+%{\color{red} \textbf{This text is red and bold}}%
+%{\underline{\Large{ This is an underlined title}}}%
 \end{lstlisting}
 
 
 \subsection{Subtitle}
 The expression \texttt{@subtitle} makes a subtitle for the slide, which means that it will be placed beneath the title, per default with a smaller font size than title. The subtitle can be formatted as all other text, with the different font weights, font sizes, etc. The user can use the default settings for the subtitle, regarding font family, font colour, font size, or define them himself inside the @subtitle expression.
-
-\begin{lstlisting}[frame=single]
-	@subtitle{font_size: 26 | This is a subtitle}
-\end{lstlisting}
-
-
-\subsection{Slide Name}
-The expression \texttt{slide name} is the text that is written on the right side of the pipe in an @begin{} and @end{} expression. The slide name in both cases has to be identical.
-
-\begin{lstlisting}[frame=single]
- @begin{fade | slide name}
- @end{slide name}
-\end{lstlisting}
-
-
-\section{Examples}
-The following example is some of the basic elements in the language:
-\begin{lstlisting}[frame=single]
-Input:
+An example of the use of @subtitle is shown in listing \ref{lst:SyntaxSubtitle}.
+\begin{lstlisting}[frame=single, caption=Hello World with subtitle, label=lst:SyntaxSubtitle]
 @begin{fade|slide}
+    @setting{font_color:blue|text}
     Hello World
+    @apply{@font_size:70| Amazing world}
+    Hello you
+    @apply{@url: http://www.somelink.com/ | This URL}
+    @b{@font_color:red | This text is red and bold}
+    @title{@font_weight:underlined| This is an underlined title}
+    @subtitle{This is a subtitle}
 @end{slide}
 
-%Output: Hello World%
+%Output: {\color{blue}Hello World}%
+%{\Large{\color{blue}Amazing world}}%
+%{\color{blue}Hello you}%
+%{\color{cyan}This URL}%
+%{\color{red} \textbf{This text is red and bold}}%
+%{\underline{\Large{ This is an underlined title}}}%
+%{\large{This is a subtitle}}%
 \end{lstlisting}
 
-\noindent{Which states that a slide begins, with a transition ``fade'', and that the slide contains the text ``Hello World''. \\
-The examples in the rest of this section are all written between \texttt{@begin}\{slide\} and a \texttt{@end}\{slide\} to conserve space.}
-\\ \\
-After an @, a keyword always begins, making it easy for the compiler to recognize a keyword.
-Another keyword is \texttt{setting}, in this example the setting is set for the type ``title'' to a font size of 40. \\
-A setting can be initiated outside, as well as inside, a slide. The difference is that, outside a slide the setting is applied to all the upcoming slides, if the setting is inside the slide, it is only applied to that slide. If no settings are set while making the slides, default settings will be used.
 
-\begin{lstlisting}[frame=single]
-Input: @setting{@font_size:40|title}
+\subsection{@image}
+The \texttt{@image} expression imports an image from the internet as well as from the user's local machine, although it is discouraged to provide absolute paths for images, because this would only make the user's computer able to show the image. Instead, it is encouraged that the user specify the name of the image, and that he instead is placing it in the same folder as the project. This is only the case if there are more contributors to the slideshow.\\
+When importing from the internet the URL has to be provided, whereas when importing a locally stored image the file path that specific image has to be provided, as can be seen in listing \ref{lst:SyntaxImageGeneral}.
 
-%Output: (title font size set to 40)%
+\begin{lstlisting}[frame=single, caption=Image expression, label=lst:SyntaxImageGeneral]
+@image{@url: URL | Text }
 \end{lstlisting}
 
-\noindent{A way to use the title type can be as shown in the following example:} \\
+\texttt{``@url''} is the expression indicating that a URL will be inserted, whereas \texttt{``URL''} is the actual URL address that has been inserted. \\
+\texttt{Text} refers to the text which is under the image, also called the image description.
+The only thing that the user have to be aware of, is that the image have to be placed in the same context, or directory the compiler if it is to function properly
 
-\begin{lstlisting}[frame=single]
-Input: @title{Hello and welcome}
 
-%Output: Hello and welcome (in the title format)%
-\end{lstlisting}
+\begin{lstlisting}[frame=single, caption=Hello World with an image, label=lst:SyntaxImage]
+@begin{fade|slide}
+    @setting{font_color:blue|text}
+    Hello World
+    @apply{@font_size:70| Amazing world}
+    Hello you
+    @apply{@url: http://www.somelink.com/ | This URL}
+    @b{@font_color:red | This text is red and bold}
+    @title{@font_weight:underlined| This is an underlined title}
+    @subtitle{This is a subtitle}
+    @image{@url: http://www.yourlogocollection.com/wp-content/uploads/2011/11/google_logo.jpg | This is googles logo}
+@end{slide}
 
-\noindent{Because there are no additional settings to be set on this sentence, no pipe has to occur. \\
-Besides the \texttt{title} type, there is the \texttt{subtitle} type, which makes a subtitle for the slide, which means that it will be placed beneath the title, per default with a smaller font size.}
-
-\begin{lstlisting}[frame=single]
-Input: @apply{@font_color:orange | funky}
-
-%Output:
-{\color{Orange}~funky}
+%Output: {\color{blue}Hello World}%
+%{\Large{\color{blue}Amazing world}}%
+%{\color{blue}Hello you}%
+%{\color{cyan}This URL}%
+%{\color{red} \textbf{This text is red and bold}}%
+%{\underline{\Large{This is an underlined title}}}%
+%{\large{This is a subtitle}}%
+%
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{./images/google_logo.jpg}
+	\caption{This is googles logo}
+\end{figure}
 %
 \end{lstlisting}
 
-\noindent{Between the left curly and the potential pipe, settings can be applied to that specific sentence, like:} \\
+\subsection{Bullet points (*)}
+The \texttt{*} expression starts a list of bullet points, where the text after the star will be the text after the bullet.
+A star has to be set on each line that is going to be a bullet. Multilevel bullet points can be made using two \texttt{*}. The maximum multilevel that can be made is five. \\
+Bullet points must never have spaces before the *, which makes the compiler think it is plain text. According to our rules, the user must not have plain text before numerations.
 
-\begin{lstlisting}[frame=single]
-Input: @title{@font_size:70 |Hello and welcome}
+A bullet list is made in listing \ref{lst:BulletExample}. \\
 
-%Output: \Large{Hello and welcome} (in title format with size 70)%
-\end{lstlisting}
-Which sets only this line of type ``title'' to font size 70, instead of 40, which was initialized above.
-This can also be applied to normal sentences like:\\
-
-\begin{lstlisting}[frame=single]
-Input: @apply{@font_size:25 | Welcome to this slide}
-
-%Output: \large{Welcome to this slide} (with font size 25)%
-\end{lstlisting}
-You have to use the keyword ``apply'', to change the format of regular text. More than one format change can be applied per sentence; each format change does not necessarily need to be separated by one or more spaces. The order of format changes is irrelevant to the compiler. Here the font size is set to 25, and the text is set to bold and the text is ``Welcome to this slide''.
-
-\noindent{The weight of the text can be set in two ways, the first looks like the way we just changed the font size:} \\
-
-\begin{lstlisting}[frame=single]
-Input: @apply{@font_weight:bold @font_size:25 | Welcome to bold text}
-
-%Output: \textbf{\large{Welcome to bold text}} (with font size 25)}%
-\end{lstlisting}
-
-\noindent{A quicker way to set bold text is as follows:} \\
-
-\begin{lstlisting}[frame=single]
-Input: @b{Welcome to bold text}
-
-%Output: \textbf{Welcome to bold text}%
-\end{lstlisting}
-Furthermore, we now want to underline a single word in that sentence: \\
-
-\begin{lstlisting}[frame=single, label=lst:Fast-NonFast]
-Input: @b{Welcome to @u{bold} text}
-
-%Output: \textbf{Welcome to \underline{bold} text}%
-\end{lstlisting}
-Which make the whole text bold and underlined the word ``bold''.\\
-Combining the fast and the not so fast way, would look like this:\\
-
-\begin{lstlisting}[frame=single]
-Input: @apply{@font_weight:bold | Welcome to @u{bold} text}
-
-%Output: \textbf{Welcome to \underline{bold} text}%
-\end{lstlisting}
-Which gives the same result as output in listing \ref{lst:Fast-NonFast}.
-\\ \\
-Furthermore, it is also possible to define a specific font colour for some specific text, as can be seen as below:
-\begin{lstlisting}[frame=single]
-Input: @apply{@font_weight:bold @font_color:brown | Welcome to @u{bold} text}
-
-%Output: {\color{Brown}\textbf{Welcome to \underline{bold} text}}%
-\end{lstlisting}
-
-
-\noindent{The \texttt{global} expression makes it possible to apply font weights globally. The weights could be font colour, font family, links, etc.). Furthermore, \texttt{global} overwrites normal text, titles, subtitles, image descriptions and URLs. \\
-An example of the use of \texttt{global} can be seen beneath, in this case operating with \texttt{font\_weight} and \texttt{subtitle}:}
-
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}[frame=single, caption=Bullet point example, label=lst:BulletExample]
 Input:
 @begin{slide}
-   @setting{@font_weight:bold | global}
-   @title{Hello World}
-   Everything is bold!
-@end{slide}
-
-%Output:
-\\ \\
-\textbf{{\Large{Hello World}}
-\\ \\ Everything is bold!}%
-\end{lstlisting}
-
-\subsection*{To summarize}
-\texttt{@begin} To start a slide. \\
-\texttt{@end} To end a slide. \\
-\texttt{@b} Makes bold text. \\
-\texttt{@u} Makes underlined text. \\
-\texttt{@i} Makes italic text. \\
-\texttt{@apply}Changes a parameter for one specific line. \\
-\texttt{@setting} Changes a parameter for the slide or all upcoming slides.\\
-
-\noindent{The following is a larger example to demonstrate what is just used:} \\
-
-\begin{lstlisting}[frame=single]
-Input:
-@begin{fade|slide}
-    @title{@b{Welcome to this course}}
-    @setting{@font_family: Arial | text}
-    This course will contain information about how you @u{underline} things, and how you do other    
-    @i{weight stuff} on sentences.
-    @apply{@font_weight:bold | Like this.}
-@end{slide}
-
-
-%Output:%
-%\textbf{Welcome to this course} (as title)%
-%This course will contain information about how you \underline{underline} things, and how you do other \textit{weight stuff} on sentences. (with font type Arial)%
-%\textbf{Like this.}  (with font type Arial)%
-\end{lstlisting}
-
-\noindent{Settings do not have to be set at all, if they are not set, the default settings will be used.}
-
-\subsection{Lists}
-There are two types of lists; consisting of either bullets or numerations.
-A bullet list is made by writing the following: \\
-
-\begin{lstlisting}[frame=single]
-Input:
 List of things to buy
 * 2 x milk
 * Bread
 ** Light
 * BKI coffee
-
+@end{slide}
  
 %Output:\\
 List of things to buy\\
@@ -340,17 +284,22 @@ List of things to buy\\
 \end{itemize}%
 \end{lstlisting}
 
-\noindent{Where a star symbolises a bullet, two bullets symbolises a bullet inside a bullet.
-Numeration is made by the following: \\
-Between the \texttt{\#} and the \texttt{*} the text that is related to the sign, does not necessarily need to be separated by a space, the text can also contain spaces and numbers if needed.} \\
 
-\begin{lstlisting}[frame=single]
+\subsection{Numeration (\#)}
+The \texttt{\#} expression starts a numeration list starting from one, and for each line the hash tag is used, the number is incremented. Multilevel numerations can be made using two or more \texttt{\#}. The maximum multilevel that can be made is five. If the line after a hash tag line is not a hash tag line, the numeration list is ended and thus a new hash tag line would have its numeration starting from one. \\
+Numeration must never have spaces before the \#, which makes the compiler think it is plain text. According to our rules, the user must not have plain text before numerations.
+
+A numeration list is made in listing \ref{lst:NumerationExample}: \\
+
+\begin{lstlisting}[frame=single, caption=Numeration example, label=lst:NumerationExample]
 Input:
+@begin{slide}
 Agenda
 # Introduction
 # Presentation
 ## Code examples
 # Evaluation
+@end{slide}
 
 %Output:\\
 Agenda
@@ -363,27 +312,3 @@ Agenda
 \item Evaluation
 \end{enumerate}%
 \end{lstlisting}
-
-\noindent{Where a \# symbolises a number that is incrementing. Using two \# creates a sub numeration starting from one.}
-
-\subsection{Images}
-Importing images from the Internet and only from the Internet can be done using the following code example:
-% Internet
-\begin{lstlisting}[frame=single]
-Input: @image{@url: http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg  | Aalborg University logo}
-
-%Output:\\
-(An image from the webpage \url{http://www.danwec.com/images/foto/thumbs3/aau_logo.jpg} is shown with the image description of ''Aalborg University logo'')%
-\end{lstlisting}
-%Internet
-Importing pictures from the user's local machine can be done using the following code example:
-%Local image
-\begin{lstlisting}[frame=single]
-Input: @image{@url: C:\Users\Benjamin\Pictures\aau_logo.jpg  | Aalborg University logo}
-
-%Output:\\
-(An image stored on the user's local machine is shown with the image description of ''Aalborg University logo'')%
-\end{lstlisting}
-%Local image
-
-\noindent{Where the URL, or file path, to the image is placed before the pipe and after the keyword ``@url''. The text after the pipe is the image text.}

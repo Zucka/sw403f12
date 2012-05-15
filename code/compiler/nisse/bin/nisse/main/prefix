@@ -133,7 +133,8 @@ h2 { font-size:130%; margin-bottom:1%; color:#666; }
 
 		.imageslide > .image {
 			float:none;
-			width:96% ;
+			margin:2%;
+			height: 100%; 
 		}
 
 	.slide > .dimageslide {
@@ -186,6 +187,7 @@ h2 { font-size:130%; margin-bottom:1%; color:#666; }
 	text-align:center;
 	margin:2%;
 	float:left;
+	width:46%;
 }
 
 .fimage {
