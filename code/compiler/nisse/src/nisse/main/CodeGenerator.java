@@ -431,7 +431,13 @@ public class CodeGenerator extends DepthFirstAdapter{
 				output += "</h2>\n";
 				isInSubtitle = false;
 			}
-			output += "<div class=\"image\">\n<img style=\"width:100%\" src=\""+symbol[7]+"\">";
+			String[] SlideData = SymbolTable.SymbolTableForSlide.get(slideCounter);
+			String imgStyle = "";
+			if (!SlideData[1].equals("Image"))
+			{
+				imgStyle = "width:100%;";
+			}
+			output += "<div class=\"image\">\n<img style=\""+imgStyle+"\" src=\""+symbol[7]+"\">";
 			isInImage = true;
 			symbolCounter++;
 			symbol = SymbolTable.SymbolTable1.get(symbolCounter);
