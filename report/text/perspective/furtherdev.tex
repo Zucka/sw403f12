@@ -1,21 +1,14 @@
 \chapter{Further Development}
 \label{sec:furtherdev}
-The developed slideshow programming language can easily be improved. The improvements are split up into two categories; \\
-The first category is ``Need to have'', which is things that need to be made before the compiler should be used by other users than the developers. \\
-The other category is ``Nice to have'', which contains the elements that is not necessary before the release of the compiler, but would be the first aspect(s) to focus on after the release, to improve the compiler.
+The developed slideshow programming language can easily be improved. The improvements are listed as a priority list, meaning that those with the highest priority should be focused on first.
 
-\section{Need to have}
-\begin{itemize}
+\begin{enumerate}
 	\item More describing error messages have to be made, in the lexer, parser and the semantic analyser, to make errors more understandable for the user.
 	\item The language has to be systematically, and thoroughly, tested, to make sure that no exceptions are not caught by the compiler.
-\end{itemize}
-
-\section{Nice to have}
-\begin{itemize}
 	\item It would be nice to have the ability to make region of slides, meaning that a user defined number of slides is in a region name or number. This region name, or number, can be used when changing settings, to target that region only.
 	\item It would be nice to have a more programmer minded language. It could have a ``main'' function, which calls the slides. Giving the opportunity to name slides, and an easier way to switch order of slides, and gives the opportunity to call the same slide more than once.
 	\item Speakers notes should also be implemented at some point, to make it more applicable in presentation situations, e.g. at a meeting.
 	\item The compiler should be able to complete the lexer even with errors, and if there are errors, then terminate when the lexer has finished, finally calling all of the errors. The same goes for the parser too.
 	\item Another feature that could be implemented is the ability to change the background colour on the slides, or even insert an image as background.
 	\item Since slides have unique names a reference function could be made, which writes the slide number of a specific slide name.
-\end{itemize}
+\end{enumerate}
