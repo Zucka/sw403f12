@@ -86,7 +86,7 @@ h2 { font-size:130%; margin-bottom:1%; color:#666; }
 		.titleimgageslide > .image {
 			float:none;
 			margin:2%;
-			width:92%;
+			width:96%;
 		}
 
 	.slide > .titledimgageslide{
@@ -97,8 +97,8 @@ h2 { font-size:130%; margin-bottom:1%; color:#666; }
 
 		.titledimgageslide > .image {
 			float:left;
-			margin:2%;
-			width:46%;
+			margin:1%;
+			width:48%;
 		}
 		
 	.slide > .titletimgageslide{
@@ -109,7 +109,7 @@ h2 { font-size:130%; margin-bottom:1%; color:#666; }
 
 		.titletimgageslide > .image {
 			float:left;
-			margin:1%;
+			margin:1.084%;
 			width:31.33%;
 		}
 		
@@ -121,7 +121,7 @@ h2 { font-size:130%; margin-bottom:1%; color:#666; }
 
 		.titleqimgageslide > .image {
 			float:left;
-			margin:0.5%;
+			margin:0.7233%;
 			width:24%;
 		}
 
@@ -134,8 +134,7 @@ h2 { font-size:130%; margin-bottom:1%; color:#666; }
 		.imageslide > .image {
 			float:none;
 			margin:2%;
-			height: 736px; 
-			width: 1048px;
+			height: 100%; 
 		}
 
 	.slide > .dimageslide {
@@ -476,3 +475,8 @@ $(function(){
 				});
 			});
 </script>
+
+
+
+
+
