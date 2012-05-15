@@ -31,8 +31,18 @@ The main result of this test is that developing the test slideshow using \LaTeX~
 The reason that it was faster to create the test slideshow with NISSE on an Ipad than on PC might have been that the test person knew what was on the slides, after creating the same slideshow multiple times
 
 \section{Language Tests \& Known Errors}
-To find errors or bugs in the language or compiler a series of tests have been run to verify that a given input would result in a viable output. 
+To find errors or bugs in the language or compiler a series of tests have been run to verify that a given input would resul9t in a viable output. 
 Testing was done by writing many different viable constructs and combining them in different ways. Below is some of the constructs that was made, and some of the errors have been corrected due to faulty code in the compiler, others have been addressed for further development.
+
+\begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest0, language=nisse]
+@begin{slide}
+@apply{@font_family: Times New Roman | this text is in Times New Roman}
+@end{slide}
+\end{lstlisting}
+
+\noindent{In listing \ref{lst:ltest0} the construct results in the text family being \texttt{Times New Roman}. That is the expected behaviour of the text family, but it does not work, because the parser only recognizes; \\
+\texttt{digits}, \texttt{floats}, \texttt{colons}, \texttt{forward slashes}, \texttt{dots}, \texttt{underscores} or \texttt{hyphens}, \\
+(because the font family is recognized as a \texttt{shortidentv1}). It is not only \texttt{Times New Roman} that does not work; it is every font family that contains space(s) in their names, which is because the compiler does not accept a \texttt{space} as a setting, in the family font.}
 
 \begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest3, language=nisse]
 @begin{slide}
@@ -44,7 +54,9 @@ Testing was done by writing many different viable constructs and combining them 
 @i{@image{@url:http://google.com/logo.png | Image text.}}
 @end{slide}
 \end{lstlisting}
-In listing \ref{lst:ltest3} the construct results in the image description being italic. That is the expected behaviour of format keywords. In listing \ref{lst:ltest31} the same construct is given but the order of format keywords is opposite so the image is defined inside an italic construct. This will result in the same as listing \ref{lst:ltest3} which is also the expected outcome.
+In listing \ref{lst:ltest3} the construct results in the image description being italic. That is the expected behaviour of format keywords. \\
+In listing \ref{lst:ltest31} the same construct is given but the order of format keywords is opposite so the image is defined inside an italic construct. \\
+This will result in the same as listing \ref{lst:ltest3} which is also the expected outcome.
 \begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest1, language=nisse]
 @begin{slide}
 @image{@url:http://google.com/logo.png | @title{Image text as title text.}}
@@ -55,7 +67,8 @@ In listing \ref{lst:ltest3} the construct results in the image description being
 @title{@image{@url:http://google.com/logo.png | Image text.}}
 @end{slide}
 \end{lstlisting}
-In listing \ref{lst:ltest1} the same image construct as in listing \ref{lst:ltest3} is given but the image description here poses as a title. This will result in the image text have the properties of a title thus not being image text. However in listing \ref{lst:ltest2} the construct order is the opposite as in listing \ref{lst:ltest31} but the outcome is not the same. Here it will not get the title property as it is the inner construct that defines which type the text will be. This is therefore also the expected outcome but it is not consistent with other format keywords behaviour in the same context.
+In listing \ref{lst:ltest1} the same image construct as in listing \ref{lst:ltest3} is given but the image description here poses as a title. This will result in the image text have the properties of a title thus not being image text. \\
+However, in listing \ref{lst:ltest2} the construct order is the opposite as in listing \ref{lst:ltest31} but the outcome is not the same. Here it will not get the title property as it is the inner construct that defines which type the text will be. This is therefore also the expected outcome but it is not consistent with other format keywords behaviour in the same context.
 
 \begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest4, language=nisse]
 @begin{slide} 
@@ -91,7 +104,10 @@ In listing \ref{lst:ltest6} danish characters is used, but the lexer does not pr
 Slide content...
 @end{s} %\label{lst:ltest82}%
 \end{lstlisting}
-Listing \ref{lst:ltest8} shows at line \ref{lst:ltest81} the slide name of the slide simply being one character which is the same on line \ref{lst:ltest82}. This is a valid construct according to the intended use of slide names. However in listing \ref{lst:ltest9} line \ref{lst:ltest91} and \ref{lst:ltest92} does not match each other but no error is given. This is not as intended and should be corrected before initial release. In listing \ref{lst:ltest10} line \ref{lst:ltest101} specifies a slide name that is also a valid input as a transition type, thus the slide will have that specific transition type. This is not as intended, the intention is that a pipe is given between transition type and slide name. An example of a correct input is in listing \ref{lst:ltest11}. This is also a bug which will not be corrected at this time, but should be before initial release.
+Listing \ref{lst:ltest8} shows at line \ref{lst:ltest81} the slide name of the slide simply being one character which is the same on line \ref{lst:ltest82}. This is a valid construct according to the intended use of slide names. \\
+However in listing \ref{lst:ltest9} line \ref{lst:ltest91} and \ref{lst:ltest92} does not match each other but no error is given. This is not as intended and should be corrected before initial release. \\
+In listing \ref{lst:ltest10} line \ref{lst:ltest101} specifies a slide name that is also a valid input as a transition type, thus the slide will have that specific transition type. This is not as intended, the intention is that a pipe is given between transition type and slide name. \\
+An example of a correct input is in listing \ref{lst:ltest11}. This is also a bug which will not be corrected at this time, but should be before initial release.
 
 \begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest9, language=nisse]
 @begin{s}%\label{lst:ltest91}%
