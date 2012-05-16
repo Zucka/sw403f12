@@ -4,8 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Iterator;
+import java.util.Date;
 
 import nisse.analysis.DepthFirstAdapter;
 import nisse.node.ABlockBlocks;
@@ -23,6 +22,7 @@ import nisse.node.ASettingblock;
 import nisse.node.AShortblock;
 import nisse.node.Node;
 import nisse.node.Start;
+import nisse.main.prefix;
 
 public class CodeGenerator extends DepthFirstAdapter{
 	FileWriter file = null;
@@ -41,13 +41,25 @@ public class CodeGenerator extends DepthFirstAdapter{
 	String prevUrl = "";
 	int prevNumerationLevel = 0;
 	int currentNumerationLevel = 0;
+	Date currentDate = new Date();
+
 	
+	
+	@SuppressWarnings("deprecation")
 	public CodeGenerator()
 	{
 		try {
-			file = new FileWriter("output.html");
-			URL url = getClass().getResource("prefix");
-			in = new FileReader(url.getPath());
+//			String now = (Integer.toString(currentDate.getYear() + 1900) + "-" +
+//						  Integer.toString(currentDate.getMonth() + 1) + "-" +
+//						  Integer.toString(currentDate.getDate()) +  "-" +
+//						  Integer.toString(currentDate.getHours()) +  "-" +
+//						  Integer.toString(currentDate.getMinutes()) +  "-" +
+//						  Integer.toString(currentDate.getSeconds())  
+//						  );
+//			file = new FileWriter("output-"+ now +".html");
+			file = new FileWriter("output-.html");
+//			URL url = getClass().getResource("prefix-1");
+//			in = new FileReader(url.getPath());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,12 +87,19 @@ public class CodeGenerator extends DepthFirstAdapter{
 	{
 		char[] buffer = new char[255];
 		StringBuilder builder = new StringBuilder();
+//		try {
+//			while (in.read(buffer, 0, buffer.length) != -1)
+//			{
+//				builder.append(buffer);
+//			}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
 		try {
-			while (in.read(buffer, 0, buffer.length) != -1)
-			{
-				builder.append(buffer);
-			}
-		} catch (IOException e) {
+			builder.append(prefix.preifx);
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -314,6 +333,10 @@ public class CodeGenerator extends DepthFirstAdapter{
 		}
 		
 		else if (Type1 == "Lots")
+		{
+			Type = "lotsslide";
+		}
+		else if (Type1 == "Normal")
 		{
 			Type = "lotsslide";
 		}
