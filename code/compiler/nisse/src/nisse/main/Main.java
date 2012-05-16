@@ -2,6 +2,8 @@ package nisse.main;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PushbackReader;
 import java.io.Reader;
 
@@ -10,9 +12,10 @@ import nisse.node.Start;
 import nisse.parser.Parser;
 
 public class Main {
-	
+
+	static FileWriter file = null;
 	static int Error = 0;
-	static int Debug1 = 3;
+	static int Debug1 = 0;
 	/* 1 Symbol table
 	 * 2 Slide table
 	 * 3 = 2 + 1
@@ -61,12 +64,10 @@ public class Main {
 		}
 	}
 	public static void main(String[] args) {
-		Debugging(Debug1);
 		StopWatch watch = new StopWatch();
 		watch.start();
 		Reader input = null;
-
-		if(args.length > 0)
+		if(args.length == 1)
 		{	
 			System.out.println(args);
 			try {
@@ -74,17 +75,73 @@ public class Main {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
+			try {
+				file = new FileWriter("output.html");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		else {
+		else if(args.length == 2)
+		{	
+			System.out.println(args);
+			try {
+				Debug1 = Integer.parseInt( args[0] );
+			} catch (NumberFormatException e) {
+				System.out.println("No valid debug level set, assumes only input/output");
+				try {
+					input = new FileReader(args[0]);
+					file = new FileWriter(args[1]);
+				} catch (FileNotFoundException f) {
+					f.printStackTrace();
+				} catch (IOException g) {
+					g.printStackTrace();
+				}
+			}
+			if (input == null)
+			{
+				try {
+					input = new FileReader(args[1]);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+				try {
+					file = new FileWriter("output.html");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		else if(args.length == 3)
+		{	
+			System.out.println(args);
+			try {
+				Debug1 = Integer.parseInt( args[0] );
+				input = new FileReader(args[1]);
+				file = new FileWriter(args[2]);
+			} catch (NumberFormatException e) {
+				System.out.println("No valid debug level set");
+			} catch (FileNotFoundException f) {
+				System.out.println("No valid input set");
+			} catch (IOException g) {
+				System.out.println("No valid output set");
+			}
+		}
+		else if(args.length == 0)
+		{
 			try {
 				input = new FileReader("/Users/JS/Documents/GIT/t3.txt");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
+			try {
+				file = new FileWriter("output.html");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		// /Users/JS/Documents/GIT/test1.txt 
-		
-		System.out.println(System.getProperty("java.classpath"));
+
+		Debugging(Debug1);
 		
 		PushbackReader in = new PushbackReader(input, 1024);
 		Lexer lexer = new Lexer(in);
