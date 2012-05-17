@@ -74,11 +74,11 @@ public class Main {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-			try {
-				file = new FileWriter("output.html");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+//			try {
+//				file = new FileWriter("output.html");
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
 		}
 		else if(args.length == 2)
 		{	
@@ -101,11 +101,11 @@ public class Main {
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
-				try {
-					file = new FileWriter("output.html");
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+//				try {
+//					file = new FileWriter("output.html");
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
 			}
 		}
 		else if(args.length == 3)
