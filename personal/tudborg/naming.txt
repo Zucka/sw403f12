@@ -1,8 +1,0 @@
-
-# This document is a demo draft for the card language
-# Naming sugestings:
-# CaGLa (CArd Game LAnguage) "Kakla"
-# CaXL	(CArd eXpression Language) "Kaksel"
-# CGEL	(Common Game Expression Language) "Se,gæl"
-#
-#
