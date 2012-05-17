@@ -8,21 +8,21 @@ Expressions are the words with the @-prefix and may not be used otherwise, becau
 
 \subsection{@begin}
 \label{@begin}
-The expression \texttt{@begin} determines when a slide begins. This has a \texttt{transition} parameter separated by a pipe character, after the pipe is the name of the slide, but the name of the slide has no effect at the moment. An example of @begin:
-\begin{lstlisting}[frame=single, caption=begin expression generic]
+The expression \texttt{@begin} determines when a slide begins. This has a \texttt{transition} parameter separated by a pipe character, after the pipe is the name of the slide, but the name of the slide has no effect at the moment. An example of is shown in listing \ref{lst:begin1}.
+\begin{lstlisting}[frame=single, caption=begin expression generic, label=lst:begin1]
 @begin{transition|slide}
 \end{lstlisting}
 Where \texttt{transition} is the form of transition to the slide. Transitions will be explained in section \ref{sec:transition}
 
 \subsection{@end}
 \label{@end}
-The expression \texttt{@end} is used to determine the end of a slide, writing the line: 
-\begin{lstlisting}[frame=single, caption=end expression generic]
+The expression \texttt{@end} is used to determine the end of a slide, by writing the line in listing \ref{lst:end1}.
+\begin{lstlisting}[frame=single, caption=end expression generic, label=lst:end1]
 @end{slide}
 \end{lstlisting}
 
-The following example is some of the basic elements in the language:
-\begin{lstlisting}[frame=single]
+Listing \ref{lst:BasicElemets} shows some of the basic elements in the language.
+\begin{lstlisting}[frame=single, caption=Simpel slide, label=lst:BasicElemets]
 Input:
 @begin{slide}
     Hello World
@@ -34,8 +34,8 @@ Input:
 \noindent{Which states that a slide begins, and that the slide contains the text ``Hello World''. \\
 \subsection{Transition keyword}
 \label{sec:transition}
-Each slide can contain a transition, these transitions are set as keywords.
-\begin{lstlisting}[frame=single, caption=Transition keywords]
+Each slide can contain a transition, these transitions are set as keywords, and is listed in listing \ref{lst:TransitionKeywords}
+\begin{lstlisting}[frame=single, caption=Transition keywords, label=lst:TransitionKeywords]
 fade, swipe, scale, rotatescale.
 \end{lstlisting}
 
@@ -50,8 +50,8 @@ Input:
 \end{lstlisting}
 
 \subsection{@setting}
-This expression sets a new setting for a specific type, or globally.
-\begin{lstlisting}[frame=single, caption=setting expression generic]
+This expression sets a new setting for a specific type, or globally. A generic example of this is shown in listing \ref{lst:SettingGeneric}.
+\begin{lstlisting}[frame=single, caption=setting expression generic, label=lst:SettingGeneric]
 @setting{FontChanges:Value | Type}
 \end{lstlisting}
 

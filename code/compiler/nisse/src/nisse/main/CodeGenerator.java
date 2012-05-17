@@ -49,22 +49,25 @@ public class CodeGenerator extends DepthFirstAdapter{
 	public CodeGenerator()
 	{
 		file = Main.file;
-//		try {
-////			String now = (Integer.toString(currentDate.getYear() + 1900) + "-" +
-////						  Integer.toString(currentDate.getMonth() + 1) + "-" +
-////						  Integer.toString(currentDate.getDate()) +  "-" +
-////						  Integer.toString(currentDate.getHours()) +  "-" +
-////						  Integer.toString(currentDate.getMinutes()) +  "-" +
-////						  Integer.toString(currentDate.getSeconds())  
-////						  );
-////			file = new FileWriter("output-"+ now +".html");
-//			file = new FileWriter("output-.html");
-////			URL url = getClass().getResource("prefix-1");
-////			in = new FileReader(url.getPath());
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		if (file == null)
+		{
+			try {
+				String now = (Integer.toString(currentDate.getYear() + 1900) + "-" +
+						Integer.toString(currentDate.getMonth() + 1) + "-" +
+						Integer.toString(currentDate.getDate()) +  "-" +
+						Integer.toString(currentDate.getHours()) +  "-" +
+						Integer.toString(currentDate.getMinutes()) +  "-" +
+						Integer.toString(currentDate.getSeconds())  
+						);
+				file = new FileWriter("output-"+ now +".html");
+				//			file = new FileWriter("output-.html");
+				//			URL url = getClass().getResource("prefix-1");
+				//			in = new FileReader(url.getPath());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		out = new BufferedWriter(file);
 	}
 	private void writeToStream(String str)
@@ -98,7 +101,11 @@ public class CodeGenerator extends DepthFirstAdapter{
 //		}
 		
 		try {
-			builder.append(prefix.prefix);
+			builder.append(prefix.prefix1);
+			builder.append(prefix.prefix2);
+			builder.append(prefix.prefix3);
+			builder.append(prefix.prefix4);
+			builder.append(prefix.prefix5);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();

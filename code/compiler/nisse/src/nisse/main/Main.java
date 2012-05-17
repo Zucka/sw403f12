@@ -74,11 +74,11 @@ public class Main {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-			try {
-				file = new FileWriter("output.html");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+//			try {
+//				file = new FileWriter("output.html");
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
 		}
 		else if(args.length == 2)
 		{	
@@ -101,11 +101,11 @@ public class Main {
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
-				try {
-					file = new FileWriter("output.html");
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+//				try {
+//					file = new FileWriter("output.html");
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
 			}
 		}
 		else if(args.length == 3)
@@ -126,17 +126,17 @@ public class Main {
 		{
 			System.out.println("Usage: nisse [debug level] input [output]");
 			System.exit(0);
-			/*
-			try {
-				input = new FileReader("/Users/JS/Documents/GIT/t3.txt");
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-			try {
-				file = new FileWriter("output.html");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}*/
+			
+//			try {
+//				input = new FileReader("/Users/JS/Documents/GIT/t3.txt");
+//			} catch (FileNotFoundException e) {
+//				e.printStackTrace();
+//			}
+//			try {
+//				file = new FileWriter("output.html");
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
 		}
 		// /Users/JS/Documents/GIT/test1.txt 
 

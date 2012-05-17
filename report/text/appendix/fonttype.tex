@@ -3,30 +3,30 @@
 The following sections contains descriptions about the font types that can be changed in NISSE.
 
 \subsection{Font\_family}
-The expression \texttt{font\_family} sets the font family such as Arial, Verdana, etc., from the beginning of the slideshow or at a specific slide, so that the font family can be applied locally or globally. The language supports all the same font families as CSS (Cascading Style Sheets) does.
+The expression \texttt{font\_family} sets the font family such as Arial, Verdana, etc., from the beginning of the slideshow or at a specific slide, so that the font family can be applied locally or globally. The language supports all the same font families as CSS (Cascading Style Sheets) does. An example of the use of changing the font family is shown in listing \ref{lst:AFontFamily}
 
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}[frame=single, caption=Changing font family, label=lst:AFontFamily ]
 	@apply{@font_family: Verdana | this text is in Verdana font family}
 \end{lstlisting}
 
 \subsection{Font\_color}
-The expression \texttt{font\_color} sets the font colour from the beginning of the slideshow or at a specific slide, so that the colour can be applied locally or globally. The language supports all the same font colours as CSS does. \\
-CSS 3 has inherited theirs extended colour keywords from SVG, which is the colours that be used in NISSE\footnote{http://www.w3.org/TR/SVG/types.html\#ColorKeywords}.
+The expression \texttt{font\_color} sets the font color from the beginning of the slideshow or at a specific slide, so that the color can be applied locally or globally. The language supports all the same font colors as CSS does. \\
+CSS 3 has inherited theirs extended color keywords from SVG, which is the colors that be used in NISSE\footnote{http://www.w3.org/TR/SVG/types.html\#ColorKeywords}. An example of the use of changing the font color is shown in listing \ref{lst:AFontColor}.
 
-\begin{lstlisting}[frame=single]
-	@apply{@font_color: Blue| %{\color{blue}this text is in blue colour}%}
+\begin{lstlisting}[frame=single, caption=Changing font color, label=lst:AFontColor]
+	@apply{@font_color: Blue| %{\color{blue}this text is in blue color}%}
 \end{lstlisting}
 
 \subsection{Font\_size}
-The expression \texttt{font\_size} sets the font size from the beginning of the slideshow or at a specific slide, so that the size can be applied locally or globally. The language supports all the font sizes as the CSS does. The font size is defined in pixels.
+The expression \texttt{font\_size} sets the font size from the beginning of the slideshow or at a specific slide, so that the size can be applied locally or globally. The language supports all the font sizes as the CSS does. The font size is defined in pixels. An example of the use of changing the font size is shown in listing \ref{lst:AFontSize}.
 
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}[frame=single, caption=Changing font size, label=lst:AFontSize]
 	@apply{@font_size: 70 | %{\Large{this text is in size 70}}%}
 \end{lstlisting}
 
 \subsection{Font\_weight}
-The expression \texttt{font\_weight} refers to the term \texttt{font weight}, which is the various settings that can be defined for the font, bold italic and underline.
+The expression \texttt{font\_weight} refers to the term \texttt{font weight}, which is the various settings that can be defined for the font, bold italic and underline. An example of the use of changing the font weight is shown in listing \ref{lst:AFontWeight}.
 
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}[frame=single, caption=Changing font weight, label=lst:AFontWeight]
 	@apply{@font_weight: italic| %\textit{this text is in italic}%}
 \end{lstlisting}
