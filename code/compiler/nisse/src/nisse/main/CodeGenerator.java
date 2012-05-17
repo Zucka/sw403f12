@@ -625,7 +625,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 			{
 				style = "style=\""+style+"\"";
 			}
-			if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
+			if (style.equals(prevStyle) && isInSpan && !isInSubtitle && isInTitle)
 			{
 				output += symbol[0];
 			}
@@ -717,7 +717,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 			{
 				style = "style=\""+style+"\"";
 			}
-			if (style.equals(prevStyle) && (isInSpan || isInSubtitle || isInTitle))
+			if (style.equals(prevStyle) && isInSpan && isInSubtitle && !isInTitle)
 			{
 				output += symbol[0];
 			}
