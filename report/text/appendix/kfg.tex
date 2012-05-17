@@ -1,8 +1,8 @@
 \chapter{Appendix}
 \section{kfG}
 \label{AkfG}
-This is the settings used in the program ``kfG Edit'', to be able to write AST examples of the defined language.
-\begin{lstlisting}[frame=single]
+Listing \ref{lst:akfG} is the settings used in the program ``kfG Edit'', to be able to write AST examples of the defined language.
+\begin{lstlisting}[frame=single, caption=kfG grammer for the language, label=lst:akfG]
 SS           -> Blocks 
 Blocks       -> Block Blocks | EPSILON 
 Block        -> BeginBlock Lines EndBlock | SettingBlock
@@ -63,8 +63,8 @@ digit      -> 0|1|...|9
 
 \section{CFG(SableCC)}
 \label{SableCC}
-This is the settings used in the program ``kfG Edit'', to be able to write AST examples of the defined language.
-\begin{lstlisting}[frame=single]
+Listing \ref{lst:aSableCC} is the settings used in the program ``SableCC'', to generate the lexer and parser for the language.
+\begin{lstlisting}[frame=single, caption=SableCC grammer for the language, label=lst:aSableCC]
 charv1    = ['a' .. 'z'] | ['A' .. 'Z'] | 'æ' | 'ø' | 'å' | 'Æ' | 'Ø' | 'Å' | '_';
 digitv1   = ['0' .. '9'] ;
 dot         = . ;
