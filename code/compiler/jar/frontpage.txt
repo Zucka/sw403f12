@@ -1,0 +1,6 @@
+@begin{slide}
+@title{Nearly Instantaneous}
+@title{Slide Show Expressions}
+@subtitle{May 2012}
+@subtitle{@font_size:14|By: Group SW403F12}
+@end{slide}
