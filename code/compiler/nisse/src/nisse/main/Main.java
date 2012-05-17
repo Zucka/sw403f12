@@ -69,7 +69,6 @@ public class Main {
 		Reader input = null;
 		if(args.length == 1)
 		{	
-			System.out.println(args);
 			try {
 				input = new FileReader(args[0]);
 			} catch (FileNotFoundException e) {
@@ -83,11 +82,9 @@ public class Main {
 		}
 		else if(args.length == 2)
 		{	
-			System.out.println(args);
 			try {
 				Debug1 = Integer.parseInt( args[0] );
 			} catch (NumberFormatException e) {
-				System.out.println("No valid debug level set, assumes only input/output");
 				try {
 					input = new FileReader(args[0]);
 					file = new FileWriter(args[1]);
@@ -113,7 +110,6 @@ public class Main {
 		}
 		else if(args.length == 3)
 		{	
-			System.out.println(args);
 			try {
 				Debug1 = Integer.parseInt( args[0] );
 				input = new FileReader(args[1]);
@@ -128,6 +124,9 @@ public class Main {
 		}
 		else if(args.length == 0)
 		{
+			System.out.println("Usage: nisse [debug level] input [output]");
+			System.exit(0);
+			/*
 			try {
 				input = new FileReader("/Users/JS/Documents/GIT/t3.txt");
 			} catch (FileNotFoundException e) {
@@ -137,7 +136,7 @@ public class Main {
 				file = new FileWriter("output.html");
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 		}
 		// /Users/JS/Documents/GIT/test1.txt 
 
