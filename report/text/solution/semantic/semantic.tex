@@ -329,35 +329,35 @@ Slide number & Type of error & Value \\
 		\label{TLBErrorlist}
 \end{table}
 
-\section{Debugging}
-To make the debugging of the semantic analyser more comfortable, the compiler only print out what the programmer wants to know using a bit flag setting.
-The debugging takes one variable(the bit flag) that is changed depending on what output that is wanted. How to use the bit flag is ilustrated in table \ref{tab:Debugging}.
-\begin{table}
-\centering
-\begin{tabular}{| r | l |}
-  \hline 
-Value & Debugging Output \\  
- \hline 
-1 & Symbol table \\ 
-2 & Slide table \\ 
-3 & 2 + 1 \\ 
-4 & Nodes \\ 
-5 & 4 + 1 \\ 
-6 & 4 + 2 \\ 
-7 & 4 + 2 + 1 \\ 
-8 & ErrorTable \\ 
-9 & 8 + 1 \\ 
-10 & 8 + 2 \\ 
-11 & 8 + 2 + 1 \\ 
-12 & 8 + 4 \\ 
-13 & 8 + 4 + 1 \\ 
-14 & 8 + 4 + 2 \\ 
-15 & 8 + 4 + 2 + 1 \\                     
-  \hline  
-\end{tabular}
-\caption{Debugging table}
-\label{tab:Debugging}
-\end{table}
+%\section{Debugging}
+%To make the debugging of the semantic analyser more comfortable, the compiler only print out what the programmer wants to know using a bit flag setting.
+%The debugging takes one variable(the bit flag) that is changed depending on what output that is wanted. How to use the bit flag is ilustrated in table \ref{tab:Debugging}.
+%\begin{table}
+%\centering
+%\begin{tabular}{| r | l |}
+%  \hline 
+%Value & Debugging Output \\  
+% \hline 
+%1 & Symbol table \\ 
+%2 & Slide table \\ 
+%3 & 2 + 1 \\ 
+%4 & Nodes \\ 
+%5 & 4 + 1 \\ 
+%6 & 4 + 2 \\ 
+%7 & 4 + 2 + 1 \\ 
+%8 & ErrorTable \\ 
+%9 & 8 + 1 \\ 
+%10 & 8 + 2 \\ 
+%11 & 8 + 2 + 1 \\ 
+%12 & 8 + 4 \\ 
+%13 & 8 + 4 + 1 \\ 
+%14 & 8 + 4 + 2 \\ 
+%15 & 8 + 4 + 2 + 1 \\                     
+%  \hline  
+%\end{tabular}
+%\caption{Debugging table}
+%\label{tab:Debugging}
+%\end{table}
 
 \noindent{The way it is implemented is by first trying to subtract 8 from the debug number. If that is possible and it does not get below 0, subtract 8 from the debug number and sets a boolean to true, meaning that is prints the Error Table.
 Then it does the same with 4, 2, and 1, and if it is possible and it does not get below 0, it sets a boolean to true for Nodes, Slide Table and Symbol Table, respectively. Table \ref{tab:Debugging} is a guide to get an overview of what to inset as the debug value to get the wanted output debug.}
