@@ -61,10 +61,10 @@ Figure \ref{fig:nfaer} is a NFA (Nondeterministic Finite Automaton) for when the
 	\label{fig:nfaer}
 \end{figure}
 
-\noindent{The \texttt{at sign} can create a number of different tokens, shown in figure \ref{fig:nfaer}, these are \texttt{formatkwd, settingblock, beginkwd, endkwd, url} and if the text does not match any of that, it is tokenized as an \texttt{at sign} and the text after the \texttt{at sign} is tokenized as a \texttt{character}.}
+\noindent{The \texttt{at sign} can create a number of different tokens, shown in figure \ref{fig:nfaer}, these are \texttt{formatkwd, settingblock, beginkwd, endkwd, url} and if the text does not match any of that, it is tokenized as an \texttt{atsign} and the text after the \texttt{at sign} is tokenized as a \texttt{character}.}
 
 \subsubsection*{Regular expression}
 The regular expression for figure \ref{fig:nfaer} is shown in listing \ref{lst:Regularexpression}
 \begin{lstlisting}[frame=single, caption=Regular expression, label=lst:Regularexpression]
-%$@ ( (i (\epsilon \cup mage)) \cup (u ( \epsilon \cup rl)) \cup b \cup title \cup (s(ubtitle \cup etting)) \cup begin \cup end \cup \epsilon)$%
+%$@ ( (i (\epsilon \cup mage)) \cup (u ( \epsilon \cup rl)) \cup (b( \epsilon \cup egin) ) \cup title \cup (s(ubtitle \cup etting)) \cup end \cup \epsilon)$%
 \end{lstlisting}
