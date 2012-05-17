@@ -56,7 +56,7 @@ public void inASettingblock (ASettingblock node){
 	String Test = node.parent().parent().getClass().toString();
 	if (Test.equals("class nisse.node.ABlockBlocks")){
 	
-		if (SettingType.startsWith("@ font_color")){
+		if (SettingType.startsWith("@ font _ color")){
 			String Value = SettingType.substring(15);
 			Boolean CheckColor1;
 			CheckColor1 = CheckColor(Value);
@@ -91,7 +91,7 @@ public void inASettingblock (ASettingblock node){
 					Error.MakeError("Font color existance" , Value);
 				}
 		}
-		else if (SettingType.startsWith("@ font_family")){	
+		else if (SettingType.startsWith("@ font _ family")){	
 			String Value = SettingType.substring(16);
 		…...
 

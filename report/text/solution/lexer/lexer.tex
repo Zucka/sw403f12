@@ -18,8 +18,8 @@ The tokens for the language are as follows:
 \begin{lstlisting}[frame=single, caption={Token List of NISSE in EBNF.}]
 char            = ? [a-ÂA-≈]+ ? ;
 digit           = ? [0-9]+ ? ;
-underscore = '_' ;
-hyphen = '-' ;
+underscore      = '_' ;
+hyphen          = '-' ;
 dotv1           = '.' ;
 commav1         = ',' ;
 space           = ' ' | '	';
@@ -52,7 +52,7 @@ The reason each special keyword has its own token and not a general production, 
 When numbers or characters are expected, then one such has to occur at least once.
 
 \subsection{NFA}
-Figure \ref{fig:nfaer} is a NFA (Nondeterministic Finite Automaton) for when the user inserts an \texttt{at sign}, which can become a lot of different tokens. It will always take an input before an epsilon\footnote{the empty set}, for instance, if an \texttt{at sign} and an \texttt{i} is written, it looks at the next tokens, before it uses the epsilon transition.
+Figure \ref{fig:nfaer} is a NFA (Nondeterministic Finite Automaton) for when the user inserts an \texttt{atsign}, which can become a lot of different tokens. It will always take an input before an epsilon\footnote{the empty set}, for instance, if an \texttt{atsign} and an \texttt{i} is written, it looks at the next tokens, before it uses the epsilon transition.
 
 \begin{figure}[h!]
 	\centering
@@ -61,7 +61,7 @@ Figure \ref{fig:nfaer} is a NFA (Nondeterministic Finite Automaton) for when the
 	\label{fig:nfaer}
 \end{figure}
 
-\noindent{The \texttt{at sign} can create a number of different tokens, shown in figure \ref{fig:nfaer}, these are \texttt{formatkwd, settingblock, beginkwd, endkwd, url} and if the text does not match any of that, it is tokenized as an \texttt{atsign} and the text after the \texttt{at sign} is tokenized as a \texttt{character}.}
+\noindent{The \texttt{atsign} can create a number of different tokens, shown in figure \ref{fig:nfaer}, these are \texttt{formatkwd, settingblock, beginkwd, endkwd, url} and if the text does not match any of that, it is tokenized as an \texttt{atsign} and the text after the \texttt{atsign} is tokenized as a \texttt{character}.}
 
 \subsubsection*{Regular expression}
 The regular expression for figure \ref{fig:nfaer} is shown in listing \ref{lst:Regularexpression}
