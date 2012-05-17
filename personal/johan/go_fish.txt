@@ -1,9 +1,0 @@
-new.card.playing.copletedeck.without.joker; //Gives complete playing card set as individual objects
-new.player{P1, P2}; // instantiate new players: P1 and P2
-
-card.playing.giveout.shuffle(5){P1, P2}; //gives 5 cards to each player shuffled
-
-fund game() // Main func
-	
-	while card.deck != 0 && P1.deck != 0 || P2.deck != 0 
-		
