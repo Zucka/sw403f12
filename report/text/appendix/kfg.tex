@@ -2,6 +2,7 @@
 \section{kfG}
 \label{AkfG}
 Listing \ref{lst:akfG} is the settings used in the program ``kfG Edit'', to be able to write AST examples of the defined language.
+This is an older iteration of the cfg, which means it does not fit into the latest one.
 \begin{lstlisting}[frame=single, caption=kfG grammer for the language, label=lst:akfG]
 SS           -> Blocks 
 Blocks       -> Block Blocks | EPSILON 
@@ -36,7 +37,6 @@ Space        -> pace Space | EPSILON
 CharAll      -> colon | char | digit | nlist | blist | scolon | percent | fslash | bslash
 Eols         -> eol Eolv1
 Eolv1        -> Eols | EPSILON
-
 
 
 pace       -> ' ' 
