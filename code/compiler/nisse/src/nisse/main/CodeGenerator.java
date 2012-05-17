@@ -742,6 +742,11 @@ public class CodeGenerator extends DepthFirstAdapter{
 					output += "</h1>\n";
 					isInTitle = false;
 				}
+				if (isInSubtitle)
+				{
+					output += "<span "+style+">";
+					isInSpan = true;
+				}
 				if (!isInSubtitle)
 				{
 					output += "<h2 class=\"subtitle\"><span "+style+">";
