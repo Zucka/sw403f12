@@ -330,8 +330,8 @@ Slide number & Type of error & Value \\
 \end{table}
 
 \section{Debugging}
-To make the debugging of the semantic analyser more comfortable, a ``system'' is made to only print out what the programmer wants to know.
-The debugging contains one variable that is changed depending on what output that is wanted. Called \texttt{Debug1}, the result of what the value is, is ilustrated in table \ref{tab:Debugging}.
+To make the debugging of the semantic analyser more comfortable, the compiler only print out what the programmer wants to know using a bit flag setting.
+The debugging takes one variable(the bit flag) that is changed depending on what output that is wanted. How to use the bit flag is ilustrated in table \ref{tab:Debugging}.
 \begin{table}
 \centering
 \begin{tabular}{| r | l |}
