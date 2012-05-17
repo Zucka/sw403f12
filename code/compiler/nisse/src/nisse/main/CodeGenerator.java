@@ -101,7 +101,11 @@ public class CodeGenerator extends DepthFirstAdapter{
 //		}
 		
 		try {
-			builder.append(prefix.prefix);
+			builder.append(prefix.prefix1);
+			builder.append(prefix.prefix2);
+			builder.append(prefix.prefix3);
+			builder.append(prefix.prefix4);
+			builder.append(prefix.prefix5);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
