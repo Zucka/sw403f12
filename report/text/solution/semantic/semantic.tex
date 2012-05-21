@@ -245,7 +245,7 @@ From line 51 to 110, the function checks how many lines there are of each type, 
 Line 111 adds the slide properties to the slide table.
 
 \subsection{Exception Handling}
-Errors found in the semantic analysis, for instance typing ``bluue?? instead of ``blue?? in a \texttt{font\_color} command, or writing letters in a \texttt{font\_size} command, results in the command being ignored and a description of the error is added in an error table containing the slide number, a description of the error and the \texttt{Value} containing the error, in this case the description would be ``font colour existence?? and \texttt{Value} would be ``bluue??.\\
+Errors found in the semantic analysis, for instance typing ``bluue'' instead of ``blue'' in a \texttt{font\_color} command, or writing letters in a \texttt{font\_size} command, results in the command being ignored and a description of the error is added in an error table containing the slide number, a description of the error and the \texttt{Value} containing the error, in this case the description would be ``font colour existence'' and \texttt{Value} would be ``bluue''.\\
 Listing \ref{LSTMakeError} creates an object in the \texttt{ErrorList} array, where the first dimension states which error number it is. The second dimension in cell 0 contains the information about what slide number the error has occured. \\
 In cell 1 the type of error is inserted, and in cell 2 is the Value of the error. \\
 An example of errors are made in table \ref{TLBErrorlist}, where the the user tries to change the font colour in slide number 2 to \texttt{SomeColor}, and the font color in slide 3 to \texttt{bluue}, which is not a valid colour. 
