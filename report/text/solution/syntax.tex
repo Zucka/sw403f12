@@ -79,7 +79,7 @@ The expression \texttt{apply} changes the font for the specific text.
 \begin{lstlisting}[frame=single, caption=Generic \texttt{apply} expression example]
 @apply{FontChanges:Value | Text}
 \end{lstlisting}
-Where \texttt{FontChanges} is what kind of font type that will be changed, shown in listing \ref{SyntaxSettingFontType}
+Where \texttt{FontChanges} is what kind of font type that will be changed. These can be \lstinline!@font_color, @font_family, @font_size and @font_lineheight!
 
 \texttt{Value} is the value that it is set to.
 \texttt{Text} refers to the text which is inserted in the slides with the font changes that is made on the other side of the pipe.
@@ -204,7 +204,7 @@ An example of the use of \lstinline!@subtitle! is shown in listing \ref{lst:Synt
 \end{lstlisting}
 
 \subsection{@image}
-The \lstinline!@image! expression is used for importing images to the slideshow, either from the Internet of from the user?s computer.
+The \lstinline!@image! expression is used for importing images to the slideshow, either from the Internet of from the user's computer.
 It is discouraged to provide absolute paths for images, because this would only make the user's computer able to show the image upon compiling. Instead, it is encouraged to specify the name of the image, and place it in the same folder as the HTML-file. This is only the case if there are more contributors to the slideshow.\\
 When importing an image from the Internet, the URL has to be provided, whereas when importing a locally stored image the file path to that specific image has to be provided, which can be seen in listing \ref{lst:SyntaxImageGeneral}.
 
