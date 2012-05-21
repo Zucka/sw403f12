@@ -3,11 +3,11 @@
 In this chapter the requirements for NISSE will be presented, along with the CFG hereof.
 
 \section{Requirements}
-Requirements for the NISSE parser:
+The requirements for the NISSE parser are:
 \begin{itemize}
 	\item The parser should be able to receive tokens from the lexer, which it then can convert into a parse tree.
-	\item It should be able to report useful error messages, if the user has written something illegal according to the CFG of NISSE.
-	\item The CFG should not be ambiguous, so that it is possible to make a parser for it. 
+	\item It should be able to report useful error messages if the user has written something illegal according to the CFG of NISSE.
+	\item The CFG should be unambiguous, so that it is possible to make a parser for it. 
 \end{itemize}
 
 \newpage
@@ -35,54 +35,17 @@ eol             = eolv1 , {eolv1} ;
 dot             = dotv1 , {dotv1};
 comma           = commav1,{commav1} ;
 \end{lstlisting}
-Listing \ref{lst:ebnf} shows the CFG for NISSE in EBNF. It should be read as follow:
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline 
-Usage & Notation \\ 
-\hline 
-definition & = \\ 
-\hline 
-termination & ; \\ 
-\hline 
-alternation & | \\ 
-\hline 
-option & [ ... ] \\ 
-\hline 
-repetition & \{ ... \} \\ 
-\hline 
-grouping & ( ... ) \\ 
-\hline 
-terminal string & ' ... ' \\ 
-\hline 
-comment & (* ... *) \\ 
-\hline 
-special sequence & ? ... ? \\ 
-\hline 
-\end{tabular}
-\end{center}
-An example is the line \lstinline!S = a {b}+ [ {c}+ ] ( a | b ) ;! that translates to \lstinline!S = a!, followed by at least one \lstinline!b!, followed by none or at least one \lstinline!c!, followed by \lstinline!a! or \lstinline!b!. The special sequence is used for writing anything that is not directly an EBNF. An example is \lstinline!char = ? a-zA-Z ? ;! where all letters from a to z is defined using both capital and non-capital. \\
+Listing \ref{lst:ebnf} shows the CFG for NISSE in EBNF. With the rules of table \ref{tbl:EBNFSyntax}.
+
 NISSE's grammar is able to construct everything that is required of NISSE. \\
-Let us look at one of the previous examples:
-
-\begin{lstlisting}[frame=single]
-Input:
-@begin{fade|slide}
-    Hello World
-@end{slide}
-\end{lstlisting}
-
-The parse tree for this would look like: 
-
 \begin{figure}[! h]
 \centering
 	 \includegraphics[width=350px]{images/ebnfexample.png}
 		 \caption{Parse tree for a simple slide.}	
 	\label{fig:Parsetree}
 \end{figure}
-Figure \ref{fig:Parsetree} shows how the CFG would parse the tree, with the input in a slide of "Hello World''. 
-
+Figure \ref{fig:Parsetree} shows how the CFG would parse the AST, with the input of listing \ref{lst:BasicElemets}.
 \section{Conclusion}
 The CFG is concluded to be LALR according to section \ref{Parserstrategy}, the CFG is not ambiguous either, as per the definition of LALR (\cite{CaC} Chapter 6).
 
-\noindent{The grammar for the language is LL(1) according to the tool called ``kfG Edit'', which was introduced in a lecture. Later the grammar was tested if it was LALR(1) by using SableCC to try and generate a parser, and it was proved that the grammar was LALR(1). ``kfG Edit’’ uses a special syntax that can be seen in appendix \ref{AkfG}.
+\noindent{The grammar for the language is LL(1) according to the tool called ``kfG Edit'', which was introduced in a lecture. Later it was tested if the grammar was LALR(1) by using SableCC to try and generate a parser, and it was proved that the grammar was LALR(1). ``kfG EditÂ’Â’ uses a special syntax that can be seen in appendix \ref{AkfG}.

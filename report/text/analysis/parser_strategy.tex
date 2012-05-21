@@ -4,10 +4,10 @@ There are two ways of parsing an abstract syntax tree, which is seen below:
 
 \subsection*{Top Down}
 Top down derives the parse tree from the left. This means that a non-terminal cannot have two derivations with the same start terminal or nonterminal, e.g. A $\rightarrow$BC | BD. This way the parser does not know which derivation to take, because both of them start with the same nonterminal.
-This can be avoided by using a bottom up method.
+This can be avoided by using a \texttt{bottom up} method.
 
 \subsection*{Bottom Up}
 Bottom up derives the parse tree from the right, which makes the expression: A $\rightarrow$ BC | BD legal for a bottom up parser, because it looks at C and D first and then decides which derivation to pick.
 
 \subsection*{Conclusion}
-A Bottom Up (LALR (Look Ahead Left-scan, Rightmost derivation in reverse)) derivation of the parser will be used in this language, because of the use of SableCC, which makes a LALR-parser, as can be seen in the section \ref{sec:SableCC}.
+A Bottom Up (LALR (Look Ahead Left-scan, Rightmost derivation in reverse)) derivation of the parser will be used in this language, because of the use of SableCC, which makes a LALR-parser, which can be seen in the section \ref{sec:SableCC}.

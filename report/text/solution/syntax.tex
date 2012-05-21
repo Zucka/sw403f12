@@ -1,107 +1,98 @@
 \chapter{Syntax}
 \label{SSyntax}
 
-The requirements for the language is defined in the section ``Language design'' \ref{LanguageRequirements}. Keywords are in the language to give structure and flexibility. These have different outcomes, although some are similar. Some of the keywords are used for the structuring of slides in a slideshow, others are used for text formatting or image placement. To give a higher level of readability, keywords must have meaningful names according to their use and effect. Secondly, it has to be defined in which order these are allowed, and what they mean in that particular order.
+The requirements for the language is defined in section \ref{LanguageRequirements}. Keywords are in the language to give structure and flexibility. These have different outcomes, although some are similar. Expressions are used for the structuring of slides in a slideshow, and used for text formatting or image placement. To give a higher level of readability, keywords and expressions must have meaningful names according to their use and effect. Secondly, it has to be defined in which order these are allowed, and what they mean in that particular order.
 
 \section{Expressions and Keywords}
 Expressions are the words with the @-prefix and may not be used otherwise, because the @-prefix should state that an event is about to happen.
 
 \subsection{@begin}
 \label{@begin}
-The expression \texttt{@begin} determines when a slide begins. This has a \texttt{transition} parameter separated by a pipe character, after the pipe is the name of the slide, but the name of the slide has no effect at the moment. An example of is shown in listing \ref{lst:begin1}.
-\begin{lstlisting}[frame=single, caption=begin expression generic, label=lst:begin1]
-@begin{transition|slide}
+The expression \lstinline!@begin! determines when a slide begins. This has a \texttt{transition} parameter separated by a pipe character, after the pipe is the name of the slide, but the name of the slide has no effect at that moment. An example of this is shown in listing \ref{lst:begin1}.
+\begin{lstlisting}[frame=single, caption=Generic \texttt{begin} expression example, label=lst:begin1]
+@begin{transition|slidename}
 \end{lstlisting}
 Where \texttt{transition} is the form of transition to the slide. Transitions will be explained in section \ref{sec:transition}
 
 \subsection{@end}
 \label{@end}
-The expression \texttt{@end} is used to determine the end of a slide, by writing the line in listing \ref{lst:end1}.
-\begin{lstlisting}[frame=single, caption=end expression generic, label=lst:end1]
-@end{slide}
+The expression \lstinline!@end! is used to determine the end of a slide, by writing the line in listing \ref{lst:end1}.
+\begin{lstlisting}[frame=single, caption="Generic \texttt{end} expression example, label=lst:end1]
+@end{slidename}
 \end{lstlisting}
 
-Listing \ref{lst:BasicElemets} shows some of the basic elements in the language.
+\noindent{Listing \ref{lst:BasicElemets} shows some of the basic elements in the language.}
 \begin{lstlisting}[frame=single, caption=Simpel slide, label=lst:BasicElemets]
 Input:
-@begin{slide}
-    Hello World
-@end{slide}
+@begin{slidename}
+   Hello World
+@end{slidename}
 
 %Output: Hello World%
 \end{lstlisting}
 
-\noindent{Which states that a slide begins, and that the slide contains the text ``Hello World''. \\
+\noindent{Which states that a slide begins, and that the slide contains the text ``Hello World'', and then the slide ends. \\
+
 \subsection{Transition Keyword}
 \label{sec:transition}
-Each slide can contain a transition, these transitions are set as keywords, and is listed in listing \ref{lst:TransitionKeywords}
-\begin{lstlisting}[frame=single, caption=Transition keywords, label=lst:TransitionKeywords]
-fade, swipe, scale, rotatescale.
-\end{lstlisting}
+Each slide can contain a transition, transitions are set as keywords, which is \lstinline!fade, swipe, scale, rotatescale!.
 
-The transition is inserted before the pipe in an @begin expression. The pipe is inserted only when a transition is wanted, as shown in listing \ref{SyntaxTransition}.
+\noindent{The transition is inserted before the pipe in an \lstinline!@begin! expression. The pipe is inserted only when a transition is wanted, as shown in listing \ref{SyntaxTransition}.}
 \begin{lstlisting}[frame=single, caption=Hello World with transition, label=SyntaxTransition]
 Input:
-@begin{fade|slide}
-    Hello World
-@end{slide}
+@begin{fade|slidename}
+   Hello World
+@end{slidename}
 
 %Output: Hello World%
 \end{lstlisting}
 
 \subsection{@setting}
-This expression sets a new setting for a specific type, or globally. A generic example of this is shown in listing \ref{lst:SettingGeneric}.
-\begin{lstlisting}[frame=single, caption=setting expression generic, label=lst:SettingGeneric]
+This expression sets a new setting for a specific type of font setting for a specific type of text. A generic example of this is shown in listing \ref{lst:SettingGeneric}.
+\begin{lstlisting}[frame=single, caption=Generic \texttt{setting} expression example, label=lst:SettingGeneric]
 @setting{FontChanges:Value | Type}
 \end{lstlisting}
 
-Where \texttt{FontChanges} is what kind of font setting that is changed, which can be the expressions in listing \ref{SyntaxSettingFontType}. A more detailed description of these expressions can be read in appendix \ref{AppendixFontType}.
+\noindent{Where \texttt{FontChanges} is what kind of font setting that is changed, which can be 
+\lstinline!@font_family, @font_color, @font_size, @font_weight!.
+A more detailed description of these expressions can be read in appendix \ref{AppendixFontType}.}
+\noindent{\texttt{Value}, is the value that the font change is set to.} \\
+\noindent{\texttt{Type} is referring to which font class it will change, these font classes are set as keywords and is \lstinline!title, subtitle, global, text, image, url!
 
-\begin{lstlisting}[frame=single, caption=Font type expressions, label=SyntaxSettingFontType]
-@font_family, @font_color, @font_size, @font_weight,
-\end{lstlisting}
-
-\texttt{Value}, is the value that it is set to. \\
-
-\texttt{Type} is referring to which font class it will change, these font classes are set as keywords and is shown in listing \ref{SyntaxFontClass}
-\begin{lstlisting}[frame=single, caption=Font class keyword, label=SyntaxFontClass]
-title, subtitle, global, text, image, url
-\end{lstlisting}
-
-\subsubsection*{Global keyword}
+\subsubsection*{Global Keyword}
 \indent{The \texttt{global} keyword makes it possible to apply settings globally, which overwrites the settings of normal text, titles, subtitles, image descriptions and URLs. Globals work from the place in the slide where it is applied or from the place outside a slide.}
 \\ \\
-An example with the use of @setting is shown in listing \ref{lst:SyntaxSetting}
+An example with the use of \lstinline!@setting! inside a slide is shown in listing \ref{lst:SyntaxSetting}
 
 \begin{lstlisting}[frame=single, caption=Hello World with setting, label=lst:SyntaxSetting]
 Input:
-@begin{fade|slide}
-    @setting{font_color:blue|text}
-    Hello World
-@end{slide}
+@begin{fade|slidename}
+   @setting{@font_color:blue|text}
+   Hello World
+@end{slidename}
 
 %Output: {\color{blue}Hello World}%
 \end{lstlisting}
 
 \subsection{@apply}
-The expression \texttt{apply} changes the font for some specific text.
-\begin{lstlisting}[frame=single, caption=apply expression generic]
+The expression \texttt{apply} changes the font for the specific text.
+\begin{lstlisting}[frame=single, caption=Generic \texttt{apply} expression example]
 @apply{FontChanges:Value | Text}
 \end{lstlisting}
 Where \texttt{FontChanges} is what kind of font type that will be changed, shown in listing \ref{SyntaxSettingFontType}
 
-\texttt{Value} is the value that it is set to. 
+\texttt{Value} is the value that it is set to.
 \texttt{Text} refers to the text which is inserted in the slides with the font changes that is made on the other side of the pipe.
-The \texttt{@apply} expression only changes the font for the specific text which is in the expression.
-An example with the use of @apply is shown in listing \ref{lst:SyntaxApply}
+The \lstinline!@apply! expression only changes the font for the specific text which is in the expression.
+An example with the use of \lstinline!@apply! is shown in listing \ref{lst:SyntaxApply}
 
 \begin{lstlisting}[frame=single, caption=Hello World with apply, label=lst:SyntaxApply]
-@begin{fade|slide}
-    @setting{font_color:blue|text}
-    Hello World
-    @apply{@font_size:70| Amazing world}
-    Hello you
-@end{slide}
+@begin{fade|slidename}
+   @setting{@font_color:blue|text}
+   Hello World
+   @apply{@font_size:70|Amazing world}
+   Hello you
+@end{slidename}
 
 %Output: {\color{blue}Hello World}%
 %{\Large{\color{blue}Amazing world}}%
@@ -109,17 +100,17 @@ An example with the use of @apply is shown in listing \ref{lst:SyntaxApply}
 \end{lstlisting}
 
 \subsection{@url}
-The expression \texttt{@url} along with \texttt{@apply} makes it possible for the user to include URLs, as hyperlinks, that redirects the user to the specific URL.
-An example of the use of url links is shown in listing \ref{lst:SyntaxURL}
+The expression \lstinline!@url! along with \lstinline!@apply! makes it possible for the user to include URLs, as hyperlinks, that redirects the user to the specific URL.
+An example of the use of URL links is shown in listing \ref{lst:SyntaxURL}
 
 \begin{lstlisting}[frame=single, caption=Hello World with an URL, label=lst:SyntaxURL]
-@begin{fade|slide}
-    @setting{font_color:blue|text}
-    Hello World
-    @apply{@font_size:70| Amazing world}
-    Hello you
-    @apply{@url: http://www.somelink.com/ | This URL}
-@end{slide}
+@begin{fade|slidename}
+   @setting{@font_color:blue|text}
+   Hello World
+   @apply{@font_size:70|Amazing world}
+   Hello you
+   @apply{@url:http://www.somelink.com/ |This URL}
+@end{slidename}
 
 %Output: {\color{blue}Hello World}%
 %{\Large{\color{blue}Amazing world}}%
@@ -130,32 +121,32 @@ An example of the use of url links is shown in listing \ref{lst:SyntaxURL}
 \subsection{@i @u @b}
 These expressions are similar to each other, in that they are all formatting text, as seen below \\
 
-\noindent{\texttt{@u} creates underlined text.} \\
-\texttt{@i} creates italic text. \\
-\texttt{@b} creates bold text. \\
+\noindent{\lstinline!@u!} creates underlined text.} \\
+\lstinline!@i! creates italic text. \\
+\lstinline!@b! creates bold text. \\
 The full expression looks like this:
 \begin{lstlisting}[frame=single]
 @b{ Text }
 \end{lstlisting}
 
-\noindent{Where \texttt{Text} is the text that is shown in the slide, with the proper change of font weight, in this case to bold. In this case a pipe is not needed because there is nothing to put there. 
-It is possible to make font changes, using \texttt{@u / @i / @b}, like:}
+\noindent{Where \texttt{Text} is the text that is shown in the slide, with the proper change of font weight, in this case to bold. In this case a pipe is not needed because there is nothing to put there.
+It is possible to make font changes, using \lstinline!@u / @i / @b!, like:}
 
-\begin{lstlisting}[frame=single, caption=font weight expression generic]
+\begin{lstlisting}[frame=single, caption=Generic \texttt{font weight} expression example]
 @b{ FontChanges:Value | Text }
 \end{lstlisting}
 
-\noindent{Which looks familiar to the \texttt{@apply} expression, and the functionality is basically the same, even though the text is set as any of the font weights \texttt{@u / @i / @b} to begin with. The \texttt{@u / @i / @b} makes it much faster to make a weight on a text instead of writing: @apply\{ @font\_weight:bold | Text \} each time to make bold text.}
+\noindent{Which looks familiar to the \lstinline!@apply! expression, and the functionality is basically the same, even though the text is set as any of the font weights \lstinline!@u / @i / @b! to begin with. The \lstinline!{@u / @i / @b! makes it much faster to make a weight on a text instead of writing: \lstinline!@apply{ @font\_weight:bold | Text}! each time to make bold text.}
 The use of weight expressions is shown in listing \ref{lst:SyntaxBUI}
 \begin{lstlisting}[frame=single, caption=Hello World with font weight, label=lst:SyntaxBUI]
-@begin{fade|slide}
-    @setting{font_color:blue|text}
-    Hello World
-    @apply{@font_size:70| Amazing world}
-    Hello you
-    @apply{@url: http://www.somelink.com/ | This URL}
-    @b{@font_color:red | This text is red and bold}
-@end{slide}
+@begin{fade|slidename}
+   @setting{@font_color:blue|text}
+   Hello World
+   @apply{@font_size:70|Amazing world}
+   Hello you
+   @apply{@url:http://www.somelink.com/ |This URL}
+   @b{@font_color:red |This text is red and bold}
+@end{slidename}
 
 %Output: {\color{blue}Hello World}%
 %{\Large{\color{blue}Amazing world}}%
@@ -165,77 +156,78 @@ The use of weight expressions is shown in listing \ref{lst:SyntaxBUI}
 \end{lstlisting}
 
 \subsection{@title}
-The expression \texttt{@title} makes a title for the slide. The title can be formatted as all other text, with the different font weights, font sizes, etc. The user can use the default settings for the title, regarding font family, font colour, font size, or define them himself inside the @title expression.
-An example of the use of @title is shown in listing \ref{lst:SyntaxTitle}
+The expression \lstinline!@title! makes a title for the slide. The title can be formatted as all other text, with the different font weights, font sizes, etc. The user can use the default settings for the title, regarding font family, font colour, font size, or define them himself inside the \lstinline!@title! expression.
+An example of the use of \lstinline!@title! is shown in listing \ref{lst:SyntaxTitle}
 
 \begin{lstlisting}[frame=single, caption=Hello World with title, label=lst:SyntaxTitle]
-@begin{fade|slide}
-    @setting{font_color:blue|text}
-    Hello World
-    @apply{@font_size:70| Amazing world}
-    Hello you
-    @apply{@url: http://www.somelink.com/ | This URL}
-    @b{@font_color:red | This text is red and bold}
-    @title{@font_weight:underlined| This is an underlined title}
-@end{slide}
+@begin{fade|slidename}
+   @setting{@font_color:blue|text}
+   Hello World
+   @apply{@font_size:70|Amazing world}
+   Hello you
+   @apply{@url:http://www.somelink.com/ |This URL}
+   @b{@font_color:red |This text is red and bold}
+   @title{@font_weight:underlined|This is an underlined title}
+@end{slidename}
 
 %Output: {\color{blue}Hello World}%
 %{\Large{\color{blue}Amazing world}}%
 %{\color{blue}Hello you}%
 %{\color{cyan}This URL}%
 %{\color{red} \textbf{This text is red and bold}}%
-%{\underline{\Large{ This is an underlined title}}}%
+%{\underline{\Large{This is an underlined title}}}%
 \end{lstlisting}
 
 
 \subsection{@subtitle}
-The expression \texttt{@subtitle} makes a subtitle for the slide, which means that it will be placed beneath the title, per default with a smaller font size than title. The subtitle can be formatted as all other text, with the different font weights, font sizes, etc. The user can use the default settings for the subtitle, regarding font family, font colour, font size, or define them himself inside the @subtitle expression.
-An example of the use of @subtitle is shown in listing \ref{lst:SyntaxSubtitle}.
+The expression \lstinline!@subtitle! makes a subtitle for the slide, per default with a smaller font size than title and with the color grey. The subtitle can be formatted as all other text, with the different font weights, font sizes, etc. The user can use the default settings for the subtitle, regarding font family, font colour, font size, or define them himself inside the \lstinline!@subtitle! expression.
+An example of the use of \lstinline!@subtitle! is shown in listing \ref{lst:SyntaxSubtitle}.
 \begin{lstlisting}[frame=single, caption=Hello World with subtitle, label=lst:SyntaxSubtitle]
-@begin{fade|slide}
-    @setting{font_color:blue|text}
-    Hello World
-    @apply{@font_size:70| Amazing world}
-    Hello you
-    @apply{@url: http://www.somelink.com/ | This URL}
-    @b{@font_color:red | This text is red and bold}
-    @title{@font_weight:underlined| This is an underlined title}
-    @subtitle{This is a subtitle}
-@end{slide}
+@begin{fade|slidename}
+   @setting{@font_color:blue|text}
+   Hello World
+   @apply{@font_size:70|Amazing world}
+   Hello you
+   @apply{@url:http://www.somelink.com/ |This URL}
+   @b{@font_color:red |This text is red and bold}
+   @title{@font_weight:underlined|This is an underlined title}
+   @subtitle{This is a subtitle}
+@end{slidename}
 
 %Output: {\color{blue}Hello World}%
 %{\Large{\color{blue}Amazing world}}%
 %{\color{blue}Hello you}%
 %{\color{cyan}This URL}%
 %{\color{red} \textbf{This text is red and bold}}%
-%{\underline{\Large{ This is an underlined title}}}%
+%{\underline{\Large{This is an underlined title}}}%
 %{\large{This is a subtitle}}%
 \end{lstlisting}
 
 \subsection{@image}
-The \texttt{@image} expression imports an image from the Internet as well as from the user's local machine, although it is discouraged to provide absolute paths for images, because this would only make the user's computer able to show the image. Instead, it is encouraged that the user specify the name of the image, and that he instead is placing it in the same folder as the project. This is only the case if there are more contributors to the slideshow.\\
-When importing from the Internet the URL has to be provided, whereas when importing a locally stored image the file path that specific image has to be provided, as can be seen in listing \ref{lst:SyntaxImageGeneral}.
+The \lstinline!@image! expression is used for importing images to the slideshow, either from the Internet of from the user?s computer.
+It is discouraged to provide absolute paths for images, because this would only make the user's computer able to show the image upon compiling. Instead, it is encouraged to specify the name of the image, and place it in the same folder as the HTML-file. This is only the case if there are more contributors to the slideshow.\\
+When importing an image from the Internet, the URL has to be provided, whereas when importing a locally stored image the file path to that specific image has to be provided, which can be seen in listing \ref{lst:SyntaxImageGeneral}.
 
-\begin{lstlisting}[frame=single, caption=Image expression generic, label=lst:SyntaxImageGeneral]
-@image{@url: URL | Text }
+\begin{lstlisting}[frame=single, caption=Generic \texttt{image} expression example, label=lst:SyntaxImageGeneral]
+@image{@url:URL | Text }
 \end{lstlisting}
 
-\texttt{``@url''} is the expression indicating that a URL will be inserted, whereas \texttt{``URL''} is the actual URL address that has been inserted. \\
+\noindent{\lstinline!@url! is the expression indicating that a URL will be inserted, whereas \texttt{``URL''} is the actual URL address that has been inserted. When using a \lstinline!@image! expression, \lstinline!@url! has to be included, otherwise the compiler will output an error. \\
 \texttt{Text} refers to the text which is under the image, also called the image description.
-The only thing that the user have to be aware of, is that the image have to be placed in the same context, or directory the compiler if it is to function properly
+The only thing that the user have to be aware of, is that the image have to be placed in the same directory as the compiler if it is to function properly. An example of the \lstinline!@url! expression is listed in listing \ref{lst:SyntaxImage}.
 
 \begin{lstlisting}[frame=single, caption=Hello World with an image, label=lst:SyntaxImage]
-@begin{fade|slide}
-    @setting{font_color:blue|text}
-    Hello World
-    @apply{@font_size:70| Amazing world}
-    Hello you
-    @apply{@url: http://www.somelink.com/ | This URL}
-    @b{@font_color:red | This text is red and bold}
-    @title{@font_weight:underlined| This is an underlined title}
-    @subtitle{This is a subtitle}
-    @image{@url: http://www.yourlogocollection.com/wp-content/uploads/2011/11/google_logo.jpg | This is googles logo}
-@end{slide}
+@begin{fade|slidename}
+   @setting{@font_color:blue|text}
+   Hello World
+   @apply{@font_size:70|Amazing world}
+   Hello you
+   @apply{@url:http://www.somelink.com/ |This URL}
+   @b{@font_color:red |This text is red and bold}
+   @title{@font_weight:underlined|This is an underlined title}
+   @subtitle{This is a subtitle}
+   @image{@url:http://www.yourlogocollection.com/wp-content/uploads/2011/11/google_logo.jpg |This is Googles logo}
+@end{slidename}
 
 %Output: {\color{blue}Hello World}%
 %{\Large{\color{blue}Amazing world}}%
@@ -254,22 +246,21 @@ The only thing that the user have to be aware of, is that the image have to be p
 \end{lstlisting}
 
 \subsection{Bullet Points (*)}
-The \texttt{*} expression starts a list of bullet points, where the text after the star will be the text after the bullet.
-A star has to be set on each line that is going to be a bullet. Multilevel bullet points can be made using two \texttt{*}. The maximum multilevel that can be made is five. \\
-Bullet points must never have spaces before the *, which makes the compiler think it is plain text. According to our rules, the user must not have plain text before numerations.
+The \texttt{*} expression starts a bullet point, where the text after the asterisk will be the text after the bullet.
+A asterisk has to be set on each line that is going to be a bullet. Multilevel bullet points can be made using two asterisks. The maximum multilevel that can be made is five. \\
+Bullet points must never have spaces before the asterisk, which makes the compiler think it is plain text. According to the rules specified for this language, the user must not have plain text before numerations.
+ \\ \\
+A bullet list is made in listing \ref{lst:BulletExample}.
 
-A bullet list is made in listing \ref{lst:BulletExample}. \\
-
-\begin{lstlisting}[frame=single, caption=Bullet point example, label=lst:BulletExample]
+\begin{lstlisting}[frame=single, caption=Bullet point example., label=lst:BulletExample]
 Input:
-@begin{slide}
+@begin{slidename}
 List of things to buy
 * 2 x milk
 * Bread
 ** Light
 * BKI coffee
-@end{slide}
- 
+@end{slidename}
 %Output:\\
 List of things to buy\\
 \begin{itemize}
@@ -283,20 +274,20 @@ List of things to buy\\
 \end{lstlisting}
 
 \subsection{Numeration (\#)}
-The \texttt{\#} expression starts a numeration list starting from one, and for each line the hash tag is used, the number is incremented. Multilevel numerations can be made using two or more \texttt{\#}. The maximum multilevel that can be made is five. If the line after a hash tag line is not a hash tag line, the numeration list is ended and thus a new hash tag line would have its numeration starting from one. \\
-Numeration must never have spaces before the \#, which makes the compiler think it is plain text. According to our rules, the user must not have plain text before numerations.
-
-A numeration list is made in listing \ref{lst:NumerationExample}: \\
+The \texttt{\#} expression starts a numeration list, starting from one, and for each line the hash tag is used, the number is incremented. Multilevel numerations can be made using two or more \texttt{\#}. The maximum multilevel that can be made is five. If the line after a hash tag line is not a hash tag line, the numeration list is ended and thus a new hash tag line would have its numeration starting from one. \\
+Numeration must never have spaces before the \#, which makes the compiler think it is plain text. According to the rules specified for this language, the user must not have plain text before numerations.
+\\ \\
+A numeration list is made in listing \ref{lst:NumerationExample}:
 
 \begin{lstlisting}[frame=single, caption=Numeration example, label=lst:NumerationExample]
 Input:
-@begin{slide}
+@begin{slidename}
 Agenda
 # Introduction
 # Presentation
 ## Code examples
 # Evaluation
-@end{slide}
+@end{slidename}
 
 %Output:\\
 Agenda
