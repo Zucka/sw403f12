@@ -3,7 +3,7 @@
 
 The requirements for the language is defined in the section ``Language design'' \ref{LanguageRequirements}. Keywords are in the language to give structure and flexibility. These have different outcomes, although some are similar. Some of the keywords are used for the structuring of slides in a slideshow, others are used for text formatting or image placement. To give a higher level of readability, keywords must have meaningful names according to their use and effect. Secondly, it has to be defined in which order these are allowed, and what they mean in that particular order.
 
-\section{Expressions and keywords}
+\section{Expressions and Keywords}
 Expressions are the words with the @-prefix and may not be used otherwise, because the @-prefix should state that an event is about to happen.
 
 \subsection{@begin}
@@ -32,7 +32,7 @@ Input:
 \end{lstlisting}
 
 \noindent{Which states that a slide begins, and that the slide contains the text ``Hello World''. \\
-\subsection{Transition keyword}
+\subsection{Transition Keyword}
 \label{sec:transition}
 Each slide can contain a transition, these transitions are set as keywords, and is listed in listing \ref{lst:TransitionKeywords}
 \begin{lstlisting}[frame=single, caption=Transition keywords, label=lst:TransitionKeywords]
@@ -253,7 +253,7 @@ The only thing that the user have to be aware of, is that the image have to be p
 %
 \end{lstlisting}
 
-\subsection{Bullet points (*)}
+\subsection{Bullet Points (*)}
 The \texttt{*} expression starts a list of bullet points, where the text after the star will be the text after the bullet.
 A star has to be set on each line that is going to be a bullet. Multilevel bullet points can be made using two \texttt{*}. The maximum multilevel that can be made is five. \\
 Bullet points must never have spaces before the *, which makes the compiler think it is plain text. According to our rules, the user must not have plain text before numerations.
