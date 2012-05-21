@@ -1,7 +1,7 @@
 Package nisse;
 
 Helpers
-       charv1    = ['a' .. 'z'] | ['A' .. 'Z'] | 'æ' | 'ø' | 'å' | 'Æ' | 'Ø' | 'Å' | '_';
+       charv1    = ['a' .. 'z'] | ['A' .. 'Z'] | 'æ' | 'ø' | 'å' | 'Æ' | 'Ø' | 'Å';
        digitv1   = ['0' .. '9'] ;
        dot         = '.' ;
        comma       = ',' ;
@@ -10,7 +10,7 @@ Tokens
 
        format_kwd  = '@u' | '@b' | '@i' | '@apply' | '@image' | '@title' | '@subtitle' | '@note' ;
        url         = '@url' ;
-       space       =  ' ' ;
+       space       =  ' ' | 9 ;
        settingkwd  = '@setting' ;
        beginkwd    = '@begin' ;
        endkwd      = '@end' ;
@@ -26,6 +26,8 @@ Tokens
        nlist       = '#' ;
        percent     = '%' ;
        exclamation = '!' ;
+       underscore  = '_' ;
+       hyphen      = '-' ;
        eol         = eolv1+;
        char        = charv1+ ;
        digit       = digitv1+ ;
@@ -33,11 +35,12 @@ Tokens
        dot         = dot+;
        comma       = comma+ ;
 
+
 Productions 
 
        nisse         = blocks* ;
        blocks        = {block} beginblock lines* endblock 
-                     | {setting} settingblock ;
+                     | {setting} space* settingblock ;
        lines         = {setting} settingblock 
                      | {numeration} numeration
                      | {itemlist} itemlist 
@@ -48,8 +51,8 @@ Productions
        itemlist      = blist itemlistv1 ;
        itemlistv1    = {plaintext} plains eol  
                      | {itemlist} itemlist;
-       beginblock    = beginkwd space* beblock eol ;
-       endblock      = endkwd space* beblock eol ;
+       beginblock    = beginkwd space* beblock [second]:space* eol ;
+       endblock      = endkwd space* beblock [second]:space* eol ;
        beblock       = lcurly [first]:space* char [second]:space* beblockv1? rcurly ;
        beblockv1     = pipe [first]:space* char [second]:space*;
        settingblock  = settingkwd lcurly shortident pipe [second]:space* char [third]:space* rcurly space* eol;
@@ -64,11 +67,16 @@ Productions
                      | {float} float
                      | {colon} colon
                      | {fslash} fslash
-                     | {dot} dot;
-       kwd           = {at} atsign char
+                     | {dot} dot
+                     | {underscore} underscore
+                     | {hyphen} hyphen;
+       kwd           = {at} atsign kwdv1+
                      | {url} url ;
+       kwdv1         = {char} char
+                     | {underscore} underscore;
        charall       = {colon} colon
                      | {digit} digit
+                     | {float} float
                      | {semicolon} scolon
                      | {percent} percent
                      | {forwardslash} fslash
@@ -77,4 +85,6 @@ Productions
                      | {dot} dot 
                      | {comma} comma
                      | {char} char
-                     | {space} space ;
+                     | {space} space 
+                     | {underscore} underscore
+                     | {hyphen} hyphen;
