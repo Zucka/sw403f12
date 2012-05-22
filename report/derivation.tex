@@ -1,0 +1,43 @@
+ %	Skriv folgende ind som en custom Quick Build (F1)
+%pdflatex -interaction=nonstopmode %.tex|bibtex %|pdflatex -interaction=nonstopmode %.tex|pdflatex -interaction=nonstopmode %.tex
+\documentclass{report}
+
+
+\usepackage{rotating}
+\usepackage[cm]{fullpage}
+\usepackage[landscape,top=0cm,bottom=0cm,left=0cm, right=0cm]{geometry}
+\input{layout/standard.tex} %Hüttles standard-fil, anvendes den operationelle semantik
+
+\begin{document}
+\pagestyle{empty}
+\setcounter{chapter}{9}
+\begin{figure}
+\small{
+\centering
+\[				
+	\frac{\displaystyle begin~~~
+	\frac{\displaystyle 
+	\frac{\displaystyle <formatkwd\{
+	\frac{\displaystyle kwd:V,~env \rightarrow env’}
+	{\displaystyle shortident}~|~
+	\frac{\displaystyle Plaintext,~S \rightarrow S’}
+	{\displaystyle Plain}\},~env> \rightarrow env’}
+	{\displaystyle Shortblock,~S \rightarrow S’(1)(2)}}
+	{\displaystyle plain(1)~~~plain(2)}~~~
+	\frac{\displaystyle Plaintext,~S \rightarrow S’(3)(4)(5)}
+	{\displaystyle plain(3)~~~plain(4)~~~plain(5)}~~~
+	\frac{\displaystyle 
+	\frac{\displaystyle <formatkwd\{
+	\frac{\displaystyle kwd:V,~env \rightarrow env’}
+	{\displaystyle shortident}~|~
+	\frac{\displaystyle Plaintext,~S \rightarrow S’}
+	{\displaystyle Plain}\},~env> \rightarrow env’}
+	{\displaystyle Shortblock,~S \rightarrow S’(6)}}
+	{\displaystyle plain(6)}~~~end}
+	{\displaystyle \frac{\displaystyle <slide,~S,~env> \rightarrow S’,~env’}
+	{\displaystyle <S,~env> \rightarrow show}}
+\] 
+}
+\caption{Derivation Tree for listing 9.1}
+\end{figure}
+\end{document}

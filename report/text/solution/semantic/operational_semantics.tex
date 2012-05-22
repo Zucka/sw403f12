@@ -53,21 +53,12 @@ An example of a derivation tree is made in figure \ref{fig:DerivationTree} of th
 \end{lstlisting}
 
 \noindent{The number at the end of almost each line i listing \ref{lst:DerivationTree} corresponds to the number in figure \ref{fig:DerivationTree}, for what it represents.}
-
-\begin{sidewaysfigure}
-\caption{Derivation Tree for listing \ref{lst:DerivationTree}}
-\label{fig:DerivationTree}
-\begin{prooftree}
-	\AxiomC{$kwd:V,~env \rightarrow env’$}
-	\AxiomC{$Plaintext,~S \rightarrow S’$}
-	\BinaryInfC{$<formatkwd\{shortident~|~Plain\},~env \rightarrow env’$}
-	\UnaryInfC{$Shortblock,~S \rightarrow S’(1)(2)$}
-	\AxiomC{$kwd:V,~env \rightarrow env’$}
-	\AxiomC{$Plaintext,~S \rightarrow S’$}
-	\BinaryInfC{$<formatkwd\{shortident~|~Plain\},~env \rightarrow env’$}
-	\UnaryInfC{$Shortblock,~S \rightarrow S’(6)$}
-	\BinaryInfC{$Plaintext,~S \rightarrow S’(3)(4)(5)$}									\UnaryInfC{$begin~~~~~plain(1)~~~~~plain(2)~~~~~plain(3)~~~~~plain(4)~~~~~plain(5)~~~~~plain(6)~~~~~end$}
-	\UnaryInfC{$<slide,~S,~env> \rightarrow S’,~env’$}
-	\UnaryInfC{$<S,~env> \rightarrow show$}
-\end{prooftree}\end{sidewaysfigure}\noindent{The \texttt{Shortblocks} in figure \ref{fig:DerivationTree} should be seen as being on the same line as \texttt{Plaintext}.
+%\begin{figure}
+%\label{fig:DerivationTree}
+%\includegraphics[scale=1]{images/derivation.pdf}
+%\caption{Derivation Tree for listing \ref{lst:DerivationTree}}
+%\end{figure}
+\noindent{The \texttt{Shortblocks} in figure \ref{fig:DerivationTree} should be seen as being on the same line as \texttt{Plaintext}.
 \texttt{plain(1)} and \texttt{plain(2)} in figure \ref{fig:DerivationTree} derives to two separate shortblocks. Even though the figure only shows one shortblock, which then changes the environment, according to the shortident and formatkwd, to the \texttt{Plain}, which derives to Plaintext, and changes the content of the slide. The same goes for \texttt{plain(6)}}
+
+\includepdf{images/derivation}
