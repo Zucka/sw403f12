@@ -7,8 +7,8 @@ Top down derives the parse tree from the left. This means that a nonterminal can
 This can be avoided by using a \texttt{bottom up} method.
 
 \subsection*{Bottom Up}
-Bottom up derives the parse tree from the right, which makes the expression: $A \rightarrow BC | BD$ legal for a bottom up parser, because it looks at $C$ and $D$ first and then decides which derivation to pick.
+Bottom up derives the parse tree from the right, which makes the expression: $A \rightarrow BC | BD$ legal for a bottom up-parser, because it looks at $C$ and $D$ first and then decides which derivation to pick.
 
 \subsection*{Conclusion}
 A Bottom Up (LALR (Look Ahead Left-scan, Rightmost derivation in reverse)) derivation of the parser will be used in this language, because of the use of SableCC, which makes a LALR-parser, which can be seen in section \ref{sec:SableCC}. \\
-If the lexer and parser were to be made manually, an LL parser would be preferred, because it can be visualized more easily, compared to an LR parser.
+If the lexer and parser were to be made manually, an LL-parser would be preferred, because it can be visualized more easily, compared to an LR-parser.
