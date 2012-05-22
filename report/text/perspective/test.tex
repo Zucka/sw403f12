@@ -12,16 +12,16 @@ The result of the test is shown in table \ref{tbl:TestTable}.
    \begin{tabular}{ | l | l |}
     \hline
     Program/Language & Time \\ \hline
-    Microsoft PowerPoint (PC) & 05 minutes 55 seconds \\
-    \LaTeX~Beamer (PC) & $\sim$ 45 minutes \\    
     NISSE (PC) & 09 minutes 45 seconds \\ 
-    NISSE (Ipad) & 09 minutes 00 seconds \\ \hline
+    \LaTeX~Beamer (PC) & $\sim$ 45 minutes \\    
+    Microsoft PowerPoint (PC) & 05 minutes 55 seconds \\
     Apple Keynote (Ipad) & 12 minutes 40 seconds \\ 
+    NISSE (Ipad) & 09 minutes 00 seconds \\ \hline
    \end{tabular}
     \caption{Table showing the test results}
     \label{tbl:TestTable}
 \end{table}
-The tests were made in the same order they occurr in the table.
+The tests were made in the same order they occur in the table.
 \\ \\
 The testing of \LaTeX~Beamer took a lot of time, because additional packages had to be installed on the test computer, and specific commands had to be found on the Internet in order to create the test slideshow. \\
 The Microsoft PowerPoint presentation was the absolutely fastest way to create the test slideshow, but this test was mainly made to compare pointing languages with non-pointing language. This showed a significant amount of saved time compared to the rest. \\
@@ -42,7 +42,7 @@ Testing was done by writing many different viable constructs and combining them 
 \noindent{In listing \ref{lst:ltest0} the construct results in the text family being \texttt{Times New Roman}. That is the expected behaviour of the text family, but it does not work, because the parser only recognizes; \\
 \texttt{digits}, \texttt{floats}, \texttt{colons}, \texttt{forward slashes}, \texttt{dots}, \texttt{underscores} or \texttt{hyphens}, \\
 (because the font family is recognized as a \texttt{shortidentv1}). It is not only \texttt{Times New Roman} that does not work; it is every font family that contains space(s) in their names, which is because the compiler does not accept a \texttt{space} as a setting, in the font family name.}
-
+\newpage
 \begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest3, language=nisse]
 @begin{slide}
 @image{@url:http://google.com/logo.png | @i{Image text.}}
