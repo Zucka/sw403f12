@@ -13,27 +13,27 @@ The requirements for the NISSE parser are:
 \newpage
 \section{CFG}
 \begin{lstlisting}[frame=single, caption={CFG of NISSE in EBNF.}, label={lst:ebnf}, language=NISSE]
-SS              = Blocks ;
-Blocks          = BeginBlock {Lines} Endblock | SettingBlock ;
-Lines           = SettingBlock | Numeration | Itemlist | Plains eol ;
-Numeration      = nlist (Plains eol | Numeration) ;
-Itemlist        = blist (Plains eol | Itemlist) ;
-BeginBlock      = beginkwd {space} BEBlock eol ;
-EndBlock        = endkwd {space} BEBlock eol ;
-BEBlock         = lcurly {space} char {space} [BEBlockv1] rcurly ;
-BEBlockv1       = pipe {space} char {space}  ;
-SettingBlock    = settingkwd lcurly ShortIdent {space} pipe {space} char {space} rcurly {space} eol ;
-Plains          = (ShortBlock | CharAll) {(ShortBlock | CharAll)} ;
-ShortBlock      = format_kwd lcurly {space} [ShortIdents] Plains rcurly ;
-ShortIdents     = ShortIdent pipe ;
-ShortIdent      = Kwd {space} colon {space} ShortIdentv1,{ShortIdentv1} {space} ;
-ShortIdentv1    = char | digit | Float | colon | fslash | dot ;
-Kwd             = atsign char | url ;
-CharAll         = colon | digit | scolon | percent | fslash | bslash | exclamation | dot | comma | char | space | underscore | hyphen;
-Float           = digit dot digit ; 
-eol             = eolv1 , {eolv1} ;
-dot             = dotv1 , {dotv1};
-comma           = commav1,{commav1} ;
+SS           = Blocks ;
+Blocks       = BeginBlock {Lines} Endblock | SettingBlock ;
+Lines        = SettingBlock | Numeration | Itemlist | Plains eol ;
+Numeration   = nlist (Plains eol | Numeration) ;
+Itemlist     = blist (Plains eol | Itemlist) ;
+BeginBlock   = beginkwd {space} BEBlock eol ;
+EndBlock     = endkwd {space} BEBlock eol ;
+BEBlock      = lcurly {space} char {space} [BEBlockv1] rcurly ;
+BEBlockv1    = pipe {space} char {space}  ;
+SettingBlock = settingkwd lcurly ShortIdent {space} pipe {space} char {space} rcurly {space} eol ;
+Plains       = (ShortBlock | CharAll) {(ShortBlock | CharAll)} ;
+ShortBlock   = format_kwd lcurly {space} [ShortIdents] Plains rcurly ;
+ShortIdents  = ShortIdent pipe ;
+ShortIdent   = Kwd {space} colon {space} ShortIdentv1,{ShortIdentv1} {space} ;
+ShortIdentv1 = char | digit | Float | colon | fslash | dot ;
+Kwd          = atsign char | url ;
+CharAll      = colon | digit | scolon | percent | fslash | bslash | exclamation | dot | comma | char | space | underscore | hyphen;
+Float        = digit dot digit ; 
+eol          = eolv1 , {eolv1} ;
+dot          = dotv1 , {dotv1};
+comma        = commav1,{commav1} ;
 \end{lstlisting}
 Listing \ref{lst:ebnf} shows the CFG for NISSE in EBNF. With the rules of table \ref{tbl:EBNFSyntax}.
 
