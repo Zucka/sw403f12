@@ -28,12 +28,12 @@ The Microsoft PowerPoint presentation was the absolutely fastest way to create t
 The main result of the test is that creating the test slideshow using \LaTeX~Beamer on a PC and NISSE, shows that it is more time efficient to create slideshows using NISSE. NISSE beats \LaTeX~Beamer because the user has to browse the Internet for certain commands and packages, while using \LaTeX~Beamer.
 \\ \\
 The reason that it was faster to create the test slideshow with NISSE on an Ipad than on PC, might have been that the test person knew what was on the slides, after creating the same slideshow multiple times.
-
+\newpage
 \section{Language Tests \& Known Errors}
 To find errors or bugs in the language or compiler a series of tests have been run to verify that a given input would result in a viable output. 
 Testing was done by writing many different viable constructs and combining them in different ways. Below is some of the constructs that was made, and some of the errors have been corrected due to faulty code in the compiler, others have been addressed for further development.
 
-\begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest0, language=nisse]
+\begin{lstlisting}[frame=single,caption=NISSE \lstinline!@apply! construct,label=lst:ltest0, language=nisse]
 @begin{slide}
 @apply{@font_family: Times New Roman | this text is in Times New Roman}
 @end{slide}
@@ -42,7 +42,7 @@ Testing was done by writing many different viable constructs and combining them 
 \noindent{In listing \ref{lst:ltest0} the construct results in the text family being \texttt{Times New Roman}. That is the expected behaviour of the text family, but it does not work, because the parser only recognizes; \\
 \texttt{digits}, \texttt{floats}, \texttt{colons}, \texttt{forward slashes}, \texttt{dots}, \texttt{underscores} or \texttt{hyphens}, \\
 (because the font family is recognized as a \texttt{shortidentv1}). It is not only \texttt{Times New Roman} that does not work; it is every font family that contains space(s) in their names, which is because the compiler does not accept a \texttt{space} as a setting, in the font family name.}
-\newpage
+
 \begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest3, language=nisse]
 @begin{slide}
 @image{@url:http://google.com/logo.png | @i{Image text.}}
