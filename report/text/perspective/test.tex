@@ -43,12 +43,12 @@ Testing was done by writing many different viable constructs and combining them 
 \texttt{digits}, \texttt{floats}, \texttt{colons}, \texttt{forward slashes}, \texttt{dots}, \texttt{underscores} or \texttt{hyphens}, \\
 (because the font family is recognized as a \texttt{shortidentv1}). It is not only \texttt{Times New Roman} that does not work; it is every font family that contains space(s) in their names, which is because the compiler does not accept a \texttt{space} as a setting, in the font family name.}
 
-\begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest3, language=nisse]
+\begin{lstlisting}[frame=single,caption=NISSE \lstinline!@image! construct,label=lst:ltest3, language=nisse]
 @begin{slide}
 @image{@url:http://google.com/logo.png | @i{Image text.}}
 @end{slide}
 \end{lstlisting}
-\begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest31, language=nisse]
+\begin{lstlisting}[frame=single,caption=NISSE \lstinline!@image! construct,label=lst:ltest31, language=nisse]
 @begin{slide}
 @i{@image{@url:http://google.com/logo.png | Image text.}}
 @end{slide}
@@ -56,12 +56,13 @@ Testing was done by writing many different viable constructs and combining them 
 In listing \ref{lst:ltest3} the construct results in the image description being italic. That is the expected behaviour of format keywords. \\
 In listing \ref{lst:ltest31} the same construct is given, but the order of format keywords is opposite so the image is defined inside an italic construct. \\
 This will result in the same as listing \ref{lst:ltest3}, which is also the expected outcome.
-\begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest1, language=nisse]
+\newpage
+\begin{lstlisting}[frame=single,caption=NISSE \lstinline!@image! \lstinline!@title! construct,label=lst:ltest1, language=nisse]
 @begin{slide}
 @image{@url:http://google.com/logo.png | @title{Image text as title text.}}
 @end{slide}
 \end{lstlisting}
-\begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest2, language=nisse]
+\begin{lstlisting}[frame=single,caption=NISSE \lstinline!@title! \lstinline!@image! construct,label=lst:ltest2, language=nisse]
 @begin{slide}
 @title{@image{@url:http://google.com/logo.png | Image text.}}
 @end{slide}
@@ -69,14 +70,14 @@ This will result in the same as listing \ref{lst:ltest3}, which is also the expe
 In listing \ref{lst:ltest1} the same image construct as in listing \ref{lst:ltest3} is given, but the image description here poses as a title. This will result in the image text have the properties of a title thus not being image text. \\
 However, in listing \ref{lst:ltest2} the construct order is the opposite as in listing \ref{lst:ltest31} but the outcome is not the same. Here it will not get the title property as it is the inner construct that defines which type the text will be. This is therefore also the expected outcome but it is not consistent with other format keywords behaviour in the same context.
 
-\begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest6, language=nisse]
+\begin{lstlisting}[frame=single,caption=NISSE Danish characters construct,label=lst:ltest6, language=nisse]
 @begin{slide}
 ֶ״ֵ זרו
 @end{slide}
 \end{lstlisting}
 In listing \ref{lst:ltest6} danish characters is used, but the lexer does not properly recognize these as valid tokens. This is a bug that will not be corrected at this time, but will have to be done before initial release.
 
-\begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest8, language=nisse]
+\begin{lstlisting}[frame=single,caption=NISSE slide name construct,label=lst:ltest8, language=nisse]
 @begin{s} %\label{lst:ltest81}%
 Slide content...
 @end{s} %\label{lst:ltest82}%
@@ -87,19 +88,19 @@ In listing \ref{lst:ltest10} line \ref{lst:ltest101} specifies a slide name that
 This is a bug which will not be corrected at this time, but should be before initial release.
 An example of a correct input is in listing \ref{lst:ltest11}. 
 
-\begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest9, language=nisse]
+\begin{lstlisting}[frame=single,caption=NISSE slide name construct,label=lst:ltest9, language=nisse]
 @begin{s}%\label{lst:ltest91}%
 Slide content...
 @end{f}%\label{lst:ltest92}%
 \end{lstlisting}
 
-\begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest10, language=nisse]
+\begin{lstlisting}[frame=single,caption=NISSE slide name construct,label=lst:ltest10, language=nisse]
 @begin{fade}%\label{lst:ltest101}%
 Slide content...
 @end{s}%\label{lst:ltest102}%
 \end{lstlisting}
 
-\begin{lstlisting}[frame=single,caption=NISSE construct,label=lst:ltest11, language=nisse]
+\begin{lstlisting}[frame=single,caption=NISSE slide name construct,label=lst:ltest11, language=nisse]
 @begin{fade | slideone}%\label{lst:ltest111}%
 Slide content...
 @end{slideone}%\label{lst:ltest112}%
