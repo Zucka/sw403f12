@@ -1,15 +1,15 @@
-\section{Font Type}
+\chapter{Font Type}
 \label{AppendixFontType}
 The following sections contains descriptions about the font types that can be changed in NISSE.
 
-\subsection{Font\_family}
+\section{Font\_family}
 The expression \texttt{font\_family} sets the font family such as \texttt{Arial}, \texttt{Verdana}, etc., from the beginning of the slideshow or at a specific slide, such that the font family can be applied locally or globally. The language supports all the same font families as CSS does. An example of the use of changing the font family is shown in listing \ref{lst:AFontFamily}
 
 \begin{lstlisting}[frame=single, caption=Changing font family, label=lst:AFontFamily ]
 	@apply{@font_family: Verdana | this text is in Verdana font family}
 \end{lstlisting}
 
-\subsection{Font\_color}
+\section{Font\_color}
 The expression \texttt{font\_color} sets the font colour from the beginning of the slideshow or at a specific slide, such that the colour can be applied locally or globally. The language supports all the same font colors as CSS does. \\
 CSS 3 has inherited its extended colour keywords from SVG (Scalable Vector Graphics), which are the colours that can be used in NISSE \cite{W3}. An example of the use of changing the font colour is shown in listing \ref{lst:AFontColor}.
 
@@ -17,14 +17,14 @@ CSS 3 has inherited its extended colour keywords from SVG (Scalable Vector Graph
 	@apply{@font_color: Blue| %{\color{blue}this text is in blue colour}%}
 \end{lstlisting}
 
-\subsection{Font\_size}
+\section{Font\_size}
 The expression \texttt{font\_size} sets the font size from the beginning of the slideshow or at a specific slide, such that the size can be applied locally or globally. The language supports all the font sizes as the CSS does. The font size is defined in pixels. An example of the use of changing the font size is shown in listing \ref{lst:AFontSize}.
 
 \begin{lstlisting}[frame=single, caption=Changing font size, label=lst:AFontSize]
 	@apply{@font_size: 70 | %{\Large{this text is in size 70}}%}
 \end{lstlisting}
 
-\subsection{Font\_weight}
+\section{Font\_weight}
 The expression \texttt{font\_weight} refers to the term \texttt{font weight}, which is the various settings that can be defined for the \lstinline!font, bold italic! and \lstinline!underline!. An example of the use of changing the font weight is shown in listing \ref{lst:AFontWeight}.
 
 \begin{lstlisting}[frame=single, caption=Changing font weight, label=lst:AFontWeight]
