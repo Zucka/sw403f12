@@ -37,14 +37,17 @@ comma        = commav1,{commav1} ;
 \end{lstlisting}
 Listing \ref{lst:ebnf} shows the CFG for NISSE in EBNF. With the rules of table \ref{tbl:EBNFSyntax}.
 
-NISSE's grammar is able to construct everything that is required of NISSE. \\
+\noindent{NISSE's grammar is able to construct everything that is required of NISSE.}
+
 \begin{figure}[! h]
 \centering
 	 \includegraphics[width=350px]{images/ebnfexample.eps}
 		 \caption{Parse tree for a simple slide.}	
 	\label{fig:Parsetree}
 \end{figure}
-Figure \ref{fig:Parsetree} shows how the CFG would parse the AST, with the input of listing \ref{lst:BasicElemets}.
+
+\noindent{Figure \ref{fig:Parsetree} shows how the CFG would parse the AST, with the input of listing \ref{lst:BasicElemets}.}
+
 \section{Conclusion}
 The CFG is concluded to be LALR according to section \ref{Parserstrategy}, the CFG is not ambiguous either, as per the definition of LALR (\cite{CaC} Chapter 6).
 

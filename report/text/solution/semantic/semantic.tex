@@ -46,7 +46,8 @@ Every setting block has to be given a scope of what it is going to affect. An ex
 
 \subsubsection*{Effect Level}
 When a setting block is inside a begin- and end block, the setting only affects that particular slide.\\
-A setting block can also be used outside a line, which would make that setting apply to every slide following that specific slide, at which it is defined, unless it is overridden at a later stage. These scope settings have to be checked as to see what text the setting should apply to.\\ \\
+A setting block can also be used outside a line, which would make that setting apply to every slide following that specific slide, at which it is defined, unless it is overridden at a later stage. These scope settings have to be checked as to see what text the setting should apply to.
+\\ \\
 Listing \ref{LSTSemanticSetting} is a code example of when the compiler enters a setting node. The ``Visibility'' word in this section means which font type is changed; title, text, subtitle, etc.
 
 \begin{lstlisting}[frame=single,caption=SettingBlock, label=LSTSemanticSetting, language=java]
@@ -85,12 +86,11 @@ public void inASettingblock (ASettingblock node){
 			}
 		}
 		else {
-					Error.MakeError("Font color existence" , Value);
+					Error.MakeError("Font colour existence" , Value);
 		}
 	}
 	else if (SettingType.startsWith("@ font _ family")){	
 		String Value = SettingType.substring(18);
-		…...
 
 \end{lstlisting}
 
@@ -106,7 +106,7 @@ From line 34 to 41 creates errors in the error table if the lines are executed.
 
 \section{Semantic Analysis for Blocks}
 This section focuses on blocks. A block consists of at least two lines, a \texttt{begin} line and an \texttt{end} line. Between those two lines, information can be stored. \\
-The generic setup for the two lines are shown in section \ref{@begin} and \ref{@end}.
+The generic setup for the two lines are shown in section \ref{@begin} and \ref{@end}. \\
 \ref{LSTOutBlockBlocks} is a listing of semantic for transition existence and slide type checking.
 \newpage
 \begin{lstlisting}[frame=single,caption=Function: OutBlockBlocks, label=LSTOutBlockBlocks, language=java]
@@ -237,7 +237,8 @@ In line 20 to 23 the function sets the transition to default, and creates an err
 
 \subsection{Slide Type Checking}
 There are different types of slide layouts. For instance, most slide presentations starts with a title slide, with or without a subtitle. The front page contains a title, and in some cases a subtitle, which both is in the middle of the slide. This placement is defined per default, instead of providing the user the explicit choice of this, to make it less complicated for the user. \\
-The semantic analyser will check this, and creates the correct type of slide according to the text input from the user. \\ \\
+The semantic analyser will check this, and creates the correct type of slide according to the text input from the user.
+\\ \\
 In listing \ref{LSTOutBlockBlocks} from line 24 to 112, the type of slide is determined. It starts by being \texttt{Unknown}, but it should never be that in the end. Then, in line 25 it creates an array of each object (line) in the slide. The number of lines is determined in line 26. \\
 The number of title-, subtitle- and image lines is set in line 28 - 30. \\
 To check how many there are, by checking the number of lines, a loop for each of the lines is made, and increment the variable for the specific type. If a normal text line is encountered, it will automatically be a \texttt{normal} slide. \\
@@ -248,7 +249,7 @@ Line 111 adds the slide properties to the slide table.
 Errors found in the semantic analysis, for instance typing ``bluue'' instead of ``blue'' in a \texttt{font\_color} command, or writing letters in a \texttt{font\_size} command, results in the command being ignored and a description of the error is added in an error table containing the slide number, a description of the error and the \texttt{Value} containing the error, in this case the description would be ``font colour existence'' and \texttt{Value} would be ``bluue''.\\
 Listing \ref{LSTMakeError} creates an object in the \texttt{ErrorList} array, where the first dimension states which error number it is. The second dimension in cell 0 contains the information about what slide number the error has occured. \\
 In cell 1 the type of error is inserted, and in cell 2 is the Value of the error. \\
-An example of errors are made in table \ref{TLBErrorlist}, where the the user tries to change the font colour in slide number 2 to \texttt{SomeColor}, and the font color in slide 3 to \texttt{bluue}, which is not a valid colour. 
+An example of errors are made in table \ref{TLBErrorlist}, where the the user tries to change the font colour in slide number 2 to \texttt{SomeColor}, and the font colour in slide 3 to \texttt{bluue}, which is not a valid colour. 
 
 \begin{lstlisting}[frame=single,caption= Function: MakeError, label=LSTMakeError, language=java]
 	static int Slidenr = 1;
