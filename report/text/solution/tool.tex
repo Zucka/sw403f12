@@ -32,7 +32,7 @@ void Start() :
 	<EOF>
 }
 \end{lstlisting} 
-\noindent{The example shows that the form is far from the original form of EBNF, but it is still readable as the production is named \texttt{Start} and the rule is that a \texttt{NUMBER} token is followed by none or more \texttt{PLUS NUMBER} token sequences. In the language specification JavaCC can also take some amount of action code, so that part of the code generator is also specified there.}
+\noindent{The example shows that the form is far from the original form of EBNF, but it is still readable as the production is named \texttt{Start} and the rule is that a \texttt{NUMBER} token is followed by none or more \texttt{PLUS NUMBER} token sequences. In the language specification JavaCC can also take some amount of action code, such that part of the code generator is also specified there.}
 
 \section{Conclusion}
 SableCC has been chosen as the lexer and parser generator, because it takes an extended EBNF grammar, which is easy to translate to, from NISSE's grammar which is written in EBNF. SableCC also includes a visitor pattern, which makes it much easier to not get slowed down by not having to write the visitor pattern for all of the production rules of this project. A SableCC specification file is also simple and easy to get started with.
