@@ -126,6 +126,7 @@ These expressions are similar to each other, in that they are all formatting tex
 \lstinline!@i! creates italic text. \\
 \lstinline!@b! creates bold text. \\
 The full expression looks like listing \ref{lst:gfwe1}
+\newpage
 \begin{lstlisting}[frame=single, caption=Generic \texttt{font weight} expression example, label=lst:gfwe1]
 @b{ Text }
 \end{lstlisting}
@@ -159,7 +160,7 @@ The use of weight expressions is shown in listing \ref{lst:SyntaxBUI}
 \subsection{@title}
 The expression \lstinline!@title! makes a title for the slide. The title can be formatted as all other text, with the different font weights, font sizes, etc. The user can use the default settings for the title, regarding font family, font colour, font size, or define them himself inside the \lstinline!@title! expression.
 An example of the use of \lstinline!@title! is shown in listing \ref{lst:SyntaxTitle}
-
+\newpage
 \begin{lstlisting}[frame=single, caption=Hello World with title, label=lst:SyntaxTitle]
 @begin{fade|slidename}
    @setting{@font_color:blue|text}
@@ -178,8 +179,6 @@ An example of the use of \lstinline!@title! is shown in listing \ref{lst:SyntaxT
 %{\color{red} \textbf{This text is red and bold}}%
 %{\underline{\Large{This is an underlined title}}}%
 \end{lstlisting}
-
-
 \subsection{@subtitle}
 The expression \lstinline!@subtitle! makes a subtitle for the slide, per default with a smaller font size than title and with the color grey. The subtitle can be formatted as all other text, with the different font weights, font sizes, etc. The user can use the default settings for the subtitle, regarding font family, font colour, font size, or define them himself inside the \lstinline!@subtitle! expression.
 An example of the use of \lstinline!@subtitle! is shown in listing \ref{lst:SyntaxSubtitle}.
