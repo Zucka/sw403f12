@@ -17,7 +17,7 @@ Where \texttt{transition} is the form of transition to the slide. Transitions wi
 \subsection{@end}
 \label{@end}
 The expression \lstinline!@end! is used to determine the end of a slide, by writing the line in listing \ref{lst:end1}.
-\begin{lstlisting}[frame=single, caption="Generic \texttt{end} expression example, label=lst:end1]
+\begin{lstlisting}[frame=single, caption=Generic \texttt{end} expression example, label=lst:end1]
 @end{slidename}
 \end{lstlisting}
 
@@ -49,6 +49,7 @@ Input:
 
 \subsection{@setting}
 This expression sets a new setting for a specific type of font setting for a specific type of text. A generic example of this is shown in listing \ref{lst:SettingGeneric}.
+\newpage
 \begin{lstlisting}[frame=single, caption=Generic \texttt{setting} expression example, label=lst:SettingGeneric]
 @setting{FontChanges:Value | Type}
 \end{lstlisting}
@@ -124,15 +125,15 @@ These expressions are similar to each other, in that they are all formatting tex
 \noindent{\lstinline!@u!} creates underlined text.} \\
 \lstinline!@i! creates italic text. \\
 \lstinline!@b! creates bold text. \\
-The full expression looks like this:
-\begin{lstlisting}[frame=single]
+The full expression looks like listing \ref{lst:gfwe1}
+\begin{lstlisting}[frame=single, caption=Generic \texttt{font weight} expression example, label=lst:gfwe1]
 @b{ Text }
 \end{lstlisting}
 
 \noindent{Where \texttt{Text} is the text that is shown in the slide, with the proper change of font weight, in this case to bold. In this case a pipe is not needed because there is nothing to put there.
-It is possible to make font changes, using \lstinline!@u / @i / @b!, like:}
+It is possible to make font changes, using \lstinline!@u / @i / @b!, as in listing \ref{lst:gfwe2}}
 
-\begin{lstlisting}[frame=single, caption=Generic \texttt{font weight} expression example]
+\begin{lstlisting}[frame=single, caption=Generic \texttt{font weight} expression example, label=lst:gfwe2]
 @b{ FontChanges:Value | Text }
 \end{lstlisting}
 
