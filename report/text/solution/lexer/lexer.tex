@@ -80,7 +80,7 @@ The reason each expression has its own token and not a general production, is to
 \lstinline!Digit! is used whenever numbers need to be used in the code. \\
 
 \subsection{NFA}
-Figure \ref{fig:nfaer} is a NFA (Nondeterministic Finite Automaton) for when the user inserts an \texttt{atsign}, which can become a lot of different tokens. It will always take an input before an epsilon\footnote{The empty set.}, for instance, if an \texttt{atsign} and an \texttt{i} is written, it looks at the next tokens, before it uses the epsilon transition.
+Figure \ref{fig:nfaer} is a NFA (Nondeterministic Finite Automaton) for tokens when a user inserts an \texttt{atsign}, which can become a lot of different tokens. The lexer will always take the token with the longest length, and if the input matches two token specifications of the same length it will choose the token that is written first in the token specifications.
 
 \begin{figure}[h!]
 	\centering
@@ -89,7 +89,7 @@ Figure \ref{fig:nfaer} is a NFA (Nondeterministic Finite Automaton) for when the
 	\label{fig:nfaer}
 \end{figure}
 
-\noindent{The \texttt{atsign} can create a number of different tokens, shown in figure \ref{fig:nfaer}, these are; \texttt{formatkwd, settingblock, beginkwd, endkwd, url} and if the text does not match any of these, it is tokenized as an \texttt{atsign} and the text after the \texttt{atsign} is tokenized as a another token.}
+\noindent{The atsign can create a number of different tokens, shown in figure \ref{fig:nfaer}, these are; \texttt{formatkwd, settingblock, beginkwd, endkwd, url} and if the text does not match any of these, it is tokenized as an \texttt{atsign} and the text after the \texttt{atsign} is tokenized as a another token.}
 
 \subsubsection*{Regular expression}
 The regular expression for figure \ref{fig:nfaer} is shown in listing \ref{lst:Regularexpression}
