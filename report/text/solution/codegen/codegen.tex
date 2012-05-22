@@ -13,9 +13,9 @@ The code generator takes the decorated AST from the semantic analysis and with i
 Each of these requirements will be described further in the following subsections.
 
 \section{Header File and Libraries}
-The common header file of all generated slides is kept in a java file called \texttt{prefix} inside the compiler. The header file consists of; HTML metatags, the common CSS of all slides, the JavaScript libraries and the start of the body of the HTML-file. \\
+The common header file of all generated slides is kept in a java file called \texttt{prefix} inside the compiler. The header file consists of; HTML-metatags, the common CSS of all slides, the JavaScript libraries and the start of the body of the HTML-file. \\
 
-\noindent{The HTML metatags are there such that the slideshows works on mobile devices (e.g. Apple Iphone/Ipad or Android phones/tablets), because without them the slideshows would not scale correctly for the mobile device screens. The metatags also disables user zoom such that the user can use swipes to change slide without the need to worry about placement or size of the slide.} \\
+\noindent{The HTML-metatags are there such that the slideshows works on mobile devices (e.g. Apple Iphone/Ipad or Android phones/tablets), because without them the slideshows would not scale correctly for the mobile device screens. The metatags also disables user zoom such that the user can use swipes to change slide without the need to worry about placement or size of the slide.} \\
 
 \noindent{The common CSS of all slides is mainly how the page itself is setup, how a slide looks and the background colour.} \\
 
@@ -38,7 +38,7 @@ The option of transform used is the \texttt{scale()} option. Because \texttt{jQu
 The \texttt{rotatescale} transition works similarly to the scale transition, but while animating the scale option it also animates the rotate option. Like all other transitions, the previous slide is moved back to the slide stack.
 
 \section{End of the Header}
-All of the previous code was placed inside the \texttt{header} of the HTML file. The code generator now starts the \texttt{body} of the file and outputs the \texttt{wrapper} of the slides.
+All of the previous code was placed inside the \texttt{header} of the HTML-file. The code generator now starts the \texttt{body} of the file and outputs the \texttt{wrapper} of the slides.
 
 \section{Starting Slides}
 Slides in the HTML-file are wrapped in a \texttt{div} that has the class \texttt{slide\_wrapper}. The div also has to have some tags set in order for the slideshow to work. The first one is the \texttt{id} of the \texttt{div}, each slide has to have a unique id starting with \texttt{slide0} and incrementing the number for every slide, this is used when the slideshow moves to a slide. \\
