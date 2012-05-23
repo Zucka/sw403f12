@@ -46,7 +46,7 @@ Listing \ref{lst:ebnf} shows the CFG for NISSE in EBNF. With the rules of table 
 	\label{fig:Parsetree}
 \end{figure}
 
-\noindent{Figure \ref{fig:Parsetree} shows how the CFG would parse the AST, with the input of listing \ref{lst:BasicElemets}.}
+\noindent{Figure \ref{fig:Parsetree} shows how the CFG would parse the AST, with the input of listing \ref{lst:BasicElemets}. An example is the line \lstinline!S = a {b}+ [ {c}+ ] ( a | b ) ;! that translates to \lstinline!S = a!, followed by at least one \lstinline!b!, followed by none or at least one \lstinline!c!, followed by \lstinline!a! or \lstinline!b!.}
 
 \section{Conclusion}
 The CFG is concluded to be LALR according to section \ref{Parserstrategy}, the CFG is not ambiguous either, as per the definition of LALR (\cite{CaC} Chapter 6).

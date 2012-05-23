@@ -71,8 +71,8 @@ special sequence & ? ... ? \\
 \label{tbl:EBNFSyntax}
 \end{center}
 \end{table}
-An example is the line \lstinline!S = a {b}+ [ {c}+ ] ( a | b ) ;! that translates to \lstinline!S = a!, followed by at least one \lstinline!b!, followed by none or at least one \lstinline!c!, followed by \lstinline!a! or \lstinline!b!. The special sequence is used for writing anything that is not directly an EBNF, defined in \ref{tbl:EBNFSyntax}. An example is \lstinline!char = ? a-ÂA-≈ ? ;! in listing \ref{lst:Lexer} where all letters from a to z is defined using both capital and non-capital. \\
-\noindent{The abnormal in this token list is \lstinline!format{\_}kwd!, \lstinline!setting{\_}kwd!, \lstinline!begin{\_}kwd! and \lstinline!end{\_}kwd!, (kwd is short for ``keyword''). These keywords are explicit, because in the productions in which they occur they can only be on the left hand side of a left curly bracket. Their specific use is explained in chapter \ref{SSyntax}.}
+The special sequence is used for writing anything that is not directly an EBNF, defined in \ref{tbl:EBNFSyntax}. An example is \lstinline!char = ? a-ÂA-≈ ? ;! in listing \ref{lst:Lexer} where all letters from a to Â is defined using both capital and non-capital. \\
+\noindent{The abnormal in this token list is \lstinline!format_kwd!, \lstinline!setting_kwd!, \lstinline!begin_kwd! and \lstinline!end_kwd!, (kwd is short for ``keyword''). These keywords are explicit, because in the productions in which they occur they can only be on the left hand side of a left curly bracket. Their specific use is explained in chapter \ref{SSyntax}.}
 \\ \\
 The reason each expression has its own token and not a general production, is to easily see the difference between the special tokens and the normal ones, without the need to check that a given token in the syntax analyser is the right token.
 \\ \\ 
