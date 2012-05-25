@@ -124,7 +124,7 @@ public class Main {
 		}
 		else if(args.length == 0)
 		{
-			System.out.println("Usage: nisse [debug level] input [output]");
+			System.out.println("Usage: nisse input [output]");
 			System.exit(0);
 			
 //			try {
