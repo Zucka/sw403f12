@@ -242,6 +242,7 @@ public class CodeGenerator extends DepthFirstAdapter{
 		writeToStream("</style>");
 		*/
 		writeToStream("</head>\n <body style=\"font-size: 58.5%; \">\n <div id=\"wrapper\" data-ratio=\"4/3\">\n <div id=\"axis\" style=\"margin-left: 336px; \">\n");
+		writeToStream("<div class=\"slide_wrapper\" id=\"slide-1\" data-transition=\"fade\" style=\"top: 0%; opacity: 1; height: 936px; width: 1248px;\"></div>\n");
 	}
 	public void outStart(Start node)
 	{
@@ -352,8 +353,8 @@ public class CodeGenerator extends DepthFirstAdapter{
 		String top = "100%";
 		if (slideCounter == 0)
 		{
-			opacity = "1";
-			top = "0%";
+			opacity = "0";
+			top = "100%";
 		}
 		String str = "<div class=\"slide_wrapper\" id=\"slide"+slideCounter+"\" data-transition=\""+Transition+"\" style=\"top: "+top+"; opacity: "+opacity+"; height: 936px; width: 1248px; \">\n<div class=\"slide\">\n<div class=\""+Type+"\">\n";
 		writeToStream(str);

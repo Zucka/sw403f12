@@ -12,6 +12,8 @@ width: NUMBER_OF_PIXELSpx
 scale: n.n%
 
 [SLIDE_TYPES]
+Lots 				-> lotsslide
+
 Title 				-> titleslide
 Subtitle 			-> titleslide
 XTitleXSubtitle  	-> titleslide
@@ -37,7 +39,16 @@ DImage 				-> dimageslide
 TImage 				-> timageslide
 QImage 				-> qimageslide
 
-Lots 				-> lotsslide
+01: lotsslide
+02: titleslide
+03: titleimgageslide
+04: titledimgageslide
+05: titletimgageslide
+06: titleqimgageslide
+07: imageslide
+08: dimageslide
+09: timageslide
+10: qimageslide
 
 [TRANSITION_TYPES]
 fade

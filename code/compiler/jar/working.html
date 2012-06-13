@@ -1,0 +1,749 @@
+<!DOCTYPE html> <html> <head> <title>A Presentation</title> <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"> <meta name="apple-mobile-web-app-capable" content="yes" /> <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> <meta content="minimum-scale=1.0, width=device-width, height=device-height, maximum-scale=1.0, user-scalable=no" name="viewport" />
+ <!-- css framework --><style type="text/css"> body,div{margin:0px; padding:0px; } h1,h2,h3,h4 {margin:0px; padding:0px; margin-bottom:1%; } ul,ol {margin:0px 0px 0px 0px; } body {background:#efefef; overflow:hidden; color:black; font-family:arial; line-height:1.5; font-size:100.0%; } a {color:blue; font-family:arial; line-height:1.5; font-size:100.0%; } .subtitle {color:gray; font-family:arial; line-height:1.5; font-size:133.33334%; } .title {color:black; font-family:arial; line-height:1.5; font-size:100.0%; } #wrapper {position: absolute; left:0%; top:0%; height:100%; width:100%; font-size:4em; } #axis {position:absolute; left:00%; top:0%; height:100%; width:100%; } .slide_wrapper {position: absolute; height:100%; width:100%; } .slide {position: absolute; height:90%; width:90%; top:5%; left:6%; background:#fefefe; padding:2%; border:1px solid #666; margin-top:-5px; margin-left:-5px; vertical-align: middle; display: table; text-align:center; } .slide > .blankslide {visibility: hidden; } .slide > .titleslide {display: table-cell; vertical-align: middle; } .slide > .titleimgageslide{display: table-cell; vertical-align: middle; } .titleimgageslide > .image {float:none; margin:0%; width:100%; } .slide > .titledimgageslide{display: table-cell; vertical-align: middle; } .titledimgageslide > .image {float:left; margin:1%; width:48%; } .slide > .titletimgageslide{display: table-cell; vertical-align: middle; } .titletimgageslide > .image {float:left; margin:1%; width:31.33%; } .slide > .titleqimgageslide{display: table-cell; vertical-align: middle; } .titleqimgageslide > .image {float:left; margin:0.5%; width:24%; } .slide > .imageslide {display: table-cell; vertical-align: middle; } .imageslide > .image {float:center; /*width:96% ;*/ } .slide > .dimageslide {display: table-cell; vertical-align: middle; } .dimageslide > .image {float:left; margin:2%; width:46%; } .slide > .timageslide{display: table-cell; vertical-align: middle; } .timageslide > .image {float:left; margin:2%; width:29%; } .slide > .qimageslide{display: table-cell; } .qimageslide > .image {float: left; margin:2%; width:46%; height:46%; } .slide > .lotsslide{text-align:left; } .lotsslide > .image{float:none; } .image {vertical-align: middle; position:relative; margin:0%; float:left; text-align:center; } .image > .description {text-align:center; color:silver; font-family:arial; line-height:1.5; font-size:111.111115%; } </style>
+ <!-- jQuery --><script src="jquery.js"></script>
+ <!-- jQuery Swipe --> <script type="text/javascript"> (function($) {$.fn.swipe = function(options) {if (!this) return false;var defaults = {fingers 		: 1,threshold 		: 75,swipe:null,swipeLeft:null,swipeRight: null,swipeUp: null,swipeDown: null,swipeStatus: null,click: null,	triggerOnTouchEnd : true,allowPageScroll : "auto"};var LEFT = "left";var RIGHT = "right";var UP = "up";var DOWN = "down";var NONE = "none";var HORIZONTAL = "horizontal";var VERTICAL = "vertical";var AUTO = "auto";var PHASE_START="start";var PHASE_MOVE="move";var PHASE_END="end";var PHASE_CANCEL="cancel";var hasTouch = 'ontouchstart' in window,START_EV = hasTouch ? 'touchstart' : 'mousedown',MOVE_EV = hasTouch ? 'touchmove' : 'mousemove',END_EV = hasTouch ? 'touchend' : 'mouseup',CANCEL_EV = 'touchcancel';var phase="start";if (options.allowPageScroll==undefined && (options.swipe!=undefined || options.swipeStatus!=undefined))options.allowPageScroll=NONE;if (options)$.extend(defaults, options);return this.each(function() {var that = this;var $this = $(this);var triggerElementID = null;var fingerCount = 0;var start={x:0, y:0};var end={x:0, y:0};var delta={x:0, y:0};function touchStart(event) {var evt = hasTouch ? event.touches[0] : event; phase = PHASE_START;if (hasTouch) {fingerCount = event.touches.length;}distance=0;direction=null;if (fingerCount == defaults.fingers || !hasTouch) {start.x = end.x = evt.pageX;start.y = end.y = evt.pageY;if (defaults.swipeStatus)triggerHandler(event, phase);} else {touchCancel(event);}that.addEventListener(MOVE_EV, touchMove, false);that.addEventListener(END_EV, touchEnd, false);}function touchMove(event) {if (phase == PHASE_END || phase == PHASE_CANCEL)return;var evt = hasTouch ? event.touches[0] : event; end.x = evt.pageX;end.y = evt.pageY;direction = caluculateDirection();if (hasTouch) {fingerCount = event.touches.length;}phase = PHASE_MOVE; validateDefaultEvent(event, direction);if ( fingerCount == defaults.fingers || !hasTouch) {distance = caluculateDistance();if (defaults.swipeStatus)triggerHandler(event, phase, direction, distance);if (!defaults.triggerOnTouchEnd){if ( distance >= defaults.threshold ) {phase = PHASE_END;triggerHandler(event, phase);touchCancel(event);}}} else {phase = PHASE_CANCEL;triggerHandler(event, phase); touchCancel(event);}}function touchEnd(event) {event.preventDefault();distance = caluculateDistance();direction = caluculateDirection();if (defaults.triggerOnTouchEnd){phase = PHASE_END;if ( (fingerCount == defaults.fingers  || !hasTouch) && end.x != 0 ) {if ( distance >= defaults.threshold ) {triggerHandler(event, phase);touchCancel(event);} else {phase = PHASE_CANCEL;triggerHandler(event, phase); touchCancel(event);}} else {phase = PHASE_CANCEL;triggerHandler(event, phase); touchCancel(event);}}else if (phase == PHASE_MOVE){phase = PHASE_CANCEL;triggerHandler(event, phase); touchCancel(event);}that.removeEventListener(MOVE_EV, touchMove, false);that.removeEventListener(END_EV, touchEnd, false);}function touchCancel(event) {fingerCount = 0;start.x = 0;start.y = 0;end.x = 0;end.y = 0;delta.x = 0;delta.y = 0;}function triggerHandler(event, phase) {if (defaults.swipeStatus)defaults.swipeStatus.call($this,event, phase, direction || null, distance || 0);if (phase == PHASE_CANCEL){if (defaults.click && (fingerCount==1 || !hasTouch) && (isNaN(distance) || distance==0))defaults.click.call($this,event, event.target);}if (phase == PHASE_END){if (defaults.swipe){defaults.swipe.call($this,event, direction, distance);}switch(direction){case LEFT :if (defaults.swipeLeft)defaults.swipeLeft.call($this,event, direction, distance);break;case RIGHT :if (defaults.swipeRight)defaults.swipeRight.call($this,event, direction, distance);break;case UP :if (defaults.swipeUp)defaults.swipeUp.call($this,event, direction, distance);break;case DOWN :	if (defaults.swipeDown)defaults.swipeDown.call($this,event, direction, distance);break;}}}function validateDefaultEvent(event, direction){if( defaults.allowPageScroll==NONE ){event.preventDefault();}else {var auto=defaults.allowPageScroll==AUTO;switch(direction){case LEFT :if ( (defaults.swipeLeft && auto) || (!auto && defaults.allowPageScroll!=HORIZONTAL))event.preventDefault();break;case RIGHT :if ( (defaults.swipeRight && auto) || (!auto && defaults.allowPageScroll!=HORIZONTAL))event.preventDefault();break;case UP :if ( (defaults.swipeUp && auto) || (!auto && defaults.allowPageScroll!=VERTICAL))event.preventDefault();break;case DOWN :	if ( (defaults.swipeDown && auto) || (!auto && defaults.allowPageScroll!=VERTICAL))event.preventDefault();break;}}}function caluculateDistance(){return Math.round(Math.sqrt(Math.pow(end.x - start.x,2) + Math.pow(end.y - start.y,2)));}function caluculateAngle() {var X = start.x-end.x;var Y = end.y-start.y;var r = Math.atan2(Y,X);var angle = Math.round(r*180/Math.PI);if (angle < 0) angle = 360 - Math.abs(angle);return angle;}function caluculateDirection() {var angle = caluculateAngle();if ( (angle <= 45) && (angle >= 0) ) return LEFT;else if ( (angle <= 360) && (angle >= 315) )return LEFT;else if ( (angle >= 135) && (angle <= 225) )return RIGHT;else if ( (angle > 45) && (angle < 135) )return DOWN;else return UP;}try{this.addEventListener(START_EV, touchStart, false);this.addEventListener(CANCEL_EV, touchCancel);}catch(e){}});};})(jQuery); </script>
+ <!-- JavaScript library --><script type="text/javascript"> $(function(){$(window).load(function() {update_dimensions(); if (window.location.hash.substring(1) != "") {if ($("#slide"+(window.location.hash.substring(1)-1)).length) {go_to_slide(window.location.hash.substring(1)-1); } } else {go_to_slide(0); }; }); function findHHandWW(imgEle, newImg, sType) {var imgHeight, imgWidth; var hS, wS; imgRatio =  newImg.width / newImg.height; switch(sType){case 1: {hS = 1; wS = 5; break; }; case 3: {hS = 2; wS = 5; break; }; case 4: {hS = 2; wS = 4; break; }; case 5: {hS = 2; wS = 2; break; }; case 6: {hS = 2; wS = 1; break; }; case 7: {hS = 3; wS = 5; break; }; case 8: {hS = 3; wS = 4; break; }; case 9: {hS = 3; wS = 2; break; }; case 10: {hS = 1; wS = 3; break; }; }; switch (hS){case 1:{imgHeight = (new_height*0.30); break; }; case 2:{imgHeight = (new_height*0.54); break; }; case 3:{imgHeight = (new_height*0.77); break; }; }; imgWidth = (imgHeight*imgRatio); switch (wS){case 1:{if (imgWidth > (new_width*0.204851)) {imgWidth = (new_width*0.204851); } break; }; case 2:{if (imgWidth > (new_width*0.268194)) {imgWidth = (new_width*0.268194); } break; }; case 3:{if (imgWidth > (new_width*0.393530)) {imgWidth = (new_width*0.393530); } break; }; case 4:{if (imgWidth > (new_width*0.409703)) {imgWidth = (new_width*0.409703); } break; }; case 5:{if (imgWidth > (new_width*0.820754)) {imgWidth = (new_width*0.820754); } break; }; }; $(imgEle).css({ "width":imgWidth }); return true; }; function getImgSize(imgEle , sType) {imgSrc = $(imgEle).attr("src"); var newImg = new Image(); newImg.name = imgSrc; newImg.src = imgSrc; newImg.onload = findHHandWW(imgEle, newImg, sType); }; var slide_pointer = 0; var slide_pointer_previous = -1; var new_height, new_width; function update_dimensions() {var h = $(window).height(); var w = $(window).width(); req = $("#wrapper").attr("data-ratio").split("/").map(function(i){return parseInt(i);}); ratio = req[0] / req[1]; actual = w / h; if(actual > ratio) {new_height = parseInt(h); new_width = parseInt(h * ratio); document.body.style.fontSize = ((window.innerHeight/100)*6.25)+"%"; } else if(ratio > actual) {new_width = parseInt(w); new_height = parseInt(w / ratio); document.body.style.fontSize = ((window.innerWidth/133)*6.25)+"%"; } $(".slide_wrapper").css({"height":new_height, "width":new_width }); $("#axis").css({"margin-left": (w/2)-(new_width/2) , }); $(".lotsslide > .image > img").each(function (index,domEle) {getImgSize(domEle, 1);}); $(".titleimgageslide  > .image > img").each(function (index,domEle) {getImgSize(domEle, 3);}); $(".titledimgageslide > .image > img").each(function (index,domEle) {getImgSize(domEle, 4);}); $(".titletimgageslide > .image > img").each(function (index,domEle) {getImgSize(domEle, 5);}); $(".titleqimgageslide > .image > img").each(function (index,domEle) {getImgSize(domEle, 6);}); $(".imageslide  > .image > img").each(function (index,domEle) {getImgSize(domEle, 7);}); $(".dimageslide > .image > img").each(function (index,domEle) {getImgSize(domEle, 8);}); $(".timageslide > .image > img").each(function (index,domEle) {getImgSize(domEle, 9);}); $(".qimageslide > .image > img").each(function (index,domEle) {getImgSize(domEle, 10);}); }; function go_to_slide_rotate_scale(nr) {slide_pointer = nr; selector = "#slide"+slide_pointer; selectorprevious = "#slide"+slide_pointer_previous; if (selector != selectorprevious) {$(selector).css('opacity','0'); $(selector).css('top','0%'); $(selector).css('-webkit-transform','scale(1)'); $(selector).css('-moz-transform','scale(1)'); $(selector).css('-o-transform','scale(1)'); $(selector).css('-ms-transform','scale(1)'); $(selectorprevious).stop().animate({"border-spacing" : "100","opacity":0}, {step: function(now,fx) {var scale = (100-now)/100; $(this).css('-webkit-transform','rotate('+now*3.6+'deg) scale('+scale+')'); $(this).css('-moz-transform','rotate('+now*3.6+'deg) scale('+scale+')'); $(this).css('-o-transform','rotate('+now*3.6+'deg) scale('+scale+')'); $(this).css('-ms-transform','rotate('+now*3.6+'deg) scale('+scale+')'); },duration:700, complete: function() {$(selectorprevious).css('top','100%'); $(selectorprevious).css('-webkit-transform','rotate(0deg) scale(1)'); $(selectorprevious).css('-moz-transform','rotate(0deg) scale(1)'); $(selectorprevious).css('-o-transform','rotate(0deg) scale(1)'); $(selectorprevious).css('-ms-transform','rotate(0deg) scale(1)'); $(selectorprevious).css('border-spacing','0'); }} ,'linear'); $(selector).stop().fadeTo(700,1); } } function go_to_slide_scale(nr) {slide_pointer = nr; selector = "#slide"+slide_pointer; selectorprevious = "#slide"+slide_pointer_previous; if (selector != selectorprevious) {$(selector).css('opacity','0'); $(selector).css('top','0%'); $(selector).css('-webkit-transform','scale(1)'); $(selector).css('-moz-transform','scale(1)'); $(selector).css('-o-transform','scale(1)'); $(selector).css('-ms-transform','scale(1)'); $(selectorprevious).stop().animate({"border-spacing" : "100","opacity":0}, {step: function(now,fx) {var scale = (100-now)/100; $(this).css('-webkit-transform','scale('+scale+')'); $(this).css('-moz-transform','scale('+scale+')'); $(this).css('-o-transform','scale('+scale+')'); $(this).css('-ms-transform','scale('+scale+')'); },duration:700, complete: function() {$(selectorprevious).css('top','100%'); $(selectorprevious).css('-webkit-transform','scale(1)'); $(selectorprevious).css('-moz-transform','scale(1)'); $(selectorprevious).css('-o-transform','scale(1)'); $(selectorprevious).css('-ms-transform','scale(1)'); $(selectorprevious).css('border-spacing','0'); }} ,'linear'); $(selector).stop().fadeTo(700,1); } } function go_to_slide_swipe(nr) {slide_pointer = nr; selector = "#slide"+slide_pointer; selectorprevious = "#slide"+slide_pointer_previous; if (slide_pointer != slide_pointer_previous) {var left = "-100%"; if (slide_pointer < slide_pointer_previous) {left = "100%"; $(selector).css('left','-100%'); } else {$(selector).css('left','100%'); } $(selector).css('top','0%'); $(selector).css('opacity','1'); $(selector).css('-webkit-transform','scale(1)'); $(selector).css('-moz-transform','scale(1)'); $(selector).css('-o-transform','scale(1)'); $(selector).css('-ms-transform','scale(1)'); $(selectorprevious).stop().fadeTo(200,0); $(selector).stop().fadeTo(700,1); $(selector).stop().animate({"left" : "0%"},500); $(selectorprevious).stop().animate({"left" : left },500,function() {$(selectorprevious).css('top','100%'); $(selectorprevious).css('left','0%'); $(selectorprevious).css('opacity','0'); }); } } function go_to_slide_fade(nr) {slide_pointer = nr; selector = "#slide"+slide_pointer; selectorprevious = "#slide"+slide_pointer_previous; if (selector != selectorprevious) {$(selector).css('opacity','0'); $(selector).css('top','0%'); $(selector).css('-webkit-transform','scale(1)'); $(selector).css('-moz-transform','scale(1)'); $(selector).css('-o-transform','scale(1)'); $(selector).css('-ms-transform','scale(1)'); $(selectorprevious).stop().fadeTo(300,0,function() {$(selector).stop().fadeTo(300,1, function() {$(selectorprevious).css('top','100%'); }); }); } } $(document.body).keydown(function(e){slide_pointer_previous = slide_pointer; switch(e.keyCode){case 37: {go_to_slide(Math.max(slide_pointer - 1,0)); break; } case 38: {go_to_slide(Math.max(slide_pointer - 1,0)); break; } case 39: {go_to_slide(Math.min(slide_pointer + 1, $(".slide_wrapper[id]").length-2 )); break; } case 40: {go_to_slide(Math.min(slide_pointer + 1, $(".slide_wrapper[id]").length-2 )); break; } } }); var swipeOptions = {swipe:swipe, threshold:5 }; {$(function() {$('#wrapper').swipe(swipeOptions); } ); }; function swipe (event,direction) {slide_pointer_previous = slide_pointer; if (direction == "left") {go_to_slide(Math.min(slide_pointer + 1, $(".slide_wrapper[id]").length-2 )); } else if (direction == "right") {go_to_slide(Math.max(slide_pointer - 1,0)); } }; function go_to_slide(nr) {var type = document.getElementById('slide'+slide_pointer_previous).getAttribute("data-transition"); switch(type) {case "rotatescale": {go_to_slide_rotate_scale(nr); break; } case "scale": {go_to_slide_scale(nr); break; } case "swipe": {go_to_slide_swipe(nr); break; } case "fade": {go_to_slide_fade(nr); break; } } }; $(window).resize(function(e){update_dimensions(); }); }); </script></head>
+ <body style="font-size: 58.5%; ">
+ <div id="wrapper" data-ratio="4/3">
+ <div id="axis" style="margin-left: 336px; ">
+<div class="slide_wrapper" id="slide-1" data-transition="fade" style="top: 0%; opacity: 1; height: 936px; width: 1248px;"></div>
+<div class="slide_wrapper" id="slide0" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h1 class ="title"><span style="font-size:200.0%; ">Nearly Instantaneous<br/>Slide Show Expressions<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">May 2012<br/></span>
+<span style="font-size:77.77778%; ">By: Group SW403F12<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide1" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<span style="font-size:100.0%; ">This lecture is 1 of 10 lectures in programming languages.<br/>The basic elements are:<br/></span>
+<ul>
+<li>
+<span style="font-size:100.0%; ">Loop</span>
+</li>
+<li>
+<span style="font-size:100.0%; ">Functions</span>
+</li>
+<li>
+<span style="font-size:100.0%; ">if statements</span>
+</li>
+</div></div></div>
+<div class="slide_wrapper" id="slide2" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+</ul>
+<span style="font-size:100.0%; ">Later in this course you will learn how to create pictures. This Is a picture:<br/></span>
+<div class="image">
+<img style="width:100%;" src="http://upload.wikimedia.org/wikipedia/commons/2/21/Solid_black.svg"></br><span class="description" style="font-size:88.88889%; color:black; "> http://upload.wikimedia.org/wikipedia/commons/2/21/Solid_black.svg<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide3" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<span style="font-size:100.0%; ">We also have a lot of breaks in this course.<br/>We will have a break until the end.<br/></span>
+</div></div></div>
+<div class="slide_wrapper" id="slide4" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<h1 class ="title"><span style="font-size:200.0%; ">Next lecture<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">On 15-05-2012<br/></span>
+</h2>
+<span style="font-size:100.0%; ">This was all for now<br/>Have a nice day.<br/>This current slideshow can be found at </span>
+<span style="font-size:100.0%; color:blue; "><a href="www.somelink.com" target="_top">this link<br/></a>
+</span>
+</div></div></div>
+<div class="slide_wrapper" id="slide5" data-transition="rotatescale" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A presentation<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">A demo presentation<br/></span>
+</h2>
+<span style="font-size:100.0%; color:red; "> red tekst<br/></span>
+</div></div></div>
+<div class="slide_wrapper" id="slide6" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<h1 class ="title"><span style="font-size:200.0%; ">What we can do:<br/></span>
+</h1>
+<ul>
+<li>
+<span style="font-size:100.0%; "> Bullet points</span>
+</li>
+<ul>
+<li>
+<span style="font-size:100.0%; "> lots and lots</span>
+</li>
+</ul>
+<ul>
+<ul>
+<li>
+<span style="font-size:100.0%; "> Even more</span>
+</li>
+</ul>
+</ul>
+</ul>
+<ol>
+<li>
+<span style="font-size:100.0%; "> ordered points</span>
+</li>
+<ol>
+<li>
+<span style="font-size:100.0%; "> lots and lots</span>
+</li>
+<ol>
+<li>
+<span style="font-size:100.0%; "> even more</span>
+</li>
+</ol>
+<li>
+<span style="font-size:100.0%; "> hey</span>
+</li>
+</ol>
+<li>
+<span style="font-size:100.0%; "> jeyh</span>
+</li>
+</ol>
+<span style="font-size:100.0%; color:blue; "><a href="http://google.com" target="_top"> hyperlinks<br/></a></span>
+<span style="font-size:100.0%; color:red; text-decoration:underline; "> underlined text</span>
+<span style="font-size:100.0%; ">, </span>
+<span style="font-size:100.0%; font-weight:bold; ">bold text</span>
+<span style="font-size:100.0%; ">, </span>
+<span style="font-size:100.0%; text-decoration:underline; font-weight:bold; font-style:italic; ">all three!<br/></span>
+<span style="font-size:100.0%; font-weight:bold; "> red tekst</span>
+<span style="font-size:100.0%; "> <br/>Dette er en kommentar<br/></span>
+</div></div></div>
+<div class="slide_wrapper" id="slide7" data-transition="swipe" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleqimgageslide">
+<div class="image">
+<img style="width:100%;" src="http://www.google.com/logos/2012/yoshizawa12-hp.jpg"></br><span class="description" style="font-size:88.88889%; color:black; "> Billedtekst<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="http://www.google.com/logos/2012/yoshizawa12-hp.jpg"></br><span class="description" style="font-size:88.88889%; color:black; "> Billedtekst<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="http://www.google.com/logos/2012/yoshizawa12-hp.jpg"></br><span class="description" style="font-size:88.88889%; color:black; "> Billedtekst<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="http://www.google.com/logos/2012/yoshizawa12-hp.jpg"></br><span class="description" style="font-size:88.88889%; color:black; "> Billedtekst<br/></span>
+</div><h2 class="subtitle"><span style="font-size:122.22222%; ">We do images too, and float them automatically<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide8" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h1 class ="title"><span style="font-size:200.0%; "> hej </span>
+<span style="font-size:100.0%; color:blue; "><a href="http://google.dk" target="_top"> </a>
+</span>
+<span style="font-size:100.0%; color:blue; font-weight:bold; "><a href="http://google.dk" target="_top">hej </a>
+</span>
+<span style="font-size:100.0%; color:blue; font-weight:bold; font-style:italic; "><a href="http://google.dk" target="_top"> med </a>
+</span>
+<span style="font-size:100.0%; color:blue; font-weight:bold; font-style:italic; text-decoration:underline; "><a href="http://google.dk" target="_top"> dig</a>
+</span>
+</h1>
+<div class="image">
+<img style="width:100%;" src="http://www.google.com/logos/2012/yoshizawa12-hp.jpg"></br><span class="description" style="font-size:88.88889%; color:black; "> Billedtekst<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide9" data-transition="scale" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<span style="font-size:100.0%; ">1Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>L2orem ipsum dolor sit amet, consectetur adipiscing elit.<br/>Lo3rem ipsum dolor sit amet, consectetur adipiscing elit.<br/>Lor4em ipsum dolor sit amet, consectetur adipiscing elit.<br/>Lore5m ipsum dolor sit amet, consectetur adipiscing elit.<br/>Lorem6 ipsum dolor sit amet, consectetur adipiscing elit. <br/>Lorem 7ipsum dolor sit amet, consectetur adipiscing elit. <br/>Lorem i8psum dolor sit amet, consectetur adipiscing elit. <br/>Lorem ip9sum dolor sit amet, consectetur adipiscing elit. <br/>Lorem ips10um dolor sit amet, consectetur adipiscing elit. <br/>Lorem ipsum11 dolor sit amet, consectetur adipiscing elit. <br/>Lorem ipsum d12olor sit amet, consectetur adipiscing elit.<br/>Lorem ipsum dol13or sit amet, consectetur adipiscing elit. <br/>Lorem ipsum dolor14 sit amet, consectetur adipiscing elit.<br/>Lorem ipsum dolor s15it amet, consectetur adipiscing elit.<br/></span>
+</div></div></div>
+<div class="slide_wrapper" id="slide10" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<h1 class ="title"><span style="font-size:166.66666%; font-family:arial; "> Bulletpoints<br/></span>
+</h1>
+<ul>
+<li>
+<span style="font-size:100.0%; ">In id leo aliquet quam consequat fringilla.</span>
+</li>
+<li>
+<span style="font-size:100.0%; ">Proin pretium odio eget lectus posuere nec blandit tortor consectetur.</span>
+</li>
+<li>
+<span style="font-size:100.0%; ">Nam condimentum sapien et sem tempor volutpat.</span>
+</li>
+<li>
+<span style="font-size:100.0%; ">Aliquam ullamcorper justo nec libero auctor tristique.</span>
+</li>
+</div></div></div>
+<div class="slide_wrapper" id="slide11" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+</ul>
+<ol>
+<li>
+<span style="font-size:100.0%; "> ordered points</span>
+</li>
+<ol>
+<li>
+<span style="font-size:100.0%; "> lots and lots</span>
+</li>
+<ol>
+<li>
+<span style="font-size:100.0%; "> even more</span>
+</li>
+<ol>
+<li>
+<span style="font-size:100.0%; "> lol</span>
+</li>
+<ol>
+<li>
+<span style="font-size:100.0%; "> fisk</span>
+</li>
+</ol>
+<li>
+<span style="font-size:100.0%; "> lol </span>
+</li>
+</ol>
+<li>
+<span style="font-size:100.0%; "> olo</span>
+</li>
+</ol>
+<li>
+<span style="font-size:100.0%; "> lo</span>
+</li>
+</ol>
+<li>
+<span style="font-size:100.0%; "> l</span>
+</li>
+</div></div></div>
+<div class="slide_wrapper" id="slide12" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+</ol>
+<span style="font-size:100.0%; ">Hej </span>
+<h1 class ="title"><span style="font-size:200.0%; ">Hej med dig<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide13" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h1 class ="title"><span style="font-size:200.0%; ">hej<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide14" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<div class="image">
+<img style="width:100%;" src="http://www.google.com/logos/2012/yoshizawa12-hp.jpg"></br><span class="description" style="font-size:88.88889%; color:black; font-style:italic; "> Billedtekst</span>
+</div><span style="font-size:100.0%; font-style:italic; ">Italic text under image<br/></span>
+</div></div></div>
+<div class="slide_wrapper" id="slide15" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<div class="image">
+<img style="width:100%;" src="http://www.google.com/logos/2012/yoshizawa12-hp.jpg"></br><span class="description" style="font-size:88.88889%; color:black; "> Image within title container<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide16" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<div class="image">
+<img style="width:100%;" src="http://www.google.com/logos/2012/yoshizawa12-hp.jpg"></br><span class="description" style="font-size:88.88889%; color:black; "> </span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">Billedtekst her staar som en title skrift<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide17" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h2 class="subtitle"><span style="font-size:122.22222%; "> hej </span>
+<span style="font-size:100.0%; color:blue; "><a href="http://google.dk" target="_top"> </a>
+</span>
+<span style="font-size:100.0%; color:blue; font-weight:bold; "><a href="http://google.dk" target="_top">med <br/></a>
+</span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide18" data-transition="swipe" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleimgageslide">
+<div class="image">
+<img style="width:100%;" src="http://www.google.com/logos/2012/yoshizawa12-hp.jpg"></br><span class="description" style="font-size:88.88889%; color:black; "> Billedtekst<br/></span>
+</div><h2 class="subtitle"><span style="font-size:122.22222%; ">this is a subtitle<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide19" data-transition="swipe" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleimgageslide">
+<div class="image">
+<img style="width:100%;" src="http://www.google.com/logos/2012/yoshizawa12-hp.jpg"></br><span class="description" style="font-size:88.88889%; color:black; "> Billedtekst<br/></span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">this is a title after a image<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide20" data-transition="swipe" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">this is a title before a image<br/></span>
+</h1>
+<div class="image">
+<img style="width:100%;" src="http://www.google.com/logos/2012/yoshizawa12-hp.jpg"></br><span class="description" style="font-size:88.88889%; color:black; "> Billedtekst<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide21" data-transition="swipe" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleimgageslide">
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:88.88889%; color:black; "> Billedtekst<br/></span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">this is a title after a image<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide22" data-transition="swipe" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">this is a title before a image<br/></span>
+</h1>
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:88.88889%; color:black; "> Billedtekst<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide23" data-transition="swipe" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="imageslide">
+<div class="image">
+<img style="" src="http://www.google.com/logos/2012/yoshizawa12-hp.jpg"></br><span class="description" style="font-size:88.88889%; color:black; "> Only image on slide<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide24" data-transition="swipe" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<span style="font-size:100.0%; font-style:italic; font-weight:bold; "> Bold and Italic<br/></span>
+</div></div></div>
+<div class="slide_wrapper" id="slide25" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<span style="font-size:100.0%; ">Hej </span>
+<h1 class ="title"><span style="font-size:200.0%; ">Hej med dig<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide26" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<span style="font-size:100.0%; ">Slide content...<br/></span>
+</div></div></div>
+<div class="slide_wrapper" id="slide27" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<div class="image">
+<img style="width:100%;" src="http://www.meganfox.com/wp-content/themes/thesis/rotator/sample-2.jpg"></br><span class="description" style="font-size:88.88889%; color:black; "> Megan Fox!<br/></span>
+</div><span style="font-size:100.0%; ">Slide content...<br/></span>
+</div></div></div>
+<div class="slide_wrapper" id="slide28" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide29" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<span style="font-size:100.0%; ">1Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>L2orem ipsum dolor sit amet, consectetur adipiscing elit.<br/>Lo3rem ipsum dolor sit amet, consectetur adipiscing elit.<br/>Lor4em ipsum dolor sit amet, consectetur adipiscing elit.<br/>Lore5m ipsum dolor sit amet, consectetur adipiscing elit.<br/>Lorem6 ipsum dolor sit amet, consectetur adipiscing elit. <br/>Lorem 7ipsum dolor sit amet, consectetur adipiscing elit.<br/></span>
+</div></div></div>
+<div class="slide_wrapper" id="slide30" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="lotsslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<span style="font-size:100.0%; ">Hej Med jonathan<br/></span>
+</div></div></div>
+<div class="slide_wrapper" id="slide31" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/>A Presentation<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide32" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/>A Presentation<br/>A Presentation<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide33" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/>A Presentation<br/>A Presentation<br/>A Presentation<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide34" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/>A Presentation<br/>A Presentation<br/>A Presentation<br/>A Presentation<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide35" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/>A Presentation<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/>d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide36" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide37" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/>d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide38" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/>d. 07-05-2012<br/>d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide39" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleslide">
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/>d. 07-05-2012<br/>d. 07-05-2012<br/>d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide40" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<div class="image">
+<img style="width:100%;" src="img/laks.jpg"></br><span class="description" style="font-size:111.111115%; color:black; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide41" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleimgageslide">
+<div class="image">
+<img style="width:100%;" src="img/laks.jpg"></br><span class="description" style="font-size:111.111115%; color:black; "> laks<br/></span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide42" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+<div class="image">
+<img style="width:100%;" src="img/laks.jpg"></br><span class="description" style="font-size:111.111115%; color:black; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide43" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<div class="image">
+<img style="width:100%;" src="img/laks.jpg"></br><span class="description" style="font-size:111.111115%; color:black; "> laks<br/></span>
+</div><h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide44" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleimgageslide">
+<div class="image">
+<img style="width:100%;" src="img/laks.jpg"></br><span class="description" style="font-size:111.111115%; color:black; "> laks<br/></span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide45" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleimgageslide">
+<div class="image">
+<img style="width:100%;" src="http://www.galeries.dk/images/Laks1.jpg"></br><span class="description" style="font-size:111.111115%; color:black; "> laks<br/></span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide46" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titledimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:blue; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:blue; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide47" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titledimgageslide">
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:blue; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:blue; "> laks<br/></span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide48" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titledimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:blue; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:blue; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide49" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titledimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:blue; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:blue; "> laks<br/></span>
+</div><h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide50" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titledimgageslide">
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:blue; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:blue; "> laks<br/></span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide51" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titletimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide52" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titletimgageslide">
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide53" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titletimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide54" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titletimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide55" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titletimgageslide">
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:green; "> laks<br/></span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide56" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleqimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide57" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleqimgageslide">
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+</div></div></div>
+<div class="slide_wrapper" id="slide58" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleqimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide59" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleqimgageslide">
+<h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide60" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleqimgageslide">
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide61" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="titleqimgageslide">
+<div class="image">
+<img style="width:100%;" src="http://www.galeries.dk/images/Laks1.jpg"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="http://www.galeries.dk/images/Laks1.jpg"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="http://www.galeries.dk/images/Laks1.jpg"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="http://www.galeries.dk/images/Laks1.jpg"></br><span class="description" style="font-size:111.111115%; color:pink; "> laks<br/></span>
+</div><h1 class ="title"><span style="font-size:200.0%; ">A Presentation<br/></span>
+</h1>
+<h2 class="subtitle"><span style="font-size:122.22222%; ">d. 07-05-2012<br/></span>
+</h2>
+</div></div></div>
+<div class="slide_wrapper" id="slide62" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="imageslide">
+<div class="image">
+<img style="" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide63" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="imageslide">
+<div class="image">
+<img style="" src="http://www.galeries.dk/images/Laks1.jpg"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide64" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="dimageslide">
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide65" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="timageslide">
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide66" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="qimageslide">
+<div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_a.png"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="img/laks_b.png"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div>
+</div></div></div>
+<div class="slide_wrapper" id="slide67" data-transition="fade" style="top: 100%; opacity: 0; height: 936px; width: 1248px; ">
+<div class="slide">
+<div class="qimageslide">
+<div class="image">
+<img style="width:100%;" src="http://www.galeries.dk/images/Laks1.jpg"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="http://www.galeries.dk/images/Laks1.jpg"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="http://www.galeries.dk/images/Laks1.jpg"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div><div class="image">
+<img style="width:100%;" src="http://www.galeries.dk/images/Laks1.jpg"></br><span class="description" style="font-size:111.111115%; "> laks<br/></span>
+</div>
+</div></div></div>
+</div>
+</div>
+</body></html>
